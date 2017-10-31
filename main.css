@@ -1,0 +1,134 @@
+body {
+	font-family: Helvetica, Sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
+	max-width:65em;
+	margin-left: auto;
+	margin-right: auto;
+	color: #444;
+	/* background-color: #f6f6ef; */
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color: #ccc;
+}
+
+div.nav > ul {
+	list-style-type: none;
+    	margin: 0;
+    	padding: 0;
+}
+
+div.nav > ul > li {
+    display: inline-block;
+}
+
+
+div.nav > ul > li > a {
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-right: 1em;
+}
+
+h1.title {
+	margin-top: 0;
+	display: inline-block;
+	float:left;
+	margin-right: 1em;
+}
+
+h1.title > a {
+	text-decoration: none;
+}
+
+/* styles from http://mrmrs.io/links/ modified with cambridge colour */
+
+a {
+  transition: color .2s;
+  /* color: #265C83; */
+  color: #106470;
+}
+
+a:link,
+a:visited { color: #265C83; }
+a:hover   { color: #7FDBFF; }
+a:active  {
+  transition: color .2s;
+  color: #007BE6;
+}
+
+.link { text-decoration: none; }
+
+.galleryPhotoContainer {
+	font-size: 1.2em;
+	max-width: 40em;
+	margin-left:auto;
+	margin-right: auto;
+	margin-bottom: 1em;
+	background-color: #eee;
+	border: 1px solid #ddd;
+}
+
+/*************** PUBLICATIONS LISTING STYLE ***************************/
+.pubTitle {font-size: 1.4em;}
+
+.pubble { /* publication bubble haha */
+	float: right;
+	/* text-align: right; */
+	width: 18em;
+	padding: 0em 1em 0em 1em;
+	/* border-right: 1px solid #eee; */
+	/* border-left: 1px solid #eee; */
+	border: 1px solid #eee;
+	/* background-color: rgb(250,250,250); */
+	/* border-radius: 0.2em; */
+	/* clear: both; */
+	/* box-shadow: inset 0px 0px 10px #ccc; */
+}
+
+.conferenceSlug {
+	/* float: right; */
+	/* border:3px solid #ccc;*/
+	/* box-shadow: 0px 0px 5px #F5F1DA; */
+	/* border-radius: 5px; */
+	background-color: #F5F1DA;
+	/* font-weight: bold; */
+}
+
+.notes {
+	background-color: rgb(230,255,230);
+	/* background-color: #eee; */
+}
+
+.year {
+	/* width: 100%; */
+	font-size: 1.2em;
+	font-weight: bold;
+	background-color: #f5f5f5;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	padding:0.5em;
+	margin: 1em 0em 1em 0em;
+	/* text-align: center; */
+	/* box-shadow: 0px 3px 15px #ddd; */
+}
+/*
+.publicationsSection li a {
+	text-decoration: none;*
+}
+*/
+
+/* The [href] only targets anchors with the href attribute */
+/*
+.publicationsSection li a[href]:hover {
+	text-decoration: underline;
+}
+*/
+
+.main-container li {
+	font-size:0.8em;
+	line-height: 1.8em;
+}
+/*************** END PUBLICATIONS LISTING STYLE ***************************/

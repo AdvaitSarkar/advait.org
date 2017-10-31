@@ -1,0 +1,53 @@
+Setwise Comparison: Consistent, Scalable, Continuum Labels for Computer Vision
+In: Proceedings of the 34th Annual ACM Conference on Human Factors in Computing Systems 
+(CHI 2016)
+DOI: http://dx.doi.org/10.1145/2858036.2858199
+
+-----
+Notes on authorship and contributions (written by Advait).
+-----
+
+Advait Sarkar: 
+- conceived of setwise comparison
+- designed and implemented the SorTable interface
+- co-designed the evaluation
+- conducted part of the early usability studies
+- explicated the link to interactive machine learning and concept evolution
+- co-wrote a lot of the paper, helped analyse study results and produce figures
+
+Cecily Morrison:
+- supervised the project from the Microsoft side
+- helped design the SorTable system (stacks were her idea, and I added stack handles)
+- designed and coordinated the entire evaluation (from early user studies to final testing)
+- wrote most of the first draft of the paper and helped with revisions
+
+Jonas F. Dorn:
+- supervised the project from the Novartis side
+- conceived and began the initial experiments with pairwise comparison (pre-dating this work)
+- oversaw and helped conduct the operation of TrueSkill and ICC calculations
+- wrote the medical introduction section of the paper
+- produced materials for user studies
+- wrote software to facilitate viewing of videos in SorTable
+- helped conduct the early user studies and final testing
+
+Rishi Bedi:
+- ran the TrueSkill simulations
+- produced materials for user studies
+- conducted and analysed early user studies and final testing
+- provided some figures
+
+Saskia Steinheimer:
+- helped facilitate some studies and administered the NASA TLX
+- proofread the paper
+
+Jacques Boisvert:
+- provided video pre-processing code for SorTable
+- (along with Lorcan Walsh) provided various forms of technical support
+
+Abigail Sellen and Sian Lindley provided detailed and extensive feedback on the written drafts, as well as helping us frame our contributions. (Acknowledgements must also go to Saleema Amershi for helping us situate the work within the interactive machine learning literature.)
+
+The following were acknowledged as authors for discussions on the topic:
+Medical consultation team: Jessica, Marcus, Christian
+Machine learning team: Peter, Samuel (ASSESS-MS), Yordan (TrueSkill)
+
+Thanks also to Robert Corish for helping design the interaction strategies figure, as well as enforcing good colour sense in the SorTable interface.
