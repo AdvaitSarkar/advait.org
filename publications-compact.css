@@ -1,0 +1,28 @@
+.pubble { /* publication bubble haha */
+	display: none;
+}
+
+.conferenceSlug {
+	border-bottom: none;
+}
+
+.notes {
+	display: none;
+}
+
+.year {
+	display: none;
+}
+
+hr {
+	display: none;
+}
+
+.pubTitle {
+	font-size: 1em; 
+	text-decoration: none;
+}
+
+.spacing {
+	display: none;
+}
