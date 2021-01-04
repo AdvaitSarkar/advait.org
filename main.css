@@ -41,6 +41,11 @@ h1.title > a {
 	text-decoration: none;
 }
 
+footer {
+	text-align: center;
+	font-size: 0.9em;
+}
+
 /* styles from http://mrmrs.io/links/ modified with cambridge colour */
 
 
