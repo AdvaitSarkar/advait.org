@@ -40,6 +40,10 @@ h1.title > a {
 	text-decoration: none;
 }
 
+h1, h2, h3 {
+	font-weight: 400;
+}
+
 footer {
 	text-align: center;
 	font-size: 0.9em;
@@ -128,7 +132,7 @@ div.contentBox > div.subBox {
 div.contentBox > h2 {
 	margin: 0.5em;
 	margin-left: inherit;
-	font-weight: 100;
+	/* font-weight: 100; */
 	font-size: 1.5em;
 }
 
