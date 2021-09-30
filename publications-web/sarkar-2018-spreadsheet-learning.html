@@ -37,6 +37,11 @@ Microsoft Research<br />
 <br /></p>
 </header>
 
+<h2>Abstract</h2>
+<p>
+How can we help users discover and learn spreadsheet features? In this work-in-progress report, we present findings from semi-structured interviews with seven participants, which asked questions on the themes of learning and adopting spreadsheet features. We find that feature adoption in spreadsheets is informal, opportunistic, and social. There appear to be three components to feature adoption: discovery, expertise acquisition, and attention investment. Users fall on a spectrum of intrinsic motivation for learning. We close with a few reflections on how features might be designed with adoption in mind.
+</p>
+
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
@@ -51,6 +56,7 @@ Microsoft Research<br />
 <li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
 </ul>
 </nav>
+
 <h2 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>Large, complex applications such as Microsoft Excel are feature-rich, but for users, discovering and learning to use features is a challenge. Designers have several methods for alleviating this problem, e.g., callouts (‘look at the new features in this version!’), tooltips, help menus, and automatic suggestions. But how well do these really solve the problem? Poorly delivered suggestions can be viewed by users as intrusive and annoying. Principles for mixed-initiative user interfaces have been proposed <span class="citation" data-cites="horvitz1999principles">(Horvitz 1999)</span>, including ‘minimize the cost of poor guesses,’ ‘consider the status of a user’s attention,’ and ‘employ socially appropriate behaviours’ – but it is unclear what constitutes ‘socially appropriate.’</p>
 <p>The ability of users to discover and learn features is key to the success of applications like Excel. Our experiences of speaking with users suggested that rather than benefitting from prompts within the application itself, users pick up spreadsheet tool expertise informally, opportunistically, and socially. This motivated us to investigate whether it is possible to design for social discovery and learning.</p>
@@ -64,7 +70,7 @@ Microsoft Research<br />
 </ul>
 <p>Our choice of the phrase ‘features and techniques’ was intentional; we are interested not only in features (e.g., charts, formulae, formatting, etc.), but also techniques for applying those features. By ‘techniques’ we refer to craft practices and design patterns (such as the conventions of layout and formatting associated with ‘good practice’).</p>
 <h2 data-number="3" id="findings"><span class="header-section-number">3</span> Findings</h2>
-<h2 data-number="3.1" id="learning-in-excel-is-informal-opportunistic-and-social"><span class="header-section-number">3.1</span> Learning in Excel is informal, opportunistic, and social.</h2>
+<h3 data-number="3.1" id="learning-in-excel-is-informal-opportunistic-and-social"><span class="header-section-number">3.1</span> Learning in Excel is informal, opportunistic, and social.</h3>
 <p>Learning is informal because it is not typically in a classroom setting or with formal learning materials such as textbooks, Excel help, and documentation.</p>
 <blockquote>
 <p>[P4, small company accountant] I’m sure people within the accountancy company taught me. They probably showed me… I was a functionary, I was a temporary worker. So I sat down, and they said ‘this is what you need to do, input these figures’ etc etc. So I didn’t even necessary pay attention to what I was learning because I didn’t care about the job. The job was a means to an end. But of course when it comes to starting a theatre company, or what have you, or doing my own personal taxes, I realised I have a skill. I have a knowledge base. So in some ways it’s being told, in some ways it’s watching, and of course you ask questions. You get interested in how people do things. So you ask questions. But I never did a course in Excel. I’ve never taken a formal learning in Excel.</p>
@@ -92,7 +98,7 @@ Microsoft Research<br />
 <p>[P3] Array formulae was just this sort of mythical thing, it was just sort of this secret incantation that experts knew and you sort of heard of from time to time, until you finally went and talked to them and said ‘what the hell is this?’ For me, someone gave me a spreadsheet with a funny curly brackets in, and I inadvertently deleted certain cells, and thought ‘what the hell is this?’ and so, and then you go talk to someone, and they say ‘that’s array formulae’ and you look them up on the web. As far as I know there is no official documentation of the underlying algorithm by which Excel calculates array formulae. By trial and error you learn that some functions like IF behave a certain way in array formulae, but other functions like SUM behave a different way.</p>
 <p>[P4] I may have seen on other spreadsheets, notes and comments being used, and thought ‘oh that’s a good idea’ but I realise that I need them. I use them as aide-memoires.</p>
 </blockquote>
-<h2 data-number="3.2" id="adoption-consists-of-discovery-expertise-acquisition-and-attention-investment"><span class="header-section-number">3.2</span> Adoption consists of discovery, expertise acquisition and attention investment.</h2>
+<h3 data-number="3.2" id="adoption-consists-of-discovery-expertise-acquisition-and-attention-investment"><span class="header-section-number">3.2</span> Adoption consists of discovery, expertise acquisition and attention investment.</h3>
 <p>There appear to be three distinct components to feature adoption. The feature must be discovered, the user must acquire enough expertise in order to use it correctly, and the user must be motivated enough (believe it gives them a significant enough reward) to invest their attention <span class="citation" data-cites="blackwell2002first">(Blackwell 2002)</span> into actually using it.</p>
 <p>Moreover, users can be placed on a spectrum between two types: low intrinsic motivation and high intrinsic motivation for adoption. Many users have low intrinsic motivation to acquire additional tool expertise <span class="citation" data-cites="aghaee2015personality">(Aghaee et al. 2015)</span>. Excel’s flexibility allows them to ‘cope’ in many ways: for instance, users can manually type computed data values instead of learning how to write formulae, users can employ arithmetic primitives (e.g., ‘+’) rather than learn more general functions (e.g., <code>SUM</code>); users can merely lay out data in a tabular structure, rather than learning to use the more powerful, formal ‘table’ features; users can apply filters within tables and copy/paste the filtered view instead of learning to use pivot tables, and so on. We have observed that users’ intrinsic motivation interacts with the three components of feature adoption in a manner that is summarised in <a href="#tab:motivation" data-reference-type="ref" data-reference="tab:motivation">Table 1</a>.</p>
 <p>For instance, users with high intrinsic motivation have the ability to realise the need for a feature and formulate search queries that allow them to learn from online fora:</p>

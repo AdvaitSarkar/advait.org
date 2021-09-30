@@ -26,3 +26,21 @@ div.csl-entry {
 .publications-web-banner {
     background-color: #eee; padding: 0.1em 1em 0.1em 1em;
 }
+
+h2 {
+    margin-bottom: 0.2em;
+}
+
+p {
+    margin-top: 0;
+}
+
+h1 {
+    line-height: 1em;
+}
+
+/*
+.header-section-number, .toc-section-number {
+    color: blue;
+}
+*/
