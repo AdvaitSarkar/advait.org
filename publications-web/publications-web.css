@@ -1,0 +1,28 @@
+td {
+    border: 1px solid #eee;
+    padding: 0.5em;
+}
+
+#TOC li {
+    list-style: none;
+}
+
+blockquote {
+    padding-left: 1em;
+    border-left: 2px solid #e6e6e6;
+    color: #606060;
+}
+
+div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+    margin-bottom: 1em;
+}
+
+#title-block-header {
+    text-align: center;
+}
+
+.publications-web-banner {
+    background-color: #eee; padding: 0.1em 1em 0.1em 1em;
+}
