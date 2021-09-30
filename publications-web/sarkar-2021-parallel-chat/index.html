@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <meta name="author" content="Sean Rintel" />
+  <meta name="author" content="Damian Borowiec" />
+  <meta name="author" content="Rachel Bergmann" />
+  <meta name="author" content="Sharon Gillett" />
+  <meta name="author" content="Danielle Bragg" />
+  <meta name="author" content="Nancy Baym" />
+  <meta name="author" content="Abigail Sellen" />
+  <title>The promise and peril of parallel chat in video meetings for work</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+</head>
+<body>
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+<p>This is a version of the following academic paper prepared for the web:</p>
+
+<blockquote>Advait Sarkar, Sean Rintel, Damian Borowiec, Rachel Bergmann, Sharon Gillett, Danielle Bragg, Nancy Baym, and Abigail Sellen. 2021. The promise and peril of parallel chat in video meetings for work. In CHI Conference on Human Factors in Computing Systems Extended Abstracts (CHI '21 Extended Abstracts), May 8–13, 2021, Yokohama, Japan. ACM, New York, NY, USA 8 Pages. https://doi.org/10.1145/3411763.3451793</blockquote>
+
+<p>
+More details:
+<a href="/files/sarkar_2021_parallel_chat.pdf">Download PDF</a> &bull;
+<a href="/files/sarkar_2021_parallel_chat_citation.bib">BibTeX</a> &bull;
+<a href="https://doi.org/10.1145/3411763.3451793">DOI: 10.1145/3411763.3451793</a> &bull;
+<a href="https://dl.acm.org/doi/abs/10.1145/3411763.3451793">ACM Digital Library</a> &bull;
+<a href="https://www.microsoft.com/en-us/research/blog/the-rise-of-parallel-chat-in-online-meetings-how-can-we-make-the-most-of-it/">Microsoft Research blog</a>    &bull;
+<a href="https://www.youtube.com/watch?v=6e8tEnA0F-g">Video (5 min)</a> &bull;
+<a href="https://www.youtube.com/watch?v=HNp0AXgHu04">Video (30 sec)</a> &bull;
+<a href="/files/sarkar_2021_parallel_chat_poster.pdf">Poster</a>
+</p>
+</div>
+
+<header id="title-block-header">
+<h1>The promise and peril of parallel chat in video meetings for work</h1>
+<p class="author">Advait Sarkar, Sean Rintel, Damian Borowiec, Rachel Bergmann, Sharon Gillett, Danielle Bragg, Nancy Baym, and Abigail Sellen</p>
+</header>
+
+<h2>Abstract</h2>
+<p>
+We report the opportunities and challenges of parallel chat in work-related video meetings, drawing on a study of Microsoft employees’ remote meeting experiences during the COVID-19 pandemic. We find that parallel chat allows groups to communicate flexibly without interrupting the main conversation, coordinate action around shared resources, and also improves inclusivity. On the other hand, parallel chat can also be distracting, overwhelming, and cause information asymmetries. Further, we find that whether an individual views parallel chat as a net positive in meetings is subject to the complex interactions between meeting type, personal habits, and intentional group practices. We suggest opportunities for tools and practices to capitalise on the strengths of parallel chat and mitigate its weaknesses.
+</p>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction-and-background"><span class="toc-section-number">1</span> Introduction and background</a>
+<ul>
+<li><a href="#prior-work"><span class="toc-section-number">1.1</span> Prior Work</a></li>
+</ul></li>
+<li><a href="#method"><span class="toc-section-number">2</span> Method</a></li>
+<li><a href="#results"><span class="toc-section-number">3</span> Results</a>
+<ul>
+<li><a href="#positive-impacts-of-parallel-chat"><span class="toc-section-number">3.1</span> Positive impacts of parallel chat</a>
+<ul>
+<li><a href="#inclusion-and-managing-the-flow-of-the-primary-conversation"><span class="toc-section-number">3.1.1</span> Inclusion and managing the flow of the primary conversation</a></li>
+<li><a href="#coordination-of-action-and-collaboration"><span class="toc-section-number">3.1.2</span> Coordination of action and collaboration</a></li>
+<li><a href="#social-connection"><span class="toc-section-number">3.1.3</span> Social connection</a></li>
+</ul></li>
+<li><a href="#negative-impacts-of-parallel-chat"><span class="toc-section-number">3.2</span> Negative impacts of parallel chat</a>
+<ul>
+<li><a href="#distraction-and-division-of-attention"><span class="toc-section-number">3.2.1</span> Distraction and division of attention</a></li>
+<li><a href="#differing-expectations-on-how-chat-should-be-used"><span class="toc-section-number">3.2.2</span> Differing expectations on how chat should be used</a></li>
+<li><a href="#information-asymmetries"><span class="toc-section-number">3.2.3</span> Information asymmetries</a></li>
+</ul></li>
+<li><a href="#factors-affecting-parallel-chat-use-and-outcomes"><span class="toc-section-number">3.3</span> Factors affecting parallel chat use and outcomes</a>
+<ul>
+<li><a href="#demographic-factors"><span class="toc-section-number">3.3.1</span> Demographic factors</a></li>
+<li><a href="#meeting-type-and-team-dynamics"><span class="toc-section-number">3.3.2</span> Meeting type and team dynamics</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#implications-for-best-practices-and-design"><span class="toc-section-number">4</span> Implications for best practices and design</a>
+<ul>
+<li><a href="#guidelines-for-best-practices"><span class="toc-section-number">4.1</span> Guidelines for best practices</a></li>
+<li><a href="#implications-for-design"><span class="toc-section-number">4.2</span> Implications for design</a></li>
+</ul></li>
+<li><a href="#limitations"><span class="toc-section-number">5</span> Limitations</a></li>
+<li><a href="#conclusions"><span class="toc-section-number">6</span> Conclusions</a></li>
+<li><a href="#acknowledgements"><span class="toc-section-number">7</span> Acknowledgements</a></li>
+</ul>
+</nav>
+
+<h2 data-number="1" id="introduction-and-background"><span class="header-section-number">1</span> Introduction and background</h2>
+<p>Although audio/visual (A/V) modalities dominate remote and hybrid video meetings, most platforms enable attendees to simultaneously post text, images, files, links etc. in a meeting chat area (<a href="#fig:holding-parallelchat-teams" data-reference-type="ref" data-reference="fig:holding-parallelchat-teams">Figure 1</a>).</p>
+<figure>
+<img src="teams_chat_deanon_processed.jpg" id="fig:holding-parallelchat-teams" alt="Parallel chat (yellow box) in a video meeting on Microsoft Teams." /><figcaption aria-hidden="true">Figure 1: Parallel chat (yellow box) in a video meeting on Microsoft Teams.</figcaption>
+</figure>
+
+<p>This <em>parallel chat</em> is typically open to all meeting invitees and flows concurrently with the A/V focus of the meeting. The COVID-19 pandemic has thrown the use of parallel chat in video meetings into sharp relief, yet it is largely overlooked as an optimisation target for tools and best practices. Meeting platforms provide only brief instructions <span class="citation" data-cites="zoomus_using_2021">[1]</span>, and even comprehensive remote work guides are largely quiet on the subject <span class="citation" data-cites="atlassian_work_2021">[2]</span>. Their design is limited to text panes, windows, or overlays, and while machine learning has enabled live meeting transcription and translation (e.g. <span class="citation" data-cites="google_use_2021 microsoft_view_2021">[3], [4]</span>, it has not yet impacted meeting chat. As parallel chat becomes commonplace, we need to better understand its opportunities and challenges so that we can recommend improvements in practices and design.</p>
+<h3 data-number="1.1" id="prior-work"><span class="header-section-number">1.1</span> Prior Work</h3>
+<p>Video-mediated collaboration evolved alongside and often with chat in asynchronous and quasi-synchronous workspaces <span class="citation" data-cites="olson_working_2013">[5]</span>, but while research collections of video-mediated communication <span class="citation" data-cites="finn_video-mediated_1997">[6]</span>, media spaces <span class="citation" data-cites="harrison_media_2009">[7]</span>, and remote work <span class="citation" data-cites="kraut_intellectual_2014">[8]</span> provide frameworks and designs for multi-modal collaboration, there is surprisingly little prior exploration of parallel chat in video meetings. Rather, parallelism is discussed in terms of A/V side conversations <span class="citation" data-cites="buxton_interfaces_1997">[9]</span>, combining digital and physical resources <span class="citation" data-cites="buxton_mediaspace_2009">[10]</span>, and enabling non-A/V resources <span class="citation" data-cites="isaacs_studying_1997">[11]</span>. While task effectiveness, trust, or other values have been compared and contrasted in videoconferencing against other modalities <span class="citation" data-cites="ochsman_effects_1974 daft_organizational_1986 burgoon_testing_1999">[12]–[14]</span>, comparisons of video meetings with and without parallel chat are not available. In work contexts, video-meeting research on attention and multi-tasking has noted parallel chat as one among many distractions <span class="citation" data-cites="cao_large_2021 kuzminykh_classification_2020 marlow_taking_2016">[15]–[17]</span>, but not provided detail.</p>
+<p>The most evidence we have comes from educational contexts, in which live online A/V of teacher presentations and student-teacher or student-student interactions is accompanied by a chat ‘backchannel’ <span class="citation" data-cites="berry_role_2019 yardi_role_2006">[18], [19]</span>. Its advantages include enabling questions, clarifications, affirmations, and posting resources. Everyone may contribute simultaneously, including less those vocal, which develops community and maintains engagement.</p>
+<p>However, parallel chat has the major disadvantage of being distracting. Again, from the educational context, beyond the obvious problem of students having off-topic discussions, even when on-topic there is a danger of “processing information at increasingly superficial levels while [attempting] to juggle tasks and transfer attention across multiple domains simultaneously” <span class="citation" data-cites="yardi_role_2006 hembrooke_laptop_2003">[19], [20]</span>. This “continuous partial inattention” <span class="citation" data-cites="mccarthy_digital_2005">[21]</span> may permeate down to the micro level, and effect everyone in the encounter, e.g. teachers using parallel chat to scaffold language teaching via Skype may disattend some student disfluencies <span class="citation" data-cites="kozar_text_2016">[22]</span>. Yardi <span class="citation" data-cites="yardi_role_2006">[19]</span> argues for exploring how scaffolding, permeability, and assisted moderation in backchannels might change educational dynamics, but notes that contextual etiquette(s) will need to evolve to deal with distraction.</p>
+<p>The other disadvantage of parallel chat is that it may not be accessible or inclusive. This has at least two strands. First, given the increasingly global work environment, we should no longer assume that all participants can engage equally in single dominant language chat. Manual instant annotation of chat-based brainstorming and decision-making has been found to improve cross-cultural participation <span class="citation" data-cites="li_using_2014">[23]</span>, but such annotation has not made the jump to parallel chat in video meetings. Second, in the U.S., 26% of adults have some form of disability <span class="citation" data-cites="cdcdisability">[24]</span>, and similar figures can be found worldwide. However, work on accessibility of online meetings, work environments, and education <span class="citation" data-cites="hersh3020accessibility schur2020telework coombs2010making burdette2013k">[25]–[28]</span>, and accessibility guidelines <span class="citation" data-cites="kushalnagar2020teleconference acmguidelines">[29], [30]</span>, has not focused on parallel chat.</p>
+<p>Livestreaming services incorporate parallel chat for audiences watching content as diverse as video gameplay <span class="citation" data-cites="hamilton_streaming_2014">[31]</span>, eating <span class="citation" data-cites="choe_eating_2019">[32]</span>, and events <span class="citation" data-cites="tang_meerkat_2016">[33]</span>. Hosts have learned to permeate their streams with audience engagement techniques in the chat <span class="citation" data-cites="wohn_audience_2020 chen_i_2021">[34], [35]</span> <span class="citation" data-cites="wohn_volunteer_2019">[36]</span>, but the chat is also rife with abuse and spam that is amplified by imitation, such that hosts have also had to learn how to shape pro and anti-social behavior with moderation and example-setting <span class="citation" data-cites="seering_shaping_2017">[37]</span>. Livestreaming services themselves are developing more holistic multi-modal experiences, such as "Danmaku", in which text and reactions float over video <span class="citation" data-cites="ma_danmakufirst_2017 lu_vicariously_2019 wu_danmaku_2019 liu_watching_2016">[38]–[41]</span>. Danmaku concepts have not yet made the jump to parallel chat in commercial video meeting systems, with the exception of floating reactions and hand-raising <span class="citation" data-cites="microsoft_express_2021">[42]</span>. This may be entirely understandable given that its combination of modalities seems to be a high cognitive load just to comprehend, let alone engage with. However, research on the StreamWiki <span class="citation" data-cites="lu_streamwiki_2018">[43]</span> system has found that, in the context of knowledge sharing live streaming, Danmaku can be combined with other techniques to enable viewers to interactively learn material as well as help producers and moderators produce useful archives of interactive learning experiences for future asynchronous use.</p>
+<p>Parallel chat in work video meetings has evolved somewhat under the noses of researchers, and yet there are clearly significant challenges for both practice and design if multi-modal engagement is becoming a professional expectation.</p>
+<h2 data-number="2" id="method"><span class="header-section-number">2</span> Method</h2>
+<p>Between mid-April and mid-August 2020, we conducted a large scale study of Microsoft employees’ experiences in remote meetings while working from due to COVID-19. To enable global data collection over a significant period of time and covering multiple topics (of which parallel chat was just one), and to provide a rich quantitative and qualitative picture, diaries were used to capture changing reflections on experiences or similar experiences at different times <span class="citation" data-cites="rieman_diary_1993">[44]</span>, and these were augmented with one-off polls on specific topics to dive more deeply into specific topics <span class="citation" data-cites="blandford_qualitative_2016">[45]</span>. Recruited via internal mailing lists between April and June, 849 participants completed the onboarding study, 715 completed at least one diary entry, and 357 at least one poll. For this report we draw from the onboarding survey, a poll on parallel chat, and relevant diary entries. Full methodology and participation details are available in a technical report <span class="citation" data-cites="rintel_methodology_2020">[46]</span>.</p>
+<p>Our parallel chat poll received 149 responses. Participants answered six questions about their use and experience of parallel chat using a 7-point Likert scale (Strongly Disagree - Strongly Agree). The questions and the breakdown of responses can be seen in <a href="#fig:poll" data-reference-type="ref" data-reference="fig:poll">Figure 2</a>. The poll ended with the free text prompt: <em>“What experience/s led to your answers above? For example: Does chat become more or less distracting or useful depending on the type of meeting, or the meeting size? Are there different kinds of chat during meetings? Do you feel obligated to use text chat in meetings?”</em> We included example prompts for the free text response to encourage participants to explain the reasoning for their Likert scale responses.</p>
+<p>Participants could also author up to 24 diary entries, organized in three cycles of eight guided topics: Physical workspace, Interaction, Productivity, Tools, Multitasking, Types of meetings, Time in meetings, and Approaches to meetings . In these entries, participants occasionally mentioned parallel chat experiences without respect to a specific question as they did in the poll. In total 159 unique participants mentioned 331 parallel chat issues in the diaries.</p>
+<p>A key linked participants to onboarding, diary, and poll data. Verbatims were scrubbed for all identifying referents. For qualitative analysis of the verbatims we used semantic thematic analysis <span class="citation" data-cites="braun_using_2006">[47]</span> to group responses representing how participants used parallel chat and their evaluations of its effectiveness. One researcher coded the poll verbatims and another coded the diary verbatims (both to saturation) and then the team aggregated themes <span class="citation" data-cites="fram_constant_2013">[48]</span>. Throughout the paper we indicate in parentheses the number of individuals who mentioned a theme at least once.</p>
+<h2 data-number="3" id="results"><span class="header-section-number">3</span> Results</h2>
+<p>Parallel chat in video meetings was common for a substantial majority of participants. From the onboarding survey (N=849), 69.7% reported using parallel chat. Of the total, 26.6% reported using parallel chat in every meeting or almost every meeting, 24.1% at least once a week, 16.8% a few times a month, and 2.1% once a month or less.</p>
+<p>In our poll (N=149) (<a href="#fig:poll" data-reference-type="ref" data-reference="fig:poll">Figure 2</a>), most respondents reported an increase in parallel chat use after the shift to remote work. Respondents were polarized over whether parallel chat was distracting. However, they were positive about the value of chat for helping with conversational issues and adding resources, and most felt it was a net positive.</p>
+<p><em>P3: [...] I very frequently use text chat to share links, screenshots, etc. that are relevant to the discussion, as well as quick thoughts / signals of assent with the speaker, if I don’t want to interrupt the main thread. On the whole, I find the ability to have concurrent chat very helpful for effective meetings, even if it can be a distraction at times.</em></p>
+<p><em>P154: [...] there have been meetings where important links were able to be provided in the text chat, important and *relevant* topics were brought up and then incorporated into the meeting, etc – these are times when I feel like I really could not live without [it][...].</em></p>
+
+<figure>
+<img src="all_likert.png" alt="image" id="fig:poll"/>
+<figcaption>Figure 2: Parallel chat poll (N=149) results for all six Likert questions.</figcaption>
+</figure>
+
+<p>Most respondents found that use of parallel chat had increased for both themselves (72%) and others (76%) since mandatory working from home (aggregating “Somewhat Agree”, “Agree”, and “Strongly Agree”). This is likely due to increased remote meetings <span class="citation" data-cites="bary_zoom_2021">[49]</span> and increased appreciation for the uses of parallel chat.</p>
+<p>Participants in both the poll and diaries reported using parallel chat for at least seven distinct types of messages:</p>
+<ul>
+<li><p>Questions for the speaker or someone else in the meeting (<span class="math inline">96</span> participants)</p></li>
+<li><p>Links to resources such as documents and webpages (<span class="math inline">64</span> participants)</p></li>
+<li><p>Unrelated conversation held in the same chat (<span class="math inline">44</span> participants).</p></li>
+<li><p>Voicing agreement with the speaker, or sending messages of praise/congratulations (‘kudos’). (<span class="math inline">40</span> participants)</p></li>
+<li><p>Adding information to what is being said, or starting a conversation about a related topic (<span class="math inline">37</span> participants)</p></li>
+<li><p>Responses to previous messages (<span class="math inline">34</span> participants)</p></li>
+<li><p>Humour and casual conversation (<span class="math inline">26</span> participants)</p></li>
+</ul>
+<h3 data-number="3.1" id="positive-impacts-of-parallel-chat"><span class="header-section-number">3.1</span> Positive impacts of parallel chat</h3>
+<h4 data-number="3.1.1" id="inclusion-and-managing-the-flow-of-the-primary-conversation"><span class="header-section-number">3.1.1</span> Inclusion and managing the flow of the primary conversation</h4>
+<p>A key advantage of parallel chat is participation without interrupting the flow of the A/V conversation (<span class="math inline">62</span> participants). Being able to ask a question or make a comment in parallel chat may reduce the competition for the floor <span class="citation" data-cites="edelsky_whos_1981 cappella_controlling_1985">[50], [51]</span> as defined by the A/V stage, because there is another space in which to have their say. With less competition, there may be in turn, fewer moments of the stop-start competitive overlaps <span class="citation" data-cites="ganesh_zoom_2020">[52]</span> which occur due to latency <span class="citation" data-cites="ruhleder_co-constructing_2001 schoenenberg_why_2014 seuren_whose_2021 rintel_video_2013">[53]–[56]</span> and constrained visual cues <span class="citation" data-cites="heath_disembodied_1993 luff_embedded_2016 buxton_mediaspace_2009">[10], [57], [58]</span>.</p>
+<p><em>P670: [...] in person, there are visual cues a person wants to speak - a hand raised, a lean forward, a clearing of the throat. We don’t have those cues in video meetings [...] [It is an] ever-more-important way, especially as meetings get larger [...].</em></p>
+<p><em>P217: [...] I’ve found it most useful when we are on a tight schedule and there are several speakers. Once I’m done presenting, and have handed off to another speaker, I usually get on chat to answer all the questions that arose - this helps manage time better &amp; helps me provide links to answers where necessary, which would benefit everyone.</em></p>
+<p><em>P349: [...] It has also been wonderful when doing demos, because customers can ask questions (and we often answer them) in text chat vs. interrupting the demo. [...]</em></p>
+<p>Moreover, parallel chat gives participants a way to engage if they are otherwise unable to get a chance to speak . Even though Microsoft Teams and other systems now include hand-raise features that mark a participant as desiring a turn, these may go unnoticed or there may simply be too many to accommodate. Parallel chat offers a way to have a say while avoiding the risk of a hand-raise not being seen. Further, since a hand raise is a contextless bid for the floor, asking a question or a comment in the parallel chat enables a method for speakers or moderators to triage potential engagement. In this way, parallel chat may make meetings more inclusive (<span class="math inline">41</span> participants).</p>
+<p><em>P208: Text chat can be a great way for more introverted members of staff to contribute to a conversation. [...]</em></p>
+<p><em>P640: [...] It also allows users who have distracting home lives to participate without fear of judgment. [...]</em></p>
+<p><em>P153: [...] people contributing through chat that might not have a voice otherwise – either limited by technology (no microphone), environment (loud, distracting) or personal preference (shy, new, still finding the way in the team’s culture.)</em></p>
+<p><em>P222: [...] It helps level the “playing field” by allowing all participants to have a voice and engage by sharing ideas and opinions, [...] it’s one of the most valuable meeting capabilities [...]</em></p>
+<h4 data-number="3.1.2" id="coordination-of-action-and-collaboration"><span class="header-section-number">3.1.2</span> Coordination of action and collaboration</h4>
+<p>Another key function of parallel chat is to share links to relevant resources and documents (<span class="math inline">64</span> participants). Many participants noted that such sharing might have otherwise been follow-up actions . Moreover, as some platforms enable parallel chat to persist beyond the end of the A/V meeting, it can act as both a record and a means of enabling post-meeting discussion (<span class="math inline">34</span> participants).</p>
+<p><em>P12: [...] individuals will reference external materials, items, specs, etc and when they include a link to the referenced material it provides clarity that has made a huge impact on my comprehension – especially in areas that are new to me.</em></p>
+<p><em>P584: [...] it has the nice side effect of having a record of those resources shared or links provided in meetings. [...]</em></p>
+<p><em>P168: [...] Being able to add documentation, links and relevant information during a meeting and starting a chat that can continue post meeting has really helped cut down on follow ups.</em></p>
+<p>Parallel chat also enables coordination pathways in the face of technical issues such as poor connectivity, device/software malfunctions, camera/microphone issues, etc. (<span class="math inline">21</span> participants), coping with language barriers, and written precision when it is useful (e.g. technical terms).</p>
+<p><em>P47: [...][When] one of the participants are on their phone and can’t see the presentation[...] we end up sending a screenshot of the current presented screen and the person on the phone can quickly check the chat. [...]</em></p>
+<p><em>P658: [...]useful to convey information that is hard to convey orally: links, names or contact info, sometimes images, etc.</em></p>
+<p><em>P260: Usually text chat is relevant links and spellings for technical words, so it has been a great benefit.</em></p>
+<p><em>P97: [...] It helps if you want to ask question but broadband is poor or there is noise at your end.</em></p>
+<h4 data-number="3.1.3" id="social-connection"><span class="header-section-number">3.1.3</span> Social connection</h4>
+<p>Casual conversation and humour can give meetings a greater sense of social support and connection, making them more interpersonal and pleasurable (<span class="math inline">26</span> participants).</p>
+<p><em>P642: [...] chat provides me an easy way to interact with meeting participants, creating a feeling of participation and providing a sense of the general mood [...] it makes the meetings more personal.</em></p>
+<p><em>P42: [...] we use text chat to send ‘cheers’ and fun gifs to celebrate moments [...] this tends to generate a lot of enthusiasm and makes these types of meetings more fun. like people’s personalities coming out. [...]</em></p>
+<p><em>P173: [...] a place where people can express themselves casually, or offer support to the presenter. [...]</em></p>
+<h3 data-number="3.2" id="negative-impacts-of-parallel-chat"><span class="header-section-number">3.2</span> Negative impacts of parallel chat</h3>
+<h4 data-number="3.2.1" id="distraction-and-division-of-attention"><span class="header-section-number">3.2.1</span> Distraction and division of attention</h4>
+<p>Parallel chat provides room for unrelated topics to emerge, distracting meeting participants who wish to focus on the meeting topic (<span class="math inline">68</span> participants). Participants may feel obliged to divide their attention between the A/V and the parallel chat, and many report this division to be difficult to maintain (<span class="math inline">43</span> participants).</p>
+<p><em>P579: It’s very distracting in large meetings and often is off topic. There are separate conversations occurring between a small few people amongst themselves.</em></p>
+<p><em>P692: [...] A large meeting where the text chat is busy with a constant stream of loosely related comments [...] If I paid attention to text chat and tried to keep up with it, I would no longer be paying attention to the meeting itself [...].</em></p>
+<p><em>P245: [...] sometimes it’s very distracting as multiple threads are happening that get tangential from the main presenter/speaker. [...] it’s really hard to keep track of multiple conversations AND pay attention to the speaker.</em></p>
+<h4 data-number="3.2.2" id="differing-expectations-on-how-chat-should-be-used"><span class="header-section-number">3.2.2</span> Differing expectations on how chat should be used</h4>
+<p>Informality and side conversations were perceived negatively by some participants (<span class="math inline">25</span> participants), with some reporting difficulty finding important information in chat due to message volume or topic irrelevancy (<span class="math inline">16</span> participants). Some expressed a desire for more concrete norms and expectations around parallel chat use (<span class="math inline">15</span> participants). Others reported having designated moderators, whether to ensure professionalism and respectful behaviour, or to monitor the flow of the meeting and ensure voices are heard (<span class="math inline">43</span> participants).</p>
+<p><em>P305: Unless it’s stated up front and managed well during the meeting, putting something in the chat window still stops the presentation, everyone stops to read or (in most cases) someone who didn’t text in the chat window calls out that the meeting needs to pause as someone else has a question. It still causes a distraction.</em></p>
+<p><em>P779: [...] Value really depends on call / how participants are using it: in some cases it provides great value, in other cases people use it to socialize, joke, where it can be more distraction than value. [...]</em></p>
+<p><em>P14: It feels increasingly important to monitor meeting chats alongside the AV component– especially in large meetings. People contribute many kinds of comments [...]</em></p>
+<h4 data-number="3.2.3" id="information-asymmetries"><span class="header-section-number">3.2.3</span> Information asymmetries</h4>
+<p>Meeting presenters reported that it was hard to engage with the parallel chat, both in terms of attentional effort and limitations of the platform’s interface (<span class="math inline">27</span> participants). Further, without timestamps linked to A/V, references to parallel chat in meeting recordings were difficult to follow post-hoc, and conversely, visiting the chat afterwards without the A/V context could be confusing (<span class="math inline">18</span> participants).</p>
+<p><em>P159: [...] it would be useful for the presenter to see the chat when presenting. A function to highlight questions as opposed to links or comments would be great, too.</em></p>
+<p><em>P153: [...] I have to keep an eye on the text chat as a presenter, and address points raised / questions asked. But sometimes there is so much chatter of agreement / memes / personal anecdotes that it is hard to find the more important messages. [...]</em></p>
+<p><em>P350: [...] as a presenter it is almost impossible to keep up with chat and present coherently. [...] Additionally, for recorded meetings, [...][it is hard when people] refer to something in the chat that the listener has no context for.</em></p>
+<h3 data-number="3.3" id="factors-affecting-parallel-chat-use-and-outcomes"><span class="header-section-number">3.3</span> Factors affecting parallel chat use and outcomes</h3>
+<h4 data-number="3.3.1" id="demographic-factors"><span class="header-section-number">3.3.1</span> Demographic factors</h4>
+<p>We found no relationships with meaningful effect sizes between participants’ chat use and their job role (e.g., engineering, research, sales, etc.) or prior work from home status. However, as noted above, women in the age group 25-34 were more likely to strongly agree that their chat use has increased, in comparison to any other gender-age group (<a href="#fig:women_chat" data-reference-type="ref" data-reference="fig:women_chat">Figure 3</a>) (59% of women aged 25-34, versus 27% across all well-represented groups in our sample; <span class="math inline"><em>Z</em> = 2.9924, <em>p</em> = 0.00278</span>).</p>
+
+<figure>
+<img src="women_chat2.png" id="fig:women_chat" alt="Increased chat use was most reported by women aged 25-34. The figure shows the proportion responding ‘strongly agree’ that their own chat use has increased. Age groups below 25/above 64 omitted due to low sample size." /><figcaption aria-hidden="true">Figure 3: Increased chat use was most reported by women aged 25-34. The figure shows the proportion responding ‘strongly agree’ that their own chat use has increased. Age groups below 25/above 64 omitted due to low sample size.</figcaption>
+</figure>
+
+<p>A similar finding was reflected in the relative frequency of themes in the combined journal and poll verbatims: women were twice as likely as men to report using parallel chat for questions and answers during meetings (16% of women, versus 8% of men; <span class="math inline"><em>Z</em> = 3.3998, <em>p</em> = 0.00068</span>). This may be because women, particularly younger women, find it difficult to be heard in meetings, which is consistent with research on gender and meeting participation <span class="citation" data-cites="hemshorn_de_sanchez_clara_s_social_2020">[59]</span>.</p>
+<h4 data-number="3.3.2" id="meeting-type-and-team-dynamics"><span class="header-section-number">3.3.2</span> Meeting type and team dynamics</h4>
+<p>Several participants observed that chat can be both beneficial and distracting, depending on the nature of the meeting and its participants. Major distinctions were drawn depending on the size of the group, whether the meeting was in the form of a talk/presentation, and how familiar the participants were with each other. The likelihood of distraction was greater both in large meetings and presentations. However, some participants felt the opposite: that the use of informal messages made a large group discussion feel more community-minded, inclusive, and energetic. Participants were more conservative with their chat use when the audience was unfamiliar, but within the context of a regular team meeting, participants developed norms around chat use, whether explicit or unspoken.</p>
+<p><em>P267: I’m torn - it’s satisfying in some ways to be able to chime in and interact - we give each other a lot of hearts on my team, but it totally pulls away from the presentations.</em></p>
+<p><em>P252: Distractions are less about the use of chat and more about the people involved. Sometimes there is conversation amongst participants that doesn’t directly align with the content - other times it stays somewhat quiet. I think it is starting to mirror interactions people have in gatherings of different types and sizes in the analog world. [...]</em></p>
+<p><em>P312: On my team, we have meetings that are heavy on chat. Chat is particularly effective as it serializes communication, however like anything, if overused it becomes a distraction. [...]</em></p>
+<h2 data-number="4" id="implications-for-best-practices-and-design"><span class="header-section-number">4</span> Implications for best practices and design</h2>
+<h3 data-number="4.1" id="guidelines-for-best-practices"><span class="header-section-number">4.1</span> Guidelines for best practices</h3>
+<p>The polarization around parallel chat indicates the need for all attendees to be more intentional in balancing utility and distraction. Further, several of our participants reported that moderators improve the effective use of parallel chat. We suggest the following guidelines to make parallel chat more effective. Meeting organisers, teams, and moderators should make a guideline document (e.g. <span class="citation" data-cites="gillett_parallel_2021">[60]</span>) available generally and at the beginning of meetings.</p>
+<p><em>Establish expectations</em>: Share guidance on expected uses of chat before the meeting starts. For example, if a meeting features a speaker, announce their preference up front for when and how to receive questions. Because monitoring and facilitating chat imposes cognitive load, plan to rotate moderator duties across meetings and within longer meetings.</p>
+<p><em>Consider accessibility</em>: Chat-related accessibility challenges include processing parallel sources in multiple modalities (e.g. with a sensory disability), consuming and generating text (e.g. with reading disabilities), and understanding sentiment behind text (e.g. with autism). Ensure that accessibility requests are met, for example by providing text descriptions of non-text chat content and visual content in a video call (e.g. for participants with visual impairments), and leaving appropriate time for participants with disabilities to respond (e.g. if using an interpreter or screen reader).</p>
+<p><em>Encourage engagement</em>: Encourage chat that explores different aspects of the meeting’s topic, for example by providing supporting links or materials, questions, or requests for clarifications. Also encourage chat that allows more voices to be heard, such as contributions from people who may otherwise have difficulty getting heard for many reasons, including lack of seniority/power, minority status, or disability. Moderators can encourage positive types of chat by speaking them aloud or asking their creators to voice their written content if desired.</p>
+<p><em>Discourage distraction</em>: Discourage chat that diverges from the meeting’s topic, is of interest to only a small subgroup, or is inaccessible to those requiring accommodation. Diplomatic discouragement may use a private backchannel to avoid public shaming, or by asking participants engaged in a divergent topic to shift to a separate channel.</p>
+<p><em>Loop in the speaker</em>: Communicate non-intrusively with the current speaker to facilitate key information exchange with the audience. In particular, monitor the chat for questions that may be asynchronously directed to the speaker, and raise them in a flow-respecting manner.</p>
+<p><em>Synthesize and disseminate</em>: Incorporate chat highlights into meeting recaps. Example highlights from chat could include relevant links or topics raised that warrant further attention or discussion.</p>
+<h3 data-number="4.2" id="implications-for-design"><span class="header-section-number">4.2</span> Implications for design</h3>
+<p><em>Differentiate and annotate the content of chat</em>: Despite there being several distinct categories of chat messages, current tools do not visually distinguish them. This makes it hard for presenters and audience members to visually search text for the material most relevant to them. While manual annotation <span class="citation" data-cites="li_using_2014">[23]</span> is a good first step, automated classification of messages could vastly reduce the cognitive burden by differentiating different kinds of material (both visually for sighted users, and through other mechanisms for blind and low vision users). For example, this would enable kudos (e.g. positive emoji, terms like “great job”) to be visually differentiated from substantive comments. Questions, clarifications, comments, kudos, on- and off- topic talk could potentially all be differentiated. Further, automated categorisation could enable semantic zooming <span class="citation" data-cites="weaver2004building">[61]</span> in chat, where zooming out would group posts by time, keyword, reaction, etc., to reveal patterns and ‘hotspots’ of activity and enable effective scanning.</p>
+<p><em>Integrate chat with A/V</em>: Given the problem of attending to separated A/V and chat, there are lessons to be learned from Danmaku <span class="citation" data-cites="ma_danmakufirst_2017 lu_vicariously_2019 wu_danmaku_2019 liu_watching_2016">[38]–[41]</span> and even recent film and television in which text and other resources form an integrated narrative. For example, non-textual activity indicators to enable presenters to see when chat is busy or quiet, intelligent placement of chat to avoid other text or attach chat to parts of the visual image, highlighting messages with posted terms that match spoken terms, and creating non-intrusive question queues that show and hide questions automatically for presenters as relevant or addressed. These features complement differentiated chat. For example, kudos from chat could be shown on the A/V in disaggregated manner during the presentation but available aggregated afterwards. Images, documents, or websites shared into chat could be elevated to the main A/V in a seamless manner.</p>
+<p><em>Connect timestamped textual material</em>: During the meeting, enabling parallel chat, transcript, and meeting notes to be accessed side-by-side could reduce duplication and facilitate more targeted use of each. For improved contextualisation after meetings, timestamping of chat, transcription, and notes with A/V would enable later viewers to understand the relationship between them.</p>
+<p><em>Moderator’s view</em>: In line with the value of moderators, moderators could have access to special versions of the tools above, and more, so that they could both publicly and privately help manage the manner in which parallel chat integrates with the meeting. This could include the ability to compartmentalise chat content, remove/mute participants, hide content, etc. It could also facilitate non-disruptive information exchange between moderator and presenter.</p>
+<h2 data-number="5" id="limitations"><span class="header-section-number">5</span> Limitations</h2>
+<p>Most employees reported on experiences in Microsoft Teams. While this clearly impacts our results, and future research certainly should expand to both other companies and other platforms, the current similarity of chat features in major platforms leads us to believe that this study provides at least a strong high level overview of the phenomena. Our overview shows a range of positive and negative expectations surrounding the use of parallel chat in work meetings, but we do not have sufficient data to explain whether these different expectations were due to individual differences or because of different tasks/types of collaboration. This will be a crucial step for future research.</p>
+<h2 data-number="6" id="conclusions"><span class="header-section-number">6</span> Conclusions</h2>
+<p>Our study has uncovered a diversity of uses and benefits of parallel chat in work video meetings. It allows for communication during a meeting, enables effective coordination around resources, acts as a record and a venue for continued discussion, enables pathways to recovery from technical issues, and makes meetings more inclusive. Parallel chat also has pitfalls. When the chat conversation diverges from the main audio-visual conversation, the chat may distract listeners and cause them to miss out on the primary content. Divergent chats may be missed entirely, distract and derail the primary speaker, or be seen as unprofessional. More intentional use, and especially moderation, may help guide participants to realize its value and avoid its problems. Moreover, the design of the parallel chat experience could respond to these challenges by enabling differentiated and integrated usage. As with many aspects of remote and hybrid meeting practice and design, we argue that there is a need to take a more intentional stance so that organizational purpose is more accountable in the tools we have to achieve it. Any design or normative solutions must recognize the dialectical nature of parallel chat as offering both opportunities and challenges and see the goal as striking the right balances between them.</p>
+<h2 data-number="7" id="acknowledgements"><span class="header-section-number">7</span> Acknowledgements</h2>
+<p>The authors thank the participants for their valuable aggregate contribution, Priscilla Wong for her logistics assistance, and John Tang for initial feedback. We also thank the Associate Chair and reviewers for their effort and suggestions.</p>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-zoomus_using_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Zoom.us, <span>“Using in-meeting chat,”</span> <em>Zoom Help Center</em>. 2021. Accessed: Jan. 08, 2021. [Online]. Available: <a href="https://support.zoom.us/hc/en-us/articles/203650445-Using-in-meeting-chat">https://support.zoom.us/hc/en-us/articles/203650445-Using-in-meeting-chat</a></div>
+</div>
+<div id="ref-atlassian_work_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Atlassian, <span>“Work <span>Life</span> by <span>Atlassian</span>,”</span> <em>Work Life by Atlassian</em>. 2021. Accessed: Jan. 10, 2021. [Online]. Available: <a href="https://www.atlassian.com/blog">https://www.atlassian.com/blog</a></div>
+</div>
+<div id="ref-google_use_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">Google, <span>“Use captions in a video call,”</span> <em>Google Meet Help</em>. 2021. Accessed: Jan. 10, 2021. [Online]. Available: <a href="https://support.google.com/meet/answer/9300310">https://support.google.com/meet/answer/9300310</a></div>
+</div>
+<div id="ref-microsoft_view_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Microsoft, <span>“View live transcription in a <span>Teams</span> meeting,”</span> <em>Microsoft Support</em>. 2021. Accessed: Jan. 10, 2021. [Online]. Available: <a href="https://support.microsoft.com/en-gb/office/view-live-transcription-in-a-teams-meeting-7a1401ec-73b4-431d-875a-8b6af82b3e15">https://support.microsoft.com/en-gb/office/view-live-transcription-in-a-teams-meeting-7a1401ec-73b4-431d-875a-8b6af82b3e15</a></div>
+</div>
+<div id="ref-olson_working_2013" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">J. S. Olson and G. M. Olson, <span>“Working <span>Together</span> <span>Apart</span>: <span>Collaboration</span> over the <span>Internet</span>,”</span> <em>Synthesis Lectures on Human-Centered Informatics</em>, vol. 6, no. 5, pp. 1–151, Nov. 2013, doi: <a href="https://doi.org/10.2200/S00542ED1V01Y201310HCI020">10.2200/S00542ED1V01Y201310HCI020</a>.</div>
+</div>
+<div id="ref-finn_video-mediated_1997" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">K. E. Finn, A. J. Sellen, and S. B. Wilbur, Eds., <em>Video-<span>Mediated</span> <span>Communication</span></em>. Mahwah, NJ: Lawrence Erlbaum Associates, 1997.</div>
+</div>
+<div id="ref-harrison_media_2009" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">S. Harrison, <em>Media <span>Space</span> 20+ <span>Years</span> of <span>Mediated</span> <span>Life</span></em>, 1st ed. Springer Publishing Company, Incorporated, 2009.</div>
+</div>
+<div id="ref-kraut_intellectual_2014" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">R. E. Kraut, J. Galegher, and C. Egido, Eds., <em>Intellectual <span>Teamwork</span> : <span>Social</span> and <span>Technological</span> <span>Foundations</span> of <span>Cooperative</span> <span>Work</span></em>. Psychology Press, 2014. doi: <a href="https://doi.org/10.4324/9781315807645">10.4324/9781315807645</a>.</div>
+</div>
+<div id="ref-buxton_interfaces_1997" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">W. A. S. Buxton, A. J. Sellen, and M. C. Sheasby, <span>“Interfaces for <span>Multiparty</span> <span>Videoconferencing</span>,”</span> in <em>Video-<span>Mediated</span> <span>Communication</span></em>, K. E. Finn, A. J. Sellen, and S. B. Wilbur, Eds. Mahwah, NJ: Lawrence Erlbaum Associates, 1997, pp. 385–400.</div>
+</div>
+<div id="ref-buxton_mediaspace_2009" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">B. Buxton, <span>“Mediaspace – <span>Meaningspace</span> – <span>Meetingspace</span>,”</span> in <em>Media <span>Space</span> 20 + <span>Years</span> of <span>Mediated</span> <span>Life</span></em>, S. Harrison, Ed. London: Springer, 2009, pp. 217–231. doi: <a href="https://doi.org/10.1007/978-1-84882-483-6_13">10.1007/978-1-84882-483-6_13</a>.</div>
+</div>
+<div id="ref-isaacs_studying_1997" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">E. A. Isaacs and J. C. Tang, <span>“Studying video-based collaboration in context: <span>From</span> small workgroups to large organizations,”</span> in <em>Video-mediated communication</em>, K. E. Finn, A. J. Sellen, and S. B. Wilbur, Eds. 1997, pp. 173–197.</div>
+</div>
+<div id="ref-ochsman_effects_1974" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">R. B. Ochsman and A. Chapanis, <span>“The effects of 10 communication modes on the behavior of teams during co-operative problem-solving,”</span> <em>International Journal of Man-Machine Studies</em>, vol. 6, no. 5, pp. 579–619, 1974.</div>
+</div>
+<div id="ref-daft_organizational_1986" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">R. L. Daft and R. H. Lengel, <span>“Organizational information requirements, media richness and structural design,”</span> <em>Management science</em>, vol. 32, no. 5, pp. 554–571, 1986.</div>
+</div>
+<div id="ref-burgoon_testing_1999" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">J. K. Burgoon, J. A. Bonito, B. Bengtsson, A. Ramirez Jr, N. E. Dunbar, and N. Miczo, <span>“Testing the interactivity model: <span>Communication</span> processes, partner assessments, and the quality of collaborative work,”</span> <em>Journal of management information systems</em>, vol. 16, no. 3, pp. 33–56, 1999.</div>
+</div>
+<div id="ref-cao_large_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">H. Cao <em>et al.</em>, <span>“Large <span>Scale</span> <span>Analysis</span> of <span>Multitasking</span> <span>Behavior</span> <span>During</span> <span>Remote</span> <span>Meetings</span>,”</span> 2021. doi: <a href="https://doi.org/10.1145/3411764.3445243">10.1145/3411764.3445243</a>.</div>
+</div>
+<div id="ref-kuzminykh_classification_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">A. Kuzminykh and S. Rintel, <span>“Classification of <span>Functional</span> <span>Attention</span> in <span>Video</span> <span>Meetings</span>,”</span> in <em>Proceedings of the 2020 <span>CHI</span> <span>Conference</span> on <span>Human</span> <span>Factors</span> in <span>Computing</span> <span>Systems</span></em>, 2020, pp. 1–13. doi: <a href="https://doi.org/10.1145/3313831.3376546">10.1145/3313831.3376546</a>.</div>
+</div>
+<div id="ref-marlow_taking_2016" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">J. Marlow, E. van Everdingen, and D. Avrahami, <span>“Taking <span>Notes</span> or <span>Playing</span> <span>Games</span>?: <span>Understanding</span> <span>Multitasking</span> in <span>Video</span> <span>Communication</span>,”</span> in <em>Proceedings of the 19th <span>ACM</span> <span>Conference</span> on <span>Computer</span>-<span>Supported</span> <span>Cooperative</span> <span>Work</span> &amp; <span>Social</span> <span>Computing</span></em>, Feb. 2016, pp. 1726–1737. doi: <a href="https://doi.org/10.1145/2818048.2819975">10.1145/2818048.2819975</a>.</div>
+</div>
+<div id="ref-berry_role_2019" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">S. Berry, <span>“The <span>Role</span> of <span>Video</span> and <span>Text</span> <span>Chat</span> in a <span>Virtual</span> <span>Classroom</span>: <span>How</span> <span>Technology</span> <span>Impacts</span> <span>Community</span>,”</span> in <em>Educational <span>Technology</span> and <span>Resources</span> for <span>Synchronous</span> <span>Learning</span> in <span>Higher</span> <span>Education</span></em>, J. Yoon and P. Semingson, Eds. Hershey, PA, USA: IGI Global, 2019, pp. 173–187. doi: <a href="https://doi.org/10.4018/978-1-5225-7567-2.ch009">10.4018/978-1-5225-7567-2.ch009</a>.</div>
+</div>
+<div id="ref-yardi_role_2006" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">S. Yardi, <span>“The <span>Role</span> of the <span>Backchannel</span> in <span>Collaborative</span> <span>Learning</span> <span>Environments</span>,”</span> p. 7, 2006.</div>
+</div>
+<div id="ref-hembrooke_laptop_2003" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">H. Hembrooke and G. Gay, <span>“The laptop and the lecture: <span>The</span> effects of multitasking in learning environments,”</span> <em>Journal of computing in higher education</em>, vol. 15, no. 1, pp. 46–64, 2003.</div>
+</div>
+<div id="ref-mccarthy_digital_2005" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">J. F. McCarthy, <span>“Digital <span>Backchannels</span> in <span>Shared</span> <span>Physical</span> <span>Spaces</span>: <span>Experiences</span> at an <span>Academic</span> <span>Conference</span>,”</span> p. 4, 2005.</div>
+</div>
+<div id="ref-kozar_text_2016" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">O. Kozar, <span>“Text <span>Chat</span> <span>During</span> <span>Video</span>/<span>Audio</span> <span>Conferencing</span> <span>Lessons</span>: <span>Scaffolding</span> or <span>Getting</span> in the <span>Way</span>?”</span> <em>CALICO Journal</em>, vol. 33, no. 2, pp. 231–259, Feb. 2016, doi: <a href="https://doi.org/10.1558/cj.v33i2.26026">10.1558/cj.v33i2.26026</a>.</div>
+</div>
+<div id="ref-li_using_2014" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">N. Li and M. B. Rosson, <span>“Using annotations in online group chats,”</span> in <em>Proceedings of the <span>SIGCHI</span> <span>Conference</span> on <span>Human</span> <span>Factors</span> in <span>Computing</span> <span>Systems</span></em>, Apr. 2014, pp. 863–866. doi: <a href="https://doi.org/10.1145/2556288.2557209">10.1145/2556288.2557209</a>.</div>
+</div>
+<div id="ref-cdcdisability" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">C. for Disease Control and Prevention, <span>“Disability impacts all of us,”</span> 2020. <a href="https://www.cdc.gov/ncbddd/disabilityandhealth/infographic-disability-impacts-all.html">https://www.cdc.gov/ncbddd/disabilityandhealth/infographic-disability-impacts-all.html</a> (accessed Jan. 09, 2021).</div>
+</div>
+<div id="ref-hersh3020accessibility" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">M. Hersh, B. Leporini, and M. Buzzi, <span>“Accessibility evaluation of video conferencing tools to support disabled people in distance teaching, meetings and other activities,”</span> in <em>ICCHP</em>, 2020, p. 133.</div>
+</div>
+<div id="ref-schur2020telework" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">L. A. Schur, M. Ameri, and D. Kruse, <span>“Telework after COVID: A <span>‘silver lining’</span> for workers with disabilities?”</span> <em>Journal of occupational rehabilitation</em>, vol. 30, no. 4, pp. 521–536, 2020.</div>
+</div>
+<div id="ref-coombs2010making" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">N. Coombs, <em>Making online teaching accessible: Inclusive course design for students with disabilities</em>, vol. 17. John Wiley &amp; Sons, 2010.</div>
+</div>
+<div id="ref-burdette2013k" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">P. J. Burdette, D. L. Greer, and K. L. Woods, <span>“K-12 online learning and students with disabilities: Perspectives from state special education directors.”</span> <em>Journal of asynchronous learning networks</em>, vol. 17, no. 3, pp. 65–72, 2013.</div>
+</div>
+<div id="ref-kushalnagar2020teleconference" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">R. S. Kushalnagar and C. Vogler, <span>“Teleconference accessibility and guidelines for deaf and hard of hearing users,”</span> in <em>The 22nd international ACM SIGACCESS conference on computers and accessibility</em>, 2020, pp. 1–6.</div>
+</div>
+<div id="ref-acmguidelines" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">AccessSIGCHI, <span>“Accessible remote attendance,”</span> 2020. <a href="https://accesssigchi.com/accessible-remote-attendance/">https://accesssigchi.com/accessible-remote-attendance/</a> (accessed Jan. 09, 2021).</div>
+</div>
+<div id="ref-hamilton_streaming_2014" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">W. A. Hamilton, O. Garretson, and A. Kerne, <span>“Streaming on twitch: Fostering participatory communities of play within live mixed media,”</span> in <em>Proceedings of the <span>SIGCHI</span> <span>Conference</span> on <span>Human</span> <span>Factors</span> in <span>Computing</span> <span>Systems</span></em>, Apr. 2014, pp. 1315–1324. doi: <a href="https://doi.org/10.1145/2556288.2557048">10.1145/2556288.2557048</a>.</div>
+</div>
+<div id="ref-choe_eating_2019" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">H. Choe, <span>“Eating together multimodally: <span>Collaborative</span> eating in <em>mukbang</em> , a <span>Korean</span> livestream of eating,”</span> <em>Language in Society</em>, vol. 48, no. 2, pp. 171–208, Apr. 2019, doi: <a href="https://doi.org/10.1017/S0047404518001355">10.1017/S0047404518001355</a>.</div>
+</div>
+<div id="ref-tang_meerkat_2016" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">J. C. Tang, G. Venolia, and K. M. Inkpen, <span>“Meerkat and <span>Periscope</span>: <span>I</span> <span>Stream</span>, <span>You</span> <span>Stream</span>, <span>Apps</span> <span>Stream</span> for <span>Live</span> <span>Streams</span>,”</span> in <em>Proceedings of the 2016 <span>CHI</span> <span>Conference</span> on <span>Human</span> <span>Factors</span> in <span>Computing</span> <span>Systems</span></em>, May 2016, pp. 4770–4780. doi: <a href="https://doi.org/10.1145/2858036.2858374">10.1145/2858036.2858374</a>.</div>
+</div>
+<div id="ref-wohn_audience_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline">D. Y. Wohn and G. Freeman, <span>“Audience <span>Management</span> <span>Practices</span> of <span>Live</span> <span>Streamers</span> on <span>Twitch</span>,”</span> in <em><span>ACM</span> <span>International</span> <span>Conference</span> on <span>Interactive</span> <span>Media</span> <span>Experiences</span></em>, Jun. 2020, pp. 106–116. doi: <a href="https://doi.org/10.1145/3391614.3393653">10.1145/3391614.3393653</a>.</div>
+</div>
+<div id="ref-chen_i_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[35] </div><div class="csl-right-inline">X. Chen, S. Chen, X. Wang, and Y. Huang, <span>“"<span>I</span> was afraid, but now <span>I</span> enjoy being a streamer!": <span>Understanding</span> the <span>Challenges</span> and <span>Prospects</span> of <span>Using</span> <span>Live</span> <span>Streaming</span> for <span>Online</span> <span>Education</span>,”</span> <em>Proceedings of the ACM on Human-Computer Interaction</em>, vol. 4, no. CSCW3, pp. 1–32, Jan. 2021, doi: <a href="https://doi.org/10.1145/3432936">10.1145/3432936</a>.</div>
+</div>
+<div id="ref-wohn_volunteer_2019" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[36] </div><div class="csl-right-inline">D. Y. Wohn, <span>“Volunteer <span>Moderators</span> in <span>Twitch</span> <span>Micro</span> <span>Communities</span>: <span>How</span> <span>They</span> <span>Get</span> <span>Involved</span>, the <span>Roles</span> <span>They</span> <span>Play</span>, and the <span>Emotional</span> <span>Labor</span> <span>They</span> <span>Experience</span>,”</span> in <em>Proceedings of the 2019 <span>CHI</span> <span>Conference</span> on <span>Human</span> <span>Factors</span> in <span>Computing</span> <span>Systems</span></em>, May 2019, pp. 1–13. doi: <a href="https://doi.org/10.1145/3290605.3300390">10.1145/3290605.3300390</a>.</div>
+</div>
+<div id="ref-seering_shaping_2017" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[37] </div><div class="csl-right-inline">J. Seering, R. Kraut, and L. Dabbish, <span>“Shaping <span>Pro</span> and <span>Anti</span>-<span>Social</span> <span>Behavior</span> on <span>Twitch</span> <span>Through</span> <span>Moderation</span> and <span>Example</span>-<span>Setting</span>,”</span> in <em>Proceedings of the 2017 <span>ACM</span> <span>Conference</span> on <span>Computer</span> <span>Supported</span> <span>Cooperative</span> <span>Work</span> and <span>Social</span> <span>Computing</span></em>, Feb. 2017, pp. 111–125. doi: <a href="https://doi.org/10.1145/2998181.2998277">10.1145/2998181.2998277</a>.</div>
+</div>
+<div id="ref-ma_danmakufirst_2017" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[38] </div><div class="csl-right-inline">X. Ma and N. Cao, <span>“Video-based <span>Evanescent</span>, <span>Anonymous</span>, <span>Asynchronous</span> <span>Social</span> <span>Interaction</span>: <span>Motivation</span> and <span>Adaption</span> to <span>Medium</span>,”</span> in <em>Proceedings of the 2017 <span>ACM</span> <span>Conference</span> on <span>Computer</span> <span>Supported</span> <span>Cooperative</span> <span>Work</span> and <span>Social</span> <span>Computing</span></em>, Feb. 2017, pp. 770–782. doi: <a href="https://doi.org/10.1145/2998181.2998256">10.1145/2998181.2998256</a>.</div>
+</div>
+<div id="ref-lu_vicariously_2019" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[39] </div><div class="csl-right-inline">Z. Lu, M. Annett, and D. Wigdor, <span>“Vicariously <span>Experiencing</span> it all <span>Without</span> <span>Going</span> <span>Outside</span>: <span>A</span> <span>Study</span> of <span>Outdoor</span> <span>Livestreaming</span> in <span>China</span>,”</span> <em>Proceedings of the ACM on Human-Computer Interaction</em>, vol. 3, no. CSCW, pp. 1–28, Nov. 2019, doi: <a href="https://doi.org/10.1145/3359127">10.1145/3359127</a>.</div>
+</div>
+<div id="ref-wu_danmaku_2019" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[40] </div><div class="csl-right-inline">Q. Wu, Y. Sang, and Y. Huang, <span>“Danmaku: <span>A</span> <span>New</span> <span>Paradigm</span> of <span>Social</span> <span>Interaction</span> via <span>Online</span> <span>Videos</span>,”</span> <em>ACM Transactions on Social Computing</em>, vol. 2, no. 2, pp. 1–24, Oct. 2019, doi: <a href="https://doi.org/10.1145/3329485">10.1145/3329485</a>.</div>
+</div>
+<div id="ref-liu_watching_2016" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[41] </div><div class="csl-right-inline">L. Liu, A. Suh, and C. Wagner, <span>“Watching online videos interactively: The impact of media capabilities in <span>Chinese</span> <span>Danmaku</span> video sites,”</span> <em>Chinese Journal of Communication</em>, vol. 9, no. 3, pp. 283–303, Jul. 2016, doi: <a href="https://doi.org/10.1080/17544750.2016.1202853">10.1080/17544750.2016.1202853</a>.</div>
+</div>
+<div id="ref-microsoft_express_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[42] </div><div class="csl-right-inline">Microsoft, <span>“Express yourself in <span>Teams</span> meetings with live reactions.”</span> 2021. Accessed: Feb. 21, 2021. [Online]. Available: <a href="https://support.microsoft.com/en-gb/office/express-yourself-in-teams-meetings-with-live-reactions-a8323a40-3d07-4129-934b-305370a36e21">https://support.microsoft.com/en-gb/office/express-yourself-in-teams-meetings-with-live-reactions-a8323a40-3d07-4129-934b-305370a36e21</a></div>
+</div>
+<div id="ref-lu_streamwiki_2018" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[43] </div><div class="csl-right-inline">Z. Lu, S. Heo, and D. J. Wigdor, <span>“<span>StreamWiki</span>: <span>Enabling</span> <span>Viewers</span> of <span>Knowledge</span> <span>Sharing</span> <span>Live</span> <span>Streams</span> to <span>Collaboratively</span> <span>Generate</span> <span>Archival</span> <span>Documentation</span> for <span>Effective</span> <span>In</span>-<span>Stream</span> and <span>Post</span> <span>Hoc</span> <span>Learning</span>,”</span> <em>Proceedings of the ACM on Human-Computer Interaction</em>, vol. 2, no. CSCW, pp. 1–26, Nov. 2018, doi: <a href="https://doi.org/10.1145/3274381">10.1145/3274381</a>.</div>
+</div>
+<div id="ref-rieman_diary_1993" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[44] </div><div class="csl-right-inline">J. Rieman, <span>“The diary study: A workplace-oriented research tool to guide laboratory efforts,”</span> in <em>Proceedings of the <span>SIGCHI</span> conference on <span>Human</span> factors in computing systems - <span>CHI</span> ’93</em>, 1993, pp. 321–326. doi: <a href="https://doi.org/10.1145/169059.169255">10.1145/169059.169255</a>.</div>
+</div>
+<div id="ref-blandford_qualitative_2016" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[45] </div><div class="csl-right-inline">A. Blandford, D. Furniss, and S. Makri, <span>“Qualitative <span>HCI</span> <span>Research</span>: <span>Going</span> <span>Behind</span> the <span>Scenes</span>,”</span> <em>Synthesis Lectures on Human-Centered Informatics</em>, vol. 9, no. 1, pp. 1–115, Apr. 2016, doi: <a href="https://doi.org/10.2200/S00706ED1V01Y201602HCI034">10.2200/S00706ED1V01Y201602HCI034</a>.</div>
+</div>
+<div id="ref-rintel_methodology_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[46] </div><div class="csl-right-inline">S. Rintel, P. Wong, A. Sarkar, and A. Sellen, <span>“Methodology and <span>Participation</span> for 2020 <span>Diary</span> <span>Study</span> of <span>Microsoft</span> <span>Employees</span> <span>Experiences</span> in <span>Remote</span> <span>Meetings</span> <span>During</span> <span>COVID</span>-19,”</span> Microsoft Research, 2020-10-FOW-SIM1, 2020.Available: <a href="https://www.microsoft.com/en-us/research/publication/methodology-and-participation-for-2020-diary-study-of-microsoft-employees-experiences-in-remote-meetings-during-covid-19/">https://www.microsoft.com/en-us/research/publication/methodology-and-participation-for-2020-diary-study-of-microsoft-employees-experiences-in-remote-meetings-during-covid-19/</a></div>
+</div>
+<div id="ref-braun_using_2006" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[47] </div><div class="csl-right-inline">V. Braun and V. Clarke, <span>“Using thematic analysis in psychology,”</span> <em>Qualitative Research in Psychology</em>, vol. 3, no. 2, pp. 77–101, Jan. 2006, doi: <a href="https://doi.org/10.1191/1478088706qp063oa">10.1191/1478088706qp063oa</a>.</div>
+</div>
+<div id="ref-fram_constant_2013" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[48] </div><div class="csl-right-inline">S. M. Fram, <span>“The <span>Constant</span> <span>Comparative</span> <span>Analysis</span> <span>Method</span> <span>Outside</span> of <span>Grounded</span> <span>Theory</span>,”</span> p. 25, 2013.</div>
+</div>
+<div id="ref-bary_zoom_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[49] </div><div class="csl-right-inline">E. Bary, <span>“Zoom, <span>Microsoft</span> <span>Teams</span> usage are rocketing during coronavirus pandemic, new data show,”</span> <em>MarketWatch</em>. 2021. Accessed: Jan. 11, 2021. [Online]. Available: <a href="https://www.marketwatch.com/story/zoom-microsoft-cloud-usage-are-rocketing-during-coronavirus-pandemic-new-data-show-2020-03-30">https://www.marketwatch.com/story/zoom-microsoft-cloud-usage-are-rocketing-during-coronavirus-pandemic-new-data-show-2020-03-30</a></div>
+</div>
+<div id="ref-edelsky_whos_1981" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[50] </div><div class="csl-right-inline">C. Edelsky, <span>“Who’s <span>Got</span> the <span>Floor</span>?”</span> <em>Language in Society</em>, vol. 10, no. 3, pp. 383–421, 1981, Accessed: Feb. 21, 2021. [Online]. Available: <a href="https://www.jstor.org/stable/4167262">https://www.jstor.org/stable/4167262</a></div>
+</div>
+<div id="ref-cappella_controlling_1985" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[51] </div><div class="csl-right-inline">J. N. Cappella, A. W. Siegman, and S. Feldstein, <span>“Controlling the floor in conversation,”</span> in <em>Multichannel integrations of nonverbal behavior</em>, Hove, UK: Psychology Press, 1985, pp. 69–103.</div>
+</div>
+<div id="ref-ganesh_zoom_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[52] </div><div class="csl-right-inline">J. Ganesh, <span>“Zoom and the lost art of interruption.”</span> Nov. 2020. Accessed: Feb. 21, 2021. [Online]. Available: <a href="https://www.ft.com/content/5745fc60-b0db-4958-bdf4-3bb6307e190d">https://www.ft.com/content/5745fc60-b0db-4958-bdf4-3bb6307e190d</a></div>
+</div>
+<div id="ref-ruhleder_co-constructing_2001" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[53] </div><div class="csl-right-inline">K. Ruhleder and B. Jordan, <span>“Co-<span>Constructing</span> <span>Non</span>-<span>Mutual</span> <span>Realities</span>: <span>Delay</span>-<span>Generated</span> <span>Trouble</span> in <span>Distributed</span> <span>Interaction</span>,”</span> <em>Comput. Supported Coop. Work</em>, vol. 10, no. 1, pp. 113–138, Jan. 2001, doi: <a href="https://doi.org/10.1023/A:1011243905593">10.1023/A:1011243905593</a>.</div>
+</div>
+<div id="ref-schoenenberg_why_2014" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[54] </div><div class="csl-right-inline">K. Schoenenberg, A. Raake, and J. Koeppe, <span>“Why are you so slow?–<span>Misattribution</span> of transmission delay to attributes of the conversation partner at the far-end,”</span> <em>International journal of human-computer studies</em>, vol. 72, no. 5, pp. 477–487, 2014.</div>
+</div>
+<div id="ref-seuren_whose_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[55] </div><div class="csl-right-inline">L. M. Seuren, J. Wherton, T. Greenhalgh, and S. E. Shaw, <span>“Whose turn is it anyway? <span>Latency</span> and the organization of turn-taking in video-mediated interaction,”</span> <em>Journal of Pragmatics</em>, vol. 172, pp. 63–78, 2021, doi: <a href="https://doi.org/10.1016/j.pragma.2020.11.005">https://doi.org/10.1016/j.pragma.2020.11.005</a>.</div>
+</div>
+<div id="ref-rintel_video_2013" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[56] </div><div class="csl-right-inline">S. Rintel, <span>“Video calling in long-distance relationships: <span>The</span> opportunistic use of audio/video distortions as a relational resource,”</span> <em>The Electronic Journal of Communication/La Revue Electronic de Communication (EJC/REC)</em>, vol. 23, 2013.</div>
+</div>
+<div id="ref-heath_disembodied_1993" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[57] </div><div class="csl-right-inline">C. Heath and P. Luff, <span>“Disembodied conduct: <span>Interactional</span> asymmetries in video-mediated communication,”</span> <em>Technology in working order: Studies of work, interaction, and technology</em>, pp. 35–54, 1993.</div>
+</div>
+<div id="ref-luff_embedded_2016" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[58] </div><div class="csl-right-inline">P. Luff, C. Heath, N. Yamashita, H. Kuzuoka, and M. Jirotka, <span>“Embedded reference: Translocating gestures in video-mediated interaction,”</span> <em>Research on Language and Social Interaction</em>, vol. 49, no. 4, pp. 342–361, 2016.</div>
+</div>
+<div id="ref-hemshorn_de_sanchez_clara_s_social_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[59] </div><div class="csl-right-inline">Hemshorn de Sánchez Clara S. and Meinecke Annika L., <span>“Social <span>Influence</span> in <span>Meetings</span>: <span>A</span> <span>Gender</span> <span>Perspective</span>,”</span> in <em>Managing <span>Meetings</span> in <span>Organizations</span></em>, vol. 20, Annika L. Meinecke, Joseph A. Allen, and Nale Lehmann-Willenbrock, Eds. Emerald Publishing Limited, 2020, pp. 113–142. doi: <a href="https://doi.org/10.1108/S1534-085620200000020006">10.1108/S1534-085620200000020006</a>.</div>
+</div>
+<div id="ref-gillett_parallel_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[60] </div><div class="csl-right-inline">S. Gillett, D. Bragg, A. Sarkar, and S. Rintel, <span>“Parallel <span>Meeting</span> <span>Chat</span> <span>Guide</span> for <span>Moderators</span> and <span>Participants</span>: <span>Drawing</span> on findings from <span>Microsoft</span> <span>Employees</span> <span>During</span> <span>COVID</span>-19,”</span> Microsoft Research, 2021-02-FOW-SIM3, 2021.Available: <a href="https://www.microsoft.com/en-us/research/publication/parallel-meeting-chat-guide-for-moderators-and-participants/">https://www.microsoft.com/en-us/research/publication/parallel-meeting-chat-guide-for-moderators-and-participants/</a></div>
+</div>
+<div id="ref-weaver2004building" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[61] </div><div class="csl-right-inline">C. Weaver, <span>“Building highly-coordinated visualizations in improvise,”</span> in <em>IEEE symposium on information visualization</em>, 2004, pp. 159–166.</div>
+</div>
+</div>
+</body>
+</html>

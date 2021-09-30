@@ -3,8 +3,23 @@ td {
     padding: 0.5em;
 }
 
+#TOC ul {
+    padding-left: 1.5em;
+}
+
+/* this one has to come after the #TOC ul selector, to override the padding just for the top-level ul */
+#TOC > ul {
+    padding-left: 0em;
+}
+
 #TOC li {
     list-style: none;
+    border-left: 2px solid #eee;
+    padding-left: 0.2em;
+}
+
+#TOC a:not(:hover) {
+    text-decoration: none;
 }
 
 blockquote {
@@ -19,12 +34,17 @@ div.csl-entry {
     margin-bottom: 1em;
 }
 
+div.csl-left-margin {
+    min-width:2em;
+    float:left;
+}
+
 #title-block-header {
     text-align: center;
 }
 
 .publications-web-banner {
-    background-color: #eee; padding: 0.1em 1em 0.1em 1em;
+    background-color: #f6f6f6; padding: 0.1em 1em 0.1em 1em;
 }
 
 h2 {
@@ -39,6 +59,13 @@ h1 {
     line-height: 1em;
 }
 
+img {
+    max-width: 100%;
+}
+
+figcaption {
+    text-align: center;
+}
 /*
 .header-section-number, .toc-section-number {
     color: blue;
