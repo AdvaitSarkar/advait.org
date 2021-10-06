@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <title>Spreadsheet Use and Programming Experience: an Exploratory Survey</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+</head>
+
+<body>
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+  <p>This is a version of the following academic paper prepared for the web:</p>
+  
+  <blockquote>
+    Advait Sarkar, Judith W. Borghouts, Anusha Iyer, Sneha Khullar, Christian Canton, Felienne Hermans, Andrew D. Gordon, and Jack Williams. 2020. Spreadsheet Use and Programming Experience: An Exploratory Survey. In <i>Extended Abstracts of the 2020 CHI Conference on Human Factors in Computing Systems</i> (<i>CHI EA '20</i>). Association for Computing Machinery, New York, NY, USA, 1–9. DOI:https://doi.org/10.1145/3334480.3382807
+  </blockquote>
+  
+  <p>
+  More details:
+  <a href="/files/sarkar_2020_spreadsheet_experience.pdf">Download PDF</a> &bull;
+  <a href="/files/sarkar_2020_spreadsheet_experience_citation.bib">BibTeX</a> &bull;
+  <a href="https://doi.org/10.1145/3334480.3382807">DOI: 10.1145/3334480.3382807</a> &bull;
+  <a href="https://dl.acm.org/doi/abs/10.1145/3334480.3382807">ACM Digital Library</a>
+  </p>
+</div>
+
+<header id="title-block-header">
+<h1>Spreadsheet Use and Programming Experience: an Exploratory Survey</h1>
+<p class="author">Advait Sarkar, Judith W. Borghouts, Anusha Iyer, Sneha Khullar, Christian Canton, Felienne Hermans, Andrew D. Gordon, Jack Williams</p>
+</header>
+
+<h2>Abstract</h2>
+
+<p>
+  We report results from a survey on spreadsheet use and experience with textual programming languages (<em>n</em>=49). We find significant correlations between self-reported formula experience, programming experience, and overall spreadsheet experience. We discuss the implications of our findings for spreadsheet research and end-user programming research, more generally.
+</p>
+
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#background"><span class="toc-section-number">2</span> Background</a>
+<ul>
+<li><a href="#theories-of-programming-expertise"><span class="toc-section-number">2.1</span> Theories of programming expertise</a></li>
+<li><a href="#spreadsheet-expertise"><span class="toc-section-number">2.2</span> Spreadsheet expertise</a>
+<ul>
+<li><a href="#what-motivates-people-to-acquire-spreadsheet-expertise"><span class="toc-section-number">2.2.1</span> What motivates people to acquire spreadsheet expertise?</a></li>
+<li><a href="#how-is-spreadsheet-expertise-acquired"><span class="toc-section-number">2.2.2</span> How is spreadsheet expertise acquired?</a></li>
+<li><a href="#what-differentiates-spreadsheet-experts-from-non-experts"><span class="toc-section-number">2.2.3</span> What differentiates spreadsheet experts from non-experts?</a></li>
+</ul></li>
+<li><a href="#measuring-expertise"><span class="toc-section-number">2.3</span> Measuring expertise</a></li>
+</ul></li>
+<li><a href="#survey"><span class="toc-section-number">3</span> Survey</a>
+<ul>
+<li><a href="#participants"><span class="toc-section-number">3.1</span> Participants</a></li>
+</ul></li>
+<li><a href="#results"><span class="toc-section-number">4</span> Results</a></li>
+<li><a href="#discussion"><span class="toc-section-number">5</span> Discussion</a></li>
+<li><a href="#conclusion"><span class="toc-section-number">6</span> Conclusion</a></li>
+</ul>
+</nav>
+
+<h2 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Spreadsheets are an empowering technology; users can store, manipulate, and analyse data for their own benefit. Yet there is a wide spectrum of spreadsheet expertise, which creates disparities between users. Recent analyses have shown that as little as <span class="math inline">∼</span>7% of spreadsheets contain formulas, suggesting that much spreadsheet use consists of little more than data storage and manipulation <span class="citation" data-cites="barik2015fuse">[2]</span>.</p>
+<p>Previous work has shown how spreadsheet expertise is acquired in ‘informal, opportunistic, and social’ ways <span class="citation" data-cites="sarkar2018spreadsheetlearning">[28]</span> – learnt primarily on the job, from informal resources such as online fora, and help from colleagues <span class="citation" data-cites="nardi1990ethnographic">[23]</span>. However, while previous work has focused on how the social environment can foster the acquisition of spreadsheet expertise, it has not explored how the rest of the users’ technical ecosystem may play a role. The workplace as well as the education landscape has changed. It is increasingly common for people to acquire formal experience in computing and programming, whether it is through a computing curriculum at school,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> after school code clubs,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or at university – where there is growing demand for programming courses in non-computing degrees <span class="citation" data-cites="chilana2015perceptions">[8]</span>, or at work, through personal efforts to become ‘conversational’ at programming <span class="citation" data-cites="chilana2016understanding">[9]</span>.</p>
+<p>In this paper, we aim to open up a relatively under-explored theme within the field of programming expertise, namely, the interplay of traditional programming expertise (in a textual programming language such as Python or Java), and end-user programming in spreadsheets. This contrasts with previous research in end-user programming expertise, that has viewed people through the narrow slice of their experience with a specific tool. In doing so we seek to better understand, and to be better prepared for, the impact of increased programming literacy on spreadsheet expertise. For instance, may we assume that an increase in formula expertise within the population will naturally follow from the increase in programming literacy?</p>
+<p>Our research question is, therefore: <em>is programming experience related to spreadsheet experience?</em> We present the design and results of an exploratory survey to find out.</p>
+<h2 data-number="2" id="background"><span class="header-section-number">2</span> Background</h2>
+<h3 data-number="2.1" id="theories-of-programming-expertise"><span class="header-section-number">2.1</span> Theories of programming expertise</h3>
+<p>There are multiple theories for the development of programming expertise. The leading theory holds that learning to program consists of a knowledge-restructuring process, leading to the development of hierarchical schemata – units of knowledge – that allow people to succeed at the activity of programming <span class="citation" data-cites="davies1994knowledge">[10]</span>. This theory derives from constructivist <span class="citation" data-cites="campbell1992programmer">[6]</span> and constructionist <span class="citation" data-cites="papert1980mindstorms">[24]</span> perspectives. However, recent work has questioned the constructivist account of learning, suggesting that this view has been received and perpetuates due to incidental social circumstances, and that alternatives remain extremely under-explored, especially when compared with language or mathematics education <span class="citation" data-cites="hermans2018explicit">[17]</span>.</p>
+<p>While the mechanism of expertise acquisition is still debated, certain differences between expert and novice programmers are consistently observed. Expert programmers have highly organised knowledge that allows them to do better at recall tasks <span class="citation" data-cites="wiedenbeck2005factors chi2006laboratory">[7,33]</span>. Beginner programmers understand individual lines of code but not the relationships between them; experts see the more abstract, overall pattern of a program <span class="citation" data-cites="lister2006not">[20]</span>. The effect of working memory and experience on programming skill is mediated through programming knowledge <span class="citation" data-cites="bergersen2011programming">[4]</span>. Experts possess sophisticated mental imagery representing software designs, which they can mentally manipulate and externalise as design and communication resources <span class="citation" data-cites="petre2009insights">[25]</span>.</p>
+<h3 data-number="2.2" id="spreadsheet-expertise"><span class="header-section-number">2.2</span> Spreadsheet expertise</h3>
+<h4 data-number="2.2.1" id="what-motivates-people-to-acquire-spreadsheet-expertise"><span class="header-section-number">2.2.1</span> What motivates people to acquire spreadsheet expertise?</h4>
+<p>Spreadsheet learning tends to be goal-driven rather than structured <span class="citation" data-cites="mcgill2001spreadsheet sarkar2018spreadsheetlearning">[22,28]</span>, an approach that could lead to lower quality spreadsheets as users do not acquire principles of design. Spreadsheet users are usually focused on understanding their problem domain, rather than understanding programming, and therefore while they might become more familiar with their domain due to spreadsheet experience, they might not necessarily become better programmers <span class="citation" data-cites="grossman2007spreadsheet">[15]</span>. Learning out of necessity rather than curiosity has also been found for web designers <span class="citation" data-cites="dorn2010learning">[11]</span>.</p>
+<h4 data-number="2.2.2" id="how-is-spreadsheet-expertise-acquired"><span class="header-section-number">2.2.2</span> How is spreadsheet expertise acquired?</h4>
+<p>Small groups of people within organisations have been found to be responsible for sharing files, establishing and perpetuating ‘informally-defined norms of behaviour’ <span class="citation" data-cites="mackay1990patterns">[21]</span>. While beginners learn spreadsheets mainly socially through colleagues, experts are more likely to further their knowledge using books, manuals and online resources, and in either case formal training is not common <span class="citation" data-cites="lawson2009comparison nardi1990ethnographic sarkar2018spreadsheetlearning">[19,23,28]</span>. There is support for <em>constructivist</em> and <em>constructionist</em> accounts of spreadsheet expertise development; a think-aloud study of 10 participants <span class="citation" data-cites="reimann2000role">[26]</span> found that participants who self-explain while trying to learn how to use spreadsheets prove to be better problem solvers. A further study found that problem solving is a more effective method for acquiring spreadsheet skills than watching tutorials <span class="citation" data-cites="kerr1994learning">[18]</span>.</p>
+<div class="margintable">
+<table style="width:90%;">
+<colgroup>
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Question &amp; answer text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>How would you classify your spreadsheet experience? <em>(single choice)</em></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(1) Little or no experience</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(2) Some experience, but I’m still a beginner</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(3) A lot of experience, but my use is basic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(4) A lot of experience, and I use some advanced features</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(5) A lot of experience with many advanced features</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"> </td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>What is the main purpose of spreadsheets you use? <em>(multiple choice)</em></strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- Maintaining lists (e.g. names and addresses)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- Tracking data (e.g. budgets, sales, inventories)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- Analysing data (e.g. financial, operational)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">- Determining trends and making projections</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">- Other <em>(free text response)</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 data-number="2.2.3" id="what-differentiates-spreadsheet-experts-from-non-experts"><span class="header-section-number">2.2.3</span> What differentiates spreadsheet experts from non-experts?</h4>
+<p>The flexibility of spreadsheets permits a variety of ‘coping mechanisms’ for users to deal with low expertise, without having to acquire additional expertise <span class="citation" data-cites="sarkar2018spreadsheetlearning">[28]</span>. In some cases, these coping mechanisms can be characterised as ‘bad practice’ <span class="citation" data-cites="lawson2009comparison">[19]</span>, which differentiates experts and non-experts; experts perform more planning and design activities when writing spreadsheets. Experts exhibit greater appreciation for the legibility of formulas to themselves and others, helping them avoid ‘smells’ <span class="citation" data-cites="hermans2015detecting">[16]</span>. Non-expert spreadsheet users sometimes collaborate with experts who can complete high-expertise tasks, therefore alleviating the need to learn, although this collaboration sometimes has an informal learning outcome for the non-expert <span class="citation" data-cites="nardi1990ethnographic">[23]</span>.</p>
+<h3 data-number="2.3" id="measuring-expertise"><span class="header-section-number">2.3</span> Measuring expertise</h3>
+<p>Previous work has used several indicators as direct or indirect measures of programming experience. A comprehensive review of 161 papers that measure programming experience is given by Feigenspan et al. <span class="citation" data-cites="feigenspan2012measuring">[14]</span>, which we will not repeat in detail. In summary, they found eight categories of measures (plus a ninth category of ‘unreported’): years of programming experience, education level, self-estimation, unspecified questionnaire, size of programs written by the subject, unspecified pre-test, and skill estimation by the subject’s supervisor/manager.</p>
+<p>Ad-hoc programming tasks or tests are sometimes used <span class="citation" data-cites="bergersen2014construction">[3]</span>. Months or years of ‘tenure’ as participants on a project or on a platform such as GitHub are also sometimes used as proxies <span class="citation" data-cites="vasilescu2015gender">[32]</span>. The measurement of <em>end-user</em> programming expertise specifically is under-explored, although one survey did show that Likert-scale questionnaire items could reliably be used to measure end-user computing skills <span class="citation" data-cites="torkzadeh3003measures">[31]</span>.</p>
+<p>In our exploratory study, we needed a concept that could be operationalised as a questionnaire item. We therefore choose to focus on self-reported experience, rather than developing mechanical tests of expertise, as previous work has shown that it is possible for respondents to self-report in a consistent manner <span class="citation" data-cites="feigenspan2012measuring siegmund2014measuring">[14,30]</span>. Self-reported experience measures do have the limitation that respondents may give levels different interpretations; respondents with lower experience may inadvertently place themselves on a higher experience level (a version of the Dunning-Kruger effect <span class="citation" data-cites="dunning2011dunning">[13]</span>), and respondents with higher experience may rate themselves lower due to greater self-awareness or modesty. Nonetheless, the provision of additional information to help respondents self-assess, as well as the opportunity to consult with the experimenters for clarification, can greatly mitigate these effects. For example, in some cases where the sample is from a well-defined group (e.g., a university course cohort), response consistency on a self-reported experience question can be improved by asking respondents to rank their own position within the peer group <span class="citation" data-cites="sarkar2015syntax">[27]</span>. An additional advantage of self-reporting is that it allows the opportunity to capture aspects of expertise that are hard to measure using tests (such as planning and design skills), but which make up a significant portion of expertise as manifested.</p>
+<h2 data-number="3" id="survey"><span class="header-section-number">3</span> Survey</h2>
+<p>The survey was implemented using Microsoft Forms.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Participants were first presented with a brief description of the survey and signed a form of informed consent. Participants optionally provided the following demographic information: age range and occupation. Participants also noted the specific spreadsheet application(s) they normally used. We did not record the gender or location of participants.</p>
+<div class="margintable">
+<table style="width:98%;">
+<colgroup>
+<col style="width: 98%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Question &amp; answer text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Which best describes your expertise with spreadsheet formulas? <em>(single choice)</em></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(1) I don’t know what they are</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(2) I know what they are but don’t use them</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(3) I only use a few basic functions (such as SUM and AVERAGE) in my formulas. I don’t know how to do more advanced things.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(4) I only use a few basic functions in my formulas. I know how to do more advanced things, but I rarely / never need to.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(5) I use a variety of different functions in my formulas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(6) I use a variety of functions. I have written my own functions using VBA, or installed add-ins that make new functions available.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"> </td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Which best describes your programming experience in traditional programming languages, such as Java, Python, C, SQL, R, JavaScript, VBA, etc.? <em>(single choice)</em></strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(1) I have never programmed</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(2) I have learnt a little bit but never used it</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(3) I know enough to use it for small infrequent tasks</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(4) I am moderately experienced and write programs regularly</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(5) I am highly experienced</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">(6) I program or have programmed in a professional capacity</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">(7) Other <em>(free text response)</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To test the questionnaire we conducted a pilot survey with a convenience sample of 15 respondents. After they completed the survey, we discussed the appropriateness and effectiveness of the questionnaire items with our pilot participants. Our pilot prompted several adjustments to the survey design and implementation. The main questions used in our final questionnaire can be found in Tables <a href="#tab:questionnaire1" data-reference-type="ref" data-reference="tab:questionnaire1">[tab:questionnaire1]</a> and <a href="#tab:questionnaire2" data-reference-type="ref" data-reference="tab:questionnaire2">[tab:questionnaire2]</a>. For brevity, we have excluded some questions such as optional demographics.</p>
+<h3 data-number="3.1" id="participants"><span class="header-section-number">3.1</span> Participants</h3>
+<p>After revising the questionnaire, we recruited a fresh sample of 57 participants, located mostly in the UK and USA, through a combination of convenience and snowball sampling. This is unlikely to be representative of the global population. In our report, we therefore avoid drawing general inferences of population-level distributions, but instead focus on within-subjects correlations along different measures. The following general results serve purely to illustrate the constitution of our participants.</p>
+<ul>
+<li><p><strong>Age</strong>: 56 respondents chose to provide their age range (1 declined). Of those that provided age range, the median and mode age range was 25-34.</p></li>
+<li><p><strong>Applications used</strong>: all 57 participants reported regular use of Microsoft Excel, with 43 (75%) being exclusive Excel users. Twelve (21%) reported use of Google Sheets and Excel. One participant reported use of OpenOffice Calc and Excel, and another participant reported use of Apple Numbers and Excel.</p></li>
+<li><p><strong>Spreadsheet use cases</strong>: previous work had revealed four categories of spreadsheet use <span class="citation" data-cites="lawson2009comparison">[19]</span>, which we tracked using a questionnaire item. Analysing data (e.g., financial, operational) was the most common use case, regularly encountered by 43 respondents (75%). Nonetheless, all use cases were common amongst some respondents, with the least common use case (‘Determining trends and making projections’) still encountered by 10 respondents (18%).</p></li>
+<li><p><strong>Occupations</strong>: respondents reported a wide range of occupations. They included academic research, business administration, marketing, sales, healthcare, education, and financial analysis.</p></li>
+</ul>
+<h2 data-number="4" id="results"><span class="header-section-number">4</span> Results</h2>
+<p>We assigned numeric codes to the responses for the questionnaire items regarding self-reported spreadsheet experience, formula experience, and programming experience. These were assigned integer codes from 1-5, 1-6, and 1-6 respectively, with 1 denoting the point of lowest self-reported experience. These codes establish an ordinal ranking of responses. Throughout our analysis, the correlations we report are Spearman’s <span class="math inline"><em>ρ</em></span> (<span class="math inline"><em>r</em><sub><em>s</em></sub></span>). We apply a Bonferroni correction to our significance threshold <span class="math inline"><em>α</em></span>. For brevity, we henceforth use the word ‘experience’ to mean our ordinal scale measure of participants’ self-reported experience. Certain groups were underrepresented in our sample. Programming experience levels 5 and 6, formula experience levels 1 and 2, and spreadsheet experience levels 1 and 2 all had 3 or fewer participants. We removed these groups from our correlation analysis, leaving us with a final sample of <span class="math inline"><em>n</em> = 49</span>.</p>
+<div class="marginfigure">
+<p><img src="figures/spreadsheet_formula_exp.png" alt="image" /></p>
+</div>
+<div class="marginfigure">
+<p><img src="figures/spreadsheet_programming_exp.png" alt="image" /></p>
+</div>
+<div class="marginfigure">
+<p><img src="figures/programming_formula_exp.png" alt="image" /></p>
+</div>
+<p>We find that spreadsheet experience and formula experience are positively correlated (Spearman’s <span class="math inline"><em>r</em><sub><em>s</em></sub> = 0.52</span>, <span class="math inline"><em>p</em> = 1.3 ⋅ 10<sup>−4</sup></span>). See Figure <a href="#fig:spreadsheet_formula_exp" data-reference-type="ref" data-reference="fig:spreadsheet_formula_exp">[fig:spreadsheet_formula_exp]</a>. This is the least surprising of our observed correlations, as much advanced spreadsheet use involves formulas.</p>
+<p>We find that, although spreadsheet experience has a weak positive correlation coefficient with programming experience, this correlation is not statistically significant (Spearman’s <span class="math inline"><em>r</em><sub><em>s</em></sub> = 0.26</span>, <span class="math inline"><em>p</em> = 0.07</span>). See Figure <a href="#fig:spreadsheet_programming_exp" data-reference-type="ref" data-reference="fig:spreadsheet_programming_exp">[fig:spreadsheet_programming_exp]</a>. Respondents with different levels of spreadsheet experience all showed a wide range of self-reported programming experience.</p>
+<p>We find that formula experience and programming experience are positively correlated (Spearman’s <span class="math inline"><em>r</em><sub><em>s</em></sub> = 0.42</span>, <span class="math inline"><em>p</em> = 2.6 ⋅ 10<sup>−3</sup></span>). See Figure <a href="#fig:programming_formula_exp" data-reference-type="ref" data-reference="fig:programming_formula_exp">[fig:programming_formula_exp]</a>. This tells us that while we cannot assume that experienced spreadsheet users in general are more likely to have some experience of programming in a textual programming language, we <em>can</em> expect that spreadsheet users who are highly experienced at using <em>formulas</em> are more likely to also have experience of programming in a traditional language. This is discussed in greater detail in the next section.</p>
+<p>We included a questionnaire item about spreadsheet use cases identified in previous work <span class="citation" data-cites="DBLP:journals/corr/abs-1905-13072">[5]</span>. We did not observe any correlation between spreadsheet experience and the four use cases we track (determining trends, analysing data, tracking data, and maintaining lists), although the first two did skew slightly towards higher experience.</p>
+<h2 data-number="5" id="discussion"><span class="header-section-number">5</span> Discussion</h2>
+<p>Recall that we use ‘experience’ to mean our ordinal scale measure of participants’ self-reported experience. We observed a correlation between spreadsheet and formula experience. This was expected; much of utility of spreadsheets is derived from formulas, which transform spreadsheets from passive datastores into active programs, and many features of spreadsheets are supported by formulas. For example, conditional formatting and data validations can both be specified in terms of formulas, and the name manager is only useful if names are referenced in formulas.</p>
+<p>Furthermore, we observed that spreadsheet experience is not (significantly) correlated with programming experience. This can be attributed to the diversity of ways in which spreadsheet experience can manifest. Recall that we did not observe a relationship between use cases and spreadsheet experience. Nonetheless, certain use cases for spreadsheets (such as tracking data, and maintaining lists) require very little or no formula use. It is possible, therefore, to have high levels of experience using spreadsheets in this manner, without necessarily acquiring expertise in formula authoring (and by extension, in programming). Other phenomena, such as the delegation of formula authoring to others with more expertise <span class="citation" data-cites="nardi1990ethnographic">[23]</span>, may also help in maintaining this diversity.</p>
+<p>Our most interesting observation is that formula experience is correlated with programming experience. To our knowledge, we are the first to observe this phenomenon. There are multiple potential explanations for this. One possibility is that there is a direct causal link between the acquisition of formula expertise and programming expertise. That is, if a spreadsheet user has pre-existing expertise in a traditional programming language, they are able to immediately translate that into higher expertise in formula authoring. Computing education research has shown that acquiring expertise in a second programming language is considerably easier than the first <span class="citation" data-cites="scholtz1990learning">[29]</span>, due to the pre-existence of suitable mental models (e.g., notional machines <span class="citation" data-cites="du1986some">[12]</span>). Conversely, pre-existing expertise in formula authoring may help users acquire expertise in traditional programming languages.</p>
+<p>Another possibility is that there is an underlying causal factor that prompts expertise acquisition in both formulas and traditional programming. Such an underlying factor may either be intrinsic or extrinsic. Aghaee et al. <span class="citation" data-cites="aghaee2015personality">[1]</span> have provided a personality-based account for intrinsic motivation in end-user programming. In particular, their research shows that certain personality profiles (which may be characterised as artistry, bricoleurism, and technophilia) are intrinsically predisposed to programming. Extrinsic factors may include problems in the user’s work domain or personal life that can only be solved through the acquisition of programming skill. For instance, Sarkar and Gordon <span class="citation" data-cites="sarkar2018spreadsheetlearning">[28]</span> found that skill acquisition in spreadsheets was often motivated by specific workplace problems.</p>
+<p>These possibilities, i.e., mechanisms of influence between formula expertise, programming expertise, and underlying causal factors, are not mutually exclusive. Indeed, they are likely to interplay with each other. People may traverse a variety of paths through these, with different needs. For example, one person may learn traditional programming due to a workplace need, and then translate that into formula expertise. Another may learn spreadsheet formulas due to an intrinsic interest in spreadsheets, and then apply that knowledge to traditional programming. The nature of this interplay is likely to be highly nuanced and individualistic. In future work, it would be interesting to explore how this knowledge is acquired and transferred across different programming paradigms.</p>
+<p>A limitation of our study was that we initially designed the survey as an interview recruitment tool. We wished to interview participants about how they learnt to use spreadsheets. We designed the survey to help us recruit participants with a range of spreadsheet and programming expertise. Thus we did not include items that would have enabled us to make causal inferences. Nonetheless, we found an interesting pattern that suggests a relationship between spreadsheet and programming experience. In future, we may obtain greater understanding of this relationship with results from our interviews.</p>
+<h2 data-number="6" id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
+<p>Our paper explores the understudied relationships between experience in traditional programming and end-user programming, particularly in spreadsheets. Our study recognises that end-user programming systems and their users do not exist in isolation; there are relevant experiences from outside these systems that may strongly influence them, or be influenced by them. It is a simple premise that has not previously been shown through quantitative data. In our survey sample, we have found that experience in spreadsheet formula usage is correlated with experience in programming in a traditional language. We have discussed multiple possible relationships between experience in traditional programming and formula authoring. It would be worthwhile to explore this trend using a redesigned survey and a larger sample size.</p>
+
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-aghaee2015personality" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Saeed Aghaee, Alan F Blackwell, David Stillwell, and Michal Kosinski. 2015. Personality and intrinsic motivational factors in end-user programming. In <em>2015 IEEE symposium on visual languages and human-centric computing (VL/HCC)</em>, IEEE, 29–36.</div>
+</div>
+<div id="ref-barik2015fuse" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Titus Barik, Kevin Lubick, Justin Smith, John Slankas, and Emerson Murphy-Hill. 2015. Fuse: A reproducible, extendable, internet-scale corpus of spreadsheets. In <em>Proceedings of the 12th working conference on mining software repositories</em>, IEEE Press, 486–489.</div>
+</div>
+<div id="ref-bergersen2014construction" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">Gunnar R Bergersen, Dag IK Sjøberg, and Tore Dybå. 2014. Construction and validation of an instrument for measuring programming skill. <em>IEEE Transactions on Software Engineering</em> 40, 12 (2014), 1163–1184.</div>
+</div>
+<div id="ref-bergersen2011programming" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Gunnar Rye Bergersen and Jan-Eric Gustafsson. 2011. Programming skill, knowledge, and working memory among professional software developers from an investment theory perspective. <em>Journal of individual Differences</em> (2011).</div>
+</div>
+<div id="ref-DBLP:journals/corr/abs-1905-13072" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Judith Borghouts, Andrew D. Gordon, Advait Sarkar, Kenton P. O’Hara, and Neil Toronto. 2019. Somewhere around that number: An interview study of how spreadsheet users manage uncertainty. <em>CoRR</em> abs/1905.13072, (2019). Retrieved from <a href="http://arxiv.org/abs/1905.13072">http://arxiv.org/abs/1905.13072</a></div>
+</div>
+<div id="ref-campbell1992programmer" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Robert L Campbell, Norman R Brown, and Lia A DiBello. 1992. The programmer’s burden: Developing expertise in programming. In <em>The psychology of expertise</em>. Springer, 269–294.</div>
+</div>
+<div id="ref-chi2006laboratory" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">Michelene TH Chi. 2006. Laboratory methods for assessing experts’ and novices’ knowledge. <em>The Cambridge handbook of expertise and expert performance</em> (2006), 167–184.</div>
+</div>
+<div id="ref-chilana2015perceptions" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">Parmit K Chilana, Celena Alcock, Shruti Dembla, Anson Ho, Ada Hurst, Brett Armstrong, and Philip J Guo. 2015. Perceptions of non-CS majors in intro programming: The rise of the conversational programmer. In <em>2015 IEEE symposium on visual languages and human-centric computing (VL/HCC)</em>, IEEE, 251–259.</div>
+</div>
+<div id="ref-chilana2016understanding" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">Parmit K Chilana, Rishabh Singh, and Philip J Guo. 2016. Understanding conversational programmers: A perspective from the software industry. In <em>Proceedings of the 2016 CHI conference on human factors in computing systems</em>, ACM, 1462–1472.</div>
+</div>
+<div id="ref-davies1994knowledge" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">Simon P Davies. 1994. Knowledge restructuring and the acquisition of programming expertise. <em>International Journal of Human-Computer Studies</em> 40, 4 (1994), 703–726.</div>
+</div>
+<div id="ref-dorn2010learning" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">Brian Dorn and Mark Guzdial. 2010. Learning on the job: Characterizing the programming knowledge and learning strategies of web designers. In <em>Proceedings of the SIGCHI conference on human factors in computing systems</em>, ACM, 703–712.</div>
+</div>
+<div id="ref-du1986some" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">Benedict Du Boulay. 1986. Some difficulties of learning to program. <em>Journal of Educational Computing Research</em> 2, 1 (1986), 57–73.</div>
+</div>
+<div id="ref-dunning2011dunning" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">David Dunning. 2011. The dunning–kruger effect: On being ignorant of one’s own ignorance. In <em>Advances in experimental social psychology</em>. Elsevier, 247–296.</div>
+</div>
+<div id="ref-feigenspan2012measuring" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">Janet Feigenspan, Christian Kästner, Jörg Liebig, Sven Apel, and Stefan Hanenberg. 2012. Measuring programming experience. In <em>2012 20th IEEE international conference on program comprehension (ICPC)</em>, IEEE, 73–82.</div>
+</div>
+<div id="ref-grossman2007spreadsheet" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">Thomas A Grossman. 2007. Spreadsheet engineering: A research framework. <em>arXiv preprint arXiv:0711.0538</em> (2007).</div>
+</div>
+<div id="ref-hermans2015detecting" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">Felienne Hermans, Martin Pinzger, and Arie van Deursen. 2015. Detecting and refactoring code smells in spreadsheet formulas. <em>Empirical Software Engineering</em> 20, 2 (2015), 549–575.</div>
+</div>
+<div id="ref-hermans2018explicit" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">Felienne Hermans and Marileen Smit. 2018. Explicit direct instruction in programming education. In <em><span class="nocase">Proceedings of the 29th Annual Conference of the Psychology of Programming Interest Group (PPIG 2018)</span></em>, 86–93.</div>
+</div>
+<div id="ref-kerr1994learning" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">Michael P Kerr and Stephen J Payne. 1994. Learning to use a spreadsheet by doing and by watching. <em>Interacting with Computers</em> 6, 1 (1994), 3–22.</div>
+</div>
+<div id="ref-lawson2009comparison" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">Barry R Lawson, Kenneth R Baker, Stephen G Powell, and Lynn Foster-Johnson. 2009. A comparison of spreadsheet users with different levels of experience. <em>Omega</em> 37, 3 (2009), 579–590.</div>
+</div>
+<div id="ref-lister2006not" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">Raymond Lister, Beth Simon, Errol Thompson, Jacqueline L Whalley, and Christine Prasad. 2006. Not seeing the forest for the trees: Novice programmers and the SOLO taxonomy. <em>ACM SIGCSE Bulletin</em> 38, 3 (2006), 118–122.</div>
+</div>
+<div id="ref-mackay1990patterns" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">Wendy E Mackay. 1990. Patterns of sharing customizable software. In <em>Proceedings of the 1990 ACM conference on computer-supported cooperative work</em>, ACM, 209–221.</div>
+</div>
+<div id="ref-mcgill2001spreadsheet" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">TJ McGill and MW Dixon. 2001. Spreadsheet knowledge: An exploratory study. (2001).</div>
+</div>
+<div id="ref-nardi1990ethnographic" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">Bonnie A Nardi and James R Miller. 1990. An ethnographic study of distributed problem solving in spreadsheet development. In <em>Proceedings of the 1990 ACM conference on computer-supported cooperative work</em>, ACM, 197–208.</div>
+</div>
+<div id="ref-papert1980mindstorms" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">Seymour Papert. 1980. <em>Mindstorms: Children, computers, and powerful ideas</em>. Basic Books, Inc.</div>
+</div>
+<div id="ref-petre2009insights" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">Marian Petre. 2009. Insights from expert software design practice. In <em>Proceedings of the the 7th joint meeting of the european software engineering conference and the ACM SIGSOFT symposium on the foundations of software engineering</em>, ACM, 233–242.</div>
+</div>
+<div id="ref-reimann2000role" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">Peter Reimann and C Neubert. 2000. The role of self-explanation in learning to use a spreadsheet through examples. <em>Journal of Computer Assisted Learning</em> 16, 4 (2000), 316–325.</div>
+</div>
+<div id="ref-sarkar2015syntax" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">Advait Sarkar. 2015. The impact of syntax colouring on program comprehension. In <em><span class="nocase">Proceedings of the 26th Annual Conference of the Psychology of Programming Interest Group (PPIG 2015)</span></em>, 49–58.</div>
+</div>
+<div id="ref-sarkar2018spreadsheetlearning" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">Advait Sarkar and Andrew D Gordon. 2018. How do people learn to use spreadsheets? (Work in progress). In <em><span class="nocase">Proceedings of the 29th Annual Conference of the Psychology of Programming Interest Group (PPIG 2018)</span></em>, 28–35.</div>
+</div>
+<div id="ref-scholtz1990learning" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">Jean Scholtz and Susan Wiedenbeck. 1990. Learning second and subsequent programming languages: A problem of transfer. <em>International Journal of Human-Computer Interaction</em> 2, 1 (1990), 51–72.</div>
+</div>
+<div id="ref-siegmund2014measuring" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">Janet Siegmund, Christian Kästner, Jörg Liebig, Sven Apel, and Stefan Hanenberg. 2014. Measuring and modeling programming experience. <em>Empirical Software Engineering</em> 19, 5 (2014), 1299–1334.</div>
+</div>
+<div id="ref-torkzadeh3003measures" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">Gholamreza Torkzadeh and Jungwoo Lee. 2003. Measures of perceived end-user computing skills. <em>Information &amp; Management</em> 40, 7 (2003), 607–615.</div>
+</div>
+<div id="ref-vasilescu2015gender" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">Bogdan Vasilescu, Daryl Posnett, Baishakhi Ray, Mark GJ van den Brand, Alexander Serebrenik, Premkumar Devanbu, and Vladimir Filkov. 2015. Gender and tenure diversity in GitHub teams. In <em>Proceedings of the 33rd annual ACM conference on human factors in computing systems</em>, ACM, 3789–3798.</div>
+</div>
+<div id="ref-wiedenbeck2005factors" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">Susan Wiedenbeck. 2005. Factors affecting the success of non-majors in learning to program. In <em>Proceedings of the first international workshop on computing education research</em>, ACM, 13–24.</div>
+</div>
+</div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study">https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study</a>&nbsp;<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://codeclub.org/en/">https://codeclub.org/en/</a>&nbsp;<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://forms.office.com">https://forms.office.com</a>&nbsp;<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
