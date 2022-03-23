@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="{advait,adg,simonpj,netoront}@microsoft.com" />
+  <title>Calculation View: multiple-representation editing in spreadsheets</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+</head>
+<body>
+
+
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+<p>This is a version of the following academic paper prepared for the web:</p>
+
+<blockquote>A. Sarkar, A. D. Gordon, S. P. Jones and N. Toronto, "Calculation View: multiple-representation editing in spreadsheets," 2018 IEEE Symposium on Visual Languages and Human-Centric Computing (VL/HCC), 2018, pp. 85-93, doi: 10.1109/VLHCC.2018.8506584.</blockquote>
+
+<p>
+More details:
+    <a href="files/sarkar_2018_calcview.pdf">Download PDF</a> &bull;
+    <a href="files/sarkar_2018_calcview_citation.bib">BibTeX</a> &bull;
+    <a href="https://ieeexplore.ieee.org/abstract/document/8506584">IEEE Xplore</a> &bull;
+    <a href="https://doi.org/10.1109/VLHCC.2018.8506584">DOI: 10.1109/VLHCC.2018.8506584</a>
+</p>
+</div>
+
+<header id="title-block-header">
+<h1>Calculation View: multiple-representation editing in spreadsheets</h1>
+<p class="author">Advait Sarkar, Andrew D. Gordon, Simon Peyton Jones, Neil Toronto</p>
+</header>
+
+<h2>Abstract</h2>
+<p>Spreadsheet errors are ubiquitous and costly, an unfortunate combination that is well-reported. A large class of these errors can be attributed to the inability to clearly see the underlying computational structure, as well as poor support for abstraction (encapsulation, re-use, etc). In this paper we propose a novel solution: a
+    <em>multiple-representation</em>
+    spreadsheet containing additional representations that allow abstract operations, without altering the conventional grid representation or its formula syntax. Through a user study, we demonstrate that the use of multiple representations can significantly improve user performance when performing spreadsheet authoring and debugging tasks. We close with a discussion of design implications and outline future directions for this line of inquiry.</p>
+<nav id="TOC" role="doc-toc">
+    <ul>
+        <li>
+            <a href="#introduction">
+                <span class="toc-section-number">1</span>
+                Introduction</a>
+        </li>
+        <li>
+            <a href="#sec:problem">
+                <span class="toc-section-number">2</span>
+                The problem and our approach</a>
+            <ul>
+                <li>
+                    <a href="#problem-errors-in-spreadsheets">
+                        <span class="toc-section-number">2.1</span>
+                        Problem: errors in spreadsheets</a>
+                </li>
+                <li>
+                    <a href="#our-approach-augmenting-the-grid">
+                        <span class="toc-section-number">2.2</span>
+                        Our approach: augmenting the grid</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sec:calculation-view">
+                <span class="toc-section-number">3</span>
+                Textual notation in Calculation View</a>
+            <ul>
+                <li>
+                    <a href="#review-formula-copy-and-paste-in-spreadsheets">
+                        <span class="toc-section-number">3.1</span>
+                        Review: formula copy-and-paste in spreadsheets</a>
+                </li>
+                <li>
+                    <a href="#sec:range-assignment">
+                        <span class="toc-section-number">3.2</span>
+                        First idea: range assignments</a>
+                </li>
+                <li>
+                    <a href="#sec:cell-naming">
+                        <span class="toc-section-number">3.3</span>
+                        Second idea: cell naming</a>
+                </li>
+                <li>
+                    <a href="#summary-syntax-and-semantics-for-calculation-view">
+                        <span class="toc-section-number">3.4</span>
+                        Summary syntax and semantics for Calculation View</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sec:calculation-view-interface">
+                <span class="toc-section-number">4</span>
+                Interaction design in Calculation View</a>
+            <ul>
+                <li>
+                    <a href="#use-of-multiple-representations">
+                        <span class="toc-section-number">4.1</span>
+                        Use of multiple representations</a>
+                </li>
+                <li>
+                    <a href="#sec:pseudocell">
+                        <span class="toc-section-number">4.2</span>
+                        Editing experience design</a>
+                </li>
+                <li>
+                    <a href="#sec:block-detection">
+                        <span class="toc-section-number">4.3</span>
+                        Block detection algorithm</a>
+                </li>
+                <li>
+                    <a href="#formula-ordering">
+                        <span class="toc-section-number">4.4</span>
+                        Formula ordering</a>
+                </li>
+                <li>
+                    <a href="#view-filtering">
+                        <span class="toc-section-number">4.5</span>
+                        View filtering</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sec:user-study">
+                <span class="toc-section-number">5</span>
+                User study</a>
+            <ul>
+                <li>
+                    <a href="#participants">
+                        <span class="toc-section-number">5.1</span>
+                        Participants</a>
+                </li>
+                <li>
+                    <a href="#tasks">
+                        <span class="toc-section-number">5.2</span>
+                        Tasks</a>
+                </li>
+                <li>
+                    <a href="#protocol">
+                        <span class="toc-section-number">5.3</span>
+                        Protocol</a>
+                </li>
+                <li>
+                    <a href="#results">
+                        <span class="toc-section-number">5.4</span>
+                        Results</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sec:discussion">
+                <span class="toc-section-number">6</span>
+                Multiple representations in spreadsheets</a>
+            <ul>
+                <li>
+                    <a href="#variations-of-range-assignment">Variations of range assignment</a>
+                </li>
+                <li>
+                    <a href="#variations-on-the-editing-experience">Variations on the editing experience</a>
+                </li>
+                <li>
+                    <a href="#data-specific-to-the-alternative-representation">Data specific to the alternative representation</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sec:related">
+                <span class="toc-section-number">7</span>
+                Related work</a>
+            <ul>
+                <li>
+                    <a href="#multiple-representations-and-spreadsheet-visualisation">
+                        <span class="toc-section-number">7.1</span>
+                        Multiple representations and spreadsheet visualisation</a>
+                </li>
+                <li>
+                    <a href="#overcoming-spreadsheet-errors">
+                        <span class="toc-section-number">7.2</span>
+                        Overcoming spreadsheet errors</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#sec:conc">
+                <span class="toc-section-number">8</span>
+                Conclusions and next steps</a>
+        </li>
+    </ul>
+</nav>
+<h2 data-number="1" id="introduction">
+    <span class="header-section-number">1</span>
+    Introduction</h2>
+<p>Spreadsheets excel at showing data, while hiding computation. In many ways the emphasis on showing data is a huge advantage, but it comes with serious difficulties: because the computations are hidden, spreadsheets are hard to understand, explain, debug, audit, and maintain.</p>
+<p>It is often remarked that “spreadsheets are code”
+    <span class="citation" data-cites="hermans2016spreadsheets">[1]</span>. What would happen if we take that idea seriously, and offer a view of the spreadsheet designed primarily to display its computational structure? Then, in this
+    <em>Calculation View</em>, we might be able to offer more abstract operations on ranges within the grid, and alternative ways to achieve useful tasks that are cumbersome or error-prone in the grid view. We have designed, prototyped, and evaluated just such a feature (<a href="#fig:calcview" data-reference-type="ref" data-reference="fig:calcview">Fig. 1</a>). More specifically, we make the following contributions.</p>
+<ul>
+    <li>
+        <p>We present a design for a view of a spreadsheet primarily intended for viewing formulas and their groupings. Edits to either the grid or to Calculation View show up immediately in the other. This design and its possible variants are discussed in the context of the theory of multiple representations (Sections <a href="#sec:calculation-view" data-reference-type="ref" data-reference="sec:calculation-view">3</a> and <a href="#sec:calculation-view-interface" data-reference-type="ref" data-reference="sec:calculation-view-interface">4</a>).</p>
+    </li>
+    <li>
+        <p>We describe two particularly compelling advantages of Calculation View:</p>
+        <ul>
+            <li>
+                <p>Calculation View improves on error-prone copy/paste (<a href="#sec:range-assignment" data-reference-type="ref" data-reference="sec:range-assignment">Section 3.2</a>) using
+                    <em>range assignment</em>: a new textual syntax for copying a formula into a block of cells.</p>
+            </li>
+            <li>
+                <p>Calculation View offers a simple syntax for naming cells or ranges, and referring to those names in other formulas (<a href="#sec:cell-naming" data-reference-type="ref" data-reference="sec:cell-naming">Section 3.3</a>). Naming is available in spreadsheets such as Excel, but few users exploit it because of the high interaction cost.</p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>We present the results of a user study (<a href="#sec:user-study" data-reference-type="ref" data-reference="sec:user-study">Section 5</a>) showing that certain common classes of spreadsheet authoring and debugging tasks are faster when users have access to Calculation View, with lower cognitive load, without reduction in self-efficacy.</p>
+    </li>
+</ul>
+<figure>
+    <img src="calcview.png" id="fig:calcview" alt="Calculation View lists the formulas in a spreadsheet. It enables abstract operations such as range assignment and cell naming.">
+    <figcaption aria-hidden="true">Fig. 1. Calculation View lists the formulas in a spreadsheet. It enables abstract operations such as range assignment and cell naming.</figcaption>
+</figure>
+<p>We regard Calculation View as a first step in a rich space of multiple-representation designs that can enable new experiences in spreadsheets, discussed further in <a href="#sec:discussion" data-reference-type="ref" data-reference="sec:discussion">Section 6</a>.</p>
+<h2 data-number="2" id="sec:problem">
+    <span class="header-section-number">2</span>
+    The problem and our approach</h2>
+<h3 data-number="2.1" id="problem-errors-in-spreadsheets">
+    <span class="header-section-number">2.1</span>
+    Problem: errors in spreadsheets</h3>
+<p>As with any large body of code, spreadsheets contain errors of many kinds, with often catastrophic implications, given the heavy dependence on spreadsheets in many domains. The ubiquity and maleficence of spreadsheet errors has been well documented
+    <span class="citation" data-cites="panko1998">[2]</span>, and there are even specialised conferences dedicated solely to spreadsheet errors!<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</p>
+<p>We focus on the following specific difficulties, using the vocabulary of cognitive dimensions
+    <span class="citation" data-cites="green1996dimensions">[3]</span>:</p>
+<ol>
+    <li>
+        <p>
+            <em>Invisibility of computational structure</em>. The graphical display of the sheet does not intrinsically convey how values are computed, which groups of cells have shared formulas, and how cells depend on each other. This creates
+            <em>hidden dependencies</em>
+            in the sheet’s dataflow. Apart from individually inspecting cell formulas, or relying on secondary notation provided by the spreadsheet author (layout, borders, whitespace, colouring, etc.), there are no affordances for auditing the calculations of a spreadsheet, which makes auditing tedious and error-prone.
+            <em>Visibility</em>
+            suffers in large spreadsheets; the display is typically too small to contain all formulas at once. Visibility is also impaired by the inability to display formulas and their results simultaneously; the user must inspect formulas individually using the formula bar. The “Show formulas” option, which displays each cell’s formula in the cell instead of the computed value, is also impractical, since the length of formulas typically exceeds the cell width, leading to truncation.</p>
+    </li>
+    <li>
+        <p>
+            <em>Poor support for abstraction</em>. Consider the following common form of spreadsheet:</p>
+        <div class="center">
+            <table>
+                <thead>
+                <tr class="header">
+                <th style="text-align: center;"><strong>Data</strong></th>
+                <th style="text-align: center;"><strong>Formula 1</strong></th>
+                <th style="text-align: center;"><strong>Formula 2</strong></th>
+                <th style="text-align: center;"><strong>...</strong></th>
+                <th style="text-align: center;"><strong>Formula <span
+                class="math inline"><em>k</em></span></strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="odd">
+                <td style="text-align: center;"><span
+                class="math inline"><em>d</em><sub>1</sub></span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub>1</sub>(<em>d</em><sub>1</sub>)</span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub>2</sub>(<em>d</em><sub>1</sub>)</span></td>
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub><em>k</em></sub>(<em>d</em><sub>1</sub>)</span></td>
+                </tr>
+                <tr class="even">
+                <td style="text-align: center;"><span
+                class="math inline"><em>d</em><sub>2</sub></span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub>1</sub>(<em>d</em><sub>2</sub>)</span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub>2</sub>(<em>d</em><sub>2</sub>)</span></td>
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub><em>k</em></sub>(<em>d</em><sub>2</sub>)</span></td>
+                </tr>
+                <tr class="odd">
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                </tr>
+                <tr class="even">
+                <td style="text-align: center;"><span
+                class="math inline"><em>d</em><sub><em>n</em></sub></span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub>1</sub>(<em>d</em><sub><em>n</em></sub>)</span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub>2</sub>(<em>d</em><sub><em>n</em></sub>)</span></td>
+                <td style="text-align: center;"><span
+                class="math inline">...</span></td>
+                <td style="text-align: center;"><span
+                class="math inline"><em>F</em><sub><em>k</em></sub>(<em>d</em><sub><em>n</em></sub>)</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>The first column is a list of data, and each other column simply computes something from the base data. The formulas in each row repeat the calculation for the data in that row; rows are independent. There are only as many distinct formulas as there are columns; the complexity of building and testing this spreadsheet should not be affected by whether there are ten rows, or ten million. The user experience, unfortunately, is deeply affected. The notation is
+            <em>error prone</em>
+            in that the user is responsible for manually ensuring that the column formula is precisely copied the correct number of rows. Any subsequent edits to column formulas are
+            <em>viscous</em>
+            as well as
+            <em>error prone</em>, as they must be correctly propagated to the correct range, which involves identifying all the cells that the author intended to contain that formula, an intention for which there is usually no explicit record.</p>
+    </li>
+    <li>
+        <p>
+            <em>Formulas suffer from a lack of readable names</em>. Grid cell references (e.g.,
+            <code>A1</code>,
+            <code>B2</code>, etc.) are terrible variable names, as they contain no information regarding what the value in the cell might represent. They can be easily mistyped as other valid grid cell references, leading to a silent error. Conventional programming languages allow users to give domain-relevant names to their values (improving
+            <em>closeness-of-mapping</em>); for example, we might want to refer to cell
+            <code>B2</code>
+            as
+            <code>TaxRate</code>
+            – a simple form of abstraction. Some spreadsheet packages do in fact support naming cells and cell ranges (e.g., Excel’s name manager<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>) but these features are not widely used due to high additional interaction and cognitive costs: of naming cells; of recalling what cells have been named; and remembering to actually use the name (i.e., not mixing usage of the name and the cell it refers to).</p>
+    </li>
+</ol>
+<h3 data-number="2.2" id="our-approach-augmenting-the-grid">
+    <span class="header-section-number">2.2</span>
+    Our approach: augmenting the grid</h3>
+<p>Previous approaches to mitigating errors in spreadsheets have focused either on auditing tools, or on modifying the grid and its formula syntax (see <a href="#sec:related" data-reference-type="ref" data-reference="sec:related">Section 7</a>). In this paper, we present an exploration of a fundamentally new approach to the problem. We propose that the grid, and its formula syntax, be left
+    <em>untouched</em>, but to provide opportunities for abstraction through
+    <em>additional</em>
+    representations. We build on the theory of
+    <em>multiple representations</em>
+    that originates in Ainsworth’s research in mathematics education
+    <span class="citation" data-cites="ainsworth1999functions">[4]</span>
+    but has found widespread applications in computer science education
+    <span class="citation" data-cites="resnick2009scratch stead2014learning">[5], [6]</span>, and end-user programming research
+    <span class="citation" data-cites="gorinova2016live">[7]</span>. By offering multiple representations of the same core object (in our case, the program exemplified by the spreadsheet), we can help the user learn to move fluently between different levels of abstraction, choosing the abstraction appropriate for the task at hand.</p>
+<h2 data-number="3" id="sec:calculation-view">
+    <span class="header-section-number">3</span>
+    Textual notation in Calculation View</h2>
+<p>Thus motivated, we created an alternative representation,
+    <em>Calculation View</em>, or
+    <strong>CV</strong>
+    for short, of the spreadsheet as a textual program. CV is displayed in a pane adjacent to the grid. In CV, the grid is described as a set of formula assignments. For example:</p>
+<pre>
+    <code>B1 = SQRT(A1)</code>
+</pre>
+<p>assigns the formula
+    <code>=SQRT(A1)</code>
+    to the cell
+    <code>B1</code>. Edits in one view are immediately propagated to the other and the spreadsheet is recalculated; it is
+    <em>live</em>
+    <span class="citation" data-cites="tanimoto1990liveness">[8]</span>.</p>
+<h3 data-number="3.1" id="review-formula-copy-and-paste-in-spreadsheets">
+    <span class="header-section-number">3.1</span>
+    Review: formula copy-and-paste in spreadsheets</h3>
+<p>Before we introduce a new, more powerful type of assignment in CV, it is helpful to review the distinctive behaviour of copy-and-paste in spreadsheets today.</p>
+<p>Suppose that cells
+    <code>A1</code>
+    to
+    <code>A10</code>
+    contain some numbers, and the user wishes to compute the square root of each of these numbers in column
+    <code>B</code>. The user would begin by typing
+    <code>=SQRT(A1)</code>
+    into cell
+    <code>B1</code>. They could type
+    <code>=SQRT(A2)</code>
+    into cell
+    <code>B2</code>, and so on, but a more efficient method is to copy
+    <code>=SQRT(A1)</code>
+    from cell
+    <code>B1</code>
+    and paste into
+    <code>B2</code>. The user intention is not to paste the same literal formula, but rather one that is updated to point to the corresponding cell in
+    <code>A</code>. The operation of
+    <em>formula copy-and-paste</em>
+    rewrites the formula
+    <code>=SQRT(A1)</code>
+    into the intended form
+    <code>=SQRT(A2)</code>.</p>
+<p>This is achieved by interpreting references in the original formula as spatially relative to the cell, as can be expressed using “R1C1” notation. For example, the expression
+    <code>SQRT(A1)</code>
+    occurring in cell
+    <code>B1</code>
+    is represented as
+    <code>SQRT(R[0]C[-1])</code>
+    in R1C1, because with respect to
+    <code>B1</code>,
+    <code>A1</code>
+    represents the cell in the same row (<code>R[0]</code>) and the previous column (<code>C[-1]</code>). This formula pasted into the cells
+    <code>B2</code>
+    to
+    <code>B10</code>
+    becomes the sequence
+    <code>SQRT(A2)</code>, …,
+    <code>SQRT(A10)</code>; the relative reference resolves into a different cell reference for each case. Spreadsheet packages generally allow this behaviour to be overridden (e.g., Excel’s
+    <em>absolute references</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>).</p>
+<p>The
+    <em>drag-fill</em>
+    operation builds on formula copy-and-paste. In a drag-fill, the user types
+    <code>=SQRT(A1)</code>
+    into cell
+    <code>B1</code>, selects it, and then drags down to cover the range
+    <code>B1:B10</code>, which is equivalent to copying
+    <code>B1</code>
+    into each cell in the range.</p>
+<p>Copy/paste and drag-fill enable the user to create computations on arrays and matrices without needing to understand functional programming formalisms such as
+    <code>map</code>,
+    <code>fold</code>, and
+    <code>scan</code>. However, the conceptual abstraction of arrays is not reflected in any grid affordances; it is easy to accidentally omit cells or overextend the drag-filling operation, and the user must manually propagate any changes in the formula to all participating cells – a fiddly and error-prone process.</p>
+<p>CV, being separate from the grid, presents an opportunity to allow abstract operations on arrays and matrices
+    <em>without</em>
+    affecting the usability of the grid.</p>
+<h3 data-number="3.2" id="sec:range-assignment">
+    <span class="header-section-number">3.2</span>
+    First idea: range assignments</h3>
+<p>The first novel affordance of our notation is
+    <em>range assignment</em>, which assigns the same formula to a range of cells just as a drag-fill copies a single formula to a range. In CV, the user could accomplish the previous example using the following range assignment:</p>
+<pre>
+    <code>B1:B10 = SQRT(A1)</code>
+</pre>
+<p>The colon symbol is already used in Excel to denote a range, and so its use capitalises on users’ existing syntax vocabulary.</p>
+<p>The assignment has an effect identical to entering the formula
+    <code>=SQRT(A1)</code>
+    into the top-left cell of the range
+    <code>B1:B10</code>, and then drag-filling over the rest of the range. Observe how our syntax uses the literal formula for the top-left cell; users must apply their mental model of formula copy-and-paste to predict how the formula will behave for the rest of the range. In this manner, range assignment exposes a low-abstraction syntax for array/matrix assignment.</p>
+<p>An alternative, that does not rely on knowledge of copy-paste semantics, would be to use R1C1 notation:</p>
+<pre>
+    <code>B1:B10 = SQRT(R[0]C[-1])</code>
+</pre>
+<p>This is clearer, because the same formula is assigned to every cell, but understanding the formula requires knowledge of the more abstract R1C1 notation.</p>
+<p>Range assignment has many benefits. It is less
+    <em>diffuse/verbose</em>, as it represents all formulas in a block using a single formula. It has a greater
+    <em>closeness-of-mapping</em>
+    to user intent. It greatly improves
+    <em>visibility</em>
+    of the formulas in the sheet (take for example our sheet with one formula per column – even with thousands of rows, the CV representation shows a single range assignment per column). Moreover, the representation greatly reduces the
+    <em>viscosity</em>
+    and
+    <em>error-proneness</em>
+    of editing a block of formulas. Instead of manual copying or drag-filling, the user simply edits the formula in the range assignment. The range itself can also be edited to adjust the extent of the copied formula precisely and easily.</p>
+<h3 data-number="3.3" id="sec:cell-naming">
+    <span class="header-section-number">3.3</span>
+    Second idea: cell naming</h3>
+<p>The lack of meaningful names for grid cell references leads to unreadability and error proneness in formulas. Extant naming features in spreadsheet packages are seldom used in practice; CV presents an opportunity to drastically lower the interactional and cognitive costs for using names. To name a cell or range, the user employs the following syntax:</p>
+<pre>
+    <code>Name Cell = Formula</code>
+</pre>
+<p>A concrete example is this:</p>
+<pre>
+    <code>TaxRate A1 = 0.01</code>
+</pre>
+<p>which puts the value 0.01 into cell
+    <code>A1</code>
+    <em>and</em>
+    gives it the name
+    <code>TaxRate</code>. Thus to compute tax, one can write the formula in terms of
+    <code>TaxRate</code>
+    rather than
+    <code>A1</code>, which is more readable, more memorable, more intelligible, and more difficult to mistype as a different but valid reference. We considered alternative naming syntaxes (e.g.,
+    <code>TaxRate[A1] = ...</code>;
+    <code>TaxRate in A1 = ...</code>;
+    <code>A1 as TaxRate = ...</code>;
+    <code>TaxRate = A1 = ...</code>; etc.) and a detailed investigation of this would make for interesting future work, but within the scope of our initial exploration we settled on the simple space-delimited syntax for its readability.</p>
+<h3 data-number="3.4" id="summary-syntax-and-semantics-for-calculation-view">
+    <span class="header-section-number">3.4</span>
+    Summary syntax and semantics for Calculation View</h3>
+
+    <figure id="fig:grammar">
+        <div style="border: 1px solid #ccc; padding: 1rem;">
+            <p>Cells and Ranges:</p>
+            <pre data-frame="single"><code>Cell ::= $A1$-$notation$
+            Range ::= Cell | Cell:Cell</code></pre>
+            <p>Formulas:</p>
+            <pre data-frame="single"><code>Literal ::= $number$ | $string$
+            Name ::= $identifier$
+            Fun ::= SUM | SQRT | ...
+            Formula ::=
+                Literal | Range | Name | Fun(Formula$_1$, ..., Formula$_N$) | ...</code></pre>
+            <p>Assignments and Programs:</p>
+            <pre data-frame="single"><code>Assignment ::=
+                Range = Formula |
+                Name Range = Formula
+            Program ::= Assignment$_1$ ... Assignment$_N$</code></pre>
+        </div>
+        <figcaption aria-hidden="true">Fig. 2. Abstract Syntax for Calculation View</figcaption>
+    </figure>
+
+<p><a href="#fig:grammar" data-reference-type="ref" data-reference="fig:grammar">Figure 2</a>
+    shows the complete grammar of the textual notation in our initial implementation of Calculation View.</p>
+<p>Our language has a simple semantics, as follows. An assignment
+    <code>Range = Formula</code>
+    is equivalent to entering
+    <code>=Formula</code>
+    into the top-left cell of
+    <code>Range</code>, and pasting that formula to every other cell in
+    <code>Range</code>. An assignment
+    <code>Name Range = Formula</code>
+    additionally binds the name
+    <code>Name</code>
+    to the range
+    <code>Range</code>.</p>
+<p>We require that no two assignments target the same cell. We place other constraints on the program including that each range targets a non-empty set of cells.</p>
+<h2 data-number="4" id="sec:calculation-view-interface">
+    <span class="header-section-number">4</span>
+    Interaction design in Calculation View</h2>
+<h3 data-number="4.1" id="use-of-multiple-representations">
+    <span class="header-section-number">4.1</span>
+    Use of multiple representations</h3>
+<p>“Multiple representations” is a broad umbrella term for systems that show some shared concept in multiple ways, but this can have a variety of different manifestations, depending on how tightly coupled the representations are, what underlying concepts they share, and other design variables. CV’s specific use of multiple representations – in particular, what functions CV does, and does not perform – can be characterised in terms of Ainsworth’s functional taxonomy for multiple-representation environments
+    <span class="citation" data-cites="ainsworth1999functions">[4]</span>:</p>
+<ul>
+    <li>
+        <p>
+            <em>Complementary roles</em>
+            through
+            <em>complementary tasks</em>. In CV, these tasks are: creating and editing formulas, creating and editing ranges of shared formulas, and viewing the computational structure of the sheet. In the grid view, these tasks are: setting cell formatting, layout, and other secondary notation to prepare the data for display, inserting charts and other non-formula entities, etc. CV and the grid facilitate
+            <em>complementary strategies</em>; the primary strategy for range editing in the grid is copy/paste or drag-fill, which is well suited for small ranges and for visual display of data. In CV, the primary strategy is to use range assignment, which is well suited for robust editing of ranges with shared formulas.</p>
+    </li>
+    <li>
+        <p>
+            <em>Complementary information</em>: CV can display formulas while the grid displays data and formula output.</p>
+    </li>
+    <li>
+        <p>CV
+            <em>constructs deeper understanding</em>
+            using abstraction through reification: a type of abstraction where a process at one level is reconceived as an object at a higher level
+            <span class="citation" data-cites="sfard1991dual">[9]</span>. In spreadsheets, users understand a range of shared formulas as a single abstract entity; the process of copy/paste or drag-filling at the cell level creates an object at the range level. In CV, we build on that understanding and reify those ranges as single objects.</p>
+    </li>
+</ul>
+<p>Our model of shared representation is depicted in <a href="#fig:representation_overlap" data-reference-type="ref" data-reference="fig:representation_overlap">Figure 3</a>. Both CV and the grid share certain features, such as the ability to assign names, and the ability to assign formulas to individual cells. However, CV allows range assignment and a naming syntax not possible in the standard grid. Similarly, CV does not have facilities for adjusting cell formatting, or viewing the spatial grid layout of formulas.</p>
+<p>CV introduces no new information content to the spreadsheet; indeed, the CV is generated each time the spreadsheet is opened, or when the grid view is edited (see <a href="#sec:block-detection" data-reference-type="ref" data-reference="sec:block-detection">Section 4.3</a>).</p>
+<figure>
+    <img src="representation_overlap.png" id="fig:representation_overlap" alt="Relationship between Calculation View and the traditional grid.">
+    <figcaption aria-hidden="true">Fig. 3. Relationship between Calculation View and the traditional grid.</figcaption>
+</figure>
+<h3 data-number="4.2" id="sec:pseudocell">
+    <span class="header-section-number">4.2</span>
+    Editing experience design</h3>
+<p>CV departs from traditional text editors in a few deliberate ways. The first is the explicit visual distinction between lines, creating a columnar grid of
+    <em>pseudocells</em>. This makes CV appear familiar, due to its similarity to the grid, and reinforces the fact that there should only be one assignment per line. Unlike many other programming languages, which permit multiple statements on a single line (delimited by, e.g., semicolons), Excel has no counterpart to this and so CV’s pseudocells help indicate the absence of that facility.</p>
+<p>The second departure of CV from a simple text editor is the newline behaviour. In the Excel grid, hitting the enter (or return) key has the effect of committing the current formula and moving focus to the next cell down. If this same behaviour were adopted wholesale into CV, then hitting enter would only navigate between pseudocells, and additional interface components would be required to allow users to create
+    <em>new</em>
+    cell/range assignments. Instead, in our design, hitting enter while any pseudocell is in focus creates a new pseudocell underneath it, combining the properties of a flat text editor and the grid. Pseudocells can only be empty while they are being edited. If a pseudocell is empty when it loses focus, it disappears. Thus, cell and range assignments can be deleted by deleting the contents of the corresponding pseudocell, and when the pseudocell loses focus, it disappears from CV and so do its formulas on the grid. Another aspect of this design is that unlike in a text editor, where multiple blank lines can be entered by repeatedly hitting enter, in CV repeatedly hitting enter does nothing after the initial empty pseudocell is created – no new pseudocells will be created while an empty pseudocell is in focus.</p>
+<p>We acknowledge, however, that the free addition of whitespace and re-ordering of statements is a valuable form of secondary notation in textual programming languages. In future work it would be useful to compare a version of CV presented as a simple text editor, with the pseudocell representation we have created (<a href="#sec:discussion" data-reference-type="ref" data-reference="sec:discussion">Section 6</a>).</p>
+<h3 data-number="4.3" id="sec:block-detection">
+    <span class="header-section-number">4.3</span>
+    Block detection algorithm</h3>
+<p>It is not sufficient for CV to
+    <em>only</em>
+    display range assignments created in the CV editor. In order to fully capitalise on the increased abstraction possible in CV,
+    <em>any</em>
+    block of copied/drag-filled formulas, even if these operations were performed manually in grid view, should also be represented in CV as a range assignment. We implemented a simple block detection algorithm to achieve this. The algorithm operates as follows: the cells in the sheet are first placed into R1C1 equivalence classes (i.e., cells with the same formula in R1C1 are grouped into the same class. Then, for each class, maximal rectangular ranges (called ‘blocks’) are detected using a greedy flood-filling operation: the top-left cell in the class is chosen to ‘seed’ the block. The cell to the right of the seed is checked; if it belongs to the same class, then the block is grown to include it. This is repeated until the block has achieved a maximal left-right extent. The block is now grown vertically by checking if the corresponding cells in the row below are also part of the equivalence class. Once it can no longer be grown vertically, this maximal block is then ‘removed’ from the equivalence class. A new top-left seed is picked and grown, and the process is repeated until all the cells in the equivalence class have been assimilated as part of a block.</p>
+<p>Each block so detected becomes a range assignment in CV. There are edge cases in which the behaviour of our algorithm is somewhat arbitrary. For instance, in an L-shaped region of cells containing R1C1-equivalent formulas, the ‘corner’ of this region could reasonably belong to either ‘arm’, but our greedy approach gives preference to the top-leftmost arm. Blocks of this shape are unusual in practice, and for our initial exploration, our basic approach has proven adequate.</p>
+<h3 data-number="4.4" id="formula-ordering">
+    <span class="header-section-number">4.4</span>
+    Formula ordering</h3>
+<p>In what order should formulas be listed in CV? There are at least two straightforward options: (1) ordering by cell position (e.g., left to right, top to bottom) and (2) ordering by a topological sort of the formula dependency graph. Both options are viable: the former juxtaposes cells that are spatially related to each other, the latter juxtaposes cells that are logically related. In our investigation we have not addressed this design choice. For simplicity we adopted spatial ordering, but it may be better to allow the user to choose, or to choose using a heuristic characterisation of the spreadsheet.</p>
+
+<figure>
+    <img src="calcview_reflow.png" id="fig:calcview_reflow" alt="The user can create assignments at any position in CV. When CV loses focus, assignments are re-ordered according to their spatial ordering.">
+    <figcaption aria-hidden="true">Fig. 4. The user can create assignments at any position in CV. When CV loses focus, assignments are re-ordered according to their spatial ordering.</figcaption>
+</figure>
+
+<p>The user can enter a newline in any pseudocell in CV to create a new pseudocell below it. The formula in this pseudocell can pertain to any cell or range in the grid, and will remain in the position it was entered until another cell in the grid (not CV) is selected, which triggers a regeneration of CV, at which point the formula is moved to its position according to spatial ordering. This is illustrated in Figure<a href="#fig:calcview_reflow" data-reference-type="ref" data-reference="fig:calcview_reflow">4</a>.</p>
+<p>Alternative designs are possible. For instance, the interface might make an exception for formulas entered in CV, remember their position relative to other formulas, and try to preserve that position as well as possible in order to prevent the jarring user experience of having their formula moved around. The problem of preserving position is nontrivial, and would make for interesting future work.</p>
+<h3 data-number="4.5" id="view-filtering">
+    <span class="header-section-number">4.5</span>
+    View filtering</h3>
+<p>Even after block detection has collapsed blocks of formulas into single pseudocells, there is still potential for CV to become cluttered. For instance, in the example from <a href="#sec:problem" data-reference-type="ref" data-reference="sec:problem">Section 2</a>, if all the cells containing base data in the first column were displayed in CV, hundreds of pseudocells displaying base data would obscure the range assignments for the other columns – which are the main items of interest. To improve this, CV filters out literal values by default (with the option to show them if necessary). In future work, one might imagine advanced sorting and filtering functionality, such as “show only formulas within a certain range”, or “show only formulas containing some subexpression”, or “show formulas which evaluate to a certain type, e.g., boolean”, or even simpler options such as “sort by formula length”.</p>
+<p>The key observation with respect to view filtering in CV is that, as in other multiple representation systems, each individual representation is suitable/superior for certain specific things. Here, the grid is a
+    <em>superb</em>
+    place to display lots of literal values; CV need not compete with the grid for doing that. CV is good at showing formulas and their abstract grouping, so it should have affordances for doing that well.</p>
+<h2 data-number="5" id="sec:user-study">
+    <span class="header-section-number">5</span>
+    User study</h2>
+<p>CV aims to present a higher level of abstraction in spreadsheets without affecting the fundamental usability of the grid. We are interested in whether access to such a representation helps users create and reason about spreadsheets with less manual and cognitive effort.</p>
+<p>We refined our research interests into the following concrete hypotheses. Does the addition of CV to the grid affect:</p>
+<ol>
+    <li>
+        <p>the
+            <span>time</span>
+            taken to author spreadsheets;</p>
+    </li>
+    <li>
+        <p>the
+            <span>time</span>
+            taken to debug spreadsheets;</p>
+    </li>
+    <li>
+        <p>the
+            <span>user self-efficacy</span>
+            in spreadsheet manipulation; and</p>
+    </li>
+    <li>
+        <p>the
+            <span>cognitive load</span>
+            for spreadsheet usage?</p>
+    </li>
+</ol>
+<p>We are also interested in whether any observed difference is affected by the participant’s level of spreadsheet expertise.</p>
+<h3 data-number="5.1" id="participants">
+    <span class="header-section-number">5.1</span>
+    Participants</h3>
+<p>We recruited 22 participants, between 25 and 45 years of age, 14 female and 8 male, using convenience sampling. Participants spanned four different organisations and worked in a range of professions including office administration, real estate planning and surveying, interaction design research, and civil engineering. All 22 had prior experience with spreadsheets and 18 used spreadsheets in regular work.</p>
+<h3 data-number="5.2" id="tasks">
+    <span class="header-section-number">5.2</span>
+    Tasks</h3>
+<p>We used two types of tasks: authoring and debugging. For the authoring tasks, participants were given a partially completed spreadsheet and asked to complete it. For each authoring task, completion involved writing between 1-3 simple formulas, and copying those formulas to fill certain ranges. We created 2 pairs of authoring tasks, where tasks within a pair were designed to be of equal difficulty. For instance, one task was for participants to calculate several years of appreciated prices for a list of real estate properties whose current values were given. The matched counterpart for this task was for participants to calculate several years of depreciated values for a list of company assets whose current values were given. Both require writing a formula of similar complexity and filling it to a range of similar size.</p>
+<p>In debugging tasks, participants were given a completed spreadsheet and informed that there may be any of two types of errors: a copy/paste or drag-fill error where a row or column had been accidentally omitted or included, and a cell where a formula had been inadvertently overwritten using a fixed constant. The task was to detect any errors of these two types. We created 2 pairs of debugging tasks with matched difficulty. These tasks resembled the completed sheets that the participants were to create in the authoring task, so that the participant already understood what the purpose of the sheet was. In each task there was exactly one drag-fill error and one overwriting error, but participants were not informed of this.</p>
+<h3 data-number="5.3" id="protocol">
+    <span class="header-section-number">5.3</span>
+    Protocol</h3>
+<p>Participants were briefed and signed a consent form. They then completed a questionnaire about their spreadsheet and programming expertise, based on a questionnaire used in a previous study of program comprehension
+    <span class="citation" data-cites="sarkar2015syntax">[10]</span>, but refactored to include items specific to spreadsheets. They were then given a 10-minute tutorial covering formulas and drag-filling in the standard public release of Microsoft Excel, as well as the range assignment syntax in CV, and given the opportunity to clarify their understanding with the experimenter.</p>
+<p>Participants then completed four tasks: two authoring and two debugging tasks. Half the participants used Excel without CV and the other half used Excel with CV. After these tasks, participants completed standard questionnaires for cognitive load (NASA TLX
+    <span class="citation" data-cites="hart1988development">[11]</span>) and computer self-efficacy
+    <span class="citation" data-cites="compeau1995computer">[12]</span>. Participants completed a further four tasks, these being the matched counterparts to the tasks in the first round, this time with CV if they were without CV for the first round, or vice versa. After these tasks, participants again completed cognitive load and self-efficacy questionnaires.</p>
+<p>The order in which participants encountered our experimental conditions (with or without CV) was balanced, and we could make a within-subjects comparison. The order in which tasks of each type were presented was counterbalanced. Within each task-pair, each task of the pair was assigned alternately to the with-CV and the without-CV condition.</p>
+<p>The experiment lasted 70 minutes on average and participants were compensated £20 for their time.</p>
+<h3 data-number="5.4" id="results">
+    <span class="header-section-number">5.4</span>
+    Results</h3>
+<p>
+    <em>Task times</em>: Participants took less time to complete spreadsheet
+    <em>authoring</em>
+    tasks when using CV than without (median difference of -54 seconds, or a median speed-up of 37.14%). This difference is statistically significant (Wilcoxon signed rank test:
+    <span class="math inline">
+        <em>Z</em> =  − 4.14,<em>p</em> = 3.6 ⋅ 10<sup>−5</sup>
+    </span>). See <a href="#fig:task_times" data-reference-type="ref" data-reference="fig:task_times">Figure 5</a>.</p>
+<p>Participants took less time to complete spreadsheet
+    <em>debugging</em>
+    tasks when using CV than without (median difference of -20 seconds, or a median speed-up of 40.7%). This difference is statistically significant (Wilcoxon signed rank test:
+    <span class="math inline">
+        <em>Z</em> =  − 3.3,<em>p</em> = 9.6 ⋅ 10<sup>−4</sup>
+    </span>). See <a href="#fig:task_times" data-reference-type="ref" data-reference="fig:task_times">Figure 5</a>.</p>
+
+<figure>
+    <img src="task_times.png" id="fig:task_times" alt="Task times with and without CV.">
+    <figcaption aria-hidden="true">Fig. 5. Task times with and without CV.</figcaption>
+</figure>
+
+<p>Task times were not normally distributed.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>
+    However, they conformed to a lognormal distribution. Due to statistical concerns with the inappropriate application of log normalisation
+    <span class="citation" data-cites="changyong2014log">[13]</span>
+    we opted for a nonparametric test.</p>
+<p>
+    <em>Cognitive load</em>: Participants reported a lower cognitive load when using CV than without (median difference of -2.25; the TLX is a 21-point scale). This difference is statistically significant (Wilcoxon signed rank test:
+    <span class="math inline">
+        <em>Z</em> =  − 3.04,<em>p</em> = 0.0024</span>). Cognitive load scores were not normally distributed. See <a href="#fig:tlx" data-reference-type="ref" data-reference="fig:tlx">Figure 6</a>.</p>
+
+<figure>
+    <img src="tlx.png" id="fig:tlx" alt="Cognitive load scores with and without CV.">
+    <figcaption aria-hidden="true">Fig. 6. Cognitive load scores with and without CV.</figcaption>
+</figure>
+
+<p>Analysing this result in terms of the six individual items on the TLX questionnaire, it appears as though this difference is attributable to three of them. With CV, there was a lower mental demand (median difference of -2.5), lower effort (median difference of -3), and lower frustration (median difference of -2.5). Of these, only the difference in frustration was statistically significant with Bonferroni correction applied (Wilcoxon signed rank test:
+    <span class="math inline">
+        <em>Z</em> =  − 3.12,<em>p</em> = 0.0018</span>)</p>
+<p>
+    <em>Self-efficacy</em>: Participants had a slightly higher self-efficacy when using CV than without (median difference of 0.28; self-efficacy is a 10-point scale). This difference is not statistically significant. No individual item on the self-efficacy questionnaire showed significant differences between the with and without-CV conditions. We view this as a positive outcome, as it shows that the beneficial effects of shorter task times and lower cognitive load does not come at the cost of a reduced self-efficacy, which is sometimes the case when participants are asked to interact with a system that is more complex than what they are familiar with.</p>
+<p>
+    <em>Effect of previous spreadsheet experience</em>: participants were categorised into two groups based on their responses to the spreadsheet expertise self-assessment. Eleven participants fell into a ‘higher’ expertise group (<strong>H</strong>) and the other 11 into a ‘lower’ expertise group (<strong>L</strong>). Higher expertise was characterised by a prior knowledge of spreadsheet features relevant to our tasks (formulas, range notation, and drag-filling) as well as practical experience in applying these features. Lower expertise participants lacked knowledge, experience, or both.</p>
+<p>While both H and L participants reported lower cognitive load overall, seven H participants reported a lower physical demand with CV, in comparison to only three L participants. Most L participants did not perceive drag-filling as physically demanding, despite the fact that experienced participants typically have developed coping mechanisms to deal with large drag-fill operations (e.g., checking the ranges beforehand, zooming the spreadsheet outwards, making selections using keyboard shortcuts) that reduce the physical effort of drag-filling. This is attributable to the fact that H participants apply drag-fills more regularly and so are more sensitive to the reduction in physical effort afforded by CV.</p>
+<p>Revisiting task times, it appears as though H and L participants benefited to a very similar extent for debugging tasks (36.7% median speed-up for group H, 44.28% median speed-up for group L). However, L participants benefited to a greater extent during authoring tasks (55.3% median speed-up for group L, versus only 13.5% median speed-up for group H). Again, this can be attributed to the fact that H participants had developed better coping mechanisms that allowed them to be more efficient at drag-filling operations.</p>
+<p>We did not observe a statistically significant difference in self-efficacy scores within either group H or L in isolation.</p>
+
+<h2 data-number="6" id="sec:discussion">
+<span class="header-section-number">6</span>
+Multiple representations in spreadsheets</h2>
+
+<figure>
+    <img src="multiple_representation_alternatives.png" id="fig:multiple_representation_alternatives" alt="Multiple representations need not just be text. From left to right: a professional code editor, a blocks programming language, and a flow chart.">
+    <figcaption aria-hidden="true">Fig. 7. Multiple representations need not just be text. From left to right: a professional code editor, a blocks programming language, and a flow chart.</figcaption>
+</figure>
+
+<p>Calculation View’s fundamental idea is simple: provide a view of a spreadsheet that is optimised for understanding and manipulating its computational structure. This apparently straightforward idea has revealed a complex design space, the surface of which we have only scratched. In this section we describe alternatives that we have considered, or which might be scope for future work.</p>
+<h3 class="unnumbered" id="variations-of-range-assignment">Variations of range assignment</h3>
+<p>What if you want to assign a single formula to a non-rectangular range, or even to disjoint ranges? Since the comma operator already denotes range union in Excel, we could allow it on the left hand side of an assignment, thus:</p>
+<pre>
+    <code>B1:B10, C1:C5, D7 = SQRT(A1)</code>
+</pre>
+<p>Excel’s drag-fill also allows for constructing sequences of numbers or dates, such as
+    <code>1,3,5,7...</code>
+    in a range of cells; manually type the first few entries, select them, and drag-fill. In CV, this will appear as a large number of literal assignments, concealing the user intent. We might instead imagine using ellipsis as a notation to indicate sequence assignment:</p>
+<pre>
+    <code>B1:B10 = 1,3,5,7...</code>
+</pre>
+<p>Similarly, imagine that the cells
+    <code>A1</code>
+    and
+    <code>B1</code>
+    contain two distinct formulas. The user may select
+    <em>both</em>
+    and drag-fill downwards to copy. In CV, the user would have to make two edits, since they are two separate range assignments. We might instead provide a notation to capture this, for instance:</p>
+<pre>
+    <code>A2:B10 = copy A1:B1</code>
+</pre>
+<h3 class="unnumbered" id="variations-on-the-editing-experience">Variations on the editing experience</h3>
+<p>The current CV editor inhabits a space between textual programming and the grid, in order to improve usability for non-expert end-users. However, for experts (e.g., with programming experience), we could use an
+    <em>existing, generic IDE framework</em>
+    (e.g., Visual Studio Code) as the editor for CV, where the expert programmer could rely on familiar affordances, including syntax highlighting, auto-complete, etc.</p>
+<p>Textual notations have the capacity to solve a certain set of problems in spreadsheet interaction, but alternative representations might be better suited for solving different kinds of problems. Some sketches are shown in <a href="#fig:multiple_representation_alternatives" data-reference-type="ref" data-reference="fig:multiple_representation_alternatives">Figure 7</a>. For instance, the editor could employ a blocks-style visual language, which would prevent syntactic errors. Alternatively, the editor could display formulas within a flow chart diagram, emphasising the dependencies between cells. In fact, the editor could display any number of spreadsheet-based visual programming languages, as long as the correspondence between the two representations was carefully considered. Users could then switch representations according to the task at hand.</p>
+<h3 class="unnumbered" id="data-specific-to-the-alternative-representation">Data specific to the alternative representation</h3>
+<p>Some content is present in the grid view, but not CV (e.g. cell formatting); but not the other way round. That is, the CV can be generated automatically, simply from the existing spreadsheet (<a href="#fig:representation_overlap" data-reference-type="ref" data-reference="fig:representation_overlap">Figure 3</a>). However, a more expert programmer might want to do more in calculation view, such as using comments within formulas, and grouping together related assignments, even if they are not adjacent in the grid. In order to enable these types of secondary notation, additional information needs to be persisted within the file that is present in CV but not presented or editable in the grid.</p>
+<p>Professionally written code is typically kept in a repository, and subject to code review, version control, and other engineering practices. If we could express
+    <em>all</em>
+    the information about a spreadsheet in textual form, these tools could also be applied to spreadsheets.</p>
+<h2 data-number="7" id="sec:related">
+    <span class="header-section-number">7</span>
+    Related work</h2>
+<h3 data-number="7.1" id="multiple-representations-and-spreadsheet-visualisation">
+    <span class="header-section-number">7.1</span>
+    Multiple representations and spreadsheet visualisation</h3>
+<p>Multiple representations have previously been applied in spreadsheets in the interactive machine learning domain
+    <span class="citation" data-cites="sarkar2015interactive">[14]</span>, but not as simultaneous editing experiences. Programming languages theory has a concept of ‘lenses’
+    <span class="citation" data-cites="DBLP:journals/toplas/FosterGMPS07">[15]</span>
+    which is a form of infrastructure enabling multiple representations. One application of lenses to spreadsheets
+    <span class="citation" data-cites="DBLP:conf/vl/MacedoPSC14">[16]</span>
+    allows the user to edit the value of a formula, and have the edit propagate back to the cell’s input to the formula.</p>
+<p>Previously explored approaches to mitigate computation hiding in spreadsheets include identification and visualisation of groups of related cells using colour
+    <span class="citation" data-cites="mittermeir2002finding">[17]</span>. Surfacing parts of the dataflow (cell dependency) graph, and allowing the graph to be directly manipulated, has also been explored
+    <span class="citation" data-cites="igarashi1998fluid">[18]</span>. Visualising the relationship between different sheets has also been shown to be beneficial
+    <span class="citation" data-cites="hermans2012detecting">[19]</span>. Several commercial tools aim to assist with editing and debugging spreadsheet formulas, often via capabilities for visualisation.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+</p>
+<h3 data-number="7.2" id="overcoming-spreadsheet-errors">
+    <span class="header-section-number">7.2</span>
+    Overcoming spreadsheet errors</h3>
+<p>There are broadly two approaches to the mitigation of spreadsheet errors. The first approach is auditing tools, which rely on heuristics such as code smells
+    <span class="citation" data-cites="hermans2015detecting fowler1999refactoring refactoring-nested-if-formulae">[20]–[22]</span>
+    or type inference
+    <span class="citation" data-cites="abraham2004header cheng2015static">[23], [24]</span>, or assist users to write tests
+    <span class="citation" data-cites="wilson2003harnessing">[25]</span>
+    to identify and report potential errors. They are not always effective
+    <span class="citation" data-cites="aurigemma2014evaluating">[26]</span>, and they are limited by their post-hoc nature (i.e., they help users find errors after they have been made, rather than helping users avoid them in the first place), as well as their heuristics – they cannot detect errors not anticipated by developers of the tool. A machine learning approach where a model is trained on an error corpus
+    <span class="citation" data-cites="singh2017melford">[27]</span>
+    is unlikely to mitigate this latter limitation – here the heuristics are exemplified by the training dataset, rather than hand-coded.</p>
+<p>The second approach to error mitigation in spreadsheets focuses on altering the structure of the grid, or creating an enhanced formula language. For example, sheet-defined functions
+    <span class="citation" data-cites="jones2003user">[28]</span>
+    allow users to define custom functions in the grid. The Forms/3 system
+    <span class="citation" data-cites="burnett2001forms">[29]</span>
+    focuses on the design space between grids and textual code. Representations such as hierarchical grids
+    <span class="citation" data-cites="chang2016using">[30]</span>
+    support better object orientation in grids, sometimes combined with a richer formula language
+    <span class="citation" data-cites="miller2010sumwise">[31]</span>. These formula languages can become sophisticated abstract specification languages that support ‘model-driven’ spreadsheet construction
+    <span class="citation" data-cites="mendes2017systematic erwig2006gencel engels2005classsheets">[32]–[34]</span>. Excel’s ‘calculated columns’<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>
+    apply a single formula to an entire column, but using a more abstract ‘structured reference’ syntax, and there is no way to create a calculated ‘row’ or ‘block’. Excel’s array formulas<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>
+    use an abstract syntax to assign a single formula to a block of cells, but violate Kay’s ‘value principle’
+    <span class="citation" data-cites="kay1984value">[35]</span>
+    by forbidding inspection or editing of any of the constituent cells except the header. Solutions of this second approach address the poor
+    <em>abstraction gradient</em>
+    in spreadsheets
+    <span class="citation" data-cites="hendry1994creating">[36]</span>, but require substantially greater expertise to use.</p>
+<h2 data-number="8" id="sec:conc">
+    <span class="header-section-number">8</span>
+    Conclusions and next steps</h2>
+<p>Our initial study has demonstrated that a textual calculation view of a spreadsheet, adjacent with the grid view, can make spreadsheets more comprehensible and maintainable. We plan to develop our prototype, exploring a number of variations, including using a free-form text editor, view filtering and navigational support, and enhanced syntax for assignments.</p>
+
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+    <div id="ref-hermans2016spreadsheets" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[1]
+        </div>
+        <div class="csl-right-inline">F. Hermans, B. Jansen, S. Roy, E. Aivaloglou, A. Swidan, and D. Hoepelman,
+            <span>“Spreadsheets are code: An overview of software engineering approaches applied to spreadsheets,”</span>
+            in
+            <em>Software analysis, evolution, and reengineering (SANER), 2016 IEEE 23rd international conference on</em>, 2016, vol. 5, pp. 56–65.</div>
+    </div>
+    <div id="ref-panko1998" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[2]
+        </div>
+        <div class="csl-right-inline">R. R. Panko,
+            <span>“What we know about spreadsheet errors,”</span>
+            <em>Journal of Organizational and End User Computing (JOEUC)</em>, vol. 10, no. 2, pp. 15–21, 1998.</div>
+    </div>
+    <div id="ref-green1996dimensions" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[3]
+        </div>
+        <div class="csl-right-inline">T. Green and M. Petre,
+            <span>“<span class="nocase">Usability analysis of visual programming environments: a ’cognitive dimensions’ framework</span>,”</span>
+            <em>Journal of Visual Languages
+                <span>&amp;</span>
+                Computing</em>, vol. 7, no. 2, pp. 131–174, 1996, doi:
+            <a href="http://dx.doi.org/10.1006/jvlc.1996.0009">http://dx.doi.org/10.1006/jvlc.1996.0009</a>.</div>
+    </div>
+    <div id="ref-ainsworth1999functions" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[4]
+        </div>
+        <div class="csl-right-inline">S. Ainsworth,
+            <span>“The functions of multiple representations,”</span>
+            <em>Computers &amp; education</em>, vol. 33, no. 2–3, pp. 131–152, 1999.</div>
+    </div>
+    <div id="ref-resnick2009scratch" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[5]
+        </div>
+        <div class="csl-right-inline">M. Resnick
+            <em>et al.</em>,
+            <span>“Scratch: Programming for all,”</span>
+            <em>Communications of the ACM</em>, vol. 52, no. 11, pp. 60–67, 2009.</div>
+    </div>
+    <div id="ref-stead2014learning" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[6]
+        </div>
+        <div class="csl-right-inline">A. Stead and A. F. Blackwell,
+            <span>“Learning syntax as notational expertise when using DrawBridge,”</span>
+            in
+            <em>Proceedings of the psychology of programming interest group annual conference (PPIG 2014)</em>, 2014, pp. 41–52.</div>
+    </div>
+    <div id="ref-gorinova2016live" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[7]
+        </div>
+        <div class="csl-right-inline">M. I. Gorinova, A. Sarkar, A. F. Blackwell, and D. Syme,
+            <span>“A live, multiple-representation probabilistic programming environment for novices,”</span>
+            in
+            <em>Proceedings of the 2016 CHI conference on human factors in computing systems</em>, 2016, pp. 2533–2537.</div>
+    </div>
+    <div id="ref-tanimoto1990liveness" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[8]
+        </div>
+        <div class="csl-right-inline">S. L. Tanimoto,
+            <span>“<span class="nocase">VIVA: A visual language for image processing</span>,”</span>
+            <em>Journal of Visual Languages
+                <span>&amp;</span>
+                Computing</em>, vol. 1, no. 2, pp. 127–139, Jun. 1990, doi:
+            <a href="https://doi.org/10.1016/S1045-926X(05)80012-6">10.1016/S1045-926X(05)80012-6</a>.</div>
+    </div>
+    <div id="ref-sfard1991dual" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[9]
+        </div>
+        <div class="csl-right-inline">A. Sfard,
+            <span>“On the dual nature of mathematical conceptions: Reflections on processes and objects as different sides of the same coin,”</span>
+            <em>Educational studies in mathematics</em>, vol. 22, no. 1, pp. 1–36, 1991.</div>
+    </div>
+    <div id="ref-sarkar2015syntax" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[10]
+        </div>
+        <div class="csl-right-inline">A. Sarkar,
+            <span>“The impact of syntax colouring on program comprehension,”</span>
+            in
+            <em>
+                <span class="nocase">Proceedings of the 26th Annual Conference of the Psychology of Programming Interest Group (PPIG 2015)</span>
+            </em>, Jul. 2015, pp. 49–58.</div>
+    </div>
+    <div id="ref-hart1988development" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[11]
+        </div>
+        <div class="csl-right-inline">S. G. Hart and L. E. Staveland,
+            <span>“Development of
+                <span>NASA</span>-<span>TLX</span>
+                (task load index): Results of empirical and theoretical research,”</span>
+            in
+            <em>Advances in psychology</em>, vol. 52, Elsevier, 1988, pp. 139–183.</div>
+    </div>
+    <div id="ref-compeau1995computer" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[12]
+        </div>
+        <div class="csl-right-inline">D. R. Compeau and C. A. Higgins,
+            <span>“Computer self-efficacy: Development of a measure and initial test,”</span>
+            <em>MIS quarterly</em>, pp. 189–211, 1995.</div>
+    </div>
+    <div id="ref-changyong2014log" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[13]
+        </div>
+        <div class="csl-right-inline">F. Changyong
+            <em>et al.</em>,
+            <span>“Log-transformation and its implications for data analysis,”</span>
+            <em>Shanghai archives of psychiatry</em>, vol. 26, no. 2, p. 105, 2014.</div>
+    </div>
+    <div id="ref-sarkar2015interactive" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[14]
+        </div>
+        <div class="csl-right-inline">A. Sarkar, M. Jamnik, A. F. Blackwell, and M. Spott,
+            <span>“Interactive visual machine learning in spreadsheets,”</span>
+            in
+            <em>
+                <span class="nocase">Visual Languages and Human-Centric Computing (VL/HCC), 2015 IEEE Symposium on</span>
+            </em>, Oct. 2015, pp. 159–163. doi:
+            <a href="https://doi.org/10.1109/VLHCC.2015.7357211">10.1109/VLHCC.2015.7357211</a>.</div>
+    </div>
+    <div id="ref-DBLP:journals/toplas/FosterGMPS07" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[15]
+        </div>
+        <div class="csl-right-inline">J. N. Foster, M. B. Greenwald, J. T. Moore, B. C. Pierce, and A. Schmitt,
+            <span>“Combinators for bidirectional tree transformations:
+                <span>A</span>
+                linguistic approach to the view-update problem,”</span>
+            <em>
+                <span>ACM</span>
+                Trans. Program. Lang. Syst.</em>, vol. 29, no. 3, p. 17, 2007, doi:
+            <a href="https://doi.org/10.1145/1232420.1232424">10.1145/1232420.1232424</a>.</div>
+    </div>
+    <div id="ref-DBLP:conf/vl/MacedoPSC14" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[16]
+        </div>
+        <div class="csl-right-inline">N. Macedo, H. Pacheco, N. R. Sousa, and A. Cunha,
+            <span>“Bidirectional spreadsheet formulas,”</span>
+            in
+            <em>
+                <span>IEEE</span>
+                symposium on visual languages and human-centric computing,
+                <span>VL/HCC</span>
+                2014, melbourne, VIC, australia, july 28 - august 1, 2014</em>, 2014, pp. 161–168. doi:
+            <a href="https://doi.org/10.1109/VLHCC.2014.6883041">10.1109/VLHCC.2014.6883041</a>.</div>
+    </div>
+    <div id="ref-mittermeir2002finding" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[17]
+        </div>
+        <div class="csl-right-inline">R. Mittermeir and M. Clermont,
+            <span>“Finding high-level structures in spreadsheet programs,”</span>
+            in
+            <em>Reverse engineering, 2002. Proceedings. Ninth working conference on</em>, 2002, pp. 221–232.</div>
+    </div>
+    <div id="ref-igarashi1998fluid" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[18]
+        </div>
+        <div class="csl-right-inline">T. Igarashi, J. D. Mackinlay, B.-W. Chang, and P. T. Zellweger,
+            <span>“Fluid visualization of spreadsheet structures,”</span>
+            in
+            <em>Visual languages, 1998. Proceedings. 1998 IEEE symposium on</em>, 1998, pp. 118–125.</div>
+    </div>
+    <div id="ref-hermans2012detecting" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[19]
+        </div>
+        <div class="csl-right-inline">F. Hermans, M. Pinzger, and A. van Deursen,
+            <span>“Detecting and visualizing inter-worksheet smells in spreadsheets,”</span>
+            in
+            <em>Proceedings of the 34th international conference on software engineering</em>, 2012, pp. 441–451.</div>
+    </div>
+    <div id="ref-hermans2015detecting" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[20]
+        </div>
+        <div class="csl-right-inline">F. Hermans, M. Pinzger, and A. van Deursen,
+            <span>“Detecting and refactoring code smells in spreadsheet formulas,”</span>
+            <em>Empirical Software Engineering</em>, vol. 20, no. 2, pp. 549–575, 2015.</div>
+    </div>
+    <div id="ref-fowler1999refactoring" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[21]
+        </div>
+        <div class="csl-right-inline">M. Fowler and K. Beck,
+            <em>Refactoring: Improving the design of existing code</em>. Addison-Wesley Professional, 1999.</div>
+    </div>
+    <div id="ref-refactoring-nested-if-formulae" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[22]
+        </div>
+        <div class="csl-right-inline">J. Zhang, S. Han, D. Hao, L. Zhang, and D. Zhang,
+            <span>“Automated refactoring of nested-IF formulae in spreadsheets,”</span>
+            <em>CoRR</em>, vol. abs/1712.09797, 2017, Available:
+            <a href="http://arxiv.org/abs/1712.09797">http://arxiv.org/abs/1712.09797</a>
+        </div>
+    </div>
+    <div id="ref-abraham2004header" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[23]
+        </div>
+        <div class="csl-right-inline">R. Abraham and M. Erwig,
+            <span>“Header and unit inference for spreadsheets through spatial analyses,”</span>
+            in
+            <em>Visual languages and human centric computing, 2004 IEEE symposium on</em>, 2004, pp. 165–172.</div>
+    </div>
+    <div id="ref-cheng2015static" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[24]
+        </div>
+        <div class="csl-right-inline">T. Cheng and X. Rival,
+            <span>“Static analysis of spreadsheet applications for type-unsafe operations detection,”</span>
+            in
+            <em>European symposium on programming languages and systems</em>, 2015, pp. 26–52.</div>
+    </div>
+    <div id="ref-wilson2003harnessing" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[25]
+        </div>
+        <div class="csl-right-inline">A. Wilson
+            <em>et al.</em>,
+            <span>“Harnessing curiosity to increase correctness in end-user programming,”</span>
+            in
+            <em>Proceedings of the SIGCHI conference on human factors in computing systems</em>, 2003, pp. 305–312.</div>
+    </div>
+    <div id="ref-aurigemma2014evaluating" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[26]
+        </div>
+        <div class="csl-right-inline">S. Aurigemma and R. Panko,
+            <span>“Evaluating the effectiveness of static analysis programs versus manual inspection in the detection of natural spreadsheet errors,”</span>
+            <em>Journal of Organizational and End User Computing (JOEUC)</em>, vol. 26, no. 1, pp. 47–65, 2014.</div>
+    </div>
+    <div id="ref-singh2017melford" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[27]
+        </div>
+        <div class="csl-right-inline">R. Singh, B. Livshits, and B. Zorn,
+            <span>“Melford: Using neural networks to find spreadsheet errors.”</span>
+            <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/01/melford-tr-Jan2017-1.pdf" class="uri">https://www.microsoft.com/en-us/research/wp-content/uploads/2017/01/melford-tr-Jan2017-1.pdf</a>; Jan, 2017.</div>
+    </div>
+    <div id="ref-jones2003user" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[28]
+        </div>
+        <div class="csl-right-inline">S. Peyton Jones, A. Blackwell, and M. Burnett,
+            <span>“A user-centred approach to functions in
+                <span>Excel</span>,”</span>
+            <em>ACM SIGPLAN Notices</em>, vol. 38, no. 9, pp. 165–176, 2003.</div>
+    </div>
+    <div id="ref-burnett2001forms" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[29]
+        </div>
+        <div class="csl-right-inline">M. Burnett, J. Atwood, R. W. Djang, J. Reichwein, H. Gottfried, and S. Yang,
+            <span>“Forms/3: A first-order visual language to explore the boundaries of the spreadsheet paradigm,”</span>
+            <em>Journal of functional programming</em>, vol. 11, no. 2, pp. 155–206, 2001.</div>
+    </div>
+    <div id="ref-chang2016using" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[30]
+        </div>
+        <div class="csl-right-inline">K. S.-P. Chang and B. A. Myers,
+            <span>“Using and exploring hierarchical data in spreadsheets,”</span>
+            in
+            <em>Proceedings of the 2016 CHI conference on human factors in computing systems</em>, 2016, pp. 2497–2507.</div>
+    </div>
+    <div id="ref-miller2010sumwise" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[31]
+        </div>
+        <div class="csl-right-inline">D. Miller, G. Miller, and L. M. Parrondo,
+            <span>“Sumwise: A smarter spreadsheet,”</span>
+            <em>EuSpRiG</em>, 2010.</div>
+    </div>
+    <div id="ref-mendes2017systematic" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[32]
+        </div>
+        <div class="csl-right-inline">J. Mendes, J. Cunha, F. Duarte, G. Engels, J. Saraiva, and S. Sauer,
+            <span>“Systematic spreadsheet construction processes,”</span>
+            in
+            <em>Visual languages and human-centric computing (VL/HCC), 2017 IEEE symposium on</em>, 2017, pp. 123–127.</div>
+    </div>
+    <div id="ref-erwig2006gencel" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[33]
+        </div>
+        <div class="csl-right-inline">M. Erwig, R. Abraham, S. Kollmansberger, and I. Cooperstein,
+            <span>“Gencel: A program generator for correct spreadsheets,”</span>
+            <em>Journal of Functional Programming</em>, vol. 16, no. 3, pp. 293–325, 2006.</div>
+    </div>
+    <div id="ref-engels2005classsheets" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[34]
+        </div>
+        <div class="csl-right-inline">G. Engels and M. Erwig,
+            <span>“ClassSheets: Automatic generation of spreadsheet applications from object-oriented specifications,”</span>
+            in
+            <em>Proceedings of the 20th IEEE/ACM international conference on automated software engineering</em>, 2005, pp. 124–133.</div>
+    </div>
+    <div id="ref-kay1984value" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[35]
+        </div>
+        <div class="csl-right-inline">A. Kay,
+            <span>“Computer software,”</span>
+            in
+            <em>Scientific american</em>, 1984, vol. 251, pp. 53–59.</div>
+    </div>
+    <div id="ref-hendry1994creating" class="csl-entry" role="doc-biblioentry">
+        <div class="csl-left-margin">[36]
+        </div>
+        <div class="csl-right-inline">D. G. Hendry and T. R. Green,
+            <span>“Creating, comprehending and explaining spreadsheets: A cognitive interpretation of what discretionary users think of the spreadsheet model,”</span>
+            <em>International Journal of Human-Computer Studies</em>, vol. 40, no. 6, pp. 1033–1065, 1994.</div>
+    </div>
+</div>
+
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
+    <hr>
+    <ol>
+        <li id="fn1" role="doc-endnote">
+            <p>
+                <a href="http://www.eusprig.org/" class="uri">http://www.eusprig.org/</a>
+                <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a>
+            </p>
+        </li>
+        <li id="fn2" role="doc-endnote">
+            <p>
+                <a href="https://support.office.com/en-ie/article/Define-and-use-names-in-formulas" class="uri">https://support.office.com/en-ie/article/Define-and-use-names-in-formulas</a>
+                <a href="-4d0f13ac-53b7-422e-afd2-abd7ff379c64" class="uri">-4d0f13ac-53b7-422e-afd2-abd7ff379c64</a>
+                <a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a>
+            </p>
+        </li>
+        <li id="fn3" role="doc-endnote">
+            <p>
+                <a href="https://support.office.com/en-us/article/switch-between-relative-absolute-" class="uri">https://support.office.com/en-us/article/switch-between-relative-absolute-</a>
+                <a href="and-mixed-references-dfec08cd-ae65-4f56-839e-5f0d8d0baca9" class="uri">and-mixed-references-dfec08cd-ae65-4f56-839e-5f0d8d0baca9</a>
+                <a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a>
+            </p>
+        </li>
+        <li id="fn4" role="doc-endnote">
+            <p>The Shapiro-Wilk test for normality was used throughout.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a>
+            </p>
+        </li>
+        <li id="fn5" role="doc-endnote">
+            <p>Some examples include:
+                <a href="www.arixcel.com" class="uri">www.arixcel.com</a>,
+                <a href="www.formuladesk.com" class="uri">www.formuladesk.com</a>,
+                <a href="https://devpost.com/software/formula-editor" class="uri">https://devpost.com/software/formula-editor</a>,
+                <a href="www.matrixlead.com" class="uri">www.matrixlead.com</a>
+                <a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a>
+            </p>
+        </li>
+        <li id="fn6" role="doc-endnote">
+            <p>
+                <a href="https://support.office.com/en-us/article/use-calculated-columns-in-an-excel-table" class="uri">https://support.office.com/en-us/article/use-calculated-columns-in-an-excel-table</a>
+                <a href="-873fbac6-7110-4300-8f6f-aafa2ea11ce8" class="uri">-873fbac6-7110-4300-8f6f-aafa2ea11ce8</a>
+                <a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a>
+            </p>
+        </li>
+        <li id="fn7" role="doc-endnote">
+            <p>
+                <a href="https://support.office.com/en-us/article/create-an-array-formula" class="uri">https://support.office.com/en-us/article/create-an-array-formula</a>
+                <a href="-e43e12e0-afc6-4a12-bc7f-48361075954d" class="uri">-e43e12e0-afc6-4a12-bc7f-48361075954d</a>
+                <a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a>
+            </p>
+        </li>
+    </ol>
+</section>
+</body>
+</html>

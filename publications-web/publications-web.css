@@ -1,3 +1,7 @@
+body {
+    overflow-wrap: break-word;
+}
+
 table {
     border-collapse: collapse;
     caption-side: bottom;
@@ -7,8 +11,13 @@ table {
     margin-right: auto;
   }
 
+
 td {
     border: 1px solid #eee;
+    padding: 0.5em;
+}
+
+th {
     padding: 0.5em;
 }
 
