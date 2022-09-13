@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <title>Interactive visual machine learning in spreadsheets</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+</head>
+<body>
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+<p>This is a version of the following academic paper prepared for the web:</p>
+
+<blockquote>A. Sarkar, M. Jamnik, A. F. Blackwell and M. Spott, "Interactive visual machine learning in spreadsheets," 2015 IEEE Symposium on Visual Languages and Human-Centric Computing (VL/HCC), 2015, pp. 159-163, doi: 10.1109/VLHCC.2015.7357211.</blockquote>
+
+<p>
+More details:
+
+<a href="/files/sarkar_2015_machine_learning_spreadsheets.pdf">Download PDF</a> &bull;
+<a href="/files/sarkar_2015_machine_learning_spreadsheets_citation.bib">BibTeX</a> &bull;
+<a href="https://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7357211">IEEE Xplore</a> &bull;
+<a href="https://doi.org/10.1109/VLHCC.2015.7357211">DOI: 10.1109/VLHCC.2015.7357211</a>
+</p>
+</div>
+
+<header id="title-block-header">
+<h1>Interactive visual machine learning in spreadsheets</h1>
+<p class="author">Advait Sarkar, Mateja Jamnik, Alan F. Blackwell, Martin Spott</p>
+</header>
+
+<h2>Abstract</h2>
+<p>
+  BrainCel is an interactive visual system for performing
+  general-purpose machine learning in spreadsheets, building on end-user
+  programming and interactive machine learning. BrainCel features multiple
+  coordinated views of the model being built, explaining its current
+  confidence in predictions as well as its coverage of the input domain,
+  thus helping the user to evolve the model and select training examples.
+  Through a study investigating users’ learning barriers while building
+  models using BrainCel, we found that our approach successfully
+  complements the Teach and Try system <span class="citation"
+  data-cites="sarkar2014teach">[1]</span> to facilitate more complex
+  modelling activities.
+</p>
+<nav id="TOC" role="doc-toc">
+  <ul>
+  <li><a href="#introduction" id="toc-introduction"><span
+  class="toc-section-number">1</span> Introduction</a></li>
+  <li><a href="#interface-and-system-architecture"
+  id="toc-interface-and-system-architecture"><span
+  class="toc-section-number">2</span> Interface and system
+  architecture</a>
+  <ul>
+  <li><a href="#model-training-and-application"
+  id="toc-model-training-and-application"><span
+  class="toc-section-number">2.1</span> Model training and
+  application</a></li>
+  <li><a href="#expressing-confidence-through-colour"
+  id="toc-expressing-confidence-through-colour"><span
+  class="toc-section-number">2.2</span> Expressing confidence through
+  colour</a></li>
+  <li><a href="#visually-explaining-the-k-nn-algorithm"
+  id="toc-visually-explaining-the-k-nn-algorithm"><span
+  class="toc-section-number">2.3</span> Visually explaining the
+  <span><span class="math inline"><em>k</em></span>-NN</span>
+  algorithm</a></li>
+  <li><a href="#expressing-training-set-representativeness"
+  id="toc-expressing-training-set-representativeness"><span
+  class="toc-section-number">2.4</span> Expressing training set
+  representativeness</a></li>
+  <li><a href="#visualisations-of-machine-understanding-progression"
+  id="toc-visualisations-of-machine-understanding-progression"><span
+  class="toc-section-number">2.5</span> Visualisations of machine
+  understanding progression</a></li>
+  </ul></li>
+  <li><a href="#sec:study" id="toc-sec:study"><span
+  class="toc-section-number">3</span> Exploratory user study</a>
+  <ul>
+  <li><a href="#results-learning-barriers"
+  id="toc-results-learning-barriers"><span
+  class="toc-section-number">3.1</span> Results: learning
+  barriers</a></li>
+  <li><a href="#results-user-activity-flows-with-visualisations"
+  id="toc-results-user-activity-flows-with-visualisations"><span
+  class="toc-section-number">3.2</span> Results: user activity flows with
+  visualisations</a></li>
+  </ul></li>
+  <li><a href="#sec:related" id="toc-sec:related"><span
+  class="toc-section-number">4</span> Related work</a></li>
+  <li><a href="#conclusion" id="toc-conclusion"><span
+  class="toc-section-number">5</span> Conclusion</a></li>
+  <li><a href="#acknowledgments"
+  id="toc-acknowledgments">Acknowledgments</a></li>
+  </ul>
+  </nav>
+
+  <h2 data-number="1" id="introduction"><span
+  class="header-section-number">1</span> Introduction</h2>
+  <p>Our goal is to make general-purpose machine learning tools accessible
+  to non-expert end-users <span class="citation"
+  data-cites="sarkar2015usable">[2]</span>. Current solutions (e.g.,
+  <span>Weka</span> <span class="citation"
+  data-cites="hall2009weka">[3]</span> or scikit-learn <span
+  class="citation" data-cites="scikit-learn">[4]</span>) are designed for
+  professional statisticians or computer scientists, and are conceptually
+  complex compared to end-user data manipulation tools, such as
+  spreadsheets. A rapidly increasing range of applications exposes
+  end-users to machine learning (e.g., email filtering and recommender
+  systems), where statistical models are manipulated implicitly through
+  examples, rather than programmed explicitly. These are easily adopted by
+  non-experts, but facilitate modelling only within limited problem
+  domains.</p>
+  <p>Our solution for general-purpose interactive machine learning builds
+  upon the spreadsheet, a versatile data manipulation paradigm already
+  familiar to end-users. We have previously demonstrated a simple
+  interface that enables non-expert end-users to build sophisticated
+  machine learning models in spreadsheets <span class="citation"
+  data-cites="sarkar2014teach">[1]</span>. However, we did not address how
+  the user might work with large, noisy datasets, where data must be
+  carefully selected to properly model the domain, avoiding pitfalls such
+  as overfitting. How would the user know what examples to select? Whether
+  the model has acquired a good coverage of the domain? Whether some
+  training data is noisy?</p>
+  <p>The user should be able to <span><em>critically evaluate</em></span>
+  the quality, capabilities, and outputs of the model. We present
+  “BrainCel,” an interface designed to facilitate this. BrainCel enables
+  the end-user to understand:</p>
+  <ol>
+  <li><p><span><em>How their actions modify the model</em></span>, through
+  visualisations of the model’s evolution.</p></li>
+  <li><p><span><em>How to identify good training examples</em></span>,
+  through a colour-based interface which “nudges” the user to attend to
+  data where the model has low confidence.</p></li>
+  <li><p><span><em><span><em>Why</em></span> and <span><em>how</em></span>
+  the model makes certain predictions</em></span>, through a network
+  visualisation of the <span class="math inline"><em>k</em></span>-nearest
+  neighbours algorithm; a simple, consistent way of displaying decisions
+  in an arbitrarily high-dimensional space.</p></li>
+  </ol>
+  <h2 data-number="2" id="interface-and-system-architecture"><span
+  class="header-section-number">2</span> Interface and system
+  architecture</h2>
+
+  <figure>
+  <img src="images/full.png" id="fig:full"
+  alt="Fig. 1. Part of the BrainCel interface showing (a) the core spreadsheet, (b) the overview, (c) peeking at the spreadsheet contents, and (d) the explanatory
+  network visualisation. Rows with row numbers coloured blue have been added by the user to the training set, and all rows have been coloured according to the
+  model’s confidence. Other parts of the interface, such as the distributions in Fig. 2 and the progress graphs in Fig. 4, are visible upon scrolling down." style="border: 1px solid black;" />
+  <figcaption aria-hidden="true">Fig. 1. Part of the BrainCel interface showing (a) the core spreadsheet, (b) the overview, (c) peeking at the spreadsheet contents, and (d) the explanatory
+    network visualisation. Rows with row numbers coloured blue have been added by the user to the training set, and all rows have been coloured according to the
+    model’s confidence. Other parts of the interface, such as the distributions in Fig. 2 and the progress graphs in Fig. 4, are visible upon scrolling down.</figcaption>
+  </figure>
+
+  <p>BrainCel is a browser-based prototype. Data is loaded from
+  comma-separated files on the local filesystem, and must conform to a
+  well-defined relational schema. A standard spreadsheet view (Fig. <a
+  href="#fig:full" data-reference-type="ref"
+  data-reference="fig:full">1</a>(a)) displays the file. An
+  overview of the spreadsheet (Fig. <a href="#fig:full"
+  data-reference-type="ref" data-reference="fig:full">1</a>(b))
+  is presented to its left. Hovering on the overview previews the rows in
+  the proximity of the hover location (Fig. <a href="#fig:full"
+  data-reference-type="ref" data-reference="fig:full">1</a>(c)),
+  enabling the user to “peek” at various parts of the spreadsheet without
+  losing their current position in the main spreadsheet. Clicking on the
+  overview scrolls the main spreadsheet to the click position. This
+  creates an augmented overview+detail <span class="citation"
+  data-cites="cockburn2008review">[5]</span>, that is,
+  <span><em>overview+detail+peeking</em></span>.</p>
+  <h3 data-number="2.1" id="model-training-and-application"><span
+  class="header-section-number">2.1</span> Model training and
+  application</h3>
+  <p>We implemented the two-step interface for training and applying
+  models first introduced in Teach and Try <span class="citation"
+  data-cites="sarkar2014teach">[1]</span>. The user first selects rows of
+  data which they believe to be correct. By pressing the “Learn” button,
+  selected rows are added to the training set. To indicate that rows are
+  in the training set, their row numbers are coloured blue. With training
+  data added, the user can select empty cells and click the “guess” button
+  to apply the model and predict values for those cells.</p>
+  <p>Predictions are made using the <span
+  class="math inline"><em>k</em></span>-nearest neighbours (<span><span
+  class="math inline"><em>k</em></span>-NN</span>) algorithm. We find the
+  <span class="math inline"><em>k</em></span> rows in the training set
+  most similar (closest in Euclidean distance) to the row where an empty
+  cell is to be filled. Columns are heuristically characterised as
+  containing either categorical or continuous data, based on whether the
+  data in the column can be parsed as numeric. If the cell is in a
+  numerical column, the values of the neighbours in the same column are
+  averaged to provide a guess. If the cell is in a categorical column, the
+  majority vote (mode) is taken. Other models, including more
+  sophisticated implementations of <span><span
+  class="math inline"><em>k</em></span>-NN</span>, have not been
+  considered within our current scope. Feature weights are not currently
+  adjustable, however, future work may introduce additional parameter
+  controls, such as bar charts for feature weighting <span
+  class="citation" data-cites="kulesza2015">[6]</span>, varying
+  <span><em>k</em></span>, and editing the distance metric, e.g., through
+  Brown et al.’s method <span class="citation"
+  data-cites="brown2012dis">[7]</span>.</p>
+  <h3 data-number="2.2" id="expressing-confidence-through-colour"><span
+  class="header-section-number">2.2</span> Expressing confidence through
+  colour</h3>
+  <p>For each row, the mean distance to its <span
+  class="math inline"><em>k</em></span> neighbours is taken to be its
+  confidence value<span class="citation"
+  data-cites="smith1994handwritten">[8]</span>. A high mean distance (the
+  row’s nearest neighbours are relatively far from it) is interpreted as
+  <span><em>low</em></span> confidence; conversely, a low mean distance is
+  interpreted as <span><em>high</em></span> confidence. Rows are coloured
+  on a red-green scale, where red indicates low confidence. Additionally,
+  lightness is scaled so that a higher confidence is given a higher
+  lightness; this de-emphasises the visual salience of green and makes it
+  safe for red-green colour blindness. Through colour, the overview
+  summarises confidence over the entire spreadsheet; green areas are
+  well-modelled by the training data, whereas red areas are dissimilar to
+  their nearest neighbours in the training set, marking them out either as
+  being inadequately represented in the training set or as outliers.</p>
+  <h3 data-number="2.3" id="visually-explaining-the-k-nn-algorithm"><span
+  class="header-section-number">2.3</span> Visually explaining the
+  <span><span class="math inline"><em>k</em></span>-NN</span>
+  algorithm</h3>
+  <p>A force-directed network visualisation of the model is displayed in
+  the lower area of the interface (Fig. <a href="#fig:full"
+  data-reference-type="ref" data-reference="fig:full">1</a>(d)).
+  Each node represents a row, and has <span
+  class="math inline"><em>k</em></span> edges going to its <span
+  class="math inline"><em>k</em></span> nearest neighbours in the training
+  set. Edge lengths are proportional to the distances to the <span
+  class="math inline"><em>k</em></span> neighbours. We thus project the
+  <span class="math inline"><em>n</em></span>-dimensional rows onto a 2D
+  space. Since in order to explain the <span
+  class="math inline"><em>k</em></span>-NN algorithm’s behaviour it
+  suffices to represent <span><em>proximity</em></span>, rather than
+  variation along any particular dimension, we sacrifice concrete
+  interpretations of the spatial axes in favour of expressing “nearness”
+  and “farness.”</p>
+  <p>This visualisation has several advantages. First, it facilitates
+  <span><em>why</em></span> and <span><em>why not</em></span> explanations
+  for any given prediction; the answer to “why was this cell value
+  guessed?” is that the model drew upon the rows directly connected to it.
+  Second, it provides a <span><em>how</em></span> explanation for
+  <span><span class="math inline"><em>k</em></span>-NN</span>; the general
+  answer to “how is a value guessed?” is that all the rows are arranged by
+  their similarity to each other and each guess draws upon the most
+  relevant rows. Third, the emergent clusters visually reify the abstract
+  model. For example in a 3-class classification problem, as in the Iris
+  dataset <span class="citation" data-cites="fisher1936use">[9]</span>, as
+  rows are added to the training data, the network first branches from one
+  cluster into two, and then converges at three (Fig. <a
+  href="#fig:evolution" data-reference-type="ref"
+  data-reference="fig:evolution">3</a>). Fourth, a colour
+  scheme consistent with the spreadsheet explains how confidence is
+  computed, since high-confidence rows (green nodes) occur close to rows
+  in the training set (blue nodes).</p>
+  <p>The network visualisation fits the <span><span
+  class="math inline"><em>k</em></span>-NN</span> model well, but what
+  about “explaining” other machine learning algorithms? In future work,
+  one could try and explain other algorithms as though they were
+  <span><span class="math inline"><em>k</em></span>-NN</span> <span
+  class="citation" data-cites="sarkar2015metamodels">[10]</span>. Another
+  option is to use model-specific visualisations, such as Kulesza et al.’s
+  bar charts for naïve Bayes <span class="citation"
+  data-cites="kulesza2015">[6]</span>. The general-purpose, modular nature
+  of BrainCel makes it a flexible testbed for comparing different visual
+  “explanations” of the same model.</p>
+
+  <figure>
+  <img src="images/distributions.png" id="fig:distributions"
+  alt="Fig. 2. Distributions of taught vs overall data. The “Species” graph shows that the class “Iris-versicolor” is underrepresented in the training data." />
+  <figcaption aria-hidden="true">Fig. 2. Distributions of taught vs overall data.
+  The “Species” graph shows that the class “Iris-versicolor” is
+  underrepresented in the training data.</figcaption>
+  </figure>
+
+  <figure>
+  <img src="images/evolution.png" id="fig:evolution"
+  alt="Fig. 3. Evolution of the model as shown by BrainCel’s network visualisation when data from the three classes in the Iris dataset [9] is incrementally added.
+  Rows in the training set are depicted in dark blue, and all other nodes are coloured according to their mean distance from their k nearest neighbours." />
+  <figcaption aria-hidden="true">Fig. 3. Evolution of the model as shown by BrainCel’s network visualisation when data from the three classes in the Iris dataset [9] is incrementally added.
+    Rows in the training set are depicted in dark blue, and all other nodes are coloured according to their mean distance from their <em>k</em> nearest neighbours.</figcaption>
+  </figure>
+
+  <!-- <div class="figure*">
+  <p><img src="images/evolution.jpg" alt="image" /></p>
+  </div> -->
+
+  <h3 data-number="2.4"
+  id="expressing-training-set-representativeness"><span
+  class="header-section-number">2.4</span> Expressing training set
+  representativeness</h3>
+  <p>BrainCel displays the value distributions within the columns in the
+  overall dataset, compared to the value distributions in the training set
+  (Fig. <a href="#fig:distributions" data-reference-type="ref"
+  data-reference="fig:distributions">2</a>). These charts expose whether
+  certain classes or types of data are under- or overrepresented, either
+  in the underlying dataset, or in the training data. Thus, the user can
+  assess whether the distribution of taught data is representative of the
+  overall spreadsheet.</p>
+  <h3 data-number="2.5"
+  id="visualisations-of-machine-understanding-progression"><span
+  class="header-section-number">2.5</span> Visualisations of machine
+  understanding progression</h3>
+  <figure>
+  <img src="images/progress.png" id="fig:progress"
+  alt="Fig. 4. Summary charts of training set representativeness and overall confidence. The x-axis shows interaction history, with data points being created on each edit. Tooltips show the action which created the point." />
+  <figcaption aria-hidden="true">Fig. 4. Summary charts of training set
+  representativeness and overall confidence. The <span
+  class="math inline"><em>x</em></span>-axis shows interaction history,
+  with data points being created on each edit. Tooltips show the action
+  which created the point.</figcaption>
+  </figure>
+  <p>To help the user understand how the model’s quality evolved with
+  their actions, BrainCel displays two line graphs which update over time
+  (Fig. <a href="#fig:progress" data-reference-type="ref"
+  data-reference="fig:progress">4</a>). The first summarises how well the
+  training data represents the overall dataset. New points are added
+  whenever the training set is modified, computed by summing the Hellinger
+  distances <span class="citation"
+  data-cites="hellinger1909neue">[11]</span> between the distributions of
+  attribute values in the training set and their corresponding
+  distributions in the overall dataset. This quantity decreases as the
+  distribution of training data becomes more similar to that of the
+  overall dataset. This graph is presented as the “Discrepancy” between
+  taught and overall data. The second shows the mean confidence over all
+  rows as a function of interaction history: a new data point is added
+  whenever the spreadsheet is modified. We vertically invert this graph to
+  match the other graph, where lower values are more desirable, and
+  present it as the machine’s “confusion.”</p>
+  <p>In both graphs, tooltips describe the action which led to a given
+  data point being added. This provides a chronological account of how the
+  model evolved in response to user actions. Since the vertical scale on
+  these graphs is not directly related to the user’s problem domain, the
+  <span class="math inline"><em>y</em></span>-axis is unlabelled to
+  encourage the user to think of the quantities as merely increasing or
+  decreasing, rather than focussing on exact values.</p>
+  <h2 data-number="3" id="sec:study"><span
+  class="header-section-number">3</span> Exploratory user study</h2>
+  <p>We conducted a user study modelled after Kulesza et al. <span
+  class="citation" data-cites="kulesza2011oriented">[12]</span>, not as a
+  summative evaluation, but rather to understand how our approach could
+  support end-user machine learning. Thus, we observed (1) the learning
+  barriers users encountered, and (2) which parts of the interface were
+  most useful and why.</p>
+  <p>The study used a think-aloud protocol. Participants completed two
+  equally-difficult randomised tasks, where they were given a spreadsheet
+  (either the Iris or Zoo dataset <span class="citation"
+  data-cites="Lichman2013UCI">[13]</span>) containing empty cells, and
+  were asked to fill the missing information using BrainCel. The first
+  task was done with a spreadsheet-only version of BrainCel without
+  visualisations (only item (a) in Fig. <a href="#fig:full"
+  data-reference-type="ref" data-reference="fig:full">1</a>,
+  without confidence-based colouring, i.e., the Teach &amp; Try interface
+  <span class="citation" data-cites="sarkar2014teach">[1]</span>), and the
+  second with the complete BrainCel interface. As with the Whyline <span
+  class="citation" data-cites="ko2004designing">[14]</span>, comparing a
+  full-featured version to a version with reduced functionality helped
+  reveal how augmenting the standard spreadsheet interface affected users’
+  exploration of their statistical models.</p>
+  <p>We recruited participants from humanities departments at Cambridge
+  University. We screened out participants with prior exposure to
+  statistics or machine learning, leaving 7 in the final analysis. All 7
+  successfully completed both tasks (populated the spreadsheets with
+  correct values) in under 45 minutes.</p>
+  <p>We used Kulesza et al.’s coding scheme (a subset of Ko et al.’s
+  learning barriers <span class="citation"
+  data-cites="ko2004barriers">[15]</span>). Briefly, the codes are as
+  follows: <span><em>Design barrier</em></span>: the user’s goals are
+  unclear. <span><em>Selection barrier</em></span>: the goal is clear but
+  the programming tools required to achieve this goal are unclear.
+  <span><em>Use barrier</em></span>: the tools required are clear, but the
+  user does not know how to use them properly. <span><em>Coordination
+  barrier</em></span>: the tools required are clear, but the user cannot
+  make them work together. <span><em>Understanding barrier</em></span>:
+  the user thinks they know what to do, but their actions have surprising
+  results. We applied the codes to sentences. Two researchers first
+  independently coded random 5-minute transcript excerpts, iteratively
+  refining coding rules until mean Jaccard index agreement reached 86% for
+  a 5-minute transcript section, and 83% for a complete 40-minute
+  transcript. The remaining transcripts were then coded.</p>
+  <h3 data-number="3.1" id="results-learning-barriers"><span
+  class="header-section-number">3.1</span> Results: learning barriers</h3>
+  <figure>
+  <img src="images/barriers.png" id="fig:barriers"
+  alt="Fig. 5. Count of learning barriers encountered in all transcripts." />
+  <figcaption aria-hidden="true">Fig. 5. Count of learning barriers encountered in
+  all transcripts.</figcaption>
+  </figure>
+  <p>Fig. <a href="#fig:barriers" data-reference-type="ref"
+  data-reference="fig:barriers">5</a> shows the distributions of learning
+  barriers encountered by our participants when using BrainCel with and
+  without the additional visualisations. We confirm Kulesza et al.’s
+  observations that Selection and Coordination barriers are the most
+  common. Selection barriers revealed unclear aspects of the interface
+  (e.g., P1: <span><em>Can I select these to learn?</em></span>, P3:
+  <span><em>They’ve highlighted, so that must mean they’re okay, or does
+  it?</em></span>). Coordination barriers occurred when the model
+  responded to changes in the training data in non-obvious ways (e.g., P3:
+  <span><em>So let’s delete the [classifications] it got wrong and try
+  again... no, they’re still wrong.</em></span>, P4: <span><em>So, what
+  are [the model’s] problem areas?</em></span>). Design barriers occurred
+  when choosing a strategy for debugging incorrect predictions, e.g.,
+  whether one should add or remove training data, manually correct the
+  prediction, or correct the prediction and then add it as training
+  data.</p>
+  <p>Our small sample precludes statistical comparisons. However, it
+  appears that Selection and Coordination barriers (found by Kulesza et
+  al. to be the most prevalent) are both less frequent when visualisations
+  are introduced. With visualisations, Design, Use and Understanding
+  barriers were observed <span><em>more frequently</em></span>. This
+  increase can be attributed to the fact that once users have their
+  attention drawn to the structure of the model rather than surface
+  features, the barriers they encounter become more interesting. For
+  example, P5 expressed the following relatively mundane understanding
+  barrier when working without the visualisations: <span><em>Why is that
+  row [misclassified]?</em></span> However, with visualisations, P5
+  described more complex understanding barriers, e.g.: <span><em>It’s
+  gotten that correct, but why is it still not confident about
+  it?</em></span> The visualisations helped end-users extend the zone of
+  proximal development <span class="citation"
+  data-cites="vygotsky1987zone">[16]</span> past the simpler concepts of
+  the spreadsheet training paradigm to more sophisticated conceptual
+  issues regarding critical assessment of the model. Thus, an analysis of
+  the difference in barrier distributions <span><em>with</em></span>- and
+  <span><em>without</em></span>-visualisations is not sufficiently nuanced
+  to show the way in which the visualisations helped. This suggests an
+  additional dimension to the learning barriers, capturing a notion of
+  “hardness” or “sophistication,” acknowledging that some barriers are
+  higher than others.</p>
+  <h3 data-number="3.2"
+  id="results-user-activity-flows-with-visualisations"><span
+  class="header-section-number">3.2</span> Results: user activity flows
+  with visualisations</h3>
+  <p>We recorded participants’ transitions between interface activities in
+  the <span><em>with</em></span>-visualisation tasks and present the most
+  common transitions (each accounting for <span
+  class="math inline">&gt;</span>5% of all transitions) in Fig. <a
+  href="#fig:activity_flows" data-reference-type="ref"
+  data-reference="fig:activity_flows">6</a>. The self-loops on learning,
+  guessing and editing correspond to an incremental approach commonly
+  adopted by participants where training data was added one row at a time,
+  and cell values were guessed one at a time, to inspect the direct
+  consequence of adding or removing training rows. Similarly, the pattern
+  Edit<span class="math inline">→</span>Learn<span
+  class="math inline">→</span>Guess also appeared frequently: manually
+  correcting mispredictions, adding the corrected row to the training set,
+  and seeing if other incorrect guesses were now correct. This suggests
+  that manual effort may be saved if guessed cells were not static, but
+  constantly recalculated like spreadsheet formulae. Participants
+  frequently alternated between the spreadsheet and the network
+  visualisation, using the network to diagnose mispredictions and study
+  the model structure. Interestingly, participants overwhelmingly
+  preferred to incrementally <span><em>add</em></span> to the training
+  data, rather than remove rows, to improve the model.</p>
+
+  <figure>
+  <img src="images/activity_flows.png" id="fig:activity_flows"
+  alt="Fig. 6. Most common activity transitions. Numbers and arrow widths give the total observed count of transitions. “Learn” corresponds to adding training data, “Guess” to invoking the model, and “Edit” to editing values. “Spreadsheet” and “Network” refer to inspecting those areas respectively." />
+  <figcaption aria-hidden="true">Fig. 6. Most common activity transitions. Numbers
+  and arrow widths give the total observed count of transitions. “Learn”
+  corresponds to adding training data, “Guess” to invoking the model, and
+  “Edit” to editing values. “Spreadsheet” and “Network” refer to
+  inspecting those areas respectively.</figcaption>
+  </figure>
+
+  <h2 data-number="4" id="sec:related"><span
+  class="header-section-number">4</span> Related work</h2>
+  <p>Amershi et al.<span class="citation"
+  data-cites="amershi2011effective">[17]</span>, and Lim &amp; Dey <span
+  class="citation" data-cites="lim2009assessing">[18]</span> identify what
+  types of information intelligent applications should give to end-users,
+  and Kulesza et al. <span class="citation"
+  data-cites="kulesza2013too">[19]</span> demonstrate that this
+  information is critical for the formation of users’ mental models.
+  BrainCel incorporates several such information types; the network
+  visualisation answers the <span><em>how</em></span> and
+  <span><em>why</em></span> questions about predictions, and the
+  distribution charts show what the system “knows.”</p>
+  <p>BrainCel’s summary line charts of model evolution build on Behrisch
+  et al. <span class="citation"
+  data-cites="behrisch2014feedback">[20]</span>, where a live
+  visualisation shows how much of the data passes a confidence threshold,
+  enabling users to assess convergence. Similarly, our use of confidence
+  to highlight rows on which the user might wish to focus, is based on
+  Groce et al.’s experimental evidence that model confidence is an
+  effective way of selecting testing examples <span class="citation"
+  data-cites="groce2014">[21]</span>.</p>
+  <p>BrainCel emphasises how concepts evolve in the “mind” of the
+  <span><em>computer</em></span> (consider Fig. <a href="#fig:evolution"
+  data-reference-type="ref"
+  data-reference="fig:evolution">3</a>). Conversely, Kulesza
+  et al. present interfaces to help refine models in the mind of the
+  <span><em>user</em></span>, who may not have well-defined mental
+  concepts <span class="citation"
+  data-cites="kulesza2014structured">[22]</span>. The intersection of our
+  two approaches suggests <span><em>joint</em></span> concept evolution,
+  visualising a shared man-machine understanding.</p>
+  <h2 data-number="5" id="conclusion"><span
+  class="header-section-number">5</span> Conclusion</h2>
+  <p>We have presented BrainCel, an interactive visual system for
+  general-purpose machine learning in spreadsheets. BrainCel’s multiple
+  coordinated views of the model explain its current confidence, its
+  coverage of the input domain, and provide <span><em>why</em></span> and
+  <span><em>how</em></span> explanations for predictions, helping the user
+  debug the model and select training examples. We reported an exploratory
+  user study confirming that BrainCel successfully exhibits properties
+  desirable in interactive machine learning systems, but within the
+  general purpose spreadsheet paradigm previously proposed in the Teach
+  and Try system.</p>
+  <h2 class="unnumbered" id="acknowledgments">Acknowledgments</h2>
+  <p>The authors would like to thank the participants for their time.
+  Advait Sarkar is funded through an EPSRC industrial CASE studentship
+  sponsored by BT Research and Technology, and also by a premium
+  studentship from the University of Cambridge Computer Laboratory.</p>
+  <div id="refs" class="references csl-bib-body" role="doc-bibliography">
+  <div id="ref-sarkar2014teach" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[1] </div><div class="csl-right-inline">A.
+  Sarkar, A. F. Blackwell, M. Jamnik, and M. Spott, <span>“Teach and try:
+  A simple interaction technique for exploratory data modelling by end
+  users,”</span> in <em><span class="nocase">Visual Languages and
+  Human-Centric Computing (VL/HCC), 2014 IEEE Symposium on</span></em>,
+  Jul. 2014, pp. 53–56. doi: <a
+  href="https://doi.org/10.1109/VLHCC.2014.6883022">10.1109/VLHCC.2014.6883022</a>.</div>
+  </div>
+  <div id="ref-sarkar2015usable" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[2] </div><div class="csl-right-inline">A.
+  Sarkar, M. Jamnik, A. F. Blackwell, and M. Spott, <span>“Spreadsheet
+  interfaces for usable machine learning,”</span> in <em><span
+  class="nocase">Visual Languages and Human-Centric Computing (VL/HCC),
+  2015 IEEE Symposium on</span></em>, 2015, pp. 283–284.</div>
+  </div>
+  <div id="ref-hall2009weka" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[3] </div><div class="csl-right-inline">M.
+  Hall, E. Frank, G. Holmes, B. Pfahringer, P. Reutemann, and I. H.
+  Witten, <span>“The WEKA data mining software: An update,”</span> <em>ACM
+  SIGKDD explorations newsletter</em>, vol. 11, no. 1, pp. 10–18,
+  2009.</div>
+  </div>
+  <div id="ref-scikit-learn" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[4] </div><div class="csl-right-inline">F.
+  Pedregosa <em>et al.</em>, <span>“Scikit-learn: Machine learning in
+  <span>P</span>ython,”</span> <em>Journal of Machine Learning
+  Research</em>, vol. 12, pp. 2825–2830, 2011.</div>
+  </div>
+  <div id="ref-cockburn2008review" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[5] </div><div class="csl-right-inline">A.
+  Cockburn, A. Karlson, and B. B. Bederson, <span>“A review of overview+
+  detail, zooming, and focus+ context interfaces,”</span> <em>ACM
+  Computing Surveys (CSUR)</em>, vol. 41, no. 1, p. 2, 2008.</div>
+  </div>
+  <div id="ref-kulesza2015" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[6] </div><div class="csl-right-inline">T.
+  Kulesza, M. Burnett, W. Wong, and S. Stumpf, <span>“<span
+  class="nocase">Principles of Explanatory Debugging to Personalize
+  Interactive Machine Learning</span>,”</span> in <em>Proceedings of the
+  20th international conference on intelligent user interfaces - IUI
+  ’15</em>, 2015, pp. 126–137. doi: <a
+  href="https://doi.org/10.1145/2678025.2701399">10.1145/2678025.2701399</a>.</div>
+  </div>
+  <div id="ref-brown2012dis" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[7] </div><div class="csl-right-inline">E.
+  T. Brown, J. Liu, C. E. Brodley, and R. Chang, <span>“Dis-function:
+  Learning distance functions interactively,”</span> in <em><span
+  class="nocase">Visual Analytics Science and Technology (VAST), IEEE
+  Conference on</span></em>, 2012, pp. 83–92.</div>
+  </div>
+  <div id="ref-smith1994handwritten" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[8] </div><div class="csl-right-inline">S.
+  J. Smith, M. O. Bourgoin, K. Sims, and H. L. Voorhees,
+  <span>“Handwritten character classification using nearest neighbor in
+  large databases,”</span> <em>Pattern Analysis and Machine Intelligence,
+  IEEE Transactions on</em>, vol. 16, no. 9, pp. 915–919, 1994.</div>
+  </div>
+  <div id="ref-fisher1936use" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[9] </div><div class="csl-right-inline">R.
+  A. Fisher, <span>“The use of multiple measurements in taxonomic
+  problems,”</span> <em>Annals of eugenics</em>, vol. 7, no. 2, pp.
+  179–188, 1936.</div>
+  </div>
+  <div id="ref-sarkar2015metamodels" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[10] </div><div class="csl-right-inline">A.
+  Sarkar, <span>“Confidence, command, complexity: Metamodels for
+  structured interaction with machine intelligence,”</span> in <em><span
+  class="nocase">Proceedings of the 26th Annual Conference of the
+  Psychology of Programming Interest Group (PPIG 2015)</span></em>, Jul.
+  2015, pp. 23–36.</div>
+  </div>
+  <div id="ref-hellinger1909neue" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[11] </div><div class="csl-right-inline">E.
+  Hellinger, <span>“Neue begr<span>ü</span>ndung der theorie quadratischer
+  formen von unendlichvielen ver<span>ä</span>nderlichen.”</span>
+  <em>Journal f<span>ü</span>r die reine und angewandte Mathematik</em>,
+  vol. 136, pp. 210–271, 1909.</div>
+  </div>
+  <div id="ref-kulesza2011oriented" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[12] </div><div class="csl-right-inline">T.
+  Kulesza <em>et al.</em>, <span>“Why-oriented end-user debugging of naive
+  bayes text classification,”</span> <em>ACM Transactions on Interactive
+  Intelligent Systems (TiiS)</em>, vol. 1, no. 1, p. 2, 2011.</div>
+  </div>
+  <div id="ref-Lichman2013UCI" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[13] </div><div class="csl-right-inline">M.
+  Lichman, <span>“<span>UCI</span> machine learning repository.”</span>
+  University of California, Irvine, School of Information; Computer
+  Sciences, 2013. Available: <a
+  href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a></div>
+  </div>
+  <div id="ref-ko2004designing" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[14] </div><div class="csl-right-inline">A.
+  J. Ko and B. A. Myers, <span>“Designing the whyline: A debugging
+  interface for asking questions about program behavior,”</span> in
+  <em><span class="nocase">Proceedings of the SIGCHI conference on Human
+  factors in computing systems</span></em>, 2004, pp. 151–158.</div>
+  </div>
+  <div id="ref-ko2004barriers" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[15] </div><div class="csl-right-inline">A.
+  J. Ko, B. A. Myers, and H. Aung, <span>“<span class="nocase">Six
+  Learning Barriers in End-User Programming Systems</span>,”</span> in
+  <em>2004 IEEE symposium on visual languages - human centric
+  computing</em>, 2004, pp. 199–206. doi: <a
+  href="https://doi.org/10.1109/VLHCC.2004.47">10.1109/VLHCC.2004.47</a>.</div>
+  </div>
+  <div id="ref-vygotsky1987zone" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[16] </div><div class="csl-right-inline">L.
+  Vygotsky, <span>“Zone of proximal development,”</span> <em>Mind in
+  society: The development of higher psychological processes</em>, vol.
+  5291, 1987.</div>
+  </div>
+  <div id="ref-amershi2011effective" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[17] </div><div class="csl-right-inline">S.
+  Amershi, J. Fogarty, A. Kapoor, and D. S. Tan, <span>“Effective end-user
+  interaction with machine learning.”</span> 2011.</div>
+  </div>
+  <div id="ref-lim2009assessing" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[18] </div><div class="csl-right-inline">B.
+  Lim and A. Dey, <span>“<span class="nocase">Assessing demand for
+  intelligibility in context-aware applications</span>,”</span>
+  <em>Proceedings of the 11th international conference on Ubiquitous
+  computing</em>, p. 195, 2009, doi: <a
+  href="https://doi.org/10.1145/1620545.1620576">10.1145/1620545.1620576</a>.</div>
+  </div>
+  <div id="ref-kulesza2013too" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[19] </div><div class="csl-right-inline">T.
+  Kulesza, S. Stumpf, M. Burnett, S. Yang, I. Kwan, and W.-K. Wong,
+  <span>“<span class="nocase">Too much, too little, or just right? Ways
+  explanations impact end users’ mental models</span>,”</span> in
+  <em><span class="nocase">Proceedings of IEEE Symposium on Visual
+  Languages and Human-Centric Computing, VL/HCC</span></em>, 2013, pp.
+  3–10. doi: <a
+  href="https://doi.org/10.1109/VLHCC.2013.6645235">10.1109/VLHCC.2013.6645235</a>.</div>
+  </div>
+  <div id="ref-behrisch2014feedback" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[20] </div><div class="csl-right-inline">M.
+  Behrisch, F. Korkmaz, L. Shao, and T. Schreck, <span>“Feedback-driven
+  interactive exploration of large multidimensional data supported by
+  visual classifier,”</span> in <em><span class="nocase">Visual Analytics
+  Science and Technology (VAST), 2014 IEEE Conference on</span></em>,
+  2014, pp. 43–52.</div>
+  </div>
+  <div id="ref-groce2014" class="csl-entry" role="doc-biblioentry">
+  <div class="csl-left-margin">[21] </div><div class="csl-right-inline">A.
+  Groce <em>et al.</em>, <span>“<span class="nocase">You Are the Only
+  Possible Oracle: Effective Test Selection for End Users of Interactive
+  Machine Learning Systems</span>,”</span> <em>IEEE Transactions on
+  Software Engineering</em>, vol. 40, no. 3, pp. 307–323, 2014, doi: <a
+  href="https://doi.org/10.1109/TSE.2013.59">10.1109/TSE.2013.59</a>.</div>
+  </div>
+  <div id="ref-kulesza2014structured" class="csl-entry"
+  role="doc-biblioentry">
+  <div class="csl-left-margin">[22] </div><div class="csl-right-inline">T.
+  Kulesza, S. Amershi, R. Caruana, D. Fisher, and D. Charles,
+  <span>“Structured labeling for facilitating concept evolution in machine
+  learning,”</span> in <em>Proceedings of the 32nd annual ACM conference
+  on human factors in computing systems</em>, 2014, pp. 3075–3084.</div>
+  </div>
+  </div>
+</body>
+</html>
