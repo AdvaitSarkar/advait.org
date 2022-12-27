@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <title>End-user encounters with lambda abstraction in spreadsheets: Apollo’s bow or Achilles’ heel?</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+  <style>
+    span.lambda {
+      font-variant: small-caps;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+<p>This is a version of the following academic paper prepared for the web:</p>
+
+<blockquote>A. Sarkar, S. S. Ragavan, J. Williams and A. D. Gordon, "End-user encounters with lambda abstraction in spreadsheets: Apollo’s bow or Achilles’ heel?," 2022 IEEE Symposium on Visual Languages and Human-Centric Computing (VL/HCC), 2022, pp. 1-11, doi: 10.1109/VL/HCC53370.2022.9833131.</blockquote>
+
+<p>
+More details:
+  <a href="files/sarkar_2022_lambdas.pdf">Download PDF</a> &bull;
+  <a href="files/sarkar_2022_lambdas_citation.bib">BibTeX</a> &bull;
+  <a href="https://ieeexplore.ieee.org/document/9833131">IEEE Xplore</a> &bull;
+  <a href="https://doi.org/10.1109/VL/HCC53370.2022.9833131">DOI: 10.1109/VL/HCC53370.2022.9833131</a>
+</p>
+</div>
+
+<header id="title-block-header">
+<h1 class="title">End-user encounters with lambda abstraction in
+spreadsheets: Apollo’s bow or Achilles’ heel?</h1>
+<p class="author">Advait Sarkar, Sruti Srinivasa Ragavan, Jack Williams, Andrew D. Gordon</p>
+</header>
+
+<h2>Abstract</h2>
+<p>The value of computational abstractions to non-expert end-user
+programmers is contentious. We study reactions to the
+<span class="lambda">lambda</span> function in Microsoft Excel, which enables users to
+define their own functions using the spreadsheet formula language,
+through a thematic analysis of nearly 2,700 comments posted on the
+Reddit, Hacker News, YouTube, and Microsoft Tech Community online
+forums. We find that computational abstractions are viewed both as
+helpful and harmful, that users encounter learning and understanding
+barriers to applying them, and that there are deficiencies and
+opportunities in tooling such as in formula editing, versioning, reuse
+and sharing. We find that the introduction of <span class="lambda">lambda</span>
+prompts new debate around whether spreadsheets are code, whether writing
+formulas can be considered programming, and whether spreadsheet users
+identify themselves as programmers.</p>
+
+
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:introduction" id="toc-sec:introduction"><span
+class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#sec:background" id="toc-sec:background"><span
+class="toc-section-number">2</span> Background</a>
+<ul>
+<li><a href="#the-excel-lambda-function"
+id="toc-the-excel-lambda-function"><span
+class="toc-section-number">2.1</span> The Excel
+<span class="lambda">lambda</span> function</a></li>
+<li><a href="#abstraction-in-end-user-programming"
+id="toc-abstraction-in-end-user-programming"><span
+class="toc-section-number">2.2</span> Abstraction in end-user
+programming</a></li>
+<li><a href="#proposed-control-abstractions-in-spreadsheets"
+id="toc-proposed-control-abstractions-in-spreadsheets"><span
+class="toc-section-number">2.3</span> Proposed control abstractions in
+spreadsheets</a></li>
+<li><a href="#spreadsheet-abstraction-in-practice"
+id="toc-spreadsheet-abstraction-in-practice"><span
+class="toc-section-number">2.4</span> Spreadsheet abstraction in
+practice</a></li>
+</ul></li>
+<li><a href="#sec:method" id="toc-sec:method"><span
+class="toc-section-number">3</span> Method</a>
+<ul>
+<li><a href="#approach" id="toc-approach"><span
+class="toc-section-number">3.1</span> Approach</a></li>
+<li><a href="#dataset" id="toc-dataset"><span
+class="toc-section-number">3.2</span> Dataset</a></li>
+<li><a href="#analysis" id="toc-analysis"><span
+class="toc-section-number">3.3</span> Analysis</a></li>
+</ul></li>
+<li><a href="#sec:results" id="toc-sec:results"><span
+class="toc-section-number">4</span> Results</a>
+<ul>
+<li><a href="#implications-for-the-user-experience-of-spreadsheets"
+id="toc-implications-for-the-user-experience-of-spreadsheets"><span
+class="toc-section-number">4.1</span> Implications for the user
+experience of spreadsheets</a>
+<ul>
+<li><a href="#the-tension-of-abstraction"
+id="toc-the-tension-of-abstraction"><span
+class="toc-section-number">4.1.1</span> The tension of
+abstraction</a></li>
+<li><a href="#development-of-new-patterns-and-practices"
+id="toc-development-of-new-patterns-and-practices"><span
+class="toc-section-number">4.1.2</span> Development of new patterns and
+practices</a></li>
+<li><a href="#spreadsheet-tooling-and-experience"
+id="toc-spreadsheet-tooling-and-experience"><span
+class="toc-section-number">4.1.3</span> Spreadsheet tooling and
+experience</a></li>
+</ul></li>
+<li><a href="#barriers-to-learning-and-using-lambda"
+id="toc-barriers-to-learning-and-using-lambda"><span
+class="toc-section-number">4.2</span> Barriers to learning and using
+<span class="lambda">lambda</span></a></li>
+<li><a href="#end-user-software-engineering"
+id="toc-end-user-software-engineering"><span
+class="toc-section-number">4.3</span> End-user software
+engineering</a></li>
+<li><a href="#identity-formation" id="toc-identity-formation"><span
+class="toc-section-number">4.4</span> Identity formation</a></li>
+<li><a href="#sec:alternatives" id="toc-sec:alternatives"><span
+class="toc-section-number">4.5</span> Alternatives</a></li>
+<li><a href="#differences-in-communities"
+id="toc-differences-in-communities"><span
+class="toc-section-number">4.6</span> Differences in
+communities</a></li>
+</ul></li>
+<li><a href="#sec:discussion" id="toc-sec:discussion"><span
+class="toc-section-number">5</span> Discussion</a>
+<ul>
+<li><a href="#are-spreadsheet-users-programmers"
+id="toc-are-spreadsheet-users-programmers"><span
+class="toc-section-number">5.1</span> Are spreadsheet users
+programmers?</a></li>
+<li><a href="#abstraction-and-comprehension"
+id="toc-abstraction-and-comprehension"><span
+class="toc-section-number">5.2</span> Abstraction and
+comprehension</a></li>
+<li><a href="#implications-for-spreadsheets-and-other-tools"
+id="toc-implications-for-spreadsheets-and-other-tools"><span
+class="toc-section-number">5.3</span> Implications for spreadsheets and
+other tools</a></li>
+<li><a href="#limitations" id="toc-limitations"><span
+class="toc-section-number">5.4</span> Limitations</a></li>
+</ul></li>
+<li><a href="#sec:conclusion" id="toc-sec:conclusion"><span
+class="toc-section-number">6</span> Conclusion and future work</a></li>
+<li><a href="#acknowledgments"
+id="toc-acknowledgments">Acknowledgments</a></li>
+</ul>
+</nav>
+<div class="IEEEkeywords">
+<p><em>Index terms</em> &mdash; human-computer interaction, content analysis, end-user software
+engineering, functional programming</p>
+</div>
+<h2 data-number="1" id="sec:introduction"><span
+class="header-section-number">1</span> Introduction</h2>
+<p>In December 2020, the <span class="lambda">lambda</span> function was made available
+to Excel spreadsheet users, enabling them for the first time to create
+computational abstractions in spreadsheets, by defining new formula
+functions using the language of spreadsheet formulas alone <span
+class="citation"
+data-cites="jones2020announcing ultimatae2021 xkcd2453">[1]–[3]</span>.</p>
+<p>This development is of interest to end-user programming research
+because, despite the status of the spreadsheet as the most widely-used
+programming environment, no commercially dominant spreadsheet package
+had implemented a language-native method for defining new functions;
+prior solutions relied on parallel scripting languages. Thus, the
+spreadsheet formula language remained an anomaly: the only widely-used
+programming language that did not support subroutine definition since
+the invention of subroutines in the 1940s <span class="citation"
+data-cites="rojas2002konrad carpenter1977turing">[4], [5]</span>.</p>
+<p>The limitations of the lack of a native computational abstraction in
+spreadsheets are well-documented (Section <a href="#sec:background"
+data-reference-type="ref" data-reference="sec:background">2</a>). In
+response, researchers have explored various abstraction mechanisms. The
+Forms in Forms/3 spreadsheets can be invoked as subroutines <span
+class="citation" data-cites="burnett2001forms">[6]</span>, and the
+design of sheet-defined functions <span class="citation"
+data-cites="jones2003user mccutchen2020elastic">[7], [8]</span>
+demonstrates the integration of such abstractions into conventional
+spreadsheets. Nevertheless, such abstraction techniques were not
+implemented in commercial spreadsheets.</p>
+<p>To deal with these limitations, users (with sufficient expertise)
+either resorted to using abstraction mechanisms offered using
+alternative programming paradigms (such as VBA macros in Excel, or
+Javascript custom functions in Google Sheets), or installing add-ins
+which introduced new language features, or alternating between
+spreadsheets and other programming languages <span class="citation"
+data-cites="chalhoub2022structure">[9]</span>. Alternatively, some users
+developed workaround craft practices, such as the creation of templates
+for sections of grid that could be copied and pasted as self-contained
+computational abstractions <span class="citation"
+data-cites="joharizadeh2020gridlets">[10]</span>, or built
+‘megaformulas’: elaborate formulas constructed as individual parts but
+eventually ‘rolled up’ (nested) into a single cell for reuse.</p>
+<p>Despite such evidence of abstractions in real-world spreadsheets, and
+the promise of lambda abstractions, it is unclear <em>prima facie</em>
+whether the <span class="lambda">lambda</span> construct is a net gain for end-user
+programmers. For example, abstraction can make programming more
+powerful, and programs more concise and intelligible; on the other hand,
+they can make programs hard to understand, and poorly-considered
+application of abstractions can cause problems for downstream users of
+programs <span class="citation"
+data-cites="blackwell2008abstract">[11]</span>.</p>
+<p>The introduction of such an abstraction capability to spreadsheets
+therefore raises two key questions:</p>
+<ul>
+<li><p>What are the implications of computational abstractions for the
+end-user experience of spreadsheets?</p></li>
+<li><p>What barriers do end-user programmers face when learning and
+using abstractions, and what strategies do they employ to overcome
+them?</p></li>
+</ul>
+<p>To investigate these questions, we analysed discussions from online
+communities about the <span class="lambda">lambda</span> function in Microsoft Excel
+(Section <a href="#sec:method" data-reference-type="ref"
+data-reference="sec:method">3</a>). While our analysis does not yet
+answer these questions in depth, our findings identify a broad set of
+phenomena, helping to map and scope further study.</p>
+<p>We find several implications for the user experience of spreadsheets,
+such as the potential for abstraction to help as well as hinder
+comprehension, and the inadequacy of formula authoring and management
+tools; we find that users encounter several barriers to applying these
+abstractions and employ several strategies to address them; and we find
+that computational abstractions play a crucial role in the formation of
+user identities as programmers (Section <a href="#sec:results"
+data-reference-type="ref" data-reference="sec:results">4</a>). Thus, the
+lambda abstraction in spreadsheets can either be a powerful tool, as the
+golden bow of Apollo, or it can be an Achilles’ heel, weakening
+comprehension and community participation.</p>
+<h2 data-number="2" id="sec:background"><span
+class="header-section-number">2</span> Background</h2>
+<h3 data-number="2.1" id="the-excel-lambda-function"><span
+class="header-section-number">2.1</span> The Excel
+<span class="lambda">lambda</span> function</h3>
+<p>Lambda abstraction is a concept from the lambda calculus, introduced
+by Church as a foundation for mathematics <span class="citation"
+data-cites="church32 church41">[12], [13]</span>, and long considered a
+foundation for programming language concepts <span class="citation"
+data-cites="landin65 lambda-ultimate-imperative">[14], [15]</span>. Its
+implementation in Excel is via a formula function with the same name. To
+distinguish between the concept of lambda abstraction (as well as
+specific instances of function values, also known as lambdas), and the
+Excel function, we style the Excel function as <span class="lambda">lambda</span>.</p>
+<p>The <span class="lambda">lambda</span> function takes as arguments a list of
+parameters followed by a formula that may refer to those parameters. For
+example, the following call creates a lambda that adds two numbers:
+<code>=lambda(x,y,x+y)</code>.</p>
+<p>Placing such a call to <span class="lambda">lambda</span> in a cell produces an
+error, because in the Excel implementation, a function value cannot be
+the result of a cell. Instead, the lambda can be directly invoked
+following its creation: one can write <code>=lambda(x,y,x+y)(2,3)</code>
+in a cell to yield the result 5.</p>
+<p>To introduce a new user-defined function using a <span class="lambda">lambda</span>
+formula, a name can be assigned to the formula using the name manager.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> It can then be invoked via the name.
+For example, one can assign the name <code>AddNumbers</code> to
+<code>=lambda(x,y,x+y)</code> and invoke it, within a cell, as
+<code>=AddNumbers(2,3)</code> to yield the result 5.</p>
+<h3 data-number="2.2" id="abstraction-in-end-user-programming"><span
+class="header-section-number">2.2</span> Abstraction in end-user
+programming</h3>
+<p>In the Cognitive Dimensions of Notations framework, Green and Petre
+define programming abstraction as the <em>“grouping of elements to be
+treated as one entity”</em> <span class="citation"
+data-cites="green1996usability">[16]</span>. <em>Data</em> abstractions,
+such as arrays or tables, allow us to perceive and operate on a group of
+data as a single entity. <em>Control</em> or <em>computational</em>
+abstractions include conditionals, loops, and subroutines.
+<span class="lambda">lambda</span> functions fall into the latter category.</p>
+<p>In Cognitive Dimensions terms, a notation can be abstraction-hating,
+abstraction-tolerant and abstraction-hungry, based on whether it
+prohibits, permits, or mandates the creation of new abstractions by the
+programmer. <span class="lambda">lambda</span> takes the spreadsheet formula language
+from being control abstraction-<em>hating</em> to a control
+abstraction-<em>tolerant</em> language.</p>
+<p>Control abstractions are difficult for end-user programmers to reason
+about <span class="citation"
+data-cites="blackwell2006psychological">[17]</span>. In notating
+multiple possible paths of execution, they resist direct manipulation
+interfaces <span class="citation"
+data-cites="shneiderman1997direct">[18]</span>. Moreover, end-user
+programmers avoid developing control abstractions due to the attention
+investment required <span class="citation"
+data-cites="blackwell2001swyn">[19]</span> and challenges when learning
+and creating them <span class="citation"
+data-cites="green1996usability">[16]</span>. Programming by
+demonstration <span class="citation"
+data-cites="kurlander1993watch">[20]</span> and programming by example
+<span class="citation" data-cites="gulwani2011automating">[21]</span>
+aim to address these difficulties by bridging direct manipulation and
+control abstractions through inference.</p>
+<h3 data-number="2.3"
+id="proposed-control-abstractions-in-spreadsheets"><span
+class="header-section-number">2.3</span> Proposed control abstractions
+in spreadsheets</h3>
+<p>Sheet-defined functions (SDFs) enable users to define their own
+computational abstraction using the spreadsheet formula language, much
+like <span class="lambda">lambda</span> <span class="citation"
+data-cites="jones2003user sestoft2013sheet">[7], [22]</span>. However,
+SDFs differ from <span class="lambda">lambda</span> in that the function body can be
+defined from a collection of cells, rather than a single formula.</p>
+<p>A user study of SDFs found that while having a reusable abstraction
+was helpful, in many cases participants preferred to view the body of
+the function when invoked <span class="citation"
+data-cites="mccutchen2020elastic">[8]</span>. This contrasts with the
+<em>hiding</em> of the body and intermediate values that is inherent to
+the user experience of subroutines. In response, Gridlets, a non-hiding
+computational abstraction, has been proposed <span class="citation"
+data-cites="joharizadeh2020gridlets williams2020higher">[10],
+[23]</span> but not evaluated in an empirical study.</p>
+<p>Another approach is to adopt practices from software development to
+spreadsheet development, for better long-term maintainability of
+spreadsheets. This is end-user software engineering <span
+class="citation" data-cites="burnett2009euse">[24]</span>, end-user
+development <span class="citation"
+data-cites="costabile2006EUD">[25]</span>, or spreadsheet
+engineering <span class="citation"
+data-cites="grossman2007spreadsheetengg">[26]</span>. ClassSheets <span
+class="citation" data-cites="cunha2010automatically">[27]</span> is an
+example of an engineering abstraction developed to manage spreadsheet
+complexity. End-user development research has also considered other
+engineering practices such as testing <span class="citation"
+data-cites="ko2011state">[28]</span>.</p>
+<h3 data-number="2.4" id="spreadsheet-abstraction-in-practice"><span
+class="header-section-number">2.4</span> Spreadsheet abstraction in
+practice</h3>
+<p>Complex models continue to be built using spreadsheets despite the
+lack of a native computational abstraction, resulting in challenges for
+correctness, maintenance and auditing <span class="citation"
+data-cites="panko2013end">[29]</span>. In response, spreadsheet users
+have adopted various alternatives.</p>
+<p>Expert users build abstractions using extensibility capabilities via
+a different language; examples are VBA macros in Microsoft Excel and
+JavaScript extensions in Google Sheets. Less expert users use
+third-party add-ins (e.g., Ablebits<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a>, ASAP Utilities<a
+href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a>) that provide utilities for common
+tasks to augment the built-in function library. Others delegate the
+development of complex spreadsheets to others with more (or different)
+expertise <span class="citation"
+data-cites="nardi1991twinkling">[30]</span>.</p>
+<p>Users have also developed practices to manage the complexity of the
+spreadsheet logic, to abstract away details and to ease comprehension
+and maintenance. For example, the FAST standard<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> for
+spreadsheet financial modeling recommends that formulas take no more
+than 24 seconds to explain, and to move intermediate calculations to
+separate sheets.</p>
+<p>However, the adoption and effectiveness of such standards are
+limited. There is lack of awareness, and most spreadsheet users lack
+formal training. Moreover, users are not motivated to invest attention
+in learning and adopting these practices. End-user programmers are
+typically task-oriented, and good design is not a necessity for task
+completion <span class="citation"
+data-cites="ko2011state">[28]</span>.</p>
+<h2 data-number="3" id="sec:method"><span
+class="header-section-number">3</span> Method</h2>
+<h3 data-number="3.1" id="approach"><span
+class="header-section-number">3.1</span> Approach</h3>
+<p>A feature like <span class="lambda">lambda</span> can be studied in many ways. An
+experiment with authoring or comprehension tasks can evince learning
+barriers or usability issues, while interviews with experienced users
+(if such a group could be recruited) can yield insights about
+<span class="lambda">lambda</span> use and practices in users’ workflows.</p>
+<p>Our motivation in this study is to observe the interaction of a broad
+range of end-user programmers with <span class="lambda">lambda</span>. We were also
+interested in how perceptions of a new feature like
+<span class="lambda">lambda</span> can develop and evolve in discussion amongst
+end-user programmers, something that is difficult to study in interview
+or experimental settings.</p>
+<p>We therefore opted to study discussions of <span class="lambda">lambda</span> in
+online communities. Communities such as Hacker News, Twitter and GitHub
+form a social ecosystem in which programmer relationships are formed and
+enacted <span class="citation" data-cites="wu2014exploring">[31]</span>
+and studying them <em>“can yield insights into qualitative research
+topics, with results comparable to and sometimes surpassing traditional
+qualitative research techniques”</em> <span class="citation"
+data-cites="barik2015heart">[32]</span>. Barik et al. applied this
+method to investigate notions of play in programming <span
+class="citation" data-cites="barik2017expressions">[33]</span>, and we
+draw upon the method of that study.</p>
+<p>To our knowledge, ours is the first systematic qualitative study of
+online communities in spreadsheet research.</p>
+<h3 data-number="3.2" id="dataset"><span
+class="header-section-number">3.2</span> Dataset</h3>
+<p>One researcher compiled a list of potential sources, consisting of
+discussion threads matching the query “Excel Lambda” using the search
+functions built into Hacker News, Reddit, Microsoft Tech Communities and
+YouTube as of 20 January 2022. From the first three, we extracted
+discussion threads related to “Excel Lambda”; for YouTube, the search
+returns matches based on video titles and descriptions; the comments
+associated with these videos were taken to be the corresponding
+“threads”. Additional forum sources were inspected but not included
+because they contained too few (fewer than 100) relevant comments. After
+removing false positives in the threads by manual inspection, we
+gathered comments from the remaining threads using automated
+scripts.</p>
+<p>Our final dataset, summarised in Table <a href="#tab:data"
+data-reference-type="ref" data-reference="tab:data">I</a>,
+contained 361 distinct threads containing a total of 6999 comments
+authored by 3422 distinct user IDs. In total, this corpus contains
+254,541 words of discourse either directly related to
+<span class="lambda">lambda</span> or occurring in a thread about <span class="lambda">lambda</span>,
+with an average of 36.37 words per comment. The data spanned the time
+period from 3 April 2008 through 1 February 2022. Even though a small
+proportion of these comments (6.9%) were written before the initial
+public release of <span class="lambda">lambda</span> on December 3, 2020, we retained
+them in case any interesting observations had been made in users’
+speculations about lambdas in spreadsheets.</p>
+
+<table id="tab:data">
+  <caption style="caption-side: top;">Table I<br> Comment data relevant to Excel lambdas gathered from four sources: summary statistics</caption>
+  <tr style="font-weight: bold;">
+      <td></td>
+      <td>Words</td>
+      <td>Comments</td>
+      <td>Words per comment<br>mean (sd) / median</td>
+      <td>Threads</td>
+      <td>Unique user IDs</td>
+      <td>Date interval<br> (first post - last post)</td>
+  </tr>
+  <tr>
+      <td>YouTube</td>
+      <td>99878</td>
+      <td>4750</td>
+      <td>21.03 (30.83) / 13</td>
+      <td>45</td>
+      <td>2760</td>
+      <td>2020/08/13 - 2022/01/27</td>
+  </tr>
+  <tr>
+      <td>Microsoft Tech Communities</td>
+      <td>97363</td>
+      <td>1446</td>
+      <td>67.33 (74.61) / 44</td>
+      <td>182</td>
+      <td>214</td>
+      <td>2017/12/10 - 2022/02/01</td>
+  </tr>
+  <tr>
+      <td>Hacker News</td>
+      <td>39206</td>
+      <td>441</td>
+      <td>88.90 (130.46) / 47</td>
+      <td>109</td>
+      <td>307</td>
+      <td>2008/04/03 - 2022/01/08</td>
+  </tr>
+  <tr>
+      <td>Reddit</td>
+      <td>18094</td>
+      <td>362</td>
+      <td>49.98 (95.22) / 24.5</td>
+      <td>25</td>
+      <td>141</td>
+      <td>2020/12/07 - 2022/01/21</td>
+  </tr>
+  <tr style="font-weight: bold;">
+      <td>Overall</td>
+      <td>254541</td>
+      <td>6999</td>
+      <td>36.37 (62.27) / 18</td>
+      <td>361</td>
+      <td>3422</td>
+      <td>2008/04/03 - 2022/02/01</td>
+  </tr>
+</table>
+
+<h3 data-number="3.3" id="analysis"><span
+class="header-section-number">3.3</span> Analysis</h3>
+<p>We used general thematic analysis with iterative coding and codebook
+development <span class="citation"
+data-cites="braun2006using">[34]</span>.</p>
+<p>Initially, three researchers independently open-coded the same set of
+400 comments (100 comments randomly sampled from each of the four
+sources). Together the researchers generated 94 proto-codes, which after
+discussion and negotiations led to an initial codebook of 29 codes. The
+three researchers then independently re-coded the same sample with the
+codebook. Manual inspection showed poor inter-rater agreement,
+consistent with initial open coding rounds in prior studies <span
+class="citation" data-cites="campbell2013coding">[35]</span>.</p>
+<p>The three researchers then discussed coding disagreements and
+ambiguities and revised the codebook. They used the updated codebook to
+independently code a fresh random sample of 200 comments (50 from each
+source). The average inter-rater agreement in this round was <span
+class="math inline">0.60</span> (Jaccard index). Disagreements were
+negotiated, and the codebook revised.</p>
+<p>The final codebook, presented in Appendix <a href="#apx:codebook"
+data-reference-type="ref"
+data-reference="apx:codebook">A</a>, consisted of 28 codes;
+14 code definitions were updated and 2 were merged from the initial
+codebook following three rounds of negotiations between researchers.</p>
+<p>Non-English comments could not be reliably interpreted by our
+English-speaking research team, and several comments were not relevant
+to Lambdas (e.g., “great video”). We coded these as irrelevant. These
+accounted for a sizeable fraction of the data (YouTube: 62%, Reddit:
+54%, Hacker News: 48%, Microsoft Tech Community: 66%). Thus the findings
+presented in Section <a href="#sec:results" data-reference-type="ref"
+data-reference="sec:results">4</a> draw from a pool of 2697
+comments.</p>
+<p>With this final codebook, the dataset was divided into four sets and
+one of four researchers (three being the coders from previous rounds,
+the fourth an observer during previous negotiations) coded each set. As
+standard validation practice <span class="citation"
+data-cites="mcdonald2019reliability saldana2021coding">[36],
+[37]</span>, a sample of at least 10% of code assignments made by each
+researcher was audited and re-coded by another; this had an acceptably
+high agreement of <span class="math inline">0.86</span>.</p>
+<p>Finally, the researchers grouped codes into larger themes, discussed
+overall findings and selected representative quotes.</p>
+<p>Our use of inter-rater agreement is primarily as a negotiation aid,
+since our findings do not hinge on frequency counts. In our analysis,
+codes are the process, not the product; our findings are organised into
+themes which were synthesized from these codes through the negotiation
+of expert researchers. In doing so, we align with McDonald et al.’s
+state-of-the-art analysis and guidelines for reliability in CSCW and HCI
+research <span class="citation"
+data-cites="mcdonald2019reliability">[36]</span>. To connect our
+findings to our codebook, direct references to codes are presented
+<strong>in bold</strong>.</p>
+<h2 data-number="4" id="sec:results"><span
+class="header-section-number">4</span> Results</h2>
+<p><span class="lambda">lambda</span> has several implications for the user experience
+of spreadsheets. It introduces a tension between abstraction and
+comprehension, and commenters propose an array of craft practices to
+cope. It also exposes limitations and opportunities in tooling.
+Commenters encounter barriers in learning and applying
+<span class="lambda">lambda</span>, and employ a variety of strategies to deal with
+these barriers. Moreover, <span class="lambda">lambda</span> leads commenters to
+critically evaluate their identity as programmers. Commenters contrast
+<span class="lambda">lambda</span> with alternatives to situate it within the landscape
+of available tools. Finally, we observed differences in topics and
+concerns between the various communities we studied. These findings are
+now detailed in turn.</p>
+<h3 data-number="4.1"
+id="implications-for-the-user-experience-of-spreadsheets"><span
+class="header-section-number">4.1</span> Implications for the user
+experience of spreadsheets</h3>
+<h4 data-number="4.1.1" id="the-tension-of-abstraction"><span
+class="header-section-number">4.1.1</span> The tension of
+abstraction</h4>
+<p>Abstraction is a double-edged sword and commenters seized upon this
+tension. While the benefits of <span class="lambda">lambda</span> are described in
+terms of improved comprehension, debugging, and maintenance, in each of
+these areas commenters spotted the potential both for improvement and
+regression.</p>
+<p>For example, commenters noted how <span class="lambda">lambda</span> could both
+improve as well as impair <strong>comprehension</strong>, especially the
+readability of individual formulas.</p>
+<p><em></em></p>
+<blockquote>[...] sometimes the excel formulas used are very long, convoluted,
+and hard to grok [...] Many cells often exist as calculation cells only,
+used for intermediate steps which leads to even more logic complexity.
+I’m excited to experiment with these to try and simplify some of the
+long, previously-deemed-necessary calculation methods. [HN<span
+class="math inline"><sub>176</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>If I were to ever find someones sheet using Lambda, chances are that
+I don’t know what are his values refering to [...] [YT<span
+class="math inline"><sub>2021</sub></span>]</blockquote>
+<p>Similarly, commenters anticipated benefits as well as issues in
+<strong>debugging, testing, and auditing</strong>.</p>
+<p><em></em></p>
+<blockquote>Wow this would make my reports easier to audit as the formula is only
+defined once. Plus easier [...] to read. [YT<span
+class="math inline"><sub>1264</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>As a financial analyst, my primary worry is that including custom
+functions will make it hard for another analyst [...] to review my
+projections [...] without the ability to easily audit a LAMBDA,
+financial analysts will not adopt this feature. [M<span
+class="math inline"><sub>191</sub></span>]</blockquote>
+<p>Commenters postulated the implications of <span class="lambda">lambda</span> for the
+<strong>maintenance</strong> of spreadsheets, in terms of not only the
+modularity, but also the obfuscation they enabled.</p>
+<p><em></em></p>
+<blockquote>It should make spreadsheets smaller in size, easier to maintain,
+easier to audit and easier to use. [R<span
+class="math inline"><sub>49</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>I really hope that’s true, but there’s lots of potential for the
+exact opposite as people cram entire programs into a single formula.
+[R<span class="math inline"><sub>77</sub></span>, responding to
+above.]</blockquote>
+<p>In general, commenters were divided on whether <span class="lambda">lambda</span> 
+functions were the Apollo’s Bow (“saving grace”) or the “Achilles’ Heel”
+of spreadsheet development.</p>
+<p><em></em></p>
+<blockquote>[...] The saving grace is that the calculation can be hidden within a
+Named Lambda function [...] which is easier on the eye. [M<span
+class="math inline"><sub>5</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>[...] cells whose formulas are way too long to be put in a single
+cell is Excel’s Achilles Heel (and a footgun that you are nearly
+guaranteed to encounter [...]). This LAMBDA proposal as written seems to
+exacerbate that problem [...]. [HN<span
+class="math inline"><sub>9</sub></span>]</blockquote>
+<p>To resolve these tensions, commenters proposed <strong>craft
+practices</strong> <span class="citation"
+data-cites="blackwell2018craft">[38]</span> for
+<span class="lambda">lambda</span> authoring and use.</p>
+<h4 data-number="4.1.2"
+id="development-of-new-patterns-and-practices"><span
+class="header-section-number">4.1.2</span> Development of new patterns
+and practices</h4>
+<p>Spreadsheet research has already documented the widespread phenomenon
+of end-users and institutions advocating for development standards and
+best practices, whether explicitly borrowed from software engineering or
+independently reinvented. <span class="lambda">lambda</span> is no exception, prompting
+discussions and suggestions about patterns and practices when authoring,
+naming, commenting, and applying it.</p>
+<p>Discussions on issues of authoring <span class="lambda">lambda</span> functions
+included naming conventions and problem decomposition using
+<span>let</span> bindings for subexpressions.</p>
+<p><em></em></p>
+<blockquote>[Referring to a function named COMBINE<span
+class="math inline"><em>λ</em></span>] I added the Greek <span
+class="math inline"><em>λ</em></span> simply as a flag to assist me in
+reading the formulas [M<span
+class="math inline"><sub>5</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>the definition of the Lambda function [...] within LET as a
+locally-scoped function is something I have adopted [M<span
+class="math inline"><sub>5</sub></span>]</blockquote>
+<p>Others proposed separating error handling and core logic:</p>
+<p><em></em></p>
+<blockquote>[M<span class="math inline"><sub>36</sub></span>] one approach [...]
+about handling error would be to have Lambda in two layers [...] putting
+the pseudo code here,<br>
+MAIN = Lambda(n,IF(n&lt;&gt;int(n), "Enter integer", FIB(n))) FIB=Lambda(n,..................)
+<!-- <span class="math display">$$\begin{array}{l}
+    \mathsf{MAIN}=\mathsf{Lambda}(n,
+    \mathsf{IF}(n\mathbin{&lt;&gt;}\mathsf{int}(n), \text{``Enter
+integer"},\\
+    \mathsf{FIB}(n)))
+    \, \mathsf{FIB}=\mathsf{Lambda}(n, ..................)
+    \end{array}$$</span> -->
+</blockquote>
+<p>Another example is the use of partial application to deal with
+limited default parameter capabilities:</p>
+<p><em></em></p>
+<blockquote>[M<span class="math inline"><sub>9</sub></span>] you could approach
+it like so:<br>
+Area := LAMBDA(dim_1,LAMBDA(dim_2,dim_1*dim_2))<br><br>
+<!-- <span class="math display">$$\begin{array}{l}
+        \mathsf{Area}:=\mathsf{LAMBDA}(dim\_1,\mathsf{LAMBDA}(dim\_2, \\
+        dim\_1*dim\_2))
+    \end{array}$$</span>  -->
+    
+Then partially apply the 2, you get:<br> 
+=Area(2) =&gt; =LAMBDA(dim_2,2*dim_2)
+<!-- <span
+class="math display">$$\begin{array}{l}
+        {=}\mathsf{Area}(2) \, \mathbin{=&gt;} \,
+{=}\mathsf{LAMBDA}(dim\_2,2*dim\_2)
+    \end{array}$$</span> -->
+  
+</blockquote>
+<p>In turn, each of the above proposals sparked questions about their
+effective use. For example:</p>
+<p><em></em></p>
+<blockquote>to what extent should I use Names for a hierarchy of Lambda functions
+in order to modularise the code? [M<span
+class="math inline"><sub>5</sub></span>]</blockquote>
+<h4 data-number="4.1.3" id="spreadsheet-tooling-and-experience"><span
+class="header-section-number">4.1.3</span> Spreadsheet tooling and
+experience</h4>
+<p>Editing and reading long formulas is already challenging <span
+class="citation" data-cites="ragavan2021comprehension">[39]</span>.
+<span class="lambda">lambda</span> encourages an extended, programmatic style of
+formula writing that throws into sharp relief the limits of the current
+formula management environment, exposing several inadequacies of
+<strong>tooling</strong> and <strong>user experience</strong> for
+formulas.</p>
+<p>Commenters therefore drew comparisons explicitly and implicitly to
+aspects of tooling well-established in the development environments of
+professional programmers: syntax highlighting, multi-line editing,
+parentheses matching, code completions and definitions, and version
+control.</p>
+<p><em></em></p>
+<blockquote>I don’t think name manager cuts it, they’ll need a formula manager.
+Comments between coding lines and tooltips are going to be necessary.
+Sharing, vital [...] [YT<span
+class="math inline"><sub>1045</sub></span>]</blockquote>
+<p>Functions that were developed and shared during discussions often
+served a need so fundamental to some user’s work that they expressed
+their desire for its inclusion in the <strong>standard function
+library</strong>. Often this was motivated by the assumption that a
+library function would be more performant and comprehensible than a
+custom function.</p>
+<p><em></em></p>
+<blockquote>Here is my upvote for the SPLIT function. I am very surprised Excel
+365 did not have that as a built-in [...] [R<span
+class="math inline"><sub>11</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>You should use native functions where you can. They are faster, more
+stable, and just better written codes. [...] If you ever need to share
+your workbook with others, they will appreciate native formula based
+approach over [custom functions] that they may not understand. [R<span
+class="math inline"><sub>85</sub></span>]</blockquote>
+<h3 data-number="4.2" id="barriers-to-learning-and-using-lambda"><span
+class="header-section-number">4.2</span> Barriers to learning and using
+<span class="lambda">lambda</span></h3>
+<p>Commenters encountered barriers that impaired or prevented their use
+of <span class="lambda">lambda</span>. We found three out of six programming learning
+barriers that Ko et al. observed <span class="citation"
+data-cites="ko2004six">[40]</span>:
+<strong><em>understanding</em></strong> barriers, where the
+<span class="lambda">lambda</span> behaviour departed from their expectations;
+<em>use</em> barriers, which stopped them authoring and applying
+<span class="lambda">lambda</span>; and many instances of
+<strong><em>coordination</em></strong> barriers, where users could not
+combine <span class="lambda">lambda</span> with other spreadsheet features, such as
+dynamic arrays. For example:</p>
+<p><em></em></p>
+<blockquote>[...] I cannot get even a really simple LAMBDA to work using the Name
+Manager [...] [M<span class="math inline"><sub>37</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>The slip was to use the Name [...] within its own definition [...]
+[M<span class="math inline"><sub>5</sub></span>, responding to
+above]</blockquote>
+<p><em></em></p>
+<blockquote>What if the LAMBDA function has two variables, then how to use these
+functions? [YT<span class="math inline"><sub>1985</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>[...] I wasn’t aware at all that the parameter name [...] I chose was
+actually referring to a very distant cell name in Excel sheet. [...]
+[M<span class="math inline"><sub>26</sub></span>]</blockquote>
+<p>The causes of barriers ranged from misinterpretation of marketing
+material, to lack of familiarity with programming jargon that
+<span class="lambda">lambda</span> gets it name from, to mistaken assumptions about its
+capabilities and intended use cases, to the differences between
+<span class="lambda">lambda</span> and implementations in other programming languages
+as anonymous functions.</p>
+<p><em></em></p>
+<blockquote>Say I have a simple LAMBDA function := LAMBDA(number, number+1). Is
+there a way to obtain the “number” by popping out an input box with a
+prompt like “give me a number”? [M<span
+class="math inline"><sub>14</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>you can’t use LAMBDAs like VBA to perform interactions or
+manipulations of things outside the scope of the grid. [M<span
+class="math inline"><sub>9</sub></span>, responding to above]</blockquote>
+<p><em></em></p>
+<blockquote>By lambda I thought its something related to wavelength of a
+frequency. [YT<span class="math inline"><sub>1828</sub></span>]</blockquote>
+<p>To address and overcome these barriers, commenters employed a variety
+of strategies. Some asked for <strong>help</strong>, or searched online
+documentation. For example:</p>
+<p><em></em></p>
+<blockquote>1. Can I save my LAMBDA to Excel so that it can be accessed in all
+workbooks instead of only the workbook it was created on? 2. When my
+LAMBDA is called up, can it display the parameters(syntax) the same way
+a native function does? [M<span
+class="math inline"><sub>35</sub></span>]</blockquote>
+<p>Others posted examples containing errors and asked others for help in
+<strong>fixing the error</strong>. In debugging and repairing these
+errors, commenters were able to get personalised and grounded
+explanations for aspects of <span class="lambda">lambda</span> usage.</p>
+<p><em></em></p>
+<blockquote>I defined a recursive lambda [...] but received #value. Can u help to
+resolve this? [M<span class="math inline"><sub>21</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>Your lambda requires three parameters [...] so your reference to
+itself should have 3 parameters as well. [M<span
+class="math inline"><sub>9</sub></span>, responding to above]</blockquote>
+<p>We observed much <strong>experimentation</strong> and hypothesising.
+Commenters conducted systematic examinations of certain aspects of
+<span class="lambda">lambda</span> usage, such as performance limitations, and
+interactions with other spreadsheet features, and reported their
+findings to the community.</p>
+<p><em></em></p>
+<blockquote>I don’t know if the rest of you love lambdas as much as I do but I
+have been using them extensively [...] and would like to share one of
+the tricks I have learned. [...] [R<span
+class="math inline"><sub>19</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>I’m trying out excels new LAMBDA function. I’m trying to call it
+recursively as they write in the press release that you would be able
+to. [...] [R<span class="math inline"><sub>48</sub></span>]</blockquote>
+<p>Often, commenters were unable to completely determine the reasons for
+observed behaviours, and in response developed <strong>‘folk
+theories’</strong> <span class="citation"
+data-cites="johnson1992basic eslami2016first devito2018people">[41]–[43]</span>
+about <span class="lambda">lambda</span>, which, while possibly incorrect, facilitated
+the formation of mental models that allowed commenters to reason about
+the usage of <span class="lambda">lambda</span>.</p>
+<p><em></em></p>
+<blockquote>[...] If it is actually an iterative function then it is likely to
+have an underlying recursive function associated with it. The lack of
+NUM error may be telling or it may simply result from the fact that
+BYROWS always operates “inside LAMBDA”. The more we deal with recursive
+LAMBDAS the better we will understand their underpinnings. [YT<span
+class="math inline"><sub>1263</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>[...] BYROW etc don’t seem to have the overhead that recursive
+functions do. They don’t return the NUM! error. I think they’ve been
+built using single vectors [...] They know when to stop in the same way
+as any other formula as they always point to a defined range or array.
+[...] [YT<span class="math inline"><sub>1045</sub></span>, responding to
+above]</blockquote>
+<h3 data-number="4.3" id="end-user-software-engineering"><span
+class="header-section-number">4.3</span> End-user software
+engineering</h3>
+<p>In end-user <em>programming</em>, the focus is on completing the task
+and the program is a means to an end, whereas in end-user <em>software
+engineering</em>, the focus is on the program itself: its correctness,
+maintainability, and reuse <span class="citation"
+data-cites="ko2011state">[28]</span>. Discussions of
+<strong>naming</strong> and <strong>reuse</strong> prompted by
+<span class="lambda">lambda</span> signal a shift from the former to the latter.</p>
+<p><span class="lambda">lambda</span> definitions provoke end-user consideration of
+naming conventions because, notwithstanding a trivial invocation, names
+are compulsory arguments to <span>let</span> and <span class="lambda">lambda</span>. A
+key reason for the approachability of spreadsheet programming is the
+<em>lack</em> of a forced consideration of naming: grid references
+provide automatic names for variables; to instantiate a variable the
+user needs only enter a value or a formula – the act of choosing a grid
+location subsumes the act of naming. While assigning names to grid
+ranges is supported through the name manager, only a small fraction of
+spreadsheet users know of the feature, let alone use it <span
+class="citation" data-cites="sarkar2018calculation">[44]</span>. Thus,
+this discussion could only have been precipitated by <span>let</span>
+and <span class="lambda">lambda</span>.</p>
+<p><em></em></p>
+<blockquote>[...] Where you’ve chosen to name your function something related to
+the report, I think it should be related to the action. [...] with this
+one and work out the best practice [...] [YT<span
+class="math inline"><sub>1045</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>I don’t think it is Microsoft’s duty to help us name things smartly.
+That is our duty. It is funny. The vast majority of computer users on
+the planet earth do not even have the day 1, basic computer skill of
+naming things smartly. [...] [YT<span
+class="math inline"><sub>1218</sub></span>]</blockquote>
+<p>Similarly, until the introduction of <span class="lambda">lambda</span>, users had
+to learn a different programming language (e.g., VBA, JavaScript) to
+define functions, and organizational IT teams often restrict their use
+over security concerns (Section <a href="#sec:alternatives"
+data-reference-type="ref" data-reference="sec:alternatives">4.5</a>).
+The capabilities of <span class="lambda">lambda</span> leads to speculations about
+changes to “practice and mindset” required to build spreadsheets.</p>
+<p><em></em></p>
+<blockquote>The future is to write robust formulas for complex and reusable tasks
+[...] or build even more complex ones like subroutines [...] a
+structural revolution [...] [YT<span
+class="math inline"><sub>370</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>After experimenting for a while with LET and now LAMBDA [...] the
+change of practice and mindset required to create good [...] solutions
+is so great that one’s past experience [...] may itself be the greatest
+impediment [...] [M<span class="math inline"><sub>5</sub></span>]</blockquote>
+<h3 data-number="4.4" id="identity-formation"><span
+class="header-section-number">4.4</span> Identity formation</h3>
+<p>The computational nature of <span class="lambda">lambda</span> raised discussions
+regarding the identity of spreadsheet users as programmers,
+<strong>spreadsheets as code</strong>, and the expertise required to
+harness <span class="lambda">lambda</span>. One perspective distinguished spreadsheet
+authoring and programming, similarly viewing <span class="lambda">lambda</span> as a
+separate to coding.</p>
+<p><em></em></p>
+<blockquote>That’s true if you know VB. Most Excel users don’t and this is a
+simple method to build complex functions without having to code.
+[YT<span class="math inline"><sub>421</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>Many people that use Excel are office workers and don’t have enough
+background in programming or the time to learn it. You can pick up the
+LAMBDA function in a few minutes though if you are already familiar with
+many other Excel functions. [YT<span
+class="math inline"><sub>421</sub></span>] 
+</blockquote>
+Prior work suggests that this
+perspective can be motivated by wanting to distance oneself from a
+“programmer” <span class="citation"
+data-cites="hermans2016spreadsheets">[45]</span>. This tension of
+identity was also reflected in the discussion.
+<p><em></em></p>
+<blockquote>Whilst [...] Lambda functions are simple extensions of the
+traditional spreadsheet methods [...] the process of solution
+development shifts from the ad-hoc to being a programming exercise [...]
+traditional methods allow users to interact with their numbers whilst
+remaining in denial that they are actually programming [M<span
+class="math inline"><sub>5</sub></span>]</blockquote>
+
+The <strong>expertise</strong>
+required to use <span class="lambda">lambda</span> was another common theme. Central to
+the discussion was the notion of expertise across an organization,
+particularly the practice of those with expertise building and
+<strong>sharing</strong> solutions with those who do not. Some viewed
+<span class="lambda">lambda</span> as another advanced feature reserved for those with
+expertise.
+<p><em></em></p>
+<blockquote>Most organizations [...] only have a couple people who can actually
+make and edit the advanced sheets [...] and lots of people who use those
+sheets with a very, very rudimentary knowledge of Excel to generally get
+their jobs done. I don’t really see the addition of new advanced
+functionality changing that [...] [HN<span
+class="math inline"><sub>38</sub></span>] </blockquote>
+
+Several users expressed
+reluctance or concerns because collaborators might not be familiar with
+<span class="lambda">lambda</span> functions; thus, <span class="lambda">lambda</span> functions might
+hinder comprehension.
+<p><em></em></p>
+<blockquote>[...] though how might non-technical folks feel about a coworker
+sending them a spreadsheet with function-values? [HN<span
+class="math inline"><sub>4</sub></span>] </blockquote>
+
+In contrast, others indicated
+that <span class="lambda">lambda</span> can improve sharing by providing a way to
+implement advanced functionality without resorting to traditional
+programming such as VBA, reaffirming that some users perceive a
+distinction between spreadsheets and code.
+<p><em></em></p>
+<blockquote>There’s always been this midpoint of complexity when making
+spreadsheets that coworkers will use. Including macros scares them away
+but using long, un-named formulas does not even though it is much less
+clear what it’s doing [...] a macro was not needed, only a label and
+some arguments to lower the cognitive load. [HN<span
+class="math inline"><sub>95</sub></span>]</blockquote>
+<p>Consistent with prior observations, we observed derision and
+gatekeeping behaviour regarding the identity and expertise of
+spreadsheet users as programmers <span class="citation"
+data-cites="hermans2016spreadsheets">[45]</span>.</p>
+<p><em></em></p>
+<blockquote>What has instead happened, I shit you not, is we have “Excel
+influencers" teaching people recursion “without code!" (aka without
+VBScript). I cried and I laughed when I first saw, it was a watershed
+moment in CS education. [HN<span
+class="math inline"><sub>48</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>[...] no mention of debugging. In the hands of Excel cowboys, this
+can become another foot gun. [HN<span
+class="math inline"><sub>124</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>[...] The irony is that this feature will almost certainly be met
+with derision &amp; scorn from the CS crowd and clueless shrugs from
+excel users. [HN<span class="math inline"><sub>182</sub></span>]</blockquote>
+<p>However, we also observed the championing and support for the
+perspective that spreadsheet users are part of a programming
+community.</p>
+<p><em></em></p>
+<blockquote>Of course this also means that Excel becomes even more of a slippery
+slope towards programming generally, which can only be a good thing.
+[HN<span class="math inline"><sub>161</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>[...] this could actually be a really natural bridge into programming
+for a lot of people whose advanced Excel skills already have them on the
+cusp. [HN<span class="math inline"><sub>119</sub></span>]</blockquote>
+<p>Debate about the identity of spreadsheet users as programmers is by
+no means new <span class="citation"
+data-cites="hermans2016spreadsheets">[45]</span>, but the introduction
+of a first-class computational abstraction is a fresh opportunity for
+users and researchers alike to revisit this discussion.</p>
+<h3 data-number="4.5" id="sec:alternatives"><span
+class="header-section-number">4.5</span> Alternatives</h3>
+<p>Discussions of potential <strong>alternatives</strong> to
+<span class="lambda">lambda</span>, including other ways of achieving the same thing as
+<span class="lambda">lambda</span>, or simply citations of other technologies, helped
+users situate <span class="lambda">lambda</span> among a wider suite of tools. The most
+common comparison was to VBA. Users discussed other programming
+languages, software packages, and alternative ways of using existing
+spreadsheet features.</p>
+<p>After expertise, which we have covered, the salient axes of
+comparison were <strong>security</strong> and
+<strong>performance</strong>. When contrasted with VBA macros,
+<span class="lambda">lambda</span> was seen to have security and performance benefits,
+due to the perceived superiority of the formula calculation engine over
+the VBA environment.</p>
+<p><em></em></p>
+<blockquote>Alternatively, Excel lambda-based udfs will be faster than VBA UDFs
+because the Excel Calc engine is multi-threaded, whereas VBA is
+single-threaded. [R<span class="math inline"><sub>21</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>Lambdas also have the advantage of working in situations where macros
+are not allowed or on platforms where VBA is not available [...] though
+the latter also allows you to perform many workbook management tasks.
+[YT<span class="math inline"><sub>909</sub></span>]</blockquote>
+<p><em></em></p>
+<blockquote>The problem with “macros” is that they can be arbitrary VBA code that
+can invoke OS functions and foreign applications. Lambdas can only
+invoke Excel functions that you can invoke anyway [...] Lambdas merely
+add an abstraction mechanism, they otherwise don’t provide access to new
+functionality. [HN<span class="math inline"><sub>88</sub></span>]</blockquote>
+<h3 data-number="4.6" id="differences-in-communities"><span
+class="header-section-number">4.6</span> Differences in communities</h3>
+<p>We observed differences between the four communities studied,
+reflective of the differing demographics of users of these websites and
+their differing concerns. Together, they showcase a diverse range of
+stakeholder perspectives.</p>
+<p>For example, Hacker News, a community aimed towards technology
+industry professionals, involved comparative and analytical comments
+that considered the reception and consequences of <span class="lambda">lambda</span> on
+the spreadsheet community. Comments from Hacker News were the longest on
+average (median=47 words), in part because they explored technical
+concepts. Many drew comparisons with programming concepts, research that
+inspired <span class="lambda">lambda</span>, potential improvements based on other
+programming paradigms, or whether using spreadsheets constituted
+programming.</p>
+<p>On the other hand, Microsoft Tech Community is the official
+discussion and help forum for Microsoft products, including Excel. Users
+fell largely into two groups: a small number of experts who contributed
+to several threads, and a large number of users who came to seek help,
+started a single thread, and posted only a few comments on it. Comments
+were somewhat long (median=44 words) and often included formulas and
+attached spreadsheets. This can be seen in the high occurrence of
+<strong>use intent</strong> and <strong>experimentation</strong>, both
+of which relate to users writing examples of <span class="lambda">lambda</span> 
+(Fig. <a href="#fig:source_diffs" data-reference-type="ref"
+data-reference="fig:source_diffs">1</a>).</p>
+<p>Reddit discussions were more concerned with sharing
+<strong>craft</strong> practices. Most threads came from the
+<code>r/excel</code> forum, which is focused on sharing techniques and
+news, and oriented towards practitioners and enthusiasts. Reddit
+comments discussed naming and commenting, how to use
+<span class="lambda">lambda</span> to improve maintainability and comprehension, and
+pitfalls to avoid. Reddit users appeared to have a wide range of
+expertise. Some had formal knowledge of programming, although a smaller
+proportion than Hacker News.</p>
+<p>YouTube comments were often in response to tutorial videos, which
+users presumably watched to learn about <span class="lambda">lambda</span>. Our YouTube
+data contained more unique users and comments than the other three
+sources combined, but its comments were also the shortest (median=13
+words), and often not informative. YouTube comments often reflected
+users’ unjustified <strong>sentiment</strong> towards
+<span class="lambda">lambda</span> (Fig. <a href="#fig:source_diffs"
+data-reference-type="ref" data-reference="fig:source_diffs">1</a>).</p>
+<p>To illustrate the differences, we present the relative frequency of
+codes across different communities in Figure <a href="#fig:source_diffs"
+data-reference-type="ref" data-reference="fig:source_diffs">1</a>. We
+recognise inherent limitations in attempting to quantify qualitative
+codes, and present this purely as an narrative aid. We are not making
+quantitative claims about the representativeness of these code
+frequencies.</p>
+<figure>
+  <img src="source_diffs.png" id="fig:source_diffs"
+  alt="Relative frequencies of qualitative codes, compared between different online communities." style="width: 50%; min-width: 15rem;"/>
+  <figcaption aria-hidden="true">Fig. 1. Relative frequencies of qualitative
+  codes, compared between different online communities.</figcaption>
+</figure>
+<h2 data-number="5" id="sec:discussion"><span
+class="header-section-number">5</span> Discussion</h2>
+<h3 data-number="5.1" id="are-spreadsheet-users-programmers"><span
+class="header-section-number">5.1</span> Are spreadsheet users
+programmers?</h3>
+<p>The question of whether spreadsheet users are programmers is not
+inconsequential terminological hair-splitting; it has implications for
+the role spreadsheets play in society.</p>
+<p><em>Programmer</em> is a marked identity <span class="citation"
+data-cites="brekhus1998sociology">[46]</span> with cultural associations
+against which end-users judge themselves. The conceptualisation of
+spreadsheet use as a programming activity therefore directly suggests to
+users whether spreadsheets are for people ‘like them’ or for ‘others’.
+People’s skills are shaped and captured by software, resulting in an
+intimate binding of one’s professional value to the software one uses
+<span class="citation"
+data-cites="nouwens2018application">[47]</span>.</p>
+<p>It has been previously observed that spreadsheet users do not view
+themselves as programmers <span class="citation"
+data-cites="hermans2016spreadsheets">[45]</span>. Our findings provide
+additional nuance: some spreadsheet users view themselves as
+programmers, but others do not. Some are unaware that a distinction can
+be made, or if a distinction is to be made, what the appropriate grounds
+are. Users who concede that spreadsheet formula authoring can be viewed
+as programming may nonetheless not self-identify as programmers.</p>
+<p>boyd and Ellison describe the community process of <em>impression
+management</em> <span class="citation"
+data-cites="boyd2007social">[48]</span>, where the expression of self
+through social media becomes a mechanism for forming and signalling
+identity. Though highly individualised, the identity of “programmer” is
+at the same time a community identity, subject to community negotiation.
+In this respect it is similar to sociological theories of group
+formation <span class="citation"
+data-cites="litwak1969primary">[49]</span>. Kinship, friendship, and
+neighbourly groups serve as means of allocating resources, but also as a
+psychological device for uniting the sense of self with a sense of
+belonging. Thus, the use and discussion of <span class="lambda">lambda</span> can serve
+both as a peer-signalling mechanism as well as to enact one’s own
+identity as a programmer.</p>
+<p><span class="lambda">lambda</span> creates new bridges (and gulfs) between
+programmers and ‘others’. Many commenters implied that using
+<span class="lambda">lambda</span> is closer to traditional notions of programming than
+authoring spreadsheet formulas, but it is unclear what underpins this
+perception. Does managing complexity via <span class="lambda">lambda</span> resemble
+software engineering practices, associated with programming and
+dissociated from spreadsheets? As Wing notes, decomposition and
+abstraction are key to computational thinking <span class="citation"
+data-cites="wing2006computational">[50]</span>.</p>
+<p>Some commenters predicted that <span class="lambda">lambda</span> is going to change
+the way spreadsheets are built. However, absent better tooling and
+higher levels of user expertise, it is doubtful whether a
+<span class="lambda">lambda</span>-centric spreadsheet development approach induces
+better design, testing, or documentation. While some users anticipated a
+“structural revolution”, such optimism ought to be tempered by the fact
+that formula writers constitute a minority of spreadsheet users, and
+corpus studies show that as few as 7% of spreadsheets contain a single
+formula <span class="citation"
+data-cites="hermans2015enron barik2015fuse">[51], [52]</span>.</p>
+<h3 data-number="5.2" id="abstraction-and-comprehension"><span
+class="header-section-number">5.2</span> Abstraction and
+comprehension</h3>
+<p>Ragavan et al.’s study of spreadsheet comprehension found two main
+bottlenecks to formula comprehension: first, the information-seeking
+detours required to understand the quantities on which a formula
+operates; and second, understanding the usage of unfamiliar formula
+functions <span class="citation"
+data-cites="ragavan2021comprehension">[39]</span>.</p>
+<p>While some commenters felt that <span class="lambda">lambda</span> improved formula
+comprehension, particularly regarding ‘megaformulas’, others felt that
+these problems would be worsened. Ragavan et al.’s findings allow us to
+identify the source of this contradiction: first, the naming of
+subexpressions can either eliminate or necessitate information-seeking
+detours; and second, with <span class="lambda">lambda</span>, there is both the
+potential for more intelligible, domain-specific functions as well as
+for arbitrary, poorly-documented constructions. The resolution of this
+tension cannot be (purely) in the technical design of the formula
+language, and thus we observed users develop craft practices in
+response.</p>
+<h3 data-number="5.3"
+id="implications-for-spreadsheets-and-other-tools"><span
+class="header-section-number">5.3</span> Implications for spreadsheets
+and other tools</h3>
+<p><span class="lambda">lambda</span> promotes attention investment in complex
+formulas, and thus raises issues of tooling. Discussions made clear the
+value of ideas from professional development environments, such as
+syntax highlighting, code definitions, autocomplete, versioning and
+library management, and so on. We are not the first to observe such
+needs or propose their implementation. However the wholesale
+implementation of professional features for end-user programmers is
+seldom an effective strategy; the design of Calculation View <span
+class="citation" data-cites="sarkar2018calculation">[44]</span> shows
+how a code-like representation might be sympathetically introduced as a
+companion to the spreadsheet grid.</p>
+<p>Opportunities also arise for misuse. Common anti-patterns in
+programming (e.g., abuse of recursion, deeply nested conditions, deep
+chains of invocations) may surface through <span class="lambda">lambda</span>.
+Opportunities emerge for educating spreadsheet users about such misuses,
+and for addressing them (e.g., via refactoring tools <span
+class="citation" data-cites="hermans2015detecting">[53]</span>). By
+analogy to prior research, there are research opportunities in unit
+testing and documentation <span class="citation"
+data-cites="ko2011state">[28]</span>.</p>
+<h3 data-number="5.4" id="limitations"><span
+class="header-section-number">5.4</span> Limitations</h3>
+<p>Analyses of online communities are subject to self-selection bias;
+participation in our dataset is skewed towards end-user programmers with
+an intrinsic interest in <span class="lambda">lambda</span> and in developing their
+technical skills. This group may not be representative. On the other
+hand, attitudes and practices of spreadsheet use often percolate through
+the end-user community via influential, opinionated, and expert
+individuals who advocate for features and techniques <span
+class="citation"
+data-cites="sarkar2018people brancheau1990adoption">[54], [55]</span>.
+As such, it seems advantageous to study a group whose views are likely
+to influence others.</p>
+<p>During coding, we felt limited by our <em>unitisation</em> of the
+data into individual comments. Sometimes codes were more properties of
+(sub-)threads than of individual comments. There were digressive and
+discursive comments which, despite arising in the context of one set of
+codes, were not directly relevant to them. We developed heuristics for
+consistency (e.g., to qualify for a code, a reply must add new
+information and not merely repeat or agree with a previous comment) but
+still felt the need for a more flexible scheme than applying codes to
+individual comments. While in this study we followed the single-comment
+model of previous work <span class="citation"
+data-cites="barik2017expressions">[33]</span>, this strikes us as an
+area with potential for methodological innovation.</p>
+<p>Our data captures an early stage of the <span class="lambda">lambda</span> release,
+with access limited for most of this period to a public beta testing
+program (albeit a very large one, with millions of members). We could
+have waited until <span class="lambda">lambda</span> had been in general release for
+some time. However, observations of user experiences at all stages of a
+product lifecycle are useful; documenting early barriers and
+misconceptions will enable comparisons with user attitudes in the
+future.</p>
+<h2 data-number="6" id="sec:conclusion"><span
+class="header-section-number">6</span> Conclusion and future work</h2>
+<p>We studied reactions to lambda abstractions in spreadsheets through a
+thematic analysis of nearly 2,700 comments posted on four online forums.
+Commenters noted that abstraction has both benefits and drawbacks, and
+that complementary practices (e.g., variable naming, documentation) and
+better tooling (e.g, editors, sharing and versioning tools, testing and
+debugging utilities) are necessary to use
+<span class="lambda">lambda</span> effectively. They also anticipated challenges around
+comprehension by less-expert users. <span class="lambda">lambda</span> prompted mindset
+changes towards investing in authoring more reusable abstractions.</p>
+<p>The Excel <span class="lambda">lambda</span> function reopens debate around the
+identity of spreadsheet users as programmers. It raises questions of
+whether users ought to learn a ‘traditional’ programming language to
+access concepts such as abstraction and recursion, and whether lambda
+abstractions are a smooth segue for spreadsheet users to begin learning
+a language such as Python. Each of these opens a rich avenue for future
+work.</p>
+
+<h2>Appendix: codes and their descriptions</h2>
+<p><span id="apx:codebook" label="apx:codebook"></span></p>
+<ul>
+<li><p><span><strong>irrelevant</strong>:</span> not related to lambdas,
+or related to lambdas but not informative, or not in English</p>
+
+<h3 id="the-tensions-of-abstraction">A. The tensions of
+abstraction</h3></li>
+<li><p><span><strong>comprehension</strong>:</span> All discussions
+about ability to understand/read/comprehend formulas/lambdas (or the
+lack), granular at the level of a single formula</p></li>
+<li><p><span><strong>debugging, testing, auditing</strong>:</span>
+(abstract) The ability to debug, test, audit formulas/lambdas, their ux,
+challenges</p></li>
+<li><p><span><strong>maintainability</strong>:</span> discussions about
+formula and spreadsheet maintainability made better or worse (includes
+simplification, modularity, error-proneness), only if this doesn’t fall
+under debugging testing and auditing. Discussions about code-quality
+(code being formula), importance, or lack thereof</p></li>
+<li><p><span><strong>craft practices: naming</strong>:</span> discussion
+about naming of parameters, the challenges, importance, etc</p></li>
+<li><p><span><strong>craft practices: comments</strong>:</span>
+discussion about the ability to add comment in formulas</p></li>
+<li><p><span><strong>craft practices: others</strong>:</span> other
+craft practices; suggest some usage idiom or technique</p></li>
+<li><p><span><strong>availability</strong>:</span> discussion about
+access to <span class="lambda">lambda</span>, channels, Excel versions, various end
+points (e.g., desktop, web, and mobile)</p></li>
+<li><p><span><strong>sharing</strong>:</span> sharing formulas and
+lambdas, the challenges; a reuse scenario where colleagues/other people
+are explicitly mentioned, or sharing files with lambdas / collaboration
+(does not include sharing files in a forum for debugging
+support)</p></li>
+<li><p><span><strong>reuse</strong>:</span> reusing formulas and
+lambdas, across workbooks, from coworkers; mentions scenarios where
+lambda is used multiple times</p>
+
+<h3 id="implications-for-tools-and-practices">B. Implications for tools and
+practices</h3></li>
+<li><p><span><strong>user experience</strong>:</span> consideration of
+aspects of the experience of overall current lambda usage, but not
+mentioning tooling keywords (e.g., current syntax, current way of
+writing)</p></li>
+<li><p><span><strong>tooling</strong>:</span> explicit mention of:
+editor, version control, IDE, debugger, package manager, repository. A
+subset of user experience.</p></li>
+<li><p><span><strong>standard formula library</strong>:</span>
+references to functionality that should be built in to spreadsheet
+formula language / functions, e.g. regex</p></li>
+<li><p><span><strong>performance</strong>:</span> discuss speed, memory
+requirements, etc. for lambdas (or alternatives, in comparison)</p></li>
+<li><p><span><strong>security</strong>:</span> discuss security issues
+for lambdas (or alternatives, in comparison)</p>
+
+<h3 id="barriers-and-strategies">C. Barriers and strategies</h3></li>
+<li><p><span><strong>understanding barriers</strong>:</span> the process
+of understanding lambdas, the desire to, the challenge, common
+misunderstandings. Also, misreadings - perhaps assumptions based on
+marketing material about what lambdas are like. Includes asking
+questions about lambda understanding. This also includes ‘understanding’
+and ‘use’ barriers as per Ko et al.’s framework.</p></li>
+<li><p><span><strong>coordination barrier</strong>:</span> any confusion
+or remark about interaction between *lambdas* and some other Excel
+feature</p></li>
+<li><p><span><strong>sentiment</strong>:</span> Positive / negative
+sentiment about lambdas with no justifications (e.g., lambdas are
+nice).</p></li>
+<li><p><span><strong>use intent or scenario</strong>:</span> shares
+concrete current or anticipated use cases for lambdas (or a use case
+inspired by discussion of lambdas, even if lambdas are not the best tool
+to solve the problem)</p></li>
+<li><p><span><strong>sensemaking: help</strong>:</span> use of help
+resources, their usefulness, or their unhelpfulness. Asking others on
+the internet for help on things that should be in documentation</p></li>
+<li><p><span><strong>sensemaking: experimentation</strong>:</span> ‘I
+tried/will try X’, probing the behaviour and possibilities of
+lambda</p></li>
+<li><p><span><strong>folk theory</strong>:</span> guessing about lambda
+behaviour, or why lambdas interact with other features in a certain way
+(without actually trying something out, or trying but not getting direct
+evidence for the guess). Specifically refers to an unverified guess or
+hypothesis about how lambdas work. Look out for sentences such as: ‘I
+think what is happening is X’, or ‘I guess X happens becuse Y’. An
+episode of understanding (non-barrier) (e.g., ‘I don’t understand why Y
+happens’) may culminate in folk (e.g., ‘I guess it is because of X’) if
+it isn’t or can’t be properly answered in the thread.</p></li>
+<li><p><span><strong>fix my error</strong>:</span> comments that are
+requesting or attempting to fix a bug in a lambda</p>
+
+<h3 id="identity-formation-1">D. Identity formation</h3></li>
+<li><p><span><strong>spreadsheets as code</strong>:</span> discussion
+about the differences/similarities of spreadsheets and programming,
+whether users are programmers, “real programming”</p></li>
+<li><p><span><strong>spreadsheet expertise</strong>:</span>
+consideration of skill/knowledge required to use lambdas or
+alternatives</p></li>
+<li><p><span><strong>programming theory</strong>:</span> explicit
+mention of formal academic concepts from computer science or programming
+theory such as types, currying, recursion</p></li>
+<li><p><span><strong>programming culture</strong>:</span> references to
+programming culture, or concepts adjacent to programming, such as
+project-euler, XKCD, scheme, lisp interpreter, or tracing lineage of
+functional programming ideas (overlaps with alternatives, if they
+mention concrete implementations)</p></li>
+<li><p><span><strong>alternatives</strong>:</span> discussions of
+potential alternatives to LAMBDA (including other ways of doing the same
+thing as <span class="lambda">lambda</span>), or comparison/citation of other
+technologies (thus helping situate Lambda among wider suite of
+tools)</p></li>
+</ul>
+
+<h2 class="unnumbered" id="acknowledgments">Acknowledgments</h2>
+<p>We thank the reviewers for their careful feedback.</p>
+
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-jones2020announcing" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">B.
+Jones, <span>“Announcing <span class="lambda">lambda</span>: <span>T</span>urn
+<span>Excel</span> formulas into custom functions,”</span> <em>Microsoft
+Tech Community</em>. Microsoft, Dec. 2020. Available: <a
+href="https://techcommunity.microsoft.com/t5/excel-blog/announcing-lambda-turn-excel-formulas-into-custom-functions/ba-p/1925546">https://techcommunity.microsoft.com/t5/excel-blog/announcing-lambda-turn-excel-formulas-into-custom-functions/ba-p/1925546</a></div>
+</div>
+<div id="ref-ultimatae2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A.
+Gordon and S. Peyton Jones, <span>“<span class="lambda">lambda</span>: The ultimate
+<span>Excel</span> worksheet function,”</span> Jan. 2021. Available: <a
+href="https://www.microsoft.com/en-us/research/blog/lambda-the-ultimatae-excel-worksheet-function/">https://www.microsoft.com/en-us/research/blog/lambda-the-ultimatae-excel-worksheet-function/</a></div>
+</div>
+<div id="ref-xkcd2453" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">R.
+Munroe, <span>“<span>Excel</span> <span class="lambda">lambda</span>,”</span> 2021.
+Available: <a
+href="https://m.xkcd.com/2453/">https://m.xkcd.com/2453/</a></div>
+</div>
+<div id="ref-rojas2002konrad" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">R.
+Rojas and U. Hashagen, <span>“<span>Konrad</span> <span>Zuse</span>’s
+<span>Z4</span>: Architecture, programming, and modifications at the
+<span>ETH</span> <span>Zurich</span>,”</span> 2002.</div>
+</div>
+<div id="ref-carpenter1977turing" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">B.
+E. Carpenter and R. W. Doran, <span>“<span class="nocase">The other
+Turing machine</span>,”</span> <em>The Computer Journal</em>, vol. 20,
+no. 3, pp. 269–279, Jan. 1977, doi: <a
+href="https://doi.org/10.1093/comjnl/20.3.269">10.1093/comjnl/20.3.269</a>.</div>
+</div>
+<div id="ref-burnett2001forms" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">M.
+Burnett, J. Atwood, R. W. Djang, J. Reichwein, H. Gottfried, and S.
+Yang, <span>“Forms/3: A first-order visual language to explore the
+boundaries of the spreadsheet paradigm,”</span> <em>Journal of
+functional programming</em>, vol. 11, no. 2, pp. 155–206, 2001.</div>
+</div>
+<div id="ref-jones2003user" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">S.
+Peyton Jones, A. Blackwell, and M. Burnett, <span>“A user-centred
+approach to functions in <span>E</span>xcel,”</span> in <em>Proceedings
+of the eighth ACM SIGPLAN international conference on functional
+programming</em>, 2003, pp. 165–176.</div>
+</div>
+<div id="ref-mccutchen2020elastic" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">M.
+Mccutchen, J. Borghouts, A. D. Gordon, S. Peyton Jones, and A. Sarkar,
+<span>“Elastic sheet-defined functions: Generalising spreadsheet
+functions to variable-size input arrays,”</span> <em>Journal of
+Functional Programming</em>, vol. 30, 2020.</div>
+</div>
+<div id="ref-chalhoub2022structure" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">G.
+Chalhoub and A. Sarkar, <span>“<span class="nocase"><span>‘It’s Freedom
+to Put Things Where My Mind Wants’</span>: Understanding and Improving
+the User Experience of Structuring Data in Spreadsheets</span>,”</span>
+in <em>Proceedings of the 2022 CHI conference on human factors in
+computing systems</em>, 2022.</div>
+</div>
+<div id="ref-joharizadeh2020gridlets" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">N.
+Joharizadeh, A. Sarkar, A. D. Gordon, and J. Williams, <span>“Gridlets:
+Reusing spreadsheet grids,”</span> in <em>Extended abstracts of the 2020
+CHI conference on human factors in computing systems</em>, 2020, pp.
+1–7.</div>
+</div>
+<div id="ref-blackwell2008abstract" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">A.
+F. Blackwell, L. Church, and T. R. Green, <span>“The abstract is an
+enemy: Alternative perspectives to computational thinking.”</span> in
+<em>PPIG</em>, 2008, p. 5.</div>
+</div>
+<div id="ref-church32" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">A.
+Church, <span>“A set of postulates for the foundation of logic,”</span>
+<em>Annals of Mathematics</em>, vol. 33, no. 2, pp. 346–366, 1932.</div>
+</div>
+<div id="ref-church41" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">A.
+Church, <em>The calculi of lambda-conversion</em>. Princeton University
+Press, 1941.</div>
+</div>
+<div id="ref-landin65" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">P.
+J. Landin, <span>“Correspondence between <span>ALGOL</span> 60 and
+<span>Church</span>’s lambda-notation: Parts <span>I</span> and
+<span>II</span>,”</span> <em>Communications of the ACM</em>, vol. 8, no.
+1–2, 1965.</div>
+</div>
+<div id="ref-lambda-ultimate-imperative" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">G.
+L. Steel Jr. and G. J. Sussman, <span>“<span class="lambda">lambda</span>: The ultimate
+imperative,”</span> MIT AI Laboratory, AI Memo 353, Mar. 1976.
+Available: <a
+href="https://dspace.mit.edu/handle/1721.1/5790">https://dspace.mit.edu/handle/1721.1/5790</a></div>
+</div>
+<div id="ref-green1996usability" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">T.
+R. G. Green and M. Petre, <span>“Usability analysis of visual
+programming environments: A <span>‘cognitive dimensions’</span>
+framework,”</span> <em>Journal of Visual Languages &amp; Computing</em>,
+vol. 7, no. 2, pp. 131–174, 1996.</div>
+</div>
+<div id="ref-blackwell2006psychological" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">A.
+F. Blackwell, <span>“Psychological issues in end-user
+programming,”</span> in <em>End user development</em>, Springer, 2006,
+pp. 9–30.</div>
+</div>
+<div id="ref-shneiderman1997direct" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">B.
+Shneiderman, <span>“Direct manipulation for comprehensible, predictable
+and controllable user interfaces,”</span> in <em>Proceedings of the 2nd
+international conference on intelligent user interfaces</em>, 1997, pp.
+33–39.</div>
+</div>
+<div id="ref-blackwell2001swyn" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">A.
+F. Blackwell, <span>“See what you need: Helping end-users to build
+abstractions,”</span> <em>Journal of Visual Languages &amp;
+Computing</em>, vol. 12, no. 5, pp. 475–499, 2001.</div>
+</div>
+<div id="ref-kurlander1993watch" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">D.
+Kurlander, A. Cypher, and D. C. Halbert, <em>Watch what i do:
+Programming by demonstration</em>. MIT press, 1993.</div>
+</div>
+<div id="ref-gulwani2011automating" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">S.
+Gulwani, <span>“Automating string processing in spreadsheets using
+input-output examples,”</span> <em>ACM Sigplan Notices</em>, vol. 46,
+no. 1, pp. 317–330, 2011.</div>
+</div>
+<div id="ref-sestoft2013sheet" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">P.
+Sestoft and J. Z. Sørensen, <span>“Sheet-defined functions:
+Implementation and initial evaluation,”</span> in <em>International
+symposium on end user development</em>, 2013, pp. 88–103.</div>
+</div>
+<div id="ref-williams2020higher" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">J.
+Williams, N. Joharizadeh, A. D. Gordon, and A. Sarkar,
+<span>“Higher-order spreadsheets with spilled arrays.”</span> in
+<em>ESOP</em>, 2020, pp. 743–769.</div>
+</div>
+<div id="ref-burnett2009euse" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">M.
+Burnett, <span>“What is end-user software engineering and why does it
+matter?”</span> in <em>International symposium on end user
+development</em>, 2009, pp. 15–28.</div>
+</div>
+<div id="ref-costabile2006EUD" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">M.
+F. Costabile, D. Fogli, P. Mussio, and A. Piccinno, <span>“End-user
+development: The software shaping workshop approach,”</span> in <em>End
+user development</em>, Springer, 2006, pp. 183–205.</div>
+</div>
+<div id="ref-grossman2007spreadsheetengg" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">T.
+A. Grossman, <span>“Spreadsheet engineering: A research
+framework,”</span> <em>arXiv preprint arXiv:0711.0538</em>, 2007.</div>
+</div>
+<div id="ref-cunha2010automatically" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">J.
+Cunha, M. Erwig, and J. Saraiva, <span>“Automatically inferring
+<span>ClassSheet</span> models from spreadsheets,”</span> in <em>2010
+IEEE symposium on visual languages and human-centric computing</em>,
+2010, pp. 93–100.</div>
+</div>
+<div id="ref-ko2011state" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">A.
+J. Ko <em>et al.</em>, <span>“The state of the art in end-user software
+engineering,”</span> <em>ACM Computing Surveys (CSUR)</em>, vol. 43, no.
+3, pp. 1–44, 2011.</div>
+</div>
+<div id="ref-panko2013end" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">R.
+R. Panko and D. N. Port, <span>“End user computing: The dark matter (and
+dark energy) of corporate <span>IT</span>,”</span> <em>Journal of
+Organizational and End User Computing (JOEUC)</em>, vol. 25, no. 3, pp.
+1–19, 2013.</div>
+</div>
+<div id="ref-nardi1991twinkling" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">B.
+A. Nardi and J. R. Miller, <span>“Twinkling lights and nested loops:
+Distributed problem solving and spreadsheet development,”</span>
+<em>International Journal of Man-Machine Studies</em>, vol. 34, no. 2,
+pp. 161–184, 1991.</div>
+</div>
+<div id="ref-wu2014exploring" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">Y.
+Wu, J. Kropczynski, P. C. Shih, and J. M. Carroll, <span>“Exploring the
+ecosystem of software developers on GitHub and other platforms,”</span>
+in <em>Proceedings of the companion publication of the 17th ACM
+conference on computer supported cooperative work &amp; social
+computing</em>, 2014, pp. 265–268. doi: <a
+href="https://doi.org/10.1145/2556420.2556483">10.1145/2556420.2556483</a>.</div>
+</div>
+<div id="ref-barik2015heart" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">T.
+Barik, B. Johnson, and E. Murphy-Hill, <span>“I heart hacker news:
+Expanding qualitative research findings by analyzing social news
+websites,”</span> in <em>Proceedings of the 2015 10th joint meeting on
+foundations of software engineering</em>, 2015, pp. 882–885.</div>
+</div>
+<div id="ref-barik2017expressions" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">T.
+Barik, <span>“Expressions on the nature and significance of programming
+and play,”</span> in <em>2017 IEEE symposium on visual languages and
+human-centric computing (VL/HCC)</em>, 2017, pp. 145–153.</div>
+</div>
+<div id="ref-braun2006using" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline">V.
+Braun and V. Clarke, <span>“Using thematic analysis in
+psychology,”</span> <em>Qualitative research in psychology</em>, vol. 3,
+no. 2, pp. 77–101, 2006.</div>
+</div>
+<div id="ref-campbell2013coding" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[35] </div><div class="csl-right-inline">J.
+L. Campbell, C. Quincy, J. Osserman, and O. K. Pedersen, <span>“Coding
+in-depth semistructured interviews: Problems of unitization and
+intercoder reliability and agreement,”</span> <em>Sociological methods
+&amp; research</em>, vol. 42, no. 3, pp. 294–320, 2013.</div>
+</div>
+<div id="ref-mcdonald2019reliability" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[36] </div><div class="csl-right-inline">N.
+McDonald, S. Schoenebeck, and A. Forte, <span>“Reliability and
+inter-rater reliability in qualitative research: Norms and guidelines
+for <span>CSCW</span> and <span>HCI</span> practice,”</span>
+<em>Proceedings of the ACM on Human-Computer Interaction</em>, vol. 3,
+no. CSCW, pp. 1–23, 2019.</div>
+</div>
+<div id="ref-saldana2021coding" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[37] </div><div class="csl-right-inline">J.
+Saldaña, <em>The coding manual for qualitative researchers</em>. sage,
+2021.</div>
+</div>
+<div id="ref-blackwell2018craft" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[38] </div><div class="csl-right-inline">A.
+Blackwell, <span>“A craft practice of programming language
+research,”</span> in <em>Proceedings of the psychology of programming
+interest group (PPIG) conference</em>, 2018.</div>
+</div>
+<div id="ref-ragavan2021comprehension" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[39] </div><div class="csl-right-inline">S.
+Srinivasa Ragavan, A. Sarkar, and A. D. Gordon, <span>“Spreadsheet
+comprehension: Guesswork, giving up and going back to the
+author,”</span> in <em>Proceedings of the 2021 CHI conference on human
+factors in computing systems</em>, 2021. doi: <a
+href="https://doi.org/10.1145/3411764.3445634">10.1145/3411764.3445634</a>.</div>
+</div>
+<div id="ref-ko2004six" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[40] </div><div class="csl-right-inline">A.
+J. Ko, B. A. Myers, and H. H. Aung, <span>“Six learning barriers in
+end-user programming systems,”</span> in <em>2004 IEEE symposium on
+visual languages-human centric computing</em>, 2004, pp. 199–206.</div>
+</div>
+<div id="ref-johnson1992basic" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[41] </div><div class="csl-right-inline">P.
+N. Johnson-Laird and K. Oatley, <span>“Basic emotions, rationality, and
+folk theory,”</span> <em>Cognition &amp; Emotion</em>, vol. 6, no. 3–4,
+pp. 201–223, 1992.</div>
+</div>
+<div id="ref-eslami2016first" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[42] </div><div class="csl-right-inline">M.
+Eslami <em>et al.</em>, <span>“<span class="nocase">First I
+<span>‘like’</span> it, then I hide it: Folk Theories of Social
+Feeds</span>,”</span> in <em>Proceedings of the 2016 CHI conference on
+human factors in computing systems</em>, 2016, pp. 2371–2382.</div>
+</div>
+<div id="ref-devito2018people" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[43] </div><div class="csl-right-inline">M.
+A. DeVito, J. Birnholtz, J. T. Hancock, M. French, and S. Liu,
+<span>“How people form folk theories of social media feeds and what it
+means for how we study self-presentation,”</span> in <em>Proceedings of
+the 2018 CHI conference on human factors in computing systems</em>,
+2018, pp. 1–12.</div>
+</div>
+<div id="ref-sarkar2018calculation" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[44] </div><div class="csl-right-inline">A.
+Sarkar, A. D. Gordon, S. Peyton Jones, and N. Toronto,
+<span>“Calculation view: Multiple-representation editing in
+spreadsheets,”</span> in <em>2018 IEEE symposium on visual languages and
+human-centric computing (VL/HCC)</em>, 2018, pp. 85–93. doi: <a
+href="https://doi.org/10.1109/VLHCC.2018.8506584">10.1109/VLHCC.2018.8506584</a>.</div>
+</div>
+<div id="ref-hermans2016spreadsheets" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[45] </div><div class="csl-right-inline">F.
+Hermans, B. Jansen, S. Roy, E. Aivaloglou, A. Swidan, and D. Hoepelman,
+<span>“Spreadsheets are code: An overview of software engineering
+approaches applied to spreadsheets,”</span> in <em>2016 IEEE 23rd
+international conference on software analysis, evolution, and
+reengineering (SANER)</em>, 2016, vol. 5, pp. 56–65.</div>
+</div>
+<div id="ref-brekhus1998sociology" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[46] </div><div class="csl-right-inline">W.
+Brekhus, <span>“A sociology of the unmarked: Redirecting our
+focus,”</span> <em>Sociological Theory</em>, vol. 16, no. 1, pp. 34–51,
+1998.</div>
+</div>
+<div id="ref-nouwens2018application" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[47] </div><div class="csl-right-inline">M.
+Nouwens and C. N. Klokmose, <span>“The application and its consequences
+for non-standard knowledge work,”</span> in <em>Proceedings of the 2018
+CHI conference on human factors in computing systems</em>, 2018, pp.
+1–12.</div>
+</div>
+<div id="ref-boyd2007social" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[48] </div><div
+class="csl-right-inline">danah m. boyd and N. B. Ellison, <span>“Social
+network sites: Definition, history, and scholarship,”</span> <em>Journal
+of computer-mediated Communication</em>, vol. 13, no. 1, pp. 210–230,
+2007.</div>
+</div>
+<div id="ref-litwak1969primary" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[49] </div><div class="csl-right-inline">E.
+Litwak and I. Szelenyi, <span>“Primary group structures and their
+functions: Kin, neighbors, and friends,”</span> <em>American
+Sociological Review</em>, pp. 465–481, 1969.</div>
+</div>
+<div id="ref-wing2006computational" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[50] </div><div class="csl-right-inline">J.
+M. Wing, <span>“Computational thinking,”</span> <em>Communications of
+the ACM</em>, vol. 49, no. 3, pp. 33–35, 2006.</div>
+</div>
+<div id="ref-hermans2015enron" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[51] </div><div class="csl-right-inline">F.
+Hermans and E. Murphy-Hill, <span>“Enron’s spreadsheets and related
+emails: A dataset and analysis,”</span> in <em>2015 IEEE/ACM 37th IEEE
+international conference on software engineering</em>, 2015, vol. 2, pp.
+7–16.</div>
+</div>
+<div id="ref-barik2015fuse" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[52] </div><div class="csl-right-inline">T.
+Barik, K. Lubick, J. Smith, J. Slankas, and E. Murphy-Hill,
+<span>“<span>FUSE</span>: A reproducible, extendable, internet-scale
+corpus of spreadsheets,”</span> in <em>2015 IEEE/ACM 12th working
+conference on mining software repositories</em>, 2015, pp.
+486–489.</div>
+</div>
+<div id="ref-hermans2015detecting" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[53] </div><div class="csl-right-inline">F.
+Hermans, M. Pinzger, and A. van Deursen, <span>“Detecting and
+refactoring code smells in spreadsheet formulas,”</span> <em>Empirical
+Software Engineering</em>, vol. 20, no. 2, pp. 549–575, 2015.</div>
+</div>
+<div id="ref-sarkar2018people" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[54] </div><div class="csl-right-inline">A.
+Sarkar and A. D. Gordon, <span>“How do people learn to use spreadsheets?
+(Work in progress),”</span> in <em>Proceedings of the 29th annual
+conference of the psychology of programming interest group (PPIG
+2018)</em>, 2018, pp. 28–35.</div>
+</div>
+<div id="ref-brancheau1990adoption" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[55] </div><div class="csl-right-inline">J.
+C. Brancheau and J. C. Wetherbe, <span>“The adoption of spreadsheet
+software: Testing innovation diffusion theory in the context of end-user
+computing,”</span> <em>Information systems research</em>, vol. 1, no. 2,
+pp. 115–143, 1990.</div>
+</div>
+</div>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><a
+href="https://aka.ms/ExcelNameManager"
+class="uri">https://aka.ms/ExcelNameManager</a><a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://www.ablebits.com/"
+class="uri">https://www.ablebits.com/</a><a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a
+href="https://www.asap-utilities.com/"
+class="uri">https://www.asap-utilities.com/</a><a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p><a
+href="https://www.fast-standard.org/"
+class="uri">https://www.fast-standard.org/</a><a href="#fnref4"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
