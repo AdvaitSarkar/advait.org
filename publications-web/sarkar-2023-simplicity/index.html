@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <title>Should Computers Be Easy To Use? Questioning the Doctrine of Simplicity in User Interface Design</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+</head>
+<body>
+
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+  <p>This is a version of the following academic paper prepared for the web:</p>
+  
+  <blockquote>
+    Advait Sarkar. 2023. Should Computers Be Easy To Use? Questioning the Doctrine of Simplicity in User Interface Design. In <i>Extended Abstracts of the 2023 CHI Conference on Human Factors in Computing Systems</i> (<i>CHI EA '23</i>).
+  </blockquote>
+  
+  <p>
+  More details:
+  <a href="/files/sarkar_2023_simplicity.pdf">Download PDF</a> <!-- &bull;
+  <a href="/files/sarkar_2020_spreadsheet_experience_citation.bib">BibTeX</a> &bull;
+  <a href="https://doi.org/10.1145/3334480.3382807">DOI: 10.1145/3334480.3382807</a> &bull;
+  <a href="https://dl.acm.org/doi/abs/10.1145/3334480.3382807">ACM Digital Library</a>-->
+  </p>
+</div>
+
+<header id="title-block-header">
+<h1>Should Computers Be Easy To Use? Questioning the
+Doctrine of Simplicity in User Interface Design</h1>
+<p class="author">Advait Sarkar</p>
+</header>
+
+<div class="abstract">
+  <h2>Abstract</h2>
+  <p>That computers should be easy to learn and use is a rarely-questioned
+  tenet of user interface design. But what do we gain from prioritising
+  usability and learnability, and what do we lose? I explore how
+  simplicity is not an inevitable truth of user interface design, but
+  rather contingent on a series of events in the evolution of software.
+  Not only does a rigid adherence to this doctrine place an artificial
+  ceiling on the power and flexibility of software, but it is also
+  culturally relative, privileging certain information cultures over
+  others. I propose that for feature-rich software, negotiated complexity
+  is a better target than simplicity, and we must revisit the ill-regarded
+  relationship between learning, documentation, and software.</p>
+</div>
+
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#the-doctrine-of-simplicity"
+id="toc-the-doctrine-of-simplicity"><span
+class="toc-section-number">1</span> The doctrine of simplicity</a></li>
+<li><a href="#sec:history" id="toc-sec:history"><span
+class="toc-section-number">2</span> How did we get here?</a></li>
+<li><a href="#what-we-lose-when-software-is-easy"
+id="toc-what-we-lose-when-software-is-easy"><span
+class="toc-section-number">3</span> What we lose when software is
+‘easy’</a></li>
+<li><a href="#towards-a-doctrine-of-negotiated-complexity"
+id="toc-towards-a-doctrine-of-negotiated-complexity"><span
+class="toc-section-number">4</span> Towards a doctrine of negotiated
+complexity</a></li>
+</ul>
+</nav>
+
+<h2 data-number="1" id="the-doctrine-of-simplicity"><span
+class="header-section-number">1</span> The doctrine of simplicity</h2>
+<p>To give the doctrine of simplicity a single definition is difficult,
+as it appears in many variants and guises. It encapsulates a certain
+ideology and set of values about computer software. It takes the form:
+“computers should be easy/natural/simple to use/learn”. A critical
+reader will seize upon the many possible combinations of words in the
+preceding sentence, and point out that each can be interpreted
+differently. “<em>natural</em> to <em>use</em>” is not the same as
+“<em>easy</em> to <em>learn</em>”; certainly the design of a user study
+to test either proposition will radically differ. I acknowledge these
+distinctions and request the reader to indulge this temporary
+generalisation, because I hope to make clear that the specific variant
+of the doctrine is not critical to the following discussion, rather it
+is the ethos that this set of statements encompasses, their origin, and
+their implications, that I wish to bring into focus.</p>
+<p>A corollary to the doctrine of simplicity is the doctrine of
+gradualism, that computer users can be led to difficult concepts via
+easier stepping stones. As a design principle, this translates as: at
+each incremental stage of the user learning journey, give the user the
+smallest necessary amount of learning, information, flexibility, and
+power. This is ostensibly inspired by the way in which concepts are
+presented in a particular order in a textbook or a school curriculum,
+although the idea of “conceptual prerequisites” <span class="citation"
+data-cites="griffin1994rightstart">[31]</span>, that some concepts
+inherently ‘precede’ others, is a contested pedagogical principle. As
+implicit (and sometimes explicit) pedagogues, software and its designers
+manifest a particular philosophy of learning and teaching.</p>
+<p>A reader who has worked for any period of time in human-computer
+interaction research or design will have encountered the doctrines of
+simplicity and gradualism. Software design can be even viewed as the
+search for metaphors to make hard concepts graspable <span
+class="citation" data-cites="blackwell2006reification">[9]</span>.
+Similar principles and values are articulated formally and informally in
+design theory, design research, and in practice. Let me draw upon a few
+examples to demonstrate the point that simplicity and gradualism have
+been highly influential ideas in human-computer interaction
+research.</p>
+<p>Early explainable AI research discovered a limit to the amount of
+information in an explanation before the user became overwhelmed <span
+class="citation" data-cites="kulesza2013too sarkar2022explainable">[44,
+84]</span>. This research formed the partial basis for guidelines for
+human-AI interaction design <span class="citation"
+data-cites="amershi2019guidelines">[2]</span>. Simplicity is achieved by
+limiting the quantity of information presented, or by limiting (or
+altering) its quality. Approaches to information limiting in explainable
+AI (e.g., “don’t overwhelm” <span class="citation"
+data-cites="kulesza2013too">[44]</span>) and in data visualisation
+(e.g., “overview first, zoom and filter, then details-on-demand” <span
+class="citation" data-cites="shneiderman2003eyes">[89]</span>) are
+arguably more focused on quantity, whereas some interfaces apply
+qualitative gradualism, using the theory of multiple representations
+<span class="citation" data-cites="ainsworth1999functions">[1]</span>,
+to guide learners through increasing levels of representational
+abstraction <span class="citation"
+data-cites="stead2014learning hermans2020hedy sarkar2018calculation">[35,
+80, 92]</span>.</p>
+<p>In end-user programming and programming education, there is the
+concept of an ‘abstraction gradient’ <span class="citation"
+data-cites="green1996usability">[30]</span>, along which programming
+language features can be arranged from low to high abstraction. Various
+projects improve the learnability of programming systems by beginning
+the abstraction gradient at a low level <span class="citation"
+data-cites="sarkar2016phd">[83]</span>, systematically introducing
+syntactic abstractions <span class="citation"
+data-cites="hermans2020hedy miller2016gradual">[35, 59]</span>, or using
+multiple representations at different levels of abstraction (an approach
+rooted in mathematics education) <span class="citation"
+data-cites="stead2014learning bau2015pencil sarkar2018calculation ainsworth1999functions">[1,
+6, 80, 92]</span>. Petricek characterises “no-code” or “low-code”
+programming systems, such as HyperCard, by the “substrates” they offer
+to change the software; in general, the larger the scope for change, the
+higher the difficulty of operation <span class="citation"
+data-cites="petricek_2022">[71]</span>. Successful systems, he argues,
+apply gradualism: <em>“[...] the visual environment is structured in
+terms of several user levels [...] that gradually unlock more advanced
+features of the system. [...] This somewhat reduces the gap [...] that
+you need to bridge if you need more complex change, because you are
+staying in the same substrate [...] you do not get overwhelmed by all
+that is available, as more advanced features are initially
+hidden”</em>.</p>
+<p>As personal computing grew in the late 1980s and early ’90s,
+coinciding with the widespread deployment of graphical user interfaces,
+the design of documentation and software help systems became a focus for
+HCI research. Key findings from this research would shape attitudes
+towards software learnability for decades to come. Carroll and Rosson’s
+pioneering work identified the “paradox of the active user” <span
+class="citation" data-cites="carroll1987paradox">[14]</span>, who fails
+to make progress because they prefer to tinker with the software rather
+than read documentation. Rettig proclaimed that <em>Nobody Reads
+Documentation</em> <span class="citation"
+data-cites="rettig1991nobody">[76]</span>. Out of these insights
+developed the paradigm of “minimalist instruction” <span
+class="citation" data-cites="carroll1990nurnberg">[12]</span> and many
+ingenious innovations in graphical user interface design that are taken
+for granted today, such as the tooltip <span class="citation"
+data-cites="farkas1993role">[22]</span>.</p>
+<p>Unfortunately, as we will see in the following sections, these
+successes also instilled a kind of designer-chauvinist idea that great
+design can all but eliminate the need for learning. In <em>Training
+Wheels in a User Interface</em> <span class="citation"
+data-cites="carroll1984training">[13]</span>, a gradualist proposal that
+complex features can be gated until users have achieved a certain level
+of expertise, Carroll and Carrithers demur about its applicability as a
+permanent solution, stating: <em>“a more significant and longer term
+goal in system design is that of defining a user interface architecture
+with which to confront learnability and training issues, and with which
+to eliminate the need to retrofit for learnability in the first
+place”</em>.</p>
+<p>With the growth of touchscreens, cameras, sensors, and multi-modal
+computing, it became possible to control computers through gestures.
+Based on the principle that gestures should require as little learning
+as possible, in the mid-2000s the field of gesture elicitation studies
+emerged <span class="citation"
+data-cites="wobbrock2005maximizing">[102]</span>, spawning over 200
+studies <span class="citation"
+data-cites="villarreal2020systematic">[97]</span> aiming to discover
+gestures and symbols so natural that they pre-exist in the user’s
+repertoire before they encounter a system at all.</p>
+<p>Here I have highlighted a few manifestations of the doctrines of
+simplicity and gradualism that I have encountered in my own research. I
+believe that many examples besides these can be found in many corners of
+human-computer interaction, user experience, and design practice. They
+are deeply ingrained in our research practices and widely-used
+instruments including the System Usability Scale <span class="citation"
+data-cites="brooke1996sus">[10]</span> (cited over 14,000 times) which
+includes questions such as <em>“I thought the system was easy to
+use”</em> and <em>“I would imagine that most people would learn to use
+this system very quickly”</em>, and the NASA TLX cognitive load index
+<span class="citation"
+data-cites="hart1988development hart2006nasa">[33, 34]</span> (multiple
+publications, together cited over 18,000 times), including questions
+such as <em>“How much mental and perceptual activity was required (e.g.,
+thinking, deciding, calculating, remembering, looking, searching, etc.)?
+Was the task easy or demanding, simple or complex, exacting or
+forgiving?”</em> and <em>“How hard did you have to work (mentally and
+physically) to accomplish your level of performance?”</em> Many
+researchers, myself included, rely heavily on these instruments to
+evaluate designs. But is it always an indicator of superior design, when
+someone can learn to use a system very quickly? Is it always a better
+interface where the task is easy, simple, and forgiving, and requires
+little “mental and perceptual activity”?</p>
+<p>These ideas are almost axiomatic, and seem like unquestionable tenets
+of good user interface design. Yet this particular set of values can be
+traced back to specific, contingent events in the cultural and
+commercial history of computing.</p>
+<h2 data-number="2" id="sec:history"><span
+class="header-section-number">2</span> How did we get here?</h2>
+<div class="figure*">
+<p><img src="timeline.png" alt="An overview of developments in the history of the doctrine of simplicity." />
+  <figcaption aria-hidden="true">Figure 1: An overview of developments in the history of the doctrine of simplicity.</figcaption>
+  </p>
+</div>
+<p>So far we have briefly encountered the doctrines of simplicity and
+gradualism as we know them today, and hopefully the examples above have
+shown their pervasive influence in HCI research and practice. The title
+of this paper indicates that we will be questioning that influence. As
+with any proposal for reform, we risk committing the fallacy of removing
+Chesterton’s proverbial fence <span class="citation"
+data-cites="chesterton1929thing">[17]</span>, proposing to dissolve an
+apparently outmoded institution, only to discover the complex systemic
+interactions that necessitated it. Thus it is worth attempting to
+understand why and how we got here in the first place. A rough outline
+of the discussion that follows is presented in Figure <a
+href="#fig:timeline" data-reference-type="ref"
+data-reference="fig:timeline">1</a>.</p>
+<p>The first important development in the history of user interface
+design was the conceptualization of the textual (algebraic-sentential)
+programming language as the basis for instructing computers. In
+conceiving of programming as writing code, early computer scientists
+implicitly set forth the agenda for interface designers as code being
+the underlying complexity that design metaphors ought to abstract away.
+But this was scarcely inevitable: Arawjo traces key cultural, commercial
+and technical constraints, including institutional directives, the
+requirements to retrofit punch card machines and typewriters, and even
+aesthetic xenophobia (Frege’s two-dimensional notation was ridiculed as
+“Japanese” <span class="citation"
+data-cites="mendelsohn2005philosophy">[58]</span>), which led to the
+dominance of the sentential paradigm over visual, diagrammatic
+alternatives <span class="citation"
+data-cites="arawjo2020write">[5]</span>.</p>
+<p>Moreover, within textual programming languages the view of
+programming as operationalised mathematics is only one possibility.
+Babbage mostly conceived of programming this way, though Lovelace saw
+further, speculating in a celebrated example that programs could be used
+to manipulate music <span class="citation"
+data-cites="snyder2012philosophical">[90]</span>. Nonetheless, in the
+1950s the nascent computer “science” was proximal to many potential
+disciplinary homes, from electrical engineering, physics, astronomy, and
+biology to communications, espionage, archival, and art. The
+mathematisation of computer science (and consequently its principal
+working material, the programming language) was a result of computer
+science’s struggle for disciplinary legitimacy <span class="citation"
+data-cites="ensmenger2012computer">[21]</span>. Eager to be taken
+seriously as a science, and eager to capture investment from government
+agencies and private enterprise, the discipline aligned itself to the
+comforting objectivity and inarguable utility of applied mathematics.
+The discipline was gradually so entrenched in this particular episteme
+<span class="citation" data-cites="Foucault1966-ey">[25]</span> that it
+became virtually impossible to imagine any alternative.</p>
+<p>Yet it was in the imagination of an alternative that interface design
+emerged. The practice of programming computers began as complex,
+requiring manuals and study. The use of language to hold power and
+separate classes is a tale that recurs throughout human history. The
+Egyptian priestly class kept power through guarded knowledge of the
+sacred hieroglyphs, hindu brahmin priests kept power through their rites
+and incantations <span class="citation"
+data-cites="mosca1939ruling">[61]</span>, catholic priests kept power
+over the interpretation of the Bible through their knowledge of
+ecclesiastical Latin <span class="citation"
+data-cites="jensen1996humanist">[39]</span>, and in modern society, a
+new class of scientific priests maintains power through jargon and
+institutional gatekeeping <span class="citation"
+data-cites="foucault1969archeologie">[24]</span>. The emancipatory era
+of the 1960s and ’70s was characterised by the rapid withdrawal of
+global colonial powers from physical occupation <span class="citation"
+data-cites="duara2004introduction">[20]</span>, tumultuous developments
+in attitudes to student empowerment in adult education <span
+class="citation" data-cites="vetter2019global freire1968pedagogia">[26,
+96]</span>, and the increasing export of American democratic values to
+solidify the Western postwar hegemony <span class="citation"
+data-cites="nye1990soft">[66]</span>. Swept along amidst these vast
+social and political currents, personal computing symbolised the new
+information age, and it became apparent that a democratic future was one
+in which everyone could use a computer, and that meant democratising the
+language of instruction.</p>
+<p>It was not just the starry-eyed ideal of liberal democracy that
+coaxed computing out of the hands of scientist-priests, but also the
+prospect of fabulous wealth. Bill Gates took on the mission to place “a
+computer on every desk” <span class="citation"
+data-cites="gates2007robot">[28]</span>. Though Xerox did not rise to
+the opportunity for commercialising Alan Kay’s visionary research at
+PARC <span class="citation" data-cites="myers1998brief">[62]</span>, the
+introduction of the graphical user interface in the 1980s by Apple and
+Microsoft became the next formative step in the doctrine of simplicity.
+Simplicity and its perception became a marketing and competitive
+advantage. Apple’s marketing materials focused on the simplicity of the
+operating system, lampooned competitor systems as requiring stacks of
+heavy manuals,<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> later adopting the taglines “there
+is no step 3” and “it just works”. Apple’s design interpreted simplicity
+as radical minimalism in software and hardware (often at the expense of
+actual usability, as noted in the case of the single-button mouse, and
+the buttonless iPod shuffle <span class="citation"
+data-cites="price_2022">[74]</span>). The adoption of simplicity as a
+design principle in this era invoked, sometimes explicitly, a notion of
+political superiority. Apple’s famous “1984” ad compared the usability
+of the Macintosh to the revolution in an Orwellian communist dystopia
+(with IBM, the incumbent giant, in the position of the repressive
+state). It has been widely discussed that Steve Jobs’ minimalism, which
+spanned his attire, his communication style, and his products, was
+heavily influenced by his personal experiences with ascetic Buddhism
+<span class="citation"
+data-cites="robinson2015appletopia">[78]</span>.</p>
+<p>But more important than these explicit politicisations were the
+effects that the simplicity shift had on society, research and practice.
+Winner sets out two mechanisms by which technology exerts political
+influence <span class="citation"
+data-cites="winner1980artifacts">[101]</span>, which we can see in the
+case of the graphical user interface. First, the specific design
+features of a technology or device enable certain forms of power (low
+bridges permit only certain vehicles to pass underneath). Second, the
+decision to adopt a technology or not, for instance a certain type of
+machine, or a certain standard, lends itself to certain forms of power
+being invoked because that is what is needed to make the technology work
+(a ship’s captain requires absolute authority to manage the control of
+the ship in crisis). In the case of the graphical user interface, its
+commercial success rapidly eliminated other forms of interface. At the
+same time, the power of programmers and the software industry was
+consolidated, because while graphical user interfaces were usable, they
+were fundamentally restricted; end-users could not describe new
+behaviours – you need a programmer for that. End-user programming
+research has ever since battled this limitation <span class="citation"
+data-cites="ko2011state">[42]</span>, with the development of powerful
+paradigms such as programming-by-demonstration <span class="citation"
+data-cites="kurlander1993watch">[45]</span> and programming-by-example
+<span class="citation" data-cites="lieberman2001your">[51]</span>, and a
+few widespread commercial successes, such as the spreadsheet. Yet the
+legacy of mathematisation and algebraic-sentential programming still
+looms over these efforts; it is still that particular form and vision of
+computing that we seek to make more accessible.</p>
+<p>Desite Apple’s mockery of manuals, through the 1980s and ’90s most
+software still came with manuals, and it was culturally accepted that
+some explicit training and learning investment was required to use
+computer software. This was reasonable given that a lot of software was
+used in a business context, and the longevity of software was high.
+Updates were rare and expensive. Due to the distribution bottleneck of
+floppy disks, CD-ROMs, and the retail supply chain, software packages
+were updated once a year at most. Software was largely sold with a
+permanent license, rather than the now-predominant subscription model.
+In such a climate, it made sense to approach software as a tool with
+relatively fixed behaviour, because time invested in learning had a high
+likelihood of a long-term return in productivity.</p>
+<p>This began to change in the late 1990s with the World-Wide-Web.
+Initially conceived as a method for sending communications and
+documents, websites were simple and usable by default — as usable as a
+document — to use the Web, one needed only to be able to read and write.
+Yet unlike static documents, the Web did have minimal levels of
+interaction: links could be clicked, forms could be submitted. From this
+humble basis emerged a tidal wave of speculative applications, from
+search engines, to news media, to e-commerce. This Wild-Wild-West came
+to an abrupt halt with the burst of the dot-com bubble in 2000, when it
+became apparent that not just any Internet business would succeed.</p>
+<p>A business that had succeeded though, was Google. In the aftermath of
+the dot-com bubble a scramble began to discover the formula for success
+on the Web. Google’s success, in part, began to be attributed to its
+minimalist design, which stood in stark contrast to the “cluttered”
+interfaces of its competitors: Yahoo, AltaVista, Lycos, and Ask Jeeves,
+which inherited their design from book indexes and print media. This
+began a period of intense mythmaking in design culture where simplicity
+became conflated with usability, and was exalted as the key to building
+commercially successful software. This was the era of Jenson’s <em>The
+Simplicity Shift</em> <span class="citation"
+data-cites="jenson2002simplicity">[40]</span> and Maeda’s <em>Laws of
+Simplicity</em> <span class="citation"
+data-cites="maeda2006laws">[54]</span>. The influential design firm IDEO
+began its crusade to instill “design thinking” in every corporation,
+having expanded its interests from designing chairs and toothbrushes to
+management consultancy <span class="citation"
+data-cites="nussbaum_2004">[65]</span>. Products and their designers
+began to assume the mantle of instruction manuals and teachers, and a
+product that needed effort to learn was not only considered a
+commercially inferior prospect, but also reflective of poor design.</p>
+<p>The early Web had trained users to expect document-like levels of
+simplicity, but in the 2000s, with Flash, Java Applets, and JavaScript,
+the interactive potential of Web technologies grew. Social media sites
+such as Facebook and Twitter were the great winners of this new Web
+ecosystem and it is no coincidence that they remain key players in
+advancing infrastructure for enriching web apps, such as React and
+Bootstrap. Similarly Google, which did not own a desktop operating
+system, poured resources into building Chrome, which subsequently became
+the dominant Web browser. Google and other browser vendors, through
+their involvement in the W3C consortium and WHATWG groups, pursued key
+capabilities in multimedia, local storage, multi-threading, and
+high-performance JavaScript, facilitating the functional parity of Web
+applications with desktop applications.</p>
+<p>Web “sites” to be visited and Web “pages” to be read became Web
+“applications” to be used <span class="citation"
+data-cites="laurel2013computers">[47]</span>. But while these
+applications are as rich, capable, and complex as “native” desktop
+software, the cultural expectations of the static Web persist. When
+users open an application in a browser, they expect to use it without
+investing effort to learn the interface, as though it were a document.
+Through gradual enrichment, the designers of web apps became trapped,
+like the proverbial frogs in boiling water, between their ambitions for
+their software and the expectations of users.</p>
+<p>Rich Web applications transformed the status quo of rare updates and
+software continuity; the Web enabled instant and continuous deployment
+of new features. Mobile operating systems were born into this new regime
+and adopted the same model. Through the 2010s, traditional desktop
+software also began adopting the continuous deployment engineering model
+(and its attendant economic model of subscriptions), facilitated by the
+rapid growth of broadband and 3G/4G mobile data networks. With the
+benefits of frequent updates came another cultural shift in the value
+proposition of investing time and effort into learning software. What if
+a feature’s appearance or behaviour changes? What if it is removed? With
+software subject to constant change, it becomes difficult to predict
+whether effort invested in learning will pay off. This puts further
+pressure on software to be simple and self-evident.</p>
+<p>The research focus of HCI (and CHI in particular) had aligned itself
+with this landscape of discretionary commercial software use, thus
+separating it from its predecessor, human factors, which largely
+targeted the design of systems used within organizations by employees
+with little choice in the matter <span class="citation"
+data-cites="grudin2009ai">[32]</span>. Weiser’s research agenda of
+ubiquitous computing <span class="citation"
+data-cites="weiser1991computer">[100]</span>, a vision of “quiet”,
+“invisible”, and “seamless” interfaces, became entrenched as a design
+objective. SIGDOC, the ACM special interest group on documentation, home
+to much early research on software help systems, was threatened with
+obsolescence and rebranded itself as “design of communication” <span
+class="citation" data-cites="mehlenbacher2011evolution">[57]</span>.
+This accompanied a broader turn in computer science education away from
+direct instruction towards constructivist learning, the idea that
+computing is best learned through experimentation, not instruction <span
+class="citation" data-cites="hermans2018explicit">[36]</span>, which is
+reflected in contemporary studies of software skill acquisition <span
+class="citation"
+data-cites="sarkar2016constructivist sarkar2018spreadsheetlearning sarkar2020spreadsheet">[81,
+85, 86]</span>. The practical nature of academic HCI also played a role:
+longitudinal studies are hard, single-session lab studies are
+(relatively!) easy. Short studies are more conducive to the annual
+drumbeat of conference submission cycles. We develop too many new
+systems for each to be evaluated in long-term use; the ability to
+rapidly test and explore various design spaces is an asset to our
+discipline, but it places pressure on design to make its value evident
+on the basis of brief and shallow encounters.</p>
+<figure>
+<img src="nash.png" id="fig:nash"
+alt=" Product design in a commercial environment that rewards simplicity can result in a poor equilibrium. The Nash equilibrium (top left) is not the Pareto efficient state (bottom right). " />
+<figcaption aria-hidden="true">Figure 2: Product design in a commercial
+environment that rewards simplicity can result in a poor equilibrium.
+The Nash equilibrium (top left) is not the Pareto efficient state
+(bottom right). </figcaption>
+</figure>
+<p>In this current climate, where users evaluate potential software
+purchases and subscriptions within minutes, and impressions of websites
+are made in less than a second <span class="citation"
+data-cites="lindgaard2006attention">[52]</span>, first impressions of
+usability matter and are critical to commercial success. But in certain
+cases, this creates a moral hazard to make software appear <em>more
+usable</em> by making it <em>less useful</em>. The design of commercial
+software aimed at discretionary users has fallen into a Nash equilibrium
+which is not Pareto efficient, a situation which most introductions to
+game theory illustrate using the example of the prisoner’s dilemma <span
+class="citation" data-cites="osborne2004introduction">[69]</span>. Each
+prisoner can unilaterally maximise their outcome by confessing, but this
+results in a sub-optimal equilibrium, where the optimal solution would
+have been for both to cooperate. As in the prisoner’s dilemma, products
+optimised for long-term use can lose out to those which appear easier to
+use on a preliminary evaluation (Figure <a href="#fig:nash"
+data-reference-type="ref" data-reference="fig:nash">2</a>). This market
+environment puts pressure on designers to hyper-optimise for making
+products easy to use without learning investment, but which may not
+result in the best long-term user experience or empowerment.</p>
+<h2 data-number="3" id="what-we-lose-when-software-is-easy"><span
+class="header-section-number">3</span> What we lose when software is
+‘easy’</h2>
+<p>In some cases the benefits to users of a competitive market pressure
+to make software ‘easy’ are obvious; users clearly stand to gain when a
+brilliant metaphor or interface technique makes the same capabilities
+available to the user with lower cognitive and learning costs. But what
+might they lose when designers adhere to these doctrines?</p>
+<p>What about software whose entire purpose is to create radical leaps
+in users’ thinking? What if such software requires users to shift their
+worldview in order to use it? This might bring to mind sweeping concepts
+such as Kuhn’s paradigm shifts <span class="citation"
+data-cites="kuhn1970structure">[43]</span>, for instance the transition
+away from phlogiston theory in the 1770s with Lavoisier’s isolation of
+oxygen. Or Galileo’s shifts in natural interpretations, for instance the
+re-evaluation of sense-perception as a source of truth regarding motion
+<span class="citation" data-cites="feyerabend2010against">[23]</span>.
+Software may even aim to serve as Wittgenstein’s ladder <span
+class="citation" data-cites="sep-wittgenstein">[7]</span>, which a
+learner must climb only to throw away, achieving an enduring cognitive
+extension <span class="citation"
+data-cites="hernandez2019ai">[37]</span>.</p>
+<p>But we needn’t reach for such extremes: there are many common
+examples of concepts, skills, and tools that are hard to learn, which
+may take years, and thousands of hours of deliberate practice <span
+class="citation" data-cites="anders2008deliberate">[3]</span>, but those
+who learn them have transformed themselves and their minds. Mathematics,
+language, writing, playing a musical instrument, playing a sport: almost
+any human activity worth doing falls into this category.</p>
+<p>It might seem like a stretch to draw an analogy between playing a
+musical instrument and using software, but in fact some kinds of
+software also fall into this category. This includes spreadsheet
+software, such as Microsoft Excel and Google Sheets, design software
+such as Adobe Photoshop and Autodesk AutoCAD, digital audio workstations
+such as Apple’s Logic Pro and Ableton Live. It includes specialist
+applications in domains as wide as accounting, urban planning,
+architecture, astrophysics; indeed almost every discipline and
+profession is served by some unique and distinctive software tools that
+form a core and indispensable part of its practice. These applications
+are used intensively, and over long periods of time, often entire
+careers. Their feature set is vast and complex, and users need to work
+to build skills. Often, professional identity and status is deeply
+entwined with the skillful use of specific software, resulting in a
+fascinating power dynamic between users, software, and its designers
+<span class="citation"
+data-cites="nouwens2018application sarkar2022end">[64, 82]</span>. Users
+develop craft practices, idioms, and pattern languages for using such
+software. Such software often has thriving online and offline
+communities where expert knowledge is exchanged. While individual
+practitioners may make considered software purchase decisions based on
+long-term evaluation, even software of this kind is subject to
+commercial pressures, as companies seek to expand market share by
+capturing casual usage, and increasing the appeal of software in B2B
+sales settings, where software procurement decisions are often made by
+managerial non-practitioners on behalf of the entire organisation.</p>
+<p>As a shorthand, let us call this particular kind of software
+<em>praxisware</em>. The term “praxis” is widely used, and often loosely
+used simply to mean “practice”. I am drawing particularly from the
+notions of praxis due firstly to Sartre <span class="citation"
+data-cites="Soper1986-dy">[91]</span>, who situates praxis within
+division of labour and for whom praxis constitutes activities that
+consolidate and protect class and profession, and secondly to Freire
+<span class="citation" data-cites="freire1968pedagogia">[26]</span>, who
+situates praxis within education and empowerment and for whom praxis
+constitutes activities of “reflection and action directed at [societal]
+structures to be transformed”.</p>
+<p>It is in praxisware that the tradeoffs between superficial simplicity
+and long-term user experience are most acute. This software aims to
+facilitate rich and complex activities that are antagonised by the ideal
+of simplicity. As Stolterman notes <span class="citation"
+data-cites="stolterman2008nature">[93]</span>: <em>“Humans seem to seek
+and enjoy certain experiences of complexity. In some contexts,
+complexity may be understood as richness, generally found to be a
+positive and desired quality. [...] The simpler an environment is, the
+easier it is to understand and deal with, but at the same time, the more
+it lacks the richness and stimulus that we seem to appreciate and
+enjoy”</em>. Norman’s foreword to Laurel’s <em>Computers as Theatre</em>
+explains: <span class="citation"
+data-cites="laurel2013computers">[47]</span>: <em>“[...] we get the
+greatest pleasure from our ability to overcome early failures and
+adversaries. If everything runs perfectly and smoothly with no
+opportunity to deploy our powers and skills, pleasure is diminished.
+Human emotion is sensitive to change; starting low and ending high is a
+far better experience than one that is always high. Is this a cry for
+deliberate placement of obstacles and confusions? Obviously not, but it
+is a cry for a look at the temporal dimensions, at engagement, agency,
+and the rise and fall of dramatic tension.”</em></p>
+<p>This critique of simplicity echoes previous critiques voiced in
+third-wave HCI, which questioned values of ‘seamlessness’ and Weiser’s
+idea that technology should be quiet and fade into the background. In
+reaction it was pointed out that in some scenarios, ‘seamful’ design
+might be preferable, to take advantage of the fact that user activities
+often interweave heterogenous media <span class="citation"
+data-cites="chalmers2004seamful">[16]</span>. Ambiguity was not
+universally to be avoided, but could be drawn upon as a design resource
+to create engaging and thought-provoking experiences, and practically
+address technological limitations <span class="citation"
+data-cites="gaver2003ambiguity">[29]</span>. More recently, with growing
+concerns around dispossession and loss of agency to AI algorithms,
+researchers have proposed that designs could be deliberately
+antagonistic as a societal intervention <span class="citation"
+data-cites="hollanek2019non">[38]</span>: <em>“Could ‘non-user-friendly’
+design successfully harness the feeling of confusion and dissatisfaction
+to raise political awareness, to cause a cognitive glitch?”</em> Eric Li
+of the Museum of Modern Art, drawing upon Guy Debord’s concept of derivé
+(drifting), conjectures <span class="citation"
+data-cites="li_2021">[50]</span>: <em>“But what if we [used] design to
+provoke a type of thinking that art has provoked for centuries? [...]
+Imagine that, when you go to your browser, the furniture and interface
+elements that greet you aren’t there to speed you onto your next
+destination on the Web. [...] What if it were filled with a random work
+of art? Time slows down [and you] pause, enjoying the sights, before
+diving back into the ever-flowing river of information. [...] Perhaps,
+like a dérive, not the most direct route, but far more enjoyable. A
+breath of air.”</em></p>
+<p>Computer games are another genre of software that are often complex,
+and have steep learning curves, but are nonetheless tolerated (even
+enjoyed) by users and are commercially successful. Researchers have
+attempted to understand the efficacy of game tutorials <span
+class="citation" data-cites="andersen2012impact">[4]</span>, and
+proposed that game heuristics such as challenge, fantasy, and curiosity
+might be applied to software design more broadly <span class="citation"
+data-cites="malone1982heuristics">[55]</span>. Yet there remains a
+fundamental difference: games are <em>experiential</em> software,
+interacted with purely for their own sake, where users are intrinsically
+motivated to learn. In contrast, productivity software is used as part
+of a process that represents and manipulates outcomes external to the
+software itself, i.e. in the “real” world. As Laurel puts it,
+<em>““Productivity” as a class of applications is better characterized,
+not by the concreteness of outcomes, but by their seriousness vis-à-vis
+the real world”</em> <span class="citation"
+data-cites="laurel2013computers">[47]</span>. For this reason, games do
+not generally fall into the category of praxisware, and are not subject
+to the same historical and commercial influences or cultural
+expectations. This does not mean that there is nothing to learn from
+game design, but it does mean that we cannot expect that importing
+strategies for managing software complexity from games will be
+straightforward, or effective.</p>
+
+<hr style="width: 30%;">
+
+<p>What is ‘easier’ or ‘harder’ is often a matter of perspective shift
+that only comes with expertise of a new paradigm. The enlightenment was
+partly fuelled by algebraic mathematical notation that replaced the
+earlier form of writing mathematical statements using long-form
+naturalistic language sentences <span class="citation"
+data-cites="okrent2009land snyder2012philosophical">[68, 90]</span>.
+With the benefit of hindsight, algebraic notation clearly made
+mathematics easier: symbolic manipulation unlocked efficiencies and
+scaffolded thinking in a manner that was simply impossible with the old
+notation. But using ordinary language to describe mathematics is also in
+some sense easier, because there is no new notation and its attendant
+manipulations to learn; this is precisely why it had been used for so
+long in the first place. Thus a tool that is initially easier (natural
+language sentences) may have a glass ceiling, and a tool that is
+initially harder (algebraic notation) can, after a perspective shift,
+make subsequent tasks easier.</p>
+<p>Even to describe language or writing as “easy” or “intuitive” ignores
+the fact that learning to speak and write a language takes years of
+practice, something that is apparent to anyone who has tried to learn a
+second language after childhood. Chomskians might argue that the
+capacity for language is innate, but they will not argue the same for
+the ability to speak any <em>particular</em> language. In text entry
+research, a language-adjacent corner of human-computer interaction, the
+importance of evaluating not the initial usability of a system but
+rather its emergent usability over time and learning investment is
+well-documented. Researchers reference the “power law” of learning (or
+practice) <span class="citation"
+data-cites="newell1981mechanisms">[63]</span> which describes how a
+user’s proficiency improves over time, with practice and learning. Ward
+et al. propose that the slope of this curve, rather than the intercept,
+is a superior indicator of a text entry system’s quality <span
+class="citation" data-cites="ward2000dasher">[99]</span>. At the same
+time, it is acknowledged that the commercial acceptance of such systems
+hinges on first-use and early-use experience (i.e., the intercept) <span
+class="citation" data-cites="mackenzie1999text">[53]</span>. Text entry
+is a microcosm that reflects the simplicity trap.</p>
+<p>O’Hara et al. critique the rhetoric of “naturalness” that pervades
+research in touchless user interfaces <span class="citation"
+data-cites="ohara2013naturalness">[67]</span>, finding that rather than
+being a <em>“representation of our gesture”</em> and the <em>“ability to
+infer intent”</em> to facilitate the <em>“exchange of information”</em>,
+naturalness arises from <em>“the practices of specific communities in
+particular social settings [...] we need to approach the design of these
+systems in terms of how they might allow a beneficial reconfiguration of
+practices and how we experience the world in new ways
+accordingly.”</em><a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> In the case of praxisware, notions
+of objective simplicity and information exchange are antagonistic to the
+community-based and often professionalised nature of its use.</p>
+
+<hr style="width: 30%;">
+
+<p>The ideal of simplicity as a goal for software design is culturally
+relative. Simplicity is interpreted and enacted at several levels of
+software design, from aesthetic, to functional, to the conceptualisation
+and unitisation of the user experience across a computing platform.</p>
+<div class="figure*">
+<p><img src="japanese.png" alt="A sample of screenshots of popular Japanese websites, an alternative manifestation of simplicity (December 2022).
+  Sources (left to right): https://www.goo.ne.jp/ copyright NTT Resonant Inc., https://www.yomiuri.co.jp/ copyright The Yomiuri Shimbun,
+  https://www.rakuten.co.jp/ copyright Rakuten Group, Inc., https://www.cosme.net/ copyright istyle,inc." />
+  <figcaption aria-hidden="true">Figure 3: A sample of screenshots of popular Japanese websites, an alternative manifestation of simplicity (December 2022).
+    Sources (left to right): https://www.goo.ne.jp/ &copy; NTT Resonant Inc., https://www.yomiuri.co.jp/ &copy; The Yomiuri Shimbun,
+    https://www.rakuten.co.jp/ &copy; Rakuten Group, Inc., https://www.cosme.net/ &copy; istyle,inc.</figcaption>
+</p>
+</div>
+<p>An example of aesthetic notions of simplicity differing can be found
+in Japanese web design. Websites aimed at Japanese audiences are often
+dense with information and text (Figure <a href="#fig:japanese"
+data-reference-type="ref"
+data-reference="fig:japanese">3</a>). Visitors whose
+primary experience is of contemporary Euro-American Web design often
+perceive it as “cluttered”, and far from simple. But this evaluation
+applies an inappropriate measure of simplicity. Japanese web design
+reflects cultural, technical and linguistic differences, encompassing
+considerations such as the logographic nature of kanji and low-bandwidth
+mobile data connections <span class="citation"
+data-cites="wake_2016 themarketingsamurai_2018 david_2013">[19, 79,
+98]</span>. Japan’s sociotechnocultural environment identifies
+simplicity with legibility and information richness <span
+class="citation" data-cites="rean_2020 mcgowan_2018">[56, 75]</span>.<a
+href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> Contrast this with the Euro-American
+identification of simplicity with whitespace and low information per
+“screenful”, typified by websites such as Medium.com. Here the
+transformation of the Western information aesthetic from print to
+digital media via the dot-com crisis is clear; Europe had its own long
+tradition of dense texts (one need only look at the pages of medieval
+manuscripts, decorated and inscribed in every available space to
+maximise the precious vellum), which did not survive the transition to
+the Western Web.</p>
+<p>While consumers wish for simple tools, they cannot wish for simple
+tasks. The challenges and ambitions of work and life are irreducibly
+complex, and to this we aim to apply simple, intuitive tools. These two
+forces are in tension, and in the West they have resulted in a
+“toolbelt” style of computing <span class="citation"
+data-cites="sumner1997evolution">[94]</span>. This has roots as far back
+as the UNIX design philosophy that <em>“A UNIX program should do one
+thing well, and leave unrelated tasks to other programs”</em> <span
+class="citation" data-cites="pike1984program">[72]</span>. The idea is
+that each individual piece of software remains small, modular, and
+robust, but can be composed with others: a workflow that mirrors the
+epistemic process of pure mathematics. This mathematico-computational
+view of working is supremely appropriate for mathematicians, but less so
+for other domains, as acknowledged in Lenat’s humility-laden note on
+<em>Why AM and EURISKO appear to work</em> <span class="citation"
+data-cites="lenat1984and">[49]</span>. In the late 1990s, Sumner and
+Stolze characterised this as ushering in the “toolbelt era” <span
+class="citation" data-cites="sumner1997evolution">[94]</span>, where
+most complex daily tasks require the coordinated use of several pieces
+of software, with often jarring frictions and disconnects as the
+activity transitions between tools. The picture has not changed at the
+time of writing. Even in praxisware, which often aims to contain as
+large a portion of common and professional workflows as possible, it is
+often observed how auxiliary tools are used to finesse, subvert,
+combine, marshall, and supplement the information workflow in
+conjunction with the “primary” tool <span class="citation"
+data-cites="chalhoub2022freedom larsen2020collaborative">[15,
+46]</span>, with ensuing frictions.</p>
+<p>The toolbelt philosophy, in turn, puts pressure on knowledge work to
+accommodate its tendency for modularisation and simplification, thus
+contributing to a Marxian breakdown of knowledge work <span
+class="citation" data-cites="fuchs2014digital">[27]</span>, nudging it
+in a direction where people only click buttons for small-scope machines
+to perform simple “mimeomorphic” actions <span class="citation"
+data-cites="collins1998shape">[18]</span>. A genre of software that has
+already reached this extreme is social media and recommender systems,
+where the loss of user agency is well-documented. Žižek (via Pfaller)
+describes these as “interpassive” <span class="citation"
+data-cites="zizek1998interpassive">[103]</span> (by irreverent contrast
+to inter<em>active</em>), giving the user only the slightest illusion of
+control while scrolling through their Instagram, Twitter, or TikTok
+feeds, while in practice any given user’s experience is driven entirely
+by the algorithm <span class="citation"
+data-cites="hollanek2019non">[38]</span>. The simplification of
+knowledge work is accompanied by a shift in emphasis from production to
+consumption. Praxisware concerns itself inherently with production, thus
+the doctrine of simplicity antagonises its relationship with information
+and knowledge.</p>
+<p>The Chinese software landscape, through a combination of government
+policy and domestic grit, has developed a compelling alternative to the
+toolbelt. Known as “superapps”, platforms such as WeChat encompass,
+connect, and consolidate wide-ranging functions including
+communications, payment, and numerous retail and service verticals. As
+Lee describes <span class="citation" data-cites="lee2018ai">[48]</span>:
+<em>“In effect, WeChat has taken on the functionality of Facebook,
+iMessage, Uber, Expedia, eVite, Instagram, Skype, PayPal, Grubhub,
+Amazon, LimeBike, WebMD, and many more. It isn’t a perfect substitute
+for any one of those apps, but it can perform most of the core functions
+of each, with frictionless mobile payments already built in. This all
+marks a stark contrast to the “app constellation” model in Silicon
+Valley in which each app sticks to a strictly prescribed set of
+functions.”</em> Moreover, the organisation of these firms acknowledges
+that information technology is only one participant in a larger world
+where tasks, goods and services involve flesh and oil: <em>“American
+internet companies tend to take a “light” approach [...] sharing
+information, closing knowledge gaps, and connecting people digitally.
+[...] In China, companies tend to go “heavy.” They don’t want to just
+build the platform—they want to recruit each seller, handle the goods,
+run the delivery team, supply the scooters, repair those scooters, and
+control the payment.”</em> The Chinese example puts a twist on
+“appropriate technology” <span class="citation"
+data-cites="schumacher2011small">[87]</span>, a well-intentioned concept
+often invoked as an epithet meaning “cheap technology for poor people”,
+showing that that it is not only the material basis of technology, but
+also its ideology (such as its aesthetics of simplicity) that may be
+culturally inappropriate.</p>
+<p>Examining the foundations of the doctrine of simplicity also reveals
+cracks. In particular, the inherent universalism in the “paradox of the
+active user”, the idea that users overwhelmingly prefer to
+learn-by-doing, that they do not wish to invest time in learning, and
+that “nobody reads documentation”, is simply false. In her pioneering
+work with the GenderMag framework <span class="citation"
+data-cites="burnett2016gendermag">[11]</span>, Margaret Burnett and her
+collaborators drew evidence from dozens of studies to show that
+individuals have a variety of information processing and learning
+styles. Some indeed prefer to tinker, and learn by doing, eager to seek
+immediate visible progress. Others are slow and methodical, tend to seek
+help from others, and look for information and training. GenderMag
+catalogues these differences and shows that certain styles of learning
+and information processing are more common in certain demographic
+segments, with a particular focus on gender. The astonishing and
+illuminating conclusion is that in privileging certain information
+processing styles over others, designers introduce gender bias into
+software. As such, software design in a regime where learning-by-doing
+is prioritised at the expense of help, documentation, manuals, and
+training, also introduces biases. There is another chapter to the
+history outlined in Section <a href="#sec:history"
+data-reference-type="ref" data-reference="sec:history">2</a>: it was in
+1984, amidst the birth of personal computing, that computer science
+developed its gaping gender disparity <span class="citation"
+data-cites="kenney_henn_2014">[41]</span>. Why? Analyses point to a
+feedback loop seeded by the commercialisation strategy adopted by
+companies at the time: to sell computers to children as toys. But toy
+advertising is notoriously gendered, and in this precise moment, the
+industry “picked a side” and decided that computing was for boys <span
+class="citation" data-cites="misa2011gender">[60]</span>, setting off a
+cascade of downstream effects where women entered computing majors with
+much less prior experience than their peers identifying as men. Thus
+each time a new, more democratic (and therefore lucrative) generation of
+interface arises, commercial pressures intercede to privilege retail
+success over user experience, excluding whoever need be. And so the
+market pressure for simplicity exerts normative and exclusionary effects
+on praxisware and its communities.</p>
+<h2 data-number="4"
+id="towards-a-doctrine-of-negotiated-complexity"><span
+class="header-section-number">4</span> Towards a doctrine of negotiated
+complexity</h2>
+<p>In the genesis of the minimal learning paradigm, researchers had
+already identified that the tension between investing in learning
+materials, versus investing in simplicity by design, would be a problem
+for praxisware. In 1995, Sellen and Nicol concluded <span
+class="citation" data-cites="sellen1995building">[88]</span>: <em>“The
+distinction between on-line help [i.e., interactive documentation] and
+the user interface is not necessarily clear-cut. [...] The aim should be
+to provide simple, self-explanatory interfaces. Although the ideal is
+commendable, reaching it seems unrealistic at the moment, especially
+considering the imbalance between the power and flexibility that much
+contemporary software affords and the state of the art in intelligent
+interfaces.”</em></p>
+<p>Nearly thirty years later, it is clear that just advancing the “state
+of the art in intelligent interfaces” is unlikely to ever be sufficient
+for tackling the “power and flexibility” of praxisware. One design
+response attempting to bridge the obvious dissonance has been the rise
+of “in-app teaching”, such as call-outs and dialogs announcing and
+explaining new features. Yet these still suffer from the cultural
+hangover of minimal learning, and often are heavily constrained in the
+amount of information they present to the user. Competing for attention
+in a digital landscape overloaded with notifications <span
+class="citation" data-cites="Toffler1970-kq biskjaer2016taking">[8,
+95]</span>, these simple interventions are often ignored entirely.</p>
+<p>A deeper limitation of in-app teaching is the premise that users need
+to learn just-in-time, when they are at their computers to perform a
+specific task. This is a powerful form of learning because it can take
+advantage of the intrinsic motivation and context to complete a
+particular task, but can be inhibited by the same need, if the
+opportunity to learn is seen as a distraction. The success or failure of
+such interventions hinges on accurately modelling the user’s current
+knowledge as well as their intent, both of which are exquisitely
+challenging.</p>
+<p>The alternative is for the user to learn ahead of time, perhaps with
+the background context of a set of certain domain-relevant tasks, but
+where the tasks are not ends in themselves. This shifts learning from
+being task-oriented to being capability- or vision-oriented. Knowing
+what can be done, an <em>awareness of the possible</em>, empowers users
+in entirely different ways. As Rittel and Webber note <span
+class="citation" data-cites="rittel1973dilemmas">[77]</span>, conceiving
+a problem in a certain way prefigures its solution. It shifts the nature
+of the task itself. A spreadsheet user who knows <em>a priori</em> how
+to write formulas will approach the same task differently from one who
+does not; starting with planning the data that must go in the
+spreadsheet and structuring it appropriately <span class="citation"
+data-cites="chalhoub2022freedom">[15]</span>. By the time the
+spreadsheet is open and ready, the “task” has already taken on a vastly
+different nature for the two users. And on a moment-by-moment basis, the
+patchwork of methods and available options explored by each user is also
+radically different, shaped by their differing awareness of
+possibilities adjacent to the current state of their spreadsheet <span
+class="citation" data-cites="pandita2018no">[70]</span>. Ahead of time,
+task-independent learning complements the just-in-time approach to
+facilitate these shifts in awareness and task conceptualisation.</p>
+<p>The fact that <em>some</em> users are willing to invest time and
+effort into learning is already documented, but assumed to be rare and
+not reflective of mainstream behaviour, and relying on this willingness
+is seen as a risk to commercial success. However, recent trends on the
+social media platforms TikTok and Instagram reveal that the desire for
+ahead of time learning might be far more widespread than previously
+thought. I am referring to the meteoric rise of praxisware influencers,
+who present short tutorials on complex software such as Excel or
+Photoshop, often accompanied by jaunty tunes and dancing (as per the
+TikTok vernacular style), some of whom have followers numbering in
+<em>millions</em> <span class="citation"
+data-cites="press-reynolds_2021">[73]</span>. Unlike a platform like
+YouTube, where tutorials can actively be searched for and watched on
+demand, the engagement patterns of TikTok and Instagram are those of
+passive, serendipitous consumption. Why would millions of people follow
+a TikTok influencer who teaches Excel? It is not because they expect to
+stumble upon a video that will help them with a task they’re currently
+working on. It is because in moments of passive consumption, on the
+sofa, on the commute, they expect to benefit from ahead of time
+learning, and enhancing their awareness of the possible. These millions
+of subscribers are strong evidence of the mainstream desire, and
+acceptance, of learning investment for praxisware.</p>
+<p>We must re-evaluate our attitude to tutorials, learning materials,
+and the user learning journey, and reconsider their position as a key
+part of interface design. We must also re-evaluate our attitude to the
+ideals of simplicity in software use. In this paper I have proposed that
+“easy to use” is an inappropriate criterion for evaluating complex,
+feature-rich praxisware. This is a call for <em>negotiated
+complexity</em>, complexity in software which arises as the result of
+optimisation for intensive, long-term use, in consultation with
+communities of practitioners, shielded from commercial pressure to
+design for first impressions, and with the unapologetic assumption that
+users will invest months, or years, in ahead of time learning and
+deliberate practice. Complexity is negotiated as the acceptable
+trade-off between time invested in learning a tool and the resultant
+power it gives the practitioner. Complexity is negotiated between
+designers and practitioners over long-term use, not fixed, and evolves
+with the needs of the community. The agenda for negotiated complexity in
+praxisware has among its implications for research and design the
+following:</p>
+<ul>
+<li><p>Rather than usability as a universal property of a user interface
+with respect to some notion of what a monolithic user might find
+‘intuitive’ and ‘natural’, we define usability as a function of an
+interface paired with well-designed learning and instructional
+materials.</p></li>
+<li><p>We consider investment in learning and instruction as a
+first-class citizen that participates with and complements the design of
+the system.</p></li>
+<li><p>We reward longitudinal research that engages seriously with
+practitioner communities, and accommodate it within the academic cycle,
+perhaps by developing new methods for evaluating the contribution of an
+ongoing longitudinal study, or new tracks that prioritise such
+work.</p></li>
+<li><p>We begin to shift customer culture, when appropriate, to redress
+the adverse commercial incentives for simplicity, and to save ourselves
+from the prisoner’s dilemma. While this may seem challenging, loci of
+deliberate learning such as TikTok seem like a good place to
+start.</p></li>
+</ul>
+<p>In this paper, I have described the doctrine of simplicity, which has
+come to be a dominant ideal in user interface research and design. By
+tracing key events in the history of computing and design research, I
+have attempted to explain how this ideal has taken hold, at least in the
+West. Such ideals create a self-sustaining market pressure that often
+countermands the design of complex, feature-rich software. Such
+software, termed praxisware, has several properties which cause it to be
+vulnerable to the doctrine of simplicity. For praxisware, a better ideal
+to aim for is negotiated complexity, considering user learning as part
+and parcel of user interface design.</p>
+<div class="acks">
+  <h2>Acknowledgements</h2>
+<p>Thanks to Roger Yin for conversations about the prisoner’s dilemma,
+to Andy Gordon and Ian Drosos for their thoughts on drafts of the paper,
+and to my reviewers for their helpful critiques.</p>
+</div>
+
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-ainsworth1999functions" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div
+class="csl-right-inline">Ainsworth, S. 1999. The functions of multiple
+representations. <em>Computers &amp; education</em>. 33, 2-3 (1999),
+131–152.</div>
+</div>
+<div id="ref-amershi2019guidelines" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[2] </div><div
+class="csl-right-inline">Amershi, S. et al. 2019. Guidelines for
+human-AI interaction. <em>Proceedings of the 2019 chi conference on
+human factors in computing systems</em> (2019), 1–13.</div>
+</div>
+<div id="ref-anders2008deliberate" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[3] </div><div
+class="csl-right-inline">Anders Ericsson, K. 2008. Deliberate practice
+and acquisition of expert performance: A general overview. <em>Academic
+emergency medicine</em>. 15, 11 (2008), 988–994.</div>
+</div>
+<div id="ref-andersen2012impact" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[4] </div><div
+class="csl-right-inline">Andersen, E. et al. 2012. The impact of
+tutorials on games of varying complexity. <em>Proceedings of the SIGCHI
+conference on human factors in computing systems</em> (2012),
+59–68.</div>
+</div>
+<div id="ref-arawjo2020write" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[5] </div><div
+class="csl-right-inline">Arawjo, I. 2020. To write code: The cultural
+fabrication of programming notation and practice. <em>Proceedings of the
+2020 CHI conference on human factors in computing systems</em> (2020),
+1–15.</div>
+</div>
+<div id="ref-bau2015pencil" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[6] </div><div
+class="csl-right-inline">Bau, D. et al. 2015. Pencil code: Block code
+for a text world. <em>Proceedings of the 14th international conference
+on interaction design and children</em> (2015), 445–448.</div>
+</div>
+<div id="ref-sep-wittgenstein" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[7] </div><div
+class="csl-right-inline">Biletzki, A. and Matar, A. 2021. <span>Ludwig
+Wittgenstein</span>. <em>The <span>Stanford</span> encyclopedia of
+philosophy</em>. E.N. Zalta, ed. <a
+href="https://plato.stanford.edu/archives/win2021/entries/wittgenstein/"
+class="uri">https://plato.stanford.edu/archives/win2021/entries/wittgenstein/</a>;
+Metaphysics Research Lab, Stanford University.</div>
+</div>
+<div id="ref-biskjaer2016taking" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[8] </div><div
+class="csl-right-inline">Biskjaer, M.M. et al. 2016. Taking action on
+distraction. <em>Interactions</em>. 23, 6 (2016), 48–53.</div>
+</div>
+<div id="ref-blackwell2006reification" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[9] </div><div
+class="csl-right-inline">Blackwell, A.F. 2006. The reification of
+metaphor as a design tool. <em>ACM Transactions on Computer-Human
+Interaction (TOCHI)</em>. 13, 4 (2006), 490–530.</div>
+</div>
+<div id="ref-brooke1996sus" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[10] </div><div
+class="csl-right-inline">Brooke, J. et al. 1996. SUS-a quick and dirty
+usability scale. <em>Usability evaluation in industry</em>. 189, 194
+(1996), 4–7.</div>
+</div>
+<div id="ref-burnett2016gendermag" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[11] </div><div
+class="csl-right-inline">Burnett, M. et al. 2016. GenderMag: A method
+for evaluating software’s gender inclusiveness. <em>Interacting with
+Computers</em>. 28, 6 (2016), 760–787.</div>
+</div>
+<div id="ref-carroll1990nurnberg" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[12] </div><div
+class="csl-right-inline">Carroll, J.M. 1990. <em>The nurnberg funnel:
+Designing minimalist instruction for practical computer skill</em>. MIT
+press.</div>
+</div>
+<div id="ref-carroll1984training" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[13] </div><div
+class="csl-right-inline">Carroll, J.M. and Carrithers, C. 1984. Training
+wheels in a user interface. <em>Communications of the ACM</em>. 27, 8
+(1984), 800–806.</div>
+</div>
+<div id="ref-carroll1987paradox" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[14] </div><div
+class="csl-right-inline">Carroll, J.M. and Rosson, M.B. 1987. Paradox of
+the active user. <em>Interfacing thought: Cognitive aspects of
+human-computer interaction</em>. MIT Press. 80–111.</div>
+</div>
+<div id="ref-chalhoub2022freedom" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[15] </div><div
+class="csl-right-inline">Chalhoub, G. and Sarkar, A. 2022. <a
+href="https://doi.org/10.1145/3491102.3501833"><span>“It’s freedom to
+put things where my mind wants”</span>: Understanding and improving the
+user experience of structuring data in spreadsheets</a>. <em>Proceedings
+of the 2022 CHI conference on human factors in computing systems</em>
+(New York, NY, USA, 2022).</div>
+</div>
+<div id="ref-chalmers2004seamful" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[16] </div><div
+class="csl-right-inline">Chalmers, M. and Galani, A. 2004. Seamful
+interweaving: Heterogeneity in the theory and design of interactive
+systems. <em>Proceedings of the 5th conference on designing interactive
+systems: Processes, practices, methods, and techniques</em> (2004),
+243–252.</div>
+</div>
+<div id="ref-chesterton1929thing" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[17] </div><div
+class="csl-right-inline">Chesterton, G.K. 1929. <em>The thing</em>.
+Aeterna Press.</div>
+</div>
+<div id="ref-collins1998shape" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[18] </div><div
+class="csl-right-inline">Collins, H.M. et al. 1998. <em>The shape of
+actions: What humans and machines can do</em>. MIT press.</div>
+</div>
+<div id="ref-david_2013" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[19] </div><div
+class="csl-right-inline">David 2013. <a
+href="https://randomwire.com/why-japanese-web-design-is-so-different/">Why
+japanese web design is so... different</a>. <em>Randomwire</em>.
+Randomwire.</div>
+</div>
+<div id="ref-duara2004introduction" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[20] </div><div
+class="csl-right-inline">Duara, P. 2004. Introduction: The
+decolonization of asia and africa in the twentieth century.
+<em>Decolonization</em>. Routledge. 19–36.</div>
+</div>
+<div id="ref-ensmenger2012computer" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[21] </div><div
+class="csl-right-inline">Ensmenger, N.L. 2012. <em>The computer boys
+take over: Computers, programmers, and the politics of technical
+expertise</em>. Mit Press.</div>
+</div>
+<div id="ref-farkas1993role" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[22] </div><div
+class="csl-right-inline">Farkas, D.K. 1993. The role of balloon help.
+<em>ACM SIGDOC Asterisk Journal of Computer Documentation</em>. 17, 2
+(1993), 3–19.</div>
+</div>
+<div id="ref-feyerabend2010against" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[23] </div><div
+class="csl-right-inline">Feyerabend, P. 2010. <em>Against method:
+Outline of an anarchistic theory of knowledge</em>. Verso Books.</div>
+</div>
+<div id="ref-foucault1969archeologie" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[24] </div><div
+class="csl-right-inline">Foucault, M. 1969.
+<em>L’arch<span>é</span>ologie du savoir</em>. Gallimard Paris.</div>
+</div>
+<div id="ref-Foucault1966-ey" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[25] </div><div
+class="csl-right-inline">Foucault, M. 1966. <em>Les mots et les choses:
+Une arch<span>é</span>ologie des sciences humaines</em>. Editions
+Gallimard.</div>
+</div>
+<div id="ref-freire1968pedagogia" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[26] </div><div
+class="csl-right-inline">Freire, P. 1968. Pedagog<span>ı́</span>a del
+oprimido. (1968).</div>
+</div>
+<div id="ref-fuchs2014digital" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[27] </div><div
+class="csl-right-inline">Fuchs, C. 2014. <em>Digital labour and karl
+marx</em>. Routledge.</div>
+</div>
+<div id="ref-gates2007robot" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[28] </div><div
+class="csl-right-inline">Gates, B. 2007. A robot in every home.
+<em>Scientific American</em>. 296, 1 (2007), 58–65.</div>
+</div>
+<div id="ref-gaver2003ambiguity" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[29] </div><div
+class="csl-right-inline">Gaver, W.W. et al. 2003. Ambiguity as a
+resource for design. <em>Proceedings of the SIGCHI conference on human
+factors in computing systems</em> (2003), 233–240.</div>
+</div>
+<div id="ref-green1996usability" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[30] </div><div
+class="csl-right-inline">Green, T.R.G. and Petre, M. 1996. Usability
+analysis of visual programming environments: A <span>“cognitive
+dimensions”</span> framework. <em>Journal of Visual Languages &amp;
+Computing</em>. 7, 2 (1996), 131–174.</div>
+</div>
+<div id="ref-griffin1994rightstart" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[31] </div><div
+class="csl-right-inline">Griffin, S.A. et al. 1994. <em>Rightstart:
+Providing the central conceptual prerequisites for first formal learning
+of arithmetic to students at risk for school failure.</em> The MIT
+Press.</div>
+</div>
+<div id="ref-grudin2009ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[32] </div><div
+class="csl-right-inline">Grudin, J. 2009. AI and HCI: Two fields divided
+by a common focus. <em>Ai Magazine</em>. 30, 4 (2009), 48–48.</div>
+</div>
+<div id="ref-hart2006nasa" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[33] </div><div
+class="csl-right-inline">Hart, S.G. 2006. NASA-task load index
+(NASA-TLX); 20 years later. <em>Proceedings of the human factors and
+ergonomics society annual meeting</em> (2006), 904–908.</div>
+</div>
+<div id="ref-hart1988development" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[34] </div><div
+class="csl-right-inline">Hart, S.G. and Staveland, L.E. 1988.
+Development of NASA-TLX (task load index): Results of empirical and
+theoretical research. <em>Advances in psychology</em>. Elsevier.
+139–183.</div>
+</div>
+<div id="ref-hermans2020hedy" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[35] </div><div
+class="csl-right-inline">Hermans, F. 2020. Hedy: A gradual language for
+programming education. <em>Proceedings of the 2020 ACM conference on
+international computing education research</em> (2020), 259–270.</div>
+</div>
+<div id="ref-hermans2018explicit" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[36] </div><div
+class="csl-right-inline">Hermans, F. and Smit, M. 2018. Explicit direct
+instruction in programming education. <em>PPIG</em> (2018).</div>
+</div>
+<div id="ref-hernandez2019ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[37] </div><div
+class="csl-right-inline">Hernández-Orallo, J. and Vold, K. 2019. AI
+extenders: The ethical and societal implications of humans cognitively
+extended by AI. <em>Proceedings of the 2019 AAAI/ACM conference on AI,
+ethics, and society</em> (2019), 507–513.</div>
+</div>
+<div id="ref-hollanek2019non" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[38] </div><div
+class="csl-right-inline">Hollanek, T. 2019. Non-user-friendly: Staging
+resistance with interpassive user experience design. <em>A Peer-Reviewed
+Journal About</em>. 8, 1 (2019), 184–193.</div>
+</div>
+<div id="ref-jensen1996humanist" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[39] </div><div
+class="csl-right-inline">Jensen, K. 1996. The humanist reform of latin
+and latin teaching. <em>The Cambridge companion to Renaissance
+humanism</em>. (1996), 63–81.</div>
+</div>
+<div id="ref-jenson2002simplicity" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[40] </div><div
+class="csl-right-inline">Jenson, S. 2002. <em>The simplicity shift:
+Innovative design tactics in a corporate world</em>. Cambridge
+University Press.</div>
+</div>
+<div id="ref-kenney_henn_2014" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[41] </div><div
+class="csl-right-inline">Kenney, C. and Henn, S. 2014. <a
+href="https://www.npr.org/sections/money/2014/10/17/356944145/episode-576-when-women-stopped-coding">When
+women stopped coding</a>. <em>NPR</em>. NPR.</div>
+</div>
+<div id="ref-ko2011state" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[42] </div><div
+class="csl-right-inline">Ko, A.J. et al. 2011. The state of the art in
+end-user software engineering. <em>ACM Computing Surveys (CSUR)</em>.
+43, 3 (2011), 1–44.</div>
+</div>
+<div id="ref-kuhn1970structure" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[43] </div><div
+class="csl-right-inline">Kuhn, T.S. 1970. <em>The structure of
+scientific revolutions</em>. Chicago University of Chicago Press.</div>
+</div>
+<div id="ref-kulesza2013too" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[44] </div><div
+class="csl-right-inline">Kulesza, T. et al. 2013. Too much, too little,
+or just right? Ways explanations impact end users’ mental models.
+<em>2013 IEEE symposium on visual languages and human centric
+computing</em> (2013), 3–10.</div>
+</div>
+<div id="ref-kurlander1993watch" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[45] </div><div
+class="csl-right-inline">Kurlander, D. et al. 1993. <em>Watch what i do:
+Programming by demonstration</em>. MIT press.</div>
+</div>
+<div id="ref-larsen2020collaborative" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[46] </div><div
+class="csl-right-inline">Larsen-Ledet, I. et al. 2020. Collaborative
+writing across multiple artifact ecologies. <em>Proceedings of the 2020
+CHI conference on human factors in computing systems</em> (2020),
+1–14.</div>
+</div>
+<div id="ref-laurel2013computers" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[47] </div><div
+class="csl-right-inline">Laurel, B. 2013. <em>Computers as theatre</em>.
+Addison-Wesley.</div>
+</div>
+<div id="ref-lee2018ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[48] </div><div
+class="csl-right-inline">Lee, K.-F. 2018. <em>AI superpowers: China,
+silicon valley, and the new world order</em>. Houghton Mifflin.</div>
+</div>
+<div id="ref-lenat1984and" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[49] </div><div
+class="csl-right-inline">Lenat, D.B. and Brown, J.S. 1984. Why AM and
+EURISKO appear to work. <em>Artificial intelligence</em>. 23, 3 (1984),
+269–294.</div>
+</div>
+<div id="ref-li_2021" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[50] </div><div
+class="csl-right-inline">Li, E. 2021. <a
+href="https://www.moma.org/magazine/articles/677">Taking a walk across
+the internet</a>. <em>MoMa Magazine</em>. The Museum of Modern
+Art.</div>
+</div>
+<div id="ref-lieberman2001your" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[51] </div><div
+class="csl-right-inline">Lieberman, H. 2001. <em>Your wish is my
+command: Programming by example</em>. Morgan Kaufmann.</div>
+</div>
+<div id="ref-lindgaard2006attention" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[52] </div><div
+class="csl-right-inline">Lindgaard, G. et al. 2006. Attention web
+designers: You have 50 milliseconds to make a good first impression!
+<em>Behaviour &amp; information technology</em>. 25, 2 (2006),
+115–126.</div>
+</div>
+<div id="ref-mackenzie1999text" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[53] </div><div
+class="csl-right-inline">MacKenzie, I.S. et al. 1999. Text entry using
+soft keyboards. <em>Behaviour &amp; information technology</em>. 18, 4
+(1999), 235–244.</div>
+</div>
+<div id="ref-maeda2006laws" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[54] </div><div
+class="csl-right-inline">Maeda, J. 2006. <em>The laws of
+simplicity</em>. MIT press.</div>
+</div>
+<div id="ref-malone1982heuristics" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[55] </div><div
+class="csl-right-inline">Malone, T.W. 1982. Heuristics for designing
+enjoyable user interfaces: Lessons from computer games. <em>Proceedings
+of the 1982 conference on human factors in computing systems</em>
+(1982), 63–68.</div>
+</div>
+<div id="ref-mcgowan_2018" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[56] </div><div
+class="csl-right-inline">McGowan, D. 2018. <a
+href="https://multilingual.com/issues/aug-sep-2018/the-truth-about-japanese-web-design/">The
+truth about japanese web design</a>. <em>multilingual.com | Connecting
+Global Business and the Language Industry since 1987</em>. MultiLingual
+Media LLC.</div>
+</div>
+<div id="ref-mehlenbacher2011evolution" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[57] </div><div
+class="csl-right-inline">Mehlenbacher, B. 2011. The evolution of
+communication design: A brief history of the ACM SIGDOC. <em>Proceedings
+of the 29th ACM international conference on design of communication</em>
+(2011), 249–256.</div>
+</div>
+<div id="ref-mendelsohn2005philosophy" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[58] </div><div
+class="csl-right-inline">Mendelsohn, R.L. 2005. <em>The philosophy of
+gottlob frege</em>. Cambridge University Press.</div>
+</div>
+<div id="ref-miller2016gradual" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[59] </div><div
+class="csl-right-inline">Miller, G. and Hermans, F. 2016. Gradual
+structuring in the spreadsheet paradigm. <em>2016 IEEE symposium on
+visual languages and human-centric computing (VL/HCC)</em> (2016),
+240–241.</div>
+</div>
+<div id="ref-misa2011gender" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[60] </div><div
+class="csl-right-inline">Misa, T.J. 2011. <em>Gender codes: Why women
+are leaving computing</em>. John Wiley &amp; Sons.</div>
+</div>
+<div id="ref-mosca1939ruling" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[61] </div><div
+class="csl-right-inline">Mosca, G. 1939. On the ruling class.
+<em>Translated by hannah d. Kahn; edited and revised, with an
+introduction, by arthur livingston</em>. New York: McGraw-Hill.</div>
+</div>
+<div id="ref-myers1998brief" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[62] </div><div
+class="csl-right-inline">Myers, B.A. 1998. A brief history of
+human-computer interaction technology. <em>interactions</em>. 5, 2
+(1998), 44–54.</div>
+</div>
+<div id="ref-newell1981mechanisms" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[63] </div><div
+class="csl-right-inline">Newell, A. and Rosenbloom, P. 1981. Mechanisms
+of skill acquisition and the law of practice. <em>Cognitive skills and
+their acquisition</em>. (1981).</div>
+</div>
+<div id="ref-nouwens2018application" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[64] </div><div
+class="csl-right-inline">Nouwens, M. and Klokmose, C.N. 2018. The
+application and its consequences for non-standard knowledge work.
+<em>Proceedings of the 2018 CHI conference on human factors in computing
+systems</em> (2018), 1–12.</div>
+</div>
+<div id="ref-nussbaum_2004" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[65] </div><div
+class="csl-right-inline">Nussbaum, B. 2004. The power of design.
+<em>BusinessWeek</em>. (2004).</div>
+</div>
+<div id="ref-nye1990soft" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[66] </div><div
+class="csl-right-inline">Nye, J.S. 1990. Soft power. <em>Foreign
+policy</em>. 80 (1990), 153–171.</div>
+</div>
+<div id="ref-ohara2013naturalness" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[67] </div><div
+class="csl-right-inline">O’hara, K. et al. 2013. On the naturalness of
+touchless: Putting the <span>“interaction”</span> back into NUI. <em>ACM
+Transactions on Computer-Human Interaction (TOCHI)</em>. 20, 1 (2013),
+1–25.</div>
+</div>
+<div id="ref-okrent2009land" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[68] </div><div
+class="csl-right-inline">Okrent, A. 2009. <em>In the land of invented
+languages: Esperanto rock stars, klingon poets, loglan lovers, and the
+mad dreamers who tried to build a perfect language</em>. Random
+House.</div>
+</div>
+<div id="ref-osborne2004introduction" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[69] </div><div
+class="csl-right-inline">Osborne, M.J. 2004. <em>An introduction to game
+theory</em>. Oxford university press New York.</div>
+</div>
+<div id="ref-pandita2018no" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[70] </div><div
+class="csl-right-inline">Pandita, R. et al. 2018. No half-measures: A
+study of manual and tool-assisted end-user programming tasks in excel.
+<em>2018 IEEE symposium on visual languages and human-centric computing
+(VL/HCC)</em> (2018), 95–103.</div>
+</div>
+<div id="ref-petricek_2022" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[71] </div><div
+class="csl-right-inline">Petricek, T. 2022. <a
+href="https://tomasp.net/blog/2022/no-code-substrates/">No-code, no
+thought? Substrates for simple programming for all</a>. <em>No-code, no
+thought? Substrates for simple programming for all - Tomas
+Petricek</em>. tomasp.net.</div>
+</div>
+<div id="ref-pike1984program" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[72] </div><div
+class="csl-right-inline">Pike, R. and Kernighan, B. 1984. Program design
+in the UNIX environment. <em>AT&amp;T Bell Laboratories Technical
+Journal</em>. 63, 8 (1984), 1595–1605.</div>
+</div>
+<div id="ref-press-reynolds_2021" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[73] </div><div
+class="csl-right-inline">Press-Reynolds, K. 2021. <a
+href="https://www.insider.com/tiktok-influencer-excel-spreadsheets-viral-miss-video-2021-12">TikToks
+on how to use excel spreadsheets are getting billions of views and
+building one of the best communities on the platform</a>.
+<em>Insider</em>. Insider Inc.</div>
+</div>
+<div id="ref-price_2022" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[74] </div><div
+class="csl-right-inline">Price, D. 2022. <a
+href="https://www.macworld.com/article/1008276/different-think-buttons-ipod-iphone-apple-watch.html">Has
+apple actually overcome its fear of buttons?</a>
+<em>Macworld</em>.</div>
+</div>
+<div id="ref-rean_2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[75] </div><div
+class="csl-right-inline">Rean 2020. <a
+href="https://www.hongkiat.com/blog/japanese-web-design/">Deciphering
+the curious case of how japanese web design works [op-ed]</a>.
+<em>Hongkiat</em>. Hongkiat.com (HKDC).</div>
+</div>
+<div id="ref-rettig1991nobody" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[76] </div><div
+class="csl-right-inline">Rettig, M. 1991. Nobody reads documentation.
+<em>Communications of the ACM</em>. 34, 7 (1991), 19–24.</div>
+</div>
+<div id="ref-rittel1973dilemmas" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[77] </div><div
+class="csl-right-inline">Rittel, H.W. and Webber, M.M. 1973. Dilemmas in
+a general theory of planning. <em>Policy sciences</em>. 4, 2 (1973),
+155–169.</div>
+</div>
+<div id="ref-robinson2015appletopia" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[78] </div><div
+class="csl-right-inline">Robinson, B.T. 2015. <em>Appletopia: Media
+technology and the religious imagination of steve jobs</em>. Baylor
+University Press.</div>
+</div>
+<div id="ref-themarketingsamurai_2018" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[79] </div><div
+class="csl-right-inline">Samurai, T.M. 2018. <a
+href="https://www.infocubic.co.jp/en/blog/website-design/how-japanese-website-design-differs-from-the-west/">How
+japanese website design differs from the west</a>. <em>Info Cubic Japan
+Blog</em>. Info Cubic Japan.</div>
+</div>
+<div id="ref-sarkar2018calculation" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[80] </div><div
+class="csl-right-inline">Sarkar, A. et al. 2018. Calculation view:
+Multiple-representation editing in spreadsheets. <em>2018 IEEE symposium
+on visual languages and human-centric computing (VL/HCC)</em> (2018),
+85–93.</div>
+</div>
+<div id="ref-sarkar2016constructivist" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[81] </div><div
+class="csl-right-inline">Sarkar, A. 2016. Constructivist design for
+interactive machine learning. <em>Proceedings of the 2016 CHI conference
+extended abstracts on human factors in computing systems</em> (2016),
+1467–1475.</div>
+</div>
+<div id="ref-sarkar2022end" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[82] </div><div
+class="csl-right-inline">Sarkar, A. et al. 2022. End-user encounters
+with lambda abstraction in spreadsheets: Apollo’s bow or achilles’ heel?
+<em>2022 IEEE symposium on visual languages and human-centric computing
+(VL/HCC)</em> (2022), 1–11.</div>
+</div>
+<div id="ref-sarkar2016phd" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[83] </div><div
+class="csl-right-inline">Sarkar, A. 2016. <em>Interactive analytical
+modelling</em>. University of Cambridge.</div>
+</div>
+<div id="ref-sarkar2022explainable" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[84] </div><div
+class="csl-right-inline">Sarkar, A. 2022. <a
+href="http://ceur-ws.org/Vol-3124/paper22.pdf"><span class="nocase">Is
+explainable AI a race against model complexity?</span></a> <em><span
+class="nocase">Workshop on Transparency and Explanations in Smart
+Systems (TeXSS), in conjunction with ACM Intelligent User Interfaces
+(IUI 2022)</span></em> (Mar. 2022), 192–199.</div>
+</div>
+<div id="ref-sarkar2020spreadsheet" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[85] </div><div
+class="csl-right-inline">Sarkar, A. et al. 2020. Spreadsheet use and
+programming experience: An exploratory survey. <em>Extended abstracts of
+the 2020 CHI conference on human factors in computing systems</em>
+(2020), 1–9.</div>
+</div>
+<div id="ref-sarkar2018spreadsheetlearning" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[86] </div><div
+class="csl-right-inline">Sarkar, A. and Gordon, A.D. 2018. How do people
+learn to use spreadsheets? (Work in progress). <em><span
+class="nocase">Proceedings of the 29th Annual Conference of the
+Psychology of Programming Interest Group (PPIG 2018)</span></em> (Sep.
+2018), 28–35.</div>
+</div>
+<div id="ref-schumacher2011small" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[87] </div><div
+class="csl-right-inline">Schumacher, E.F. 2011. <em>Small is beautiful:
+A study of economics as if people mattered</em>. Random House.</div>
+</div>
+<div id="ref-sellen1995building" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[88] </div><div
+class="csl-right-inline">Sellen, A. and Nicol, A. 1995. Building
+user-centered on-line help. <em>Readings in human–computer
+interaction</em>. Elsevier. 718–723.</div>
+</div>
+<div id="ref-shneiderman2003eyes" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[89] </div><div
+class="csl-right-inline">Shneiderman, B. 2003. The eyes have it: A task
+by data type taxonomy for information visualizations. <em>The craft of
+information visualization</em>. Elsevier. 364–371.</div>
+</div>
+<div id="ref-snyder2012philosophical" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[90] </div><div
+class="csl-right-inline">Snyder, L.J. 2012. <em>The philosophical
+breakfast club: Four remarkable friends who transformed science and
+changed the world</em>. Crown.</div>
+</div>
+<div id="ref-Soper1986-dy" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[91] </div><div
+class="csl-right-inline">Soper, K. 1986. <em>Humanism and
+anti-humanism</em>. HarperCollins.</div>
+</div>
+<div id="ref-stead2014learning" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[92] </div><div
+class="csl-right-inline">Stead, A. and Blackwell, A.F. 2014. Learning
+syntax as notational expertise when using drawbridge. <em>Proceedings of
+the psychology of programming interest group annual conference (PPIG
+2014)</em> (2014), 41–52.</div>
+</div>
+<div id="ref-stolterman2008nature" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[93] </div><div
+class="csl-right-inline">Stolterman, E. 2008. The nature of design
+practice and implications for interaction design research.
+<em>International Journal of Design</em>. 2, 1 (2008).</div>
+</div>
+<div id="ref-sumner1997evolution" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[94] </div><div
+class="csl-right-inline">Sumner, T. and Stolze, M. 1997. Evolution, not
+revolution: Participatory design in the toolbelt era. <em>Computers and
+design in context</em>. 1–26.</div>
+</div>
+<div id="ref-Toffler1970-kq" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[95] </div><div
+class="csl-right-inline">Toffler, A. 1970. <em>Future shock</em>. Random
+House.</div>
+</div>
+<div id="ref-vetter2019global" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[96] </div><div
+class="csl-right-inline">Vetter, M.A. 2019. Global 1968: Implications
+for adult education in social movements. (2019).</div>
+</div>
+<div id="ref-villarreal2020systematic" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[97] </div><div
+class="csl-right-inline">Villarreal-Narvaez, S. et al. 2020. A
+systematic review of gesture elicitation studies: What can we learn from
+216 studies? <em>Proceedings of the 2020 ACM designing interactive
+systems conference</em> (2020), 855–872.</div>
+</div>
+<div id="ref-wake_2016" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[98] </div><div
+class="csl-right-inline">Wake, L. 2016. <a
+href="https://digitalcommunications.wp.st-andrews.ac.uk/2016/03/03/why-is-eastern-asian-web-design-so-busy/">Why
+is eastern asian web design so busy?</a> <em>Digital Communications team
+blog | Updates from the University of St Andrews digital communications
+team</em>. The University of St Andrews.</div>
+</div>
+<div id="ref-ward2000dasher" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[99] </div><div
+class="csl-right-inline">Ward, D.J. et al. 2000. Dasher—a data entry
+interface using continuous gestures and language models. <em>Proceedings
+of the 13th annual ACM symposium on user interface software and
+technology</em> (2000), 129–137.</div>
+</div>
+<div id="ref-weiser1991computer" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[100] </div><div
+class="csl-right-inline">Weiser, M. 1991. The computer for the 21st
+century. <em>Scientific american</em>. 265, 3 (1991), 94–105.</div>
+</div>
+<div id="ref-winner1980artifacts" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[101] </div><div
+class="csl-right-inline">Winner, L. 1980. Do artifacts have politics?
+<em>Daedalus</em>. (1980), 121–136.</div>
+</div>
+<div id="ref-wobbrock2005maximizing" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[102] </div><div
+class="csl-right-inline">Wobbrock, J.O. et al. 2005. Maximizing the
+guessability of symbolic input. <em>CHI’05 extended abstracts on human
+factors in computing systems</em> (2005), 1869–1872.</div>
+</div>
+<div id="ref-zizek1998interpassive" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[103] </div><div
+class="csl-right-inline">Zizek, S. 1998. The interpassive subject.
+<em>Retrieved March</em>. 1, (1998), 2017.</div>
+</div>
+</div>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>For example: <a
+href="https://www.youtube.com/watch?v=3vq9p00T08I"
+class="uri">https://www.youtube.com/watch?v=3vq9p00T08I</a><a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Their critique is somewhat more
+sophisticated than mine, which contends that claims of “natural”
+interfaces should consider how natural it can be to coax a shard of
+electrified silicon to do your bidding.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>This is not limited to Japan;
+eye-tracking studies comparing American and Chinese users found radical
+differences in web page reading patterns, implying that different
+information layouts are required to achieve the same level of perceived
+usability for people with different cultural backgrounds <span
+class="citation" data-cites="lee2018ai">[48]</span>.<a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
