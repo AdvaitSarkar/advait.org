@@ -57,12 +57,19 @@ div.csl-left-margin {
     float:left;
 }
 
+div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+}
+
 #title-block-header {
     text-align: center;
 }
 
 .publications-web-banner {
     background-color: #f6f6f6; padding: 0.1em 1em 0.1em 1em;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
 }
 
 h2 {

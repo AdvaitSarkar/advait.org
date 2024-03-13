@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <title>Will Code Remain a Relevant User Interface for End-User Programming with Generative AI Models?</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+  <style>
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    
+    code{white-space: pre-wrap;}
+   
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+<p>This is a version of the following academic paper prepared for the web:</p>
+
+<blockquote>
+  Advait Sarkar. 2023. Will Code Remain a Relevant User Interface for End-User Programming with Generative AI Models? In Proceedings of the 2023 ACM SIGPLAN International Symposium on New Ideas, New Paradigms, and Reflections on Programming and Software (Onward! 2023). Association for Computing Machinery, New York, NY, USA, 153–167. https://doi.org/10.1145/3622758.3622882
+</blockquote>
+
+<p>
+More details:
+<a href="/files/sarkar_2023_eup_generative_ai.pdf">Download PDF</a> &bull; 
+<a href="/files/sarkar_2023_eup_generative_ai_citation.bib">BibTeX</a> &bull; 
+<a href="https://dl.acm.org/doi/10.1145/3622758.3622882">ACM Digital Library</a> &bull; 
+<a href="https://doi.org/10.1145/3622758.3622882">DOI: 10.1145/3622758.3622882</a> &bull; 
+<a href="https://arxiv.org/abs/2311.00382">arXiv:2311.00382</a>
+</p>
+</div>
+
+<header id="title-block-header">
+<h1 class="title">Will Code Remain a Relevant User Interface for
+End-User Programming with Generative AI Models?</h1>
+<p class="author">Advait Sarkar</p>
+</header>
+
+<h2>Abstract</h2>
+<p>The research field of end-user programming has largely been concerned
+  with helping non-experts learn to code sufficiently well in order to
+  achieve their tasks. Generative AI stands to obviate this entirely by
+  allowing users to generate code from naturalistic language prompts. In
+  this essay, we explore the extent to which “traditional” programming
+  languages remain relevant for non-expert end-user programmers in a world
+  with generative AI. We posit the “generative shift hypothesis”: that
+  generative AI will create qualitative and quantitative expansions in the
+  traditional scope of end-user programming. We outline some reasons that
+  traditional programming languages may still be relevant and useful for
+  end-user programmers. We speculate whether each of these reasons might
+  be fundamental and enduring, or whether they may disappear with further
+  improvements and innovations in generative AI. Finally, we articulate a
+  set of implications for end-user programming research, including the
+  possibility of needing to revisit many well-established core concepts,
+  such as Ko’s learning barriers and Blackwell’s attention investment
+  model.</p>
+
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:eup-status-quo" id="toc-sec:eup-status-quo"><span
+class="toc-section-number">1</span> The Status Quo for End-user
+Programming Research</a></li>
+<li><a
+href="#the-scope-of-the-term-generative-ai-for-end-user-programming"
+id="toc-the-scope-of-the-term-generative-ai-for-end-user-programming"><span
+class="toc-section-number">2</span> The Scope of the Term “Generative
+AI” for End-User Programming</a></li>
+<li><a href="#sec:motivations" id="toc-sec:motivations"><span
+class="toc-section-number">3</span> Motivations for Applying Generative
+AI to End-User Programming</a></li>
+<li><a
+href="#the-potential-intensification-of-end-user-programming-the-generative-shift-hypothesis"
+id="toc-the-potential-intensification-of-end-user-programming-the-generative-shift-hypothesis"><span
+class="toc-section-number">4</span> The Potential Intensification of
+End-User Programming: The Generative Shift Hypothesis</a></li>
+<li><a
+href="#does-code-still-matter-evaluating-the-value-propositions-of-formal-systems"
+id="toc-does-code-still-matter-evaluating-the-value-propositions-of-formal-systems"><span
+class="toc-section-number">5</span> Does Code Still Matter? Evaluating
+the Value Propositions of Formal Systems</a></li>
+<li><a href="#sec:limitations" id="toc-sec:limitations"><span
+class="toc-section-number">6</span> Limitations and Challenges Posed by
+Generative AI in End-User Programming</a></li>
+<li><a href="#implications-for-end-user-programming-research"
+id="toc-implications-for-end-user-programming-research"><span
+class="toc-section-number">7</span> Implications for End-User
+Programming Research</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span
+class="toc-section-number">8</span> Conclusion</a></li>
+</ul>
+</nav>
+
+<h2 data-number="1" id="sec:eup-status-quo"><span
+class="header-section-number">1</span> The Status Quo for End-user
+Programming Research</h2>
+<p>End-user programming (EUP) is the activity of writing a program for
+one’s own use; one is both the programmer and the end-user of the
+program <span class="citation" data-cites="ko2011state">[54]</span>.
+This can be contrasted with software development, in which the
+programmers are typically not going to be people using the system. There
+is a huge variety of end-user programmers (EUPs) and end-user
+programming activities, such as writing spreadsheet formulas to analyse
+data, or a script to automate a daily workflow, or even programming as a
+hobby for personal creative satisfaction <span class="citation"
+data-cites="aghaee2015personality">[2]</span>.</p>
+<p>Unlike professional software developers, EUPs typically have very
+little or no formal training in programming or computing. This gap in
+expertise is the primary challenge faced by EUPs trying to achieve their
+task (though there are other differences between EUPs and professionals,
+such as their motivations for programming, strategies for learning,
+debugging, etc. which add further complexities).</p>
+<p>End-user programming research thus aims to bridge this gap. So far,
+its aim can be described as improving the ability of EUPs to use
+<em>formal systems</em>. The term “formal systems” is a shorthand to
+mean a predictable and deterministic interface which may include a
+programming language (e.g., spreadsheet formulas, or block programming
+in Scratch <span class="citation"
+data-cites="resnick2009scratch">[86]</span>) and other interface
+elements (e.g., the spreadsheet grid).</p>
+<p>EUP research helps users with formal systems in three ways. The first
+approach is to help users <em>learn</em> how to use formal systems. This
+concern is shared by computer science education research (CSER) <span
+class="citation" data-cites="fincher2004computer">[29]</span>, and
+includes research on novice programming, the design of programming
+tutorial aids, multiple representations systems <span class="citation"
+data-cites="stead2014learning">[105]</span>, etc.</p>
+<p>The second approach is to reduce or scaffold the expertise required
+to use formal systems. This is the motivation behind many visual
+programming languages, such as Scratch <span class="citation"
+data-cites="resnick2009scratch">[86]</span>, which uses blocks and slots
+of various shapes to anticipate and prevent syntactic and type errors,
+since a block of a certain shape can only fit into a corresponding
+slot.</p>
+<p>The third approach aims to reduce the reliance on coding, such as
+programming by example (PBE) <span class="citation"
+data-cites="lieberman2001your">[62]</span> and programming by
+demonstration (PBD) <span class="citation"
+data-cites="cypher1993watch">[21]</span>. Thus, by showing examples of
+input and output, or manually demonstrating a particular process, users
+can define intended behaviour (code generation is often facilitated by a
+method such as program synthesis <span class="citation"
+data-cites="manna1971toward">[70]</span>). While the aim is to reduce
+the reliance on coding, in practice many PBE/PBD systems do not entirely
+avoid interaction with the generated code. For instance, Flash Fill
+<span class="citation" data-cites="gulwani2011automating">[33]</span>, a
+commercially implemented PBE system for string manipulation formulas in
+spreadsheets, was initially deployed without showing the generated
+programs to the user, but was later extended to show the user its
+generated formulas (in some cases) for explanation, verification, and
+debugging.</p>
+<p>In summary of the status quo: EUP research aims to help users avail
+of formal programming systems by improving their ability to learn, to
+reduce the expertise requirements of formal systems, or by offering
+alternatives to writing code.</p>
+<h2 data-number="2"
+id="the-scope-of-the-term-generative-ai-for-end-user-programming"><span
+class="header-section-number">2</span> The Scope of the Term “Generative
+AI” for End-User Programming</h2>
+<p>The term “generative AI” is extremely broad, encompassing many types
+of system with different capabilities, sometimes referring to a core
+algorithm (such as the transformer <span class="citation"
+data-cites="vaswani2017attention">[113]</span>), a particular
+instantiated model (such as GPT-4 <span class="citation"
+data-cites="openai2023gpt4">[79]</span>; these are also sometimes
+referred to as “foundation models” <span class="citation"
+data-cites="bommasani2021opportunities">[13]</span>), or a productised
+system which may be comprised of an ensemble of multiple models together
+with prompt engineering, safety heuristics, and user interface
+affordances (such as ChatGPT<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a>). In this respect
+“generative AI” has taken on a similarly pluralistic nature as terms
+such as “machine learning” and “artificial intelligence” which can span
+an immense range of tools and techniques <span class="citation"
+data-cites="mackenzie2017machine">[67]</span>.</p>
+<p>The additional descriptor “generative” is a reference to the fact
+that these models can <em>generate</em> information artefacts (such as
+images or text), by modelling a high-dimensional space from its input
+data from which new points can be sampled. This is as opposed to
+discriminative models, which can classify, label, score, or transform
+their input based on training examples, but do not explicitly model the
+input space <span class="citation"
+data-cites="lasserre2006principled">[58]</span>. It must be noted that
+while the term “generative AI” has only come into widespread usage in
+2023 and is used to refer to contemporary generative models, research
+into generative models long predates this <span class="citation"
+data-cites="revow1996using everitt1984introduction">[27, 87]</span>, and
+“latent variable models” were proposed as early as the turn of the
+20<sup>th</sup> century <span class="citation"
+data-cites="Cai2012-kk">[16]</span>.</p>
+<p>To focus the scope of the discussion in this paper, it is worth
+defining “generative AI” in terms of the aspects which are of greatest
+interest to EUPs, as well as the aspects which differentiate “generative
+AI” from previous generations of AI tools which have also been applied
+in the EUP context.</p>
+<p>First, we are talking about <em>tools</em> which are directly used by
+EUPs. An EUP does not interact with an algorithm, or a specific model,
+but a tool which may consist of multiple models that are part of a
+broader system of heuristics, prompt engineering, and user interface
+elements. From the perspective of the end-user experience, there are
+many aspects of these heuristics and interface elements which impact
+their ability to use the underlying model.<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>Second, we are talking about tools which are used in a
+<em>programming</em> context. There are many ways to define programming,
+but a particularly useful and influential definition in end-user
+programming research is that programming is any activity exhibiting “the
+property that the user is not directly manipulating observable things,
+but specifying behaviour to occur at some future time” <span
+class="citation" data-cites="blackwell2002programming">[12]</span>.
+Generative AI tools can be applied in a wide variety of contexts, and
+many of them relate to the direct production of artefacts (text, images,
+etc.) which are not interpreted as specifying behaviour to occur in the
+future – we exclude these from consideration.</p>
+<p>Finally, we are talking about tools built on <em>contemporary</em>
+machine learning techniques as of this writing in 2023. Despite the fact
+that generative models have a long history, generative AI models, such
+as large language models <span class="citation"
+data-cites="brown2020language">[14]</span> and image generation models
+<span class="citation" data-cites="ramesh2021zero">[85]</span> have
+recently seen a significant step-change in capabilities. The reason for
+this is a combination of advances in hardware (such as GPU clusters for
+training), algorithms (such as the transformer architecture), and the
+availability of Internet-scale datasets <span class="citation"
+data-cites="sarkar2022programmingai">[94]</span>. This has enabled
+models to achieve human-level performance for the first time in a wide
+variety of benchmarks including code generation, speech recognition,
+image generation, even passing the bar exam <span class="citation"
+data-cites="katz2023gpt">[46]</span>. This is the latest development in
+a period typically dated to begin in 2016 that has been described as the
+“third summer” of AI,<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> following a common periodisation of
+AI research as measured by “rapid scientific advances, broad
+commercialisation, and exuberance” <span class="citation"
+data-cites="kautz2022third">[47]</span>. A relatively stable term of art
+accepted and advocated within the AI research community that
+encapsulates the advances of the third summer is “deep learning” <span
+class="citation" data-cites="lecun2015deep">[60]</span>, which is broad
+enough to encompass a variety of approaches developed in recent years
+while being specific enough to exclude older generative approaches.</p>
+<p>Putting these considerations together, the following definition is
+adopted for the remainder of the paper:</p>
+<blockquote>
+<p>By generative AI, we mean <em>an end-user tool, applied to
+programming, whose technical implementation includes a generative model
+based on deep learning</em>.</p>
+</blockquote>
+<p>Thus, some concrete examples which fit the definition and scope of
+generative AI in this paper are: GitHub Copilot<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, an
+end-user tool which offers code completion assistance based on the
+OpenAI Codex large language model; end-user tools for naturalistic
+language-based programming in spreadsheets such as those built by Liu et
+al. <span class="citation" data-cites="liu2023what">[64]</span> (also
+using Codex); and ChatGPT when it is being used to generate code, debug
+code, or explore APIs and documentation.</p>
+<p>Some concrete examples which do <em>not</em> fit the definition and
+scope of generative AI in this paper are: CodeT5 <span class="citation"
+data-cites="wang2021codet5">[116]</span>, a code generating large
+language model (uses deep learning, is programming-oriented, but is not
+an end-user tool); early programming-by-demonstration systems such as
+Allen Cypher’s Eager <span class="citation"
+data-cites="cypher1991eager">[20]</span> (is programming oriented, is an
+end-user tool, but does not use deep learning); and ChatGPT when it is
+being used to generate a short fiction story (uses deep learning, is an
+end-user tool, but is not supporting a programming activity).</p>
+<h2 data-number="3" id="sec:motivations"><span
+class="header-section-number">3</span> Motivations for Applying
+Generative AI to End-User Programming</h2>
+<p>Why are the capabilities of generative AI important or beneficial for
+EUP, and how does it differ from existing approaches? As we have seen,
+EUP research is concerned with helping users achieve programming tasks
+by improving learning, reducing expertise requirements, and reducing
+reliance on coding. AI approaches prior to deep learning have been
+applied in various ways to each of these aims, such as generating and
+recommending tutorials <span class="citation"
+data-cites="zhang2010towards klavsnja2011integration">[51, 122]</span>,
+detecting errors and suggesting fixes <span class="citation"
+data-cites="hermans2015detecting">[35]</span>, and the generation of
+code from demonstrations <span class="citation"
+data-cites="cypher1993watch">[21]</span>.</p>
+<p>In several EUP activities, generative AI creates improvements in
+<em>degree</em> over previous approaches. That is, it improves
+performance in terms of scope and accuracy. For example, let us consider
+five categories of EUP activity in which generative AI creates an
+improvement in degree: authoring, debugging, reuse, comprehension, and
+learning.</p>
+<p><strong>Authoring.</strong> The principal activity of EUPs is
+authoring, that is, actually writing code. Quantitative evidence for the
+improvement in degree afforded by generative AI is given by tracing the
+performance of various approaches in coding benchmark tests <span
+class="citation"
+data-cites="austin2021program touvron2023llama jiang2023selfevolve">[5,
+42, 112]</span>, where it is now possible to solve a much wider variety
+of programming tasks using natural language descriptions of the problem,
+and success rates for programming tasks described as being
+representative of “entry-level programmer” skill now regularly
+approaches 80%.</p>
+<p><strong>Debugging.</strong> Another key activity of EUPs is in
+debugging: detecting and fixing errors in existing code. Here again,
+quantitative studies and benchmarks of error detection and fixing show a
+significant improvement in degree in comparison to previous approaches
+<span class="citation"
+data-cites="kang2023explainable fan2022improving">[28, 44]</span>.</p>
+<p><strong>Reuse.</strong> Often, EUPs do not seek to directly author
+code starting from a blank slate, rather, they seek to reuse code
+available on the Web, code they have previously written, or code written
+by colleagues or stored in institutional repositories <span
+class="citation" data-cites="srinivasa2016foraging lau2021tweakit">[59,
+103]</span>. There are several key challenges in the reuse activity,
+principally, locating relevant code, evaluating its suitability for
+reuse, and making necessary modifications to make the code fit their
+current context. Studies have found that even with interactive support
+for code reuse, EUPs can struggle to adapt code due to a lack of formal
+programming expertise <span class="citation"
+data-cites="lau2021tweakit">[59]</span>. Generative AI tools excel at
+facilitating reuse and adaptation of code, and mark a significant
+improvement in degree in comparison to previous approaches <span
+class="citation" data-cites="sarkar2022programmingai">[94]</span>.</p>
+<p><strong>Comprehension.</strong> EUPs often seek to understand code
+for reasons other than debugging. For example, users receiving an
+unfamiliar spreadsheet from a colleague may review formulas in the
+spreadsheet to understand the underlying data sources for a particular
+value in their spreadsheet which is relevant to a decision they need to
+make <span class="citation"
+data-cites="srinivasa2021spreadsheet sarkar2022end">[89, 104]</span>.
+Studies have shown that generative AI has significantly improved
+capabilities in code explanation and summarisation for students and
+non-experts (though challenges remain) <span class="citation"
+data-cites="kang2023explainable macneil2023experiences">[44,
+69]</span>.</p>
+<p><strong>Learning.</strong> A wide variety of AI approaches to
+facilitate learning for EUPs have been previously explored, from
+suggesting relevant tutorials <span class="citation"
+data-cites="zhang2010towards klavsnja2011integration">[51, 122]</span>,
+to proactive suggestions for improving the likelihood of EUPs to write
+test cases to improve the robustness of their programs <span
+class="citation" data-cites="wilson2003harnessing">[120]</span>, and
+overcoming conceptual learning barriers <span class="citation"
+data-cites="jernigan2015principled">[41]</span>. However, a key
+challenge remains in adapting tutorials and learning materials to an
+individual’s problem context (what exactly are they trying to solve),
+their existing knowledge, and their learning style <span
+class="citation" data-cites="burnett2016gendermag sarkar2023should">[15,
+92]</span>. Studies of spreadsheet learning show that learning from
+colleagues or “hallway experts” is common because it is an ideal
+learning situation: the colleague understands the user’s problem context
+and can tailor an explanation precisely to the learner’s needs <span
+class="citation" data-cites="sarkar2018spreadsheetlearning">[95]</span>.
+This “holy grail” of personalised learning is another area where
+generative AI has shown to provide a significant improvement in degree,
+where explanations can be generated on an ad hoc basis for arbitrary
+code with arbitrary amounts of detail <span class="citation"
+data-cites="macneil2022automatically denny2023computing">[23,
+68]</span>, and it is likely that such explanations can be tailored with
+much greater precision to a particular learner in a particular
+instance.</p>
+<p>Besides improvements in degree, generative AI also creates
+improvements in <em>kind</em>, that is to say, it can broadly shift EUP
+activities in novel directions, or enable kinds of assistance that were
+not possible with previous approaches. For example, let us consider the
+cases of one-off automations and exploratory programming.</p>
+<p><strong>One-off automations.</strong> Recall our working definition
+of programming as “specifying behaviour to occur at some future time”.
+This may suggest that EUPs write programs much as software developers
+do, as reusable assets which can be used repeatedly over time on
+different input data. Certainly many end-user automations are like this
+(consider the formulas in organisational spreadsheets which are often
+highly “templatized”, reused broadly and longitudinally across the
+organisation, sometimes for many years <span class="citation"
+data-cites="hermans2011supporting">[36]</span>). However, a lot of EUP
+is <em>not</em> like this, where instead the objective is to develop
+ad-hoc data processing or cleaning scripts which are used exactly once
+for a specific transformation and then discarded. In such one-off
+automations a lot of interesting end-user programming behaviour is
+observed, such as accepting errors or brittleness in the program, and
+transforming the data through a patchwork of manual and automated steps
+<span class="citation" data-cites="pandita2018no sarkar2023should">[81,
+92]</span>. Generative AI technologies are capable of transforming,
+cleaning, and augmenting data <em>directly</em>, which would eliminate
+the need for writing a reusable script for one-off automations entirely
+<span class="citation"
+data-cites="vos2022towards jaimovitch2022can">[38, 115]</span>. This
+would shift the scope of EUP activities away from writing such
+automations, but it would also create new challenges for EUPs, for
+instance in verifying that such transformations have been done
+correctly, and in making the occasional transition from a fundamentally
+opaque transformation performed by a generative AI model to a more
+repeatable and well-understood script.</p>
+<p><strong>Exploratory programming.</strong> Finally, many EUP
+activities involve an exploratory aspect; where the programming
+objective is not known <em>a priori</em> but discovered through trial
+and error and experimentation <span class="citation"
+data-cites="kery2017exploring">[48]</span>. This is not just true of
+artistic applications of programming such as the generation of digital
+art or live coding music <span class="citation"
+data-cites="collins2003live">[18]</span>, where the exploration may not
+converge to a formally “correct” solution (rather the exploration
+converges to a state of subjectively assessed completion), but is also
+true of situations such as exploratory data analysis where the rough
+forms of acceptable solutions may be known beforehand, but the precise
+procedures are still to be determined <span class="citation"
+data-cites="morgenthaler2009exploratory">[76]</span>. Here, generative
+AI not only increases the rapidity of such exploration but also enables
+forms of assistance that were not possible with previous approaches,
+such as the generation of alternative narratives to trigger nonlinear
+“leaps” in the user’s thinking (though this is yet to be investigated in
+an EUP setting) <span class="citation"
+data-cites="singh2022hide sarkar2023exploring">[90, 101]</span>.</p>
+<h2 data-number="4"
+id="the-potential-intensification-of-end-user-programming-the-generative-shift-hypothesis"><span
+class="header-section-number">4</span> The Potential Intensification of
+End-User Programming: The Generative Shift Hypothesis</h2>
+<p>Generative AI can be applied to generate code in a traditional
+programming language based on natural (or naturalistic) language
+prompts. A brief overview of large language models for code generation
+is given in Sarkar et al. <span class="citation"
+data-cites="sarkar2022programmingai">[94]</span>. This technology has
+already been commercialised in a number of code editors and extensions,
+such as GitHub Copilot.<a href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a></p>
+<p>As a method for enabling people to program without writing code
+directly, generative AI can be viewed as an evolution of previous
+methods such as PBE, PBD, and older syntax-directed or machine-learning
+based code autocompletion.</p>
+<p>In other ways, as explained in Section <a href="#sec:motivations"
+data-reference-type="ref" data-reference="sec:motivations">3</a>, the
+maturation of generative AI may herald a revolution in capabilities, in
+particular for EUPs. This is what we will refer to as the <em>generative
+shift hypothesis</em>: a radical widening in scope and capability of EUP
+due in particular to increasing use of generative models.</p>
+<p>The generative shift hypothesis posits the following qualitative and
+quantitative shifts:</p>
+<ul>
+<li><p>EUP will be applied <em>more intensively</em> to existing tasks,
+with more sophisticated and deeper automation being applied to scenarios
+which are already sites of EUP (such as spreadsheets).</p></li>
+<li><p>EUP will be applied in <em>more contexts</em> and to more tasks
+than before, which were previously not sites for the widespread
+application of EUP. This includes scripting of tasks across applications
+and across data sources (this is related to the enterprise concept of
+“robotic process automation”).</p></li>
+<li><p>EUP will be applied <em>more frequently</em>. The vastly reduced
+costs of generating code from naturalistic utterances will shift the
+attention investment <span class="citation"
+data-cites="blackwell2002first">[11]</span> balance, making it more
+practical to attempt to automate tasks more often.</p></li>
+</ul>
+
+<figure>
+  <img src="sarkar_generative_shift_hypothesis.png" style="max-width: 50%;" alt="The three dimensions of the generative shift hypothesis visualised on three axes: intensification, extensification, and acceleration." /><figcaption>The generative shift hypothesis: due to generative AI, end-user programming will undergo intensification, extensification, and acceleration. <i>Note: this figure does not appear in the original publication and is a later addition.</i></figcaption>
+  </figure>
+
+<p>It is not within the scope of this essay to gather evidence for or
+against the generative shift hypothesis, and assess whether, and how
+fast, it might happen. Rather, we take the position of assuming it will
+happen, and attempting to analyse the role of formal systems in such a
+future.</p>
+<p>Effectively guiding a generative model to produce the desired outcome
+is an area of active research (e.g., <span class="citation"
+data-cites="liu2022design white2023prompt strobelt2022interactive">[65,
+106, 118]</span>). Current commercial tools can generate code from
+naturalistic language “prompts”, or auto-complete partially written
+code, or a combination of both. For non-programmers, the main mode of
+interaction is via language. This opens the possibility for EUP to
+become an activity that does not rely on learning or engaging with a
+formal programming system at all.</p>
+<p>Generative AI therefore raises a critical, perhaps existential
+question for EUP research: what is the role of the current research
+agenda which aims to help users learn formal systems, or reduce the
+expertise requirements of formal systems? In a world where generative
+models are highly performant at translating naturalistic language into
+code, is there still a role for learning and interaction with formal
+systems for EUPs? Put simply: <em>will code remain a relevant user
+interface for end-user programming</em>?</p>
+<h2 data-number="5"
+id="does-code-still-matter-evaluating-the-value-propositions-of-formal-systems"><span
+class="header-section-number">5</span> Does Code Still Matter?
+Evaluating the Value Propositions of Formal Systems</h2>
+<p>To answer whether code may become irrelevant for EUPs, it may help to
+enumerate some current reasons that using a formal system, or combining
+a formal system with generative AI, might still result in a superior
+user experience than interacting purely through informal language. This
+section will discuss the following, possibly incomplete, list of reasons
+why code still matters: limited abilities, control, agency, awareness of
+the possible, explanation and interpretation, debugging, trust, and the
+illusion of informality. We will also consider the extent to which each
+value proposition might endure or become less relevant, as generative AI
+improves.</p>
+<p><strong>Limited abilities.</strong> The first reason is simply that
+generative AI can fail to correctly “translate” a natural language
+prompt into a suitable and correct program. It is difficult to draw
+clear boundaries around what these models can and cannot do. For one,
+they are opaque and non-deterministic, and can produce widely divergent
+responses to the same query. For another, the response is heavily
+influenced by the prompt, the training data, hyperparameters, and any
+other heuristics or processing applied to the input or output in a
+particular system. Finally, the state of the art is rapidly evolving.
+Thus, it would not be appropriate to make general statements such as
+<em>“generative AI cannot currently solve problem X”</em> because it
+makes a universal claim about the capabilities of every system, with
+their own ensemble of models, heuristics, training data, etc. Rather,
+every system’s response is fundamentally unique and varies depending
+upon the prompt, heuristics, and hyperparameters.</p>
+<p>With these caveats in mind, it is worth looking at a small set of
+examples of generative AI failure, only to illustrate the kinds of
+problems that are not <em>typically</em> solved by end-user tools as of
+this writing in 2023.</p>
+
+<div style="border: 1px solid black; padding-left: 1em">
+<div class="sourceCode" id="lst:1" data-float="" data-language="Python"
+label="lst:1"
+data-caption="Python code generation failure example from Denny et al. \cite{denny2023conversing}."><pre
+class="sourceCode python"><code class="sourceCode python"><span id="lst:1-1"><a href="#lst:1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Given a list of strings and a string s, </span></span>
+<span id="lst:1-2"><a href="#lst:1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># return the average length of all strings </span></span>
+<span id="lst:1-3"><a href="#lst:1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># containing s.</span></span>
+<span id="lst:1-4"><a href="#lst:1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst:1-5"><a href="#lst:1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> averageContainingStringS(strings, s):</span>
+<span id="lst:1-6"><a href="#lst:1-6" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="lst:1-7"><a href="#lst:1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> string <span class="kw">in</span> strings:</span>
+<span id="lst:1-8"><a href="#lst:1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> s <span class="kw">in</span> string:</span>
+<span id="lst:1-9"><a href="#lst:1-9" aria-hidden="true" tabindex="-1"></a>            count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="lst:1-10"><a href="#lst:1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">len</span>(s) <span class="op">*</span> count <span class="op">/</span> <span class="bu">len</span>(strings)</span></code></pre></div>
+</div>
+<figcaption>Listing 1. Python code generation failure example from Denny et al. [24]</figcaption>
+<br>
+
+<div style="border: 1px solid black; padding-left: 1em">
+<pre id="lst:2" data-float="" label="lst:2"
+data-caption="Code generation failure example from Khatry et al. \cite{khatry2023words}."><code>Prompt: &quot;Select all rows where the entry in column 
+&#39;gamma&#39; is less than 40 and select all rows where 
+the entry in column &#39;gamma&#39; is more than 53&quot;
+
+Response:
+Table.SelectRows(#&quot;Table1&quot;,each [gamma]&lt;40)</code>
+</pre>
+</div>
+<figcaption>Listing 2. Code generation failure example from Khatry et al. [50]</figcaption>
+<br>
+
+<div style="border: 1px solid black; padding-left: 1em">
+<div class="sourceCode" id="lst:3" data-float="" data-language="Python"
+label="lst:3"
+data-caption="Python code generation failure example from Liu et al. \cite{liu2023what}."><pre
+class="sourceCode python"><code class="sourceCode python"><span id="lst:3-1"><a href="#lst:3-1" aria-hidden="true" tabindex="-1"></a>Prompt: <span class="st">&quot;How many super bowls has New Orleans won&quot;</span></span>
+<span id="lst:3-2"><a href="#lst:3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst:3-3"><a href="#lst:3-3" aria-hidden="true" tabindex="-1"></a>Response:</span>
+<span id="lst:3-4"><a href="#lst:3-4" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&#39;Host City&#39;</span>] <span class="op">==</span> <span class="st">&#39;New Orleans&#39;</span>][<span class="st">&#39;Winner&#39;</span>].count()</span></code></pre></div>
+</div>
+<figcaption>Listing 3. Python code generation failure example from Liu et al. [64]</figcaption>
+<br>
+
+<p>The first example (Listing <a href="#lst:1" data-reference-type="ref"
+data-reference="lst:1">1</a>) comes from a paper exploring the
+limitations of GitHub copilot for CS1 problems <span class="citation"
+data-cites="denny2023conversing">[24]</span>, where copilot generates an
+incorrect function for calculating the average length of strings in a
+list, by generating nonsensical arithmetic. The second example
+(Listing <a href="#lst:2" data-reference-type="ref"
+data-reference="lst:2">2</a>) comes from Khatry et al. <span
+class="citation" data-cites="khatry2023words">[50]</span> and shows
+another simple example where the generated code satisfies one of the
+requested conditionals but ignores the other.</p>
+<p>The final example (Listing <a href="#lst:3" data-reference-type="ref"
+data-reference="lst:3">3</a>) is drawn from a paper applying code
+generation models to data analysis problems in spreadsheets, where the
+full problem context can be seen <span class="citation"
+data-cites="liu2023what">[64]</span>. In this case, the code has
+incorrectly selected the “Host City” column to compute a count of
+relevant strings, whereas it should have selected the “Winner” column.
+Liu et al. <span class="citation" data-cites="liu2023what">[64]</span>
+characterise several types of failure modes with examples, such as the
+generation of non-executable code, selection of incorrect input columns,
+incorrect output formats (e.g., the generated code overwrites a column
+instead of generating a new one), or generating raw data output rather
+than a calculation.</p>
+<p>As these examples suggest, there are situations where generating the
+required code is either beyond the capabilities of generative AI, or for
+some reason or another incorrect code is generated even if it is within
+current capabilities. To cope with such situations, EUPs might need to
+engage with a formal system.</p>
+<p>On the other hand, at the time of writing in early 2023, we are in a
+transitional moment with generative AI technology. It is clear that
+generative models will continue improving due to the current strategy of
+increasing the scaling of parameters and training data.<a href="#fn6"
+class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<p>Therefore, the problem of limited abilities, by definition, may seem
+to ameliorate as generative models improve. However, as the capabilities
+for automation improve, so might the demand for automation; it would be
+a fallacy to assume that EUP demands are stable over time and that
+today’s EUP tasks are representative of future ones. Transport planners
+often engage in road-widening schemes to alleviate traffic congestion,
+only to find that the increased capacity is immediately consumed by
+increased demand <span class="citation"
+data-cites="metz2021economic">[71]</span>. In the 19<sup>th</sup>
+century, economist William Jevons observed that improvements in the
+efficiency of coal engines paradoxically resulted in an increased demand
+for coal <span class="citation"
+data-cites="alcott2005jevons">[3]</span>. These are examples of “rebound
+effects”, where gains in efficiency, capacity, and capability, are
+offset by changes in human behaviour. Similarly, the improvement of
+generative AI in addressing basic tasks may result in end-user demand
+for even more sophisticated and nuanced automation, which again shifts
+the goalposts for AI. On the other hand, EUPs already find engaging with
+formal systems a challenge; it is therefore difficult to see how
+engagement with formal systems might be a suitable fallback in the
+nuanced cases where generative models of the future fail.</p>
+<p><strong>Control.</strong> The second reason is to give direct and
+nuanced control over the behaviour of the system. Composing a program
+using a formal system allows users to directly express both “what” to
+compute and “how” to compute it. It allows EUPs to directly implement
+desired operations, as well as avoid undesired ones (e.g., avoiding a
+very slow API call, or avoiding a lookup of private data if it is
+unnecessary).</p>
+<p>Formal systems offer direct and nuanced control, but varying degrees
+of control can also be achieved using informal systems. For instance,
+faceted natural language prompts which specify input and output types,
+or decompose a problem into smaller steps, offer increased control while
+retaining the relative informality of natural language <span
+class="citation" data-cites="mishra2021reframing liu2023what">[64,
+74]</span>. As generative models improve in performance, providing
+control without resorting to formal systems will be an important target
+for the EUP research agenda.</p>
+<p><strong>Agency.</strong> Related to control, the third reason is
+agency <span class="citation" data-cites="coyle2012did">[19]</span>, a
+term from cognitive neuroscience referring to the feeling of being an
+active agent able to effect change in the world. A sense of agency
+improves the EUP experience, a lack of agency worsens it. Learning to
+code in a formal system has been associated with a sense of agency, and
+the related concept of computer self-efficacy <span class="citation"
+data-cites="beckwith2006tinkering">[8]</span>.</p>
+<p>It is important to note that while control and agency are related,
+they are distinct constructs. Control refers to the perception of
+influence over the external environment, whereas agency focuses on the
+perception of being an intentional actor who can initiate and execute
+actions. Both control and agency play crucial roles in human experience,
+motivation, and well-being.</p>
+<p>Though they are often interdependent, it is possible to have agency
+without (some types of) control. For example, <em>“agency is influenced
+by control specified at different hierarchical levels. [...] when
+higher-level control is exercised (i.e., goal-level control) lower level
+control processes (i.e., perceptuo-motor control) have no influence on
+sense of agency”</em> <span class="citation"
+data-cites="limerick2014agency">[63]</span>. Conversely, it is also
+possible to have (some types of) control without agency. For instance,
+studies of assisted mouse cursor pointing (an example of a lower-level
+perceptuo-motor process) have shown that <em>“beyond a certain level of
+assistance users experienced a detectable loss in their sense of
+agency”</em>, even when the user had full goal-level control (i.e., the
+final destination of the cursor) <span class="citation"
+data-cites="coyle2012did">[19]</span>.</p>
+<p>An interesting question posed by the generative shift for interface
+design, therefore, is what types of control over the generation process
+are necessary or sufficient for creating a sense of agency. Direct
+control via a formal system can create a sense of agency, but just as
+there are alternative ways of offering control, so there are alternative
+ways of fostering agency. At one extreme, the sense of agency can be
+manipulated using placebo controls (such as the notorious pedestrian
+traffic light buttons that serve only to pacify impatient pedestrians
+and have no effect on the scheduled changes of the lights <span
+class="citation" data-cites="middaugh2018delusion">[72]</span>).
+Moreover, user agency is a complex, multi-level phenomenon: the overall
+agency of an EUP might increase with the increased automation
+capabilities offered by generative AI, even if they find it difficult to
+control the behaviour of the AI in particular instances due to the lack
+of a formal system. As with control, fostering and maintaining an
+appropriate sense of agency will be an important target for the EUP
+research agenda.</p>
+<p><strong>Awareness of the possible.</strong> The fourth reason that
+learning and using a formal system is still useful is the “awareness of
+the possible” <span class="citation"
+data-cites="sarkar2023should">[92]</span>; experience with a formal
+system gives users a thought language within which to define problems
+and envision potential solutions. Knowing <em>that</em> something can be
+automated is as important as knowing <em>how</em> to automate it; a user
+with a powerful generative AI that can automate some task is still at a
+disadvantage if they do not conceive of that task as something which can
+be automated.</p>
+<p>This benefit of formal systems may be surpassed by improved
+generative AI as well as other interaction design techniques. Generative
+models may be able to suggest potential suitable automations and
+different strategies for implementing them, educating the user along the
+way. For example, in the field of data analysis, the aim of Intelligent
+Discovery Assistants (IDAs) has been to support users to form a strategy
+for achieving some analysis goal <span class="citation"
+data-cites="serban2013survey">[98]</span>; similarly research into
+exploratory programming <span class="citation"
+data-cites="kery2017exploring">[48]</span> aims to support users in
+shaping their goals through experimentation. These fields have produced
+general interaction techniques for visualising and interacting with a
+possibility space which may be applied to interaction with generative
+models, without requiring end-users to engage with code. As with the
+previous points, facilitating this awareness with generative models will
+also be an important target for EUP research.</p>
+<p><strong>Explanation, interpretation, and debugging.</strong> Research
+has shown that explaining the behaviour of AI-driven EUP systems is
+desirable for many reasons <span class="citation"
+data-cites="kulesza2015principles">[57]</span>; allowing EUPs to engage
+with the formal system(s) in which a generative model might emit scripts
+is one way (albeit not the only way) to provide explanation and
+interpretability.</p>
+<p>Debugging is closely related to explanation and interpretation.
+Engagement with formal systems is a potentially superior way for EUPs to
+find and fix errors, than engaging with a generative model purely
+through natural language. For example, if the script generated by a
+generative model contains an off-by-one error, viewing the generated
+code might make it significantly easier to identify and correct it.</p>
+<p>Formal systems offer a predictable route towards explanation,
+interpretation, and debugging. Yet each of these already presents a
+formidable challenge for EUPs, indeed much EUP research focuses on
+helping EUPs carry out each of these activities by scaffolding formal
+systems to overcome their limitations (e.g., the “idea garden” <span
+class="citation" data-cites="jernigan2015principled">[41]</span>). The
+design challenge is likely to increase further as generative models
+improve at synthesizing more sophisticated programs. We probably want
+different approaches to explanation which do not rely on engagement with
+formal systems; EUP and interactive machine learning research has
+already been developing various techniques that may be suitable starting
+points <span class="citation"
+data-cites="kulesza2015principles ko2004designing">[55, 57]</span>.</p>
+<p><strong>Trust.</strong> Formal systems allow EUPs to verify the
+behaviour of the generated code in terms of well-understood and
+well-trusted procedures. For instance, when a spreadsheet user sees that
+a sum is calculated with the spreadsheet <code>SUM</code> function, they
+trust that it is correctly computing the sum because it is a
+deterministic algorithm written and checked by a trusted party (e.g.,
+Microsoft or Google). Inspecting the formal output of a generative model
+may therefore be an important route towards trusting the result. It is
+worth noting here, though, that code “correctness” is not as important
+to EUPs as it is to professional software developers; research has shown
+that EUPs commonly use incorrect or incomplete code if it helps them
+partially automate their workflow, and are happy to manually correct
+errors, or accept errors which they see as irrelevant to the task at
+hand <span class="citation" data-cites="pandita2018no">[81]</span>.</p>
+<p>Expressing a computation in terms of trusted and verified operations
+(such as <code>SUM</code>) is an important route for establishing trust
+in the correctness of generated code. This strength of formal systems is
+unlikely to disappear simply by improving the performance of current
+models. Generative models can be asked to explain code in natural
+language, but they are prone to hallucination, as their output
+represents statistically likely completions rather than true and
+verifiable statements <span class="citation"
+data-cites="ouyang2022training">[80]</span>. In the future, it may be
+possible to constrain explanations of a script to refer to provably
+correct and verifiable procedures. To pursue this strategy and develop
+usable EUP systems along these lines will require a collaborative effort
+between researchers skilled in generative AI, programming languages, and
+human-centric end-user programming.</p>
+<p><strong>Illusion of informality.</strong> The eighth and final reason
+is slightly unlike the others, and is rather a meta-level observation
+about the nature of using generative models. The observation is that the
+disappearance of formality may be an illusion; generative models still
+require high levels of craft expertise to use effectively, and the shift
+to “prompt engineering” hasn’t eliminated programming at all, but simply
+shifted it into a higher level of abstraction. This is a perspective
+harboured by some (though not all) professional software developers who
+use generative AI assistance in their work <span class="citation"
+data-cites="sarkar2022programmingai">[94]</span>.</p>
+<p>As generative models get better, will “prompt engineering” remain a
+form of skilled craft practice that is distinct from ordinary
+communication skills, or will generative models reach a point where they
+can interpret truly arbitrary natural language at or exceeding human
+proficiency? On one hand, Miller and others have pointed out that a
+major hurdle for AI to interpret the meaning of a query is understanding
+the context of that query <span class="citation"
+data-cites="miller2019explanation sarkar2022explainable">[73,
+91]</span>, with the implication that future models, which will become
+better at including or inferring this context, will allow for more
+informal querying styles. On the other hand, the imprecision of natural
+language, particularly when it comes to discourse on matters of logic,
+mathematics, philosophy, and science, has long been seen as a major
+drawback and spurred many attempts to design more logically “perfect”
+languages <span class="citation"
+data-cites="Eco1997-sa okrent2009land">[26, 78]</span>. Indeed, the
+program of analytic philosophy which was born out of such concerns
+eventually gave rise to our modern programming languages <span
+class="citation" data-cites="arawjo2020write">[4]</span>, and it is
+interesting that programming via generative models brings us back, full
+circle, to natural language. However, the trend of improving generative
+models seems to imply that rather than “prompt engineering” remaining
+just like programming but at a higher level of abstraction, the
+application of language formality for precision, brevity, etc. in future
+systems will become more social and discretionary. Language for
+instructing generative models may develop much as scientific or legal
+language develops as a way for scientists and lawyers to communicate
+more effectively: organically, through power relations enacted by
+individuals, groups, and institutions <span class="citation"
+data-cites="Foucault1966-ju">[30]</span>.</p>
+<h2 data-number="6" id="sec:limitations"><span
+class="header-section-number">6</span> Limitations and Challenges Posed
+by Generative AI in End-User Programming</h2>
+<p>There are many limitations and challenges of applying generative AI
+in end-user programming. Many of the challenges and ethical issues
+around trust, verification, privacy, bias, credit, and accountability
+are not unique to end-user programming: they apply to all applications
+of AI to software development, and at the broadest level they apply to
+all applications of AI.</p>
+<p>The focus of this paper is on the role of formal systems in the
+future of end-user programming, and a detailed discussion of ethical
+challenges would diverge from this focus. These have been extensively
+reviewed in recent research <span class="citation"
+data-cites="weidinger2021ethical solaiman2019release tamkin2021understanding">[102,
+109, 117]</span>. Nonetheless, it is worth briefly acknowledging these
+challenges to highlight that the generative shift is not an
+uncontestedly positive improvement for end-user programmers.</p>
+<p><strong>Problems for CS education.</strong> There is concern that
+generative AI may undermine the learning of novice programmers <span
+class="citation"
+data-cites="denny2023computing becker2023programming">[7, 23]</span>.
+Besides issues of academic integrity and misconduct, educators are
+apprehensive that over-reliance on generative AI may hinder the
+development of novice programmers’ metacognition and encourage what is
+considered “bad habits” in code.</p>
+<p><strong>Errors.</strong> Generative AI systems may not always produce
+high-quality outputs, and the generated outputs may contain errors or
+inconsistencies that are hard to detect or correct by end-user
+programmers <span class="citation"
+data-cites="sarkar2022programmingai">[94]</span>.</p>
+<p><strong>Trust and transparency.</strong> Generative AI systems may
+not be able to explain how they generate their outputs, or why they
+choose certain outputs over others <span class="citation"
+data-cites="sarkar2022explainable">[91]</span>. This may make it
+difficult for end-user programmers to trust or verify the generated
+code, or to understand its logic and functionality. They may not provide
+any documentation or comments for the generated code, or provide
+incorrect documentation, or may not allow the end-user programmer to
+modify or customise the code.</p>
+<p><strong>Privacy and security.</strong> Code generated by generative
+AI systems may collect, store, or use personal or sensitive data from
+end-users or other sources, such as health records, biometric data, or
+financial data. This may raise concerns about the protection of data
+privacy and security, and the potential for data breaches, misuse, or
+abuse. They may access or expose confidential or proprietary information
+from end-users or their clients <span class="citation"
+data-cites="harrer2023attention">[34]</span>.</p>
+<p><strong>Misinformation.</strong> Generative AI systems may generate
+outputs that are false, misleading, or deceptive, either intentionally
+or unintentionally. Generative AI models can produce outputs that are
+coherent and convincing, but not necessarily accurate or factual. They
+can also invent references and sources that do not exist, or contain
+biases from the training data. This can mislead or confuse end-user
+programmers who rely on generated code for their own use. For example, a
+generative AI tool may generate a code snippet that performs a data
+analysis, but the results may be incorrect or skewed by the underlying
+data or model assumptions. This may create risks of misinformation and
+manipulation, and undermine the trustworthiness and credibility of
+information sources.</p>
+<p><strong>Bias and discrimination.</strong> Generative AI systems may
+generate outputs that are unfair, biased, or discriminatory, either
+intentionally or unintentionally. They may generate code that reflects
+or amplifies existing social biases or stereotypes, such as gender,
+race, or ethnicity <span class="citation"
+data-cites="bender2021dangers">[9]</span>. This may result in harms or
+injustices to individuals or groups, such as exclusion, marginalisation,
+or oppression.</p>
+<p><strong>Accountability.</strong> Generative AI systems may generate
+outputs that have significant impacts on end-users or other parties,
+such as legal, financial, or health outcomes. They may generate code
+that violates laws, regulations, or ethical norms, or that causes harms
+or damages to end-users or their stakeholders. This may raise questions
+about the accountability and responsibility for the outputs and their
+consequences, and the allocation of liability and compensation in case
+of harms or damages.</p>
+<p><strong>Attribution and ownership.</strong> Generative AI models can
+create outputs that are similar or identical to existing human-created
+artefacts, such as code, images, text, etc. This raises questions about
+the attribution and ownership of the generated outputs, and the
+potential for plagiarism, infringement, or misuse of intellectual
+property <span class="citation"
+data-cites="sarkar2023exploring">[90]</span>. End-user programmers may
+not be aware of the original sources of the generated code, or the legal
+and ethical implications of using it for their own purposes.</p>
+<p>In response to these challenges, researchers have proposed several
+complementary solutions <span class="citation"
+data-cites="hbr2020 harrer2023attention">[1, 34]</span>:</p>
+<p><strong>Ethical design.</strong> Generative AI systems should be
+designed and developed with ethical principles and values in mind, such
+as fairness, transparency, explainability, privacy, security, and human
+dignity. Tools should incorporate mechanisms for data protection, output
+verification, bias mitigation, and user feedback.</p>
+<p><strong>Critical use.</strong> Generative AI systems should be used
+critically, and deployed with ethical standards and guidelines in mind,
+such as professional codes of conduct, industry best practices, and
+regulatory frameworks. End-user programmers need to be aware of the
+potential risks and challenges of using such tools.</p>
+<p><strong>Governance.</strong> Generative AI systems should be subject
+to ethical oversight and governance by various stakeholders, such as
+developers, providers, users, regulators, auditors, and ethicists. Tools
+should be monitored and evaluated by independent third parties for its
+performance, quality, safety, reliability, and accountability.</p>
+<h2 data-number="7"
+id="implications-for-end-user-programming-research"><span
+class="header-section-number">7</span> Implications for End-User
+Programming Research</h2>
+<p>We’ve explored how the generative shift results in a renewed research
+agenda around the role of formal systems in end-user programming, with a
+particular focus on control, agency, explanation and debugging, and
+awareness of the possible. This contrasts with two of the three main
+foci of prior generations of EUP research (described in Section <a
+href="#sec:eup-status-quo" data-reference-type="ref"
+data-reference="sec:eup-status-quo">1</a>): improving the ability of
+EUPs to learn formal systems, and to reduce the expertise requirements
+of formal systems. What might a research agenda for end-user programming
+look like in the wake of the generative shift?</p>
+<p><strong>Learning to fish.</strong> The importance of learning how to
+code for end-user programmers in a world where generative AI can provide
+answers is a complex issue that parallels the allegory of teaching a man
+to fish: <em>“Give a man a fish, and you feed him for a day. Teach a man
+to fish, and you feed him for a lifetime”</em>. While the availability
+of generative AI systems that can provide direct answers may initially
+seem to diminish the need for coding skills, the underlying implications
+reveal a more nuanced perspective. Coding goes beyond the mere act of
+obtaining answers; it fosters self-sufficiency and cultivates a deeper
+understanding of the underlying processes and algorithms involved. By
+learning how to code, end-user programmers gain the ability to create
+their own solutions, adapt existing ones, and address unique challenges
+effectively. This empowerment leads to a greater sense of control and
+creativity, enabling them to solve problems beyond the scope of what AI
+systems can provide. It has been argued that coding skills facilitate
+critical thinking, problem-solving, and logical reasoning, which are
+valuable assets in various domains <span class="citation"
+data-cites="wing2006computational">[121]</span>. While generative AI can
+offer immediate solutions, relying solely on it can result in dependency
+and limit the potential for innovation. Therefore, while generative AI
+presents opportunities for efficiency and convenience, the significance
+of learning how to code persists, promoting independence, adaptability,
+and a deeper understanding of computational principles.</p>
+<p>But is this really true of end-user programming? Is self-sufficiency
+really an important optimisation goal, if generative AI is consistently
+capable of solving end-user tasks? That is, do we still need to teach
+the man to fish if he can simply receive fish on demand? It is possible
+that the answer is “no”; as much previous research has shown, in many
+end-user programming tasks the user may be content to use “incorrect”
+programs as well as manual methods in order to make progress towards a
+task <span class="citation"
+data-cites="pandita2018no blackwell2002first">[11, 81]</span>. Unlike in
+a CS education or professional programming setting, the <em>task comes
+first</em>, and any educational or critical thinking outcomes are viewed
+as secondary. There are also objections to the universalising viewpoints
+of computational thinking, and evidence that learning to code does not
+in itself develop computational thinking skills <span class="citation"
+data-cites="denning2017remaining">[22]</span>.</p>
+<p>A related issue has been explored by Potthast et al. <span
+class="citation" data-cites="potthast2021dilemma">[84]</span> in the
+context of information retrieval: “the dilemma of the direct answer”.
+The question is to what extent search engine technology is responsible
+for synthesising information on the web to address the user’s particular
+query. They identify various trade-offs both on the user side (e.g., the
+cognitive workload of analysing retrieved documents versus the accuracy
+of the answer) and system-side (e.g., the organisation of information
+for automated processing versus human reading). In our current context,
+we might think of this as “the dilemma of direct programming”. An
+emergent research agenda for end-user programming might therefore be to
+ask what user-side and system-side tradeoffs emerge as a consequence of
+the generative shift.</p>
+<p><strong>Repositioning BERTology.</strong> Generative AI-based
+research must be carefully designed and evaluated in order to make
+meaningful contributions to the scientific literature. An emerging
+pattern in research is to simply try a generative model and see what it
+can do, a kind of research sometimes referred to as “BERTology” <span
+class="citation" data-cites="rogers2021primer">[88]</span>. This
+approach is passive: implicitly positioning EUP researchers outside the
+development process. Moreover, the results are unlikely to be robust to
+further iteration and development of generative AI (already the term
+“BERTology” shows signs of ageing, as its name refers to a family of
+models that is no longer considered the state of the art). Rather,
+experimenting with generative AI and developing prompting strategies is
+a <em>craft practice</em> that should be seen as a necessary part of a
+research investigation, with its own forms of rigour, that feeds into
+broader research questions with more enduring value. Part of this rigour
+will involve identifying a clear research question or hypothesis that is
+independent of the “abilities” of models, the careful selection of a
+generative model that is well-suited to the problem at hand, and
+ensuring that the work is reproducible and transparent by detailing the
+models, heuristics, hyperparameters, and prompt development
+methodology.</p>
+<p><strong>End-user software customisation.</strong> A closely related
+set of concerns to end-user programming is end-user software
+customisation <span class="citation"
+data-cites="mackay1991triggers">[66]</span>. This encompasses a wide
+range of activities such as changing the default settings in an
+application, writing macros, and editing software source code <span
+class="citation" data-cites="morch1997three">[75]</span>, all with the
+aim of tailoring software to user needs. End-user customisation is
+viewed as challenging, with many expertise and motivational barriers,
+and consequently quite rare; in fact the tendency of people to accept
+“default” options is a widely documented and deployed phenomenon in
+behavioural science in domains ranging across organ donation, retirement
+savings, browser and search engine choices, and wireless encryption
+<span class="citation"
+data-cites="kesan2006setting jachimowicz_duncan_weber_johnson_2019">[37,
+49]</span>. At the same time, researchers have acknowledged the
+empowering value of end-user software customization, and proposed
+various potential solutions for increasing the customizability of
+software <span class="citation"
+data-cites="petricek_2022 basman2016software klokmose2015webstrates">[6,
+52, 82]</span>.</p>
+<p>The generative shift may change the landscape of end-user software
+customization substantially. Not only in reducing the barriers to
+scripting and automation, but also in the spectrum of potential
+automations, and the user’s relationship with and attitude to automation
+and scripting. Petricek theorises that customizable software consists of
+a set of “substrates” <span class="citation"
+data-cites="petricek_2022">[82]</span>, which are programming notations
+which trade off expertise requirements versus the scope of change they
+enable. For instance, in Excel, formulas have low expertise requirements
+and allow for a low scope of change to Excel functionality, whereas VBA
+has comparatively higher expertise requirements but enables a greater
+scope of change. A hypothetically “ideal” substrate can take on a smooth
+gradient, so that the same programming notation or environment can be
+used to make extremely small-scope changes with correspondingly low
+expertise requirements, as well as broad changes with correspondingly
+higher expertise requirements. Generative AI may provide such a
+substrate: by mediating between expressions of user intent in natural
+language, and a wide variety of underlying technical infrastructures.
+For instance, a natural language query in a spreadsheet might be
+satisfied by a combination of changed settings, formulas, and macros.
+Through the unified interface of naturalistic language, the user may be
+able to smoothly span a broad scope of changes.</p>
+<p>But the implications go further: rather than the current model of
+feature-rich software applications where a number of use cases have been
+“captured” in code by expert software developers <span class="citation"
+data-cites="nouwens2018application">[77]</span>, future applications for
+creating and manipulating information artefacts may leave a large
+portion of development and customisation for end users. In such a
+future, what is the nature of the application? Is it a small set of core
+features that identifies a nucleus of concerns or type of information
+artefact that is a useful abstraction for knowledge workers, upon which
+they build? Or does the application disappear as an organisational
+principle for knowledge work, transitioning into artefact or
+process-oriented paradigms?</p>
+<p>The cognitive dimensions of notations framework <span
+class="citation" data-cites="green1996usability">[32]</span> offers a
+vocabulary for evaluating the design tradeoffs made in programming
+languages. However, they may also be applied to the design decisions in
+end-user software customisability. The generative shift enables much
+greater end-user flexibility in this regard, and raises some interesting
+implications for the cognitive dimensions framework. For instance, the
+dimension <em>viscosity</em> refers to how difficult it is to make small
+changes to the program. Consider the spreadsheet, an archetypical
+end-user programming application. The spreadsheet interface may have its
+own sources of viscosity, but the spreadsheet also has multiple options
+for scripting and automation, such as the formula language, definition
+of custom functions, and macro-style scripting. Each of these may bring
+their own sources of viscosity. Now, if the spreadsheet interface can be
+significantly customised through scripting, the user may be in a
+position to identify and ameliorate sources of viscosity in their own
+workflow. This leads to the user experience of viscosity in the
+interface being <em>multifaceted</em>, and evolving <em>dynamically</em>
+over time, rather than relatively fixed properties of a notation. A
+related set of concerns has been explored in depth by Jakubovic et al.
+<span class="citation"
+data-cites="jakubovic2023technical">[40]</span>.</p>
+<p><strong>Quantifying end-user programmers.</strong> In 2005, Scaffidi
+et al. estimated the number of end-user programmers using US labour
+statistics and extrapolating from the number of spreadsheet users <span
+class="citation" data-cites="scaffidi2005estimating">[97]</span>. This
+methodology works for as long as EUP activity is strongly associated
+with particular applications (such as spreadsheets), but the generative
+shift will enable EUP activities across many more applications and
+platforms, facilitating the breakdown of application boundaries <span
+class="citation" data-cites="nouwens2018application">[77]</span> and
+mitigating the pains of transitioning between tools in the “toolbelt”
+style of computing <span class="citation"
+data-cites="sumner1997evolution sarkar2023should">[92, 107]</span>.</p>
+<p><strong>Attention investment.</strong> Blackwell’s Attention
+Investment Model explains the behaviour of programmers in deciding
+whether to automate something (e.g., write a script) or pursue a manual
+strategy <span class="citation"
+data-cites="blackwell2002first">[11]</span>. Just like a cost-benefit
+analysis, Blackwell’s model posits that a programmer is likely to pursue
+automation if the (perceived) <em>payoff</em>, in terms of attention
+units saved by automation, minus the <em>investment</em> costs of
+automation, is greater than the <em>cost</em> of following a manual
+strategy, when accounting for the <em>risk</em> that the automation may
+not work. What happens to this model when the cost of automation is
+reduced to zero, or near zero? It is possible that rather than a
+trade-off between the costs and benefits of attention investment into
+automation, other factors will come to dominate the automation decision,
+such as agency and trust. Or perhaps there will still a cost-benefit
+tradeoff in terms of attention units, but these units will be spent (and
+saved) primarily on new categories of EUP activities that do not
+currently exist.</p>
+<p><strong>Learning barriers.</strong> Ko et al. defined six learning
+barriers for end-user programming systems: design, selection,
+coordination, use, understanding, and information <span class="citation"
+data-cites="ko2004six">[53]</span>. After the generative shift, will
+EUPs face the same learning barriers? For instance, the abstraction
+matching problem identified by Sarkar et al. <span class="citation"
+data-cites="sarkar2022programmingai">[94]</span> does not fit neatly
+into any of these categories. Perhaps new learning barriers will appear,
+some will disappear, and some barriers will remain but their nature will
+change.</p>
+<p><strong>Self-efficacy.</strong> Wiedenbeck et al. found that computer
+self-efficacy increases substantially during introductory programming
+courses <span class="citation"
+data-cites="wiedenbeck2004factors">[119]</span>. They propose that in
+order to create self-efficacy, students should practice tracing program
+execution, program comprehension, and manual writing of code. However,
+as a result of the generative shift, EUPs may gain self-efficacy not
+from the direct authoring and comprehension of code, but from
+effectively applying tools to solve their domain problems. Comprehending
+the underlying logic and structure of the AI-generated code may require
+different instructional strategies compared to tracing the logic of
+manually written programs. Rather than focusing on code directly, EUPs
+might learn how to explore the outputs and performance characteristics
+of AI-generated code as a way of critically analysing its behaviour and
+identifying potential limitations. This approach may help EUPs develop a
+mental model that incorporates an understanding of the strengths and
+weaknesses of generative AI and how it aligns with their programming
+goals.</p>
+<p><strong>Naming.</strong> Liblit et al. draw attention to (identifier)
+naming as a central conceptualisation mechanism and cognitive challenge
+in programming <span class="citation"
+data-cites="liblit2006cognitive">[61]</span>. They find that programmers
+employ cognitive strategies when selecting and using names, such as
+following lexical and morphological conventions to convey role
+information and using metaphors to facilitate productive inferences.
+Natural language grammars influence name usage, and debates arise around
+the polysemy of names and their literal versus metaphorical meanings.
+The authors posit that the linguistic sophistication of a programming
+language may change or shift the cognitive burdens of programmers. The
+generative shift introduces an additional layer of linguistic influence
+in the prompt language used to control the tools as well as the language
+the tools may emit (by way of code explanation, example outputs,
+clarification requests, etc.). While generative AI could alleviate
+cognitive burdens in code development by generating optimised and
+readable code, as well as providing concise explanations of code logic,
+it is unclear whether such code and explanations can replicate the
+linguistic conventions, metaphors, and domain knowledge necessary for
+managing complexity, and it is uncertain to what extent such
+considerations remain central to the activity of programming as less
+code is written and read directly.</p>
+<p><strong>Live programming.</strong> Tanimoto presented a highly
+influential framework for evaluating the degree of liveness in
+programming environments, based on how quickly and continuously they
+provide feedback to programmers about the execution of their code <span
+class="citation" data-cites="tanimoto2013perspective">[110]</span>.
+After the generative shift, live systems might need to account for
+different forms and sources of feedback, besides execution feedback. For
+example, generative AI could provide feedback to programmers about the
+quality, readability, or maintainability of their code, or suggest
+alternative or improved ways of writing their code <span
+class="citation" data-cites="jain2020integrating">[39]</span>. Moreover,
+generative AI could enable programmers to use natural language,
+gestures, or voice commands to express their intentions or goals, and
+the programming environment could generate or modify code accordingly.
+This could change the notion of liveness from being based on code
+editing and execution, to being based on goal specification and
+realization. Alternatively, generative AI could enable programmers to
+delegate some or all of their programming tasks to intelligent agents,
+and monitor or intervene in their work as needed. This could change the
+notion of liveness from being based on direct manipulation and control,
+to being based on supervision and guidance <span class="citation"
+data-cites="tanimoto2020multiagent">[111]</span>.</p>
+<h2 data-number="8" id="conclusion"><span
+class="header-section-number">8</span> Conclusion</h2>
+<p>This essay has considered how generative AI might change the
+landscape of end-user programming and end-user programming research. The
+research agenda for end-user programming has so far focused on helping
+people learn and use formal systems (e.g., a programming language).
+However, generative AI stands to facilitate an intensification and
+extensification of end-user programming activities across many more
+applications and tasks, and users may interact with generative AI
+primarily through informal systems of natural language. This is the
+<em>generative shift hypothesis</em>.</p>
+<p>Under the generative shift hypothesis, we have discussed how several
+strengths of formal systems, including control, agency, explanation,
+debugging, trust, may become less relevant or change in nature. We
+propose that EUP research may need to shift its traditional focus on
+formal systems to new concerns of the practical use of generative
+AI.</p>
+<p>The key takeaways are:</p>
+<ul>
+<li><p>The generative shift moves the focus of end-user programming
+research from improving the learnability and expertise requirements of
+formal systems, to new issues of control, agency, explanation,
+debugging, and the awareness of the possible.</p></li>
+<li><p>The generative shift affects many core theories and concepts of
+end-user programming, such as end-user software customisation, the
+attention investment model, learning barriers, self-efficacy, and live
+programming. These may need to be revisited and revised as generative AI
+enables EUP to proceed in new ways and scales.</p></li>
+</ul>
+<p>Petricek encourages us to question the fundamental assumptions of
+programming languages research and theory <span class="citation"
+data-cites="petricekprogramming">[83]</span>. The generative shift is an
+opportunity to propel EUP research forward, renewing and revitalising
+the importance of human-centric approaches to instructing computers,
+rather than unprogrammable AI tools that ultimately take freedom away
+from the user. As Blackwell calls for in <em>Moral Codes</em> <span
+class="citation" data-cites="Blackwell2022Chapter">[10]</span>: <em>“If
+computer users have access to appropriate notations - Moral Codes - they
+can use simple automation to make their lives less mechanical, rather
+than more. If computer interfaces are designed as notational spaces,
+they offer freedom and negotiation, even forms of social organisation,
+complex assemblies of intelligent decision making and deliberation,
+respecting the humans creating them, rather than pretending humans were
+not involved.”</em></p>
+
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0"
+role="list">
+<div id="ref-hbr2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">A
+practical guide to building ethical AI: 2020. <a
+href="https://hbr.org/2020/10/a-practical-guide-to-building-ethical-ai"><em>https://hbr.org/2020/10/a-practical-guide-to-building-ethical-ai</em></a>.
+Accessed: 2023-06-29.</div>
+</div>
+<div id="ref-aghaee2015personality" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div
+class="csl-right-inline">Aghaee, S. et al. 2015. Personality and
+intrinsic motivational factors in end-user programming. <em>2015 IEEE
+symposium on visual languages and human-centric computing (VL/HCC)</em>
+(2015), 29–36.</div>
+</div>
+<div id="ref-alcott2005jevons" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div
+class="csl-right-inline">Alcott, B. 2005. Jevons’ paradox.
+<em>Ecological economics</em>. 54, 1 (2005), 9–21.</div>
+</div>
+<div id="ref-arawjo2020write" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div
+class="csl-right-inline">Arawjo, I. 2020. To write code: The cultural
+fabrication of programming notation and practice. <em>Proceedings of the
+2020 CHI conference on human factors in computing systems</em> (2020),
+1–15.</div>
+</div>
+<div id="ref-austin2021program" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div
+class="csl-right-inline">Austin, J. et al. 2021. Program synthesis with
+large language models. <em>arXiv preprint arXiv:2108.07732</em>.
+(2021).</div>
+</div>
+<div id="ref-basman2016software" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div
+class="csl-right-inline">Basman, A. et al. 2016. Software and how it
+lives on-embedding live programs in the world around them. <em>PPIG</em>
+(2016), 19.</div>
+</div>
+<div id="ref-becker2023programming" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div
+class="csl-right-inline">Becker, B.A. et al. 2023. Programming is
+hard-or at least it used to be: Educational opportunities and challenges
+of ai code generation. <em>Proceedings of the 54th ACM technical
+symposium on computer science education v. 1</em> (2023), 500–506.</div>
+</div>
+<div id="ref-beckwith2006tinkering" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div
+class="csl-right-inline">Beckwith, L. et al. 2006. Tinkering and gender
+in end-user programmers’ debugging. <em>Proceedings of the SIGCHI
+conference on human factors in computing systems</em> (2006),
+231–240.</div>
+</div>
+<div id="ref-bender2021dangers" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div
+class="csl-right-inline">Bender, E.M. et al. 2021. On the dangers of
+stochastic parrots: Can language models be too big? <em>Proceedings of
+the 2021 ACM conference on fairness, accountability, and
+transparency</em> (2021), 610–623.</div>
+</div>
+<div id="ref-Blackwell2022Chapter" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div
+class="csl-right-inline">Blackwell, A. 2022. Chapter 13: conclusion.
+<em>Moral <span>Codes</span></em>. MIT Press.</div>
+</div>
+<div id="ref-blackwell2002first" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div
+class="csl-right-inline">Blackwell, A.F. 2002. First steps in
+programming: A rationale for attention investment models.
+<em>Proceedings IEEE 2002 symposia on human centric computing languages
+and environments</em> (2002), 2–10.</div>
+</div>
+<div id="ref-blackwell2002programming" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">[12] </div><div
+class="csl-right-inline">Blackwell, A.F. 2002. What is programming?
+<em>PPIG</em> (2002), 20.</div>
+</div>
+<div id="ref-bommasani2021opportunities" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">[13] </div><div
+class="csl-right-inline">Bommasani, R. et al. 2021. On the opportunities
+and risks of foundation models. <em>arXiv preprint
+arXiv:2108.07258</em>. (2021).</div>
+</div>
+<div id="ref-brown2020language" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div
+class="csl-right-inline">Brown, T. et al. 2020. Language models are
+few-shot learners. <em>Advances in neural information processing
+systems</em>. 33, (2020), 1877–1901.</div>
+</div>
+<div id="ref-burnett2016gendermag" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div
+class="csl-right-inline">Burnett, M. et al. 2016. GenderMag: A method
+for evaluating software’s gender inclusiveness. <em>Interacting with
+Computers</em>. 28, 6 (2016), 760–787.</div>
+</div>
+<div id="ref-Cai2012-kk" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[16] </div><div
+class="csl-right-inline">Cai, L. 2012. Latent variable modeling.
+<em>Shanghai Arch. Psychiatry</em>. 24, 2 (Apr. 2012), 118–120.</div>
+</div>
+<div id="ref-chalhoub2022s" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[17] </div><div
+class="csl-right-inline">Chalhoub, G. and Sarkar, A. 2022. <span
+class="nocase"><span>“It’s Freedom to Put Things Where My Mind
+Wants”</span>: Understanding and Improving the User Experience of
+Structuring Data in Spreadsheets</span>. <em>Proceedings of the 2022 CHI
+conference on human factors in computing systems</em> (2022),
+1–24.</div>
+</div>
+<div id="ref-collins2003live" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[18] </div><div
+class="csl-right-inline">Collins, N. et al. 2003. Live coding in laptop
+performance. <em>Organised sound</em>. 8, 3 (2003), 321–330.</div>
+</div>
+<div id="ref-coyle2012did" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[19] </div><div
+class="csl-right-inline">Coyle, D. et al. 2012. I did that! Measuring
+users’ experience of agency in their own actions. <em>Proceedings of the
+SIGCHI conference on human factors in computing systems</em> (2012),
+2025–2034.</div>
+</div>
+<div id="ref-cypher1991eager" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[20] </div><div
+class="csl-right-inline">Cypher, A. 1991. Eager: Programming repetitive
+tasks by example. <em>Proceedings of the SIGCHI conference on human
+factors in computing systems</em> (1991), 33–39.</div>
+</div>
+<div id="ref-cypher1993watch" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[21] </div><div
+class="csl-right-inline">Cypher, A. and Halbert, D.C. 1993. <em>Watch
+what i do: Programming by demonstration</em>. MIT press.</div>
+</div>
+<div id="ref-denning2017remaining" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[22] </div><div
+class="csl-right-inline">Denning, P.J. 2017. Remaining trouble spots
+with computational thinking. <em>Communications of the ACM</em>. 60, 6
+(2017), 33–39.</div>
+</div>
+<div id="ref-denny2023computing" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[23] </div><div
+class="csl-right-inline">Denny, P. et al. 2023. Computing education in
+the era of generative AI. <em>arXiv preprint arXiv:2306.02608</em>.
+(2023).</div>
+</div>
+<div id="ref-denny2023conversing" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[24] </div><div
+class="csl-right-inline">Denny, P. et al. 2023. Conversing with copilot:
+Exploring prompt engineering for solving cs1 problems using natural
+language. <em>Proceedings of the 54th ACM technical symposium on
+computer science education v. 1</em> (2023), 1136–1142.</div>
+</div>
+<div id="ref-devlin2018bert" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[25] </div><div
+class="csl-right-inline">Devlin, J. et al. 2018. Bert: Pre-training of
+deep bidirectional transformers for language understanding. <em>arXiv
+preprint arXiv:1810.04805</em>. (2018).</div>
+</div>
+<div id="ref-Eco1997-sa" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[26] </div><div
+class="csl-right-inline">Eco, U. 1997. <em>The search for the perfect
+language</em>. Blackwell.</div>
+</div>
+<div id="ref-everitt1984introduction" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[27] </div><div
+class="csl-right-inline">Everitt, B.S. 1984. <em><a
+href="https://doi.org/10.1007/978-94-009-5564-6">An introduction to
+latent variable models</a></em>. Springer Dordrecht.</div>
+</div>
+<div id="ref-fan2022improving" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[28] </div><div
+class="csl-right-inline">Fan, Z. et al. 2022. Improving automatically
+generated code from codex via automated program repair. <em>arXiv
+preprint arXiv:2205.10583</em>. (2022).</div>
+</div>
+<div id="ref-fincher2004computer" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[29] </div><div
+class="csl-right-inline">Fincher, S. and Petre, M. 2004. <em>Computer
+science education research</em>. CRC Press.</div>
+</div>
+<div id="ref-Foucault1966-ju" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[30] </div><div
+class="csl-right-inline">Foucault, M. 1966. <em>Les mots et les choses:
+Une arch<span>é</span>ologie des sciences humaines</em>. Editions
+Gallimard.</div>
+</div>
+<div id="ref-gorinova2016live" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[31] </div><div
+class="csl-right-inline">Gorinova, M.I. et al. 2016. A live,
+multiple-representation probabilistic programming environment for
+novices. <em>Proceedings of the 2016 CHI conference on human factors in
+computing systems</em> (2016), 2533–2537.</div>
+</div>
+<div id="ref-green1996usability" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[32] </div><div
+class="csl-right-inline">Green, T.R.G. and Petre, M. 1996. Usability
+analysis of visual programming environments: A <span>“cognitive
+dimensions”</span> framework. <em>Journal of Visual Languages &amp;
+Computing</em>. 7, 2 (1996), 131–174.</div>
+</div>
+<div id="ref-gulwani2011automating" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[33] </div><div
+class="csl-right-inline">Gulwani, S. 2011. Automating string processing
+in spreadsheets using input-output examples. <em>ACM Sigplan
+Notices</em>. 46, 1 (2011), 317–330.</div>
+</div>
+<div id="ref-harrer2023attention" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[34] </div><div
+class="csl-right-inline">Harrer, S. 2023. Attention is not all you need:
+The complicated case of ethically using large language models in
+healthcare and medicine. <em>EBioMedicine</em>. 90, (2023).</div>
+</div>
+<div id="ref-hermans2015detecting" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[35] </div><div
+class="csl-right-inline">Hermans, F. et al. 2015. Detecting and
+refactoring code smells in spreadsheet formulas. <em>Empirical Software
+Engineering</em>. 20, (2015), 549–575.</div>
+</div>
+<div id="ref-hermans2011supporting" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[36] </div><div
+class="csl-right-inline">Hermans, F. et al. 2011. Supporting
+professional spreadsheet users by generating leveled dataflow diagrams.
+<em>Proceedings of the 33rd international conference on software
+engineering</em> (2011), 451–460.</div>
+</div>
+<div id="ref-jachimowicz_duncan_weber_johnson_2019" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">[37] </div><div
+class="csl-right-inline">JACHIMOWICZ, J.M. et al. 2019. When and why
+defaults influence decisions: A meta-analysis of default effects.
+<em>Behavioural Public Policy</em>. 3, 2 (2019), 159–186.
+DOI:https://doi.org/<a
+href="https://doi.org/10.1017/bpp.2018.43">10.1017/bpp.2018.43</a>.</div>
+</div>
+<div id="ref-jaimovitch2022can" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[38] </div><div
+class="csl-right-inline">Jaimovitch-López, G. et al. 2022. Can language
+models automate data wrangling? <em>Machine Learning</em>. (2022),
+1–30.</div>
+</div>
+<div id="ref-jain2020integrating" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[39] </div><div
+class="csl-right-inline">Jain, K. and Tanimoto, S.L. 2020. Integrating a
+live programming role into games. <em>PPIG</em> (2020).</div>
+</div>
+<div id="ref-jakubovic2023technical" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[40] </div><div
+class="csl-right-inline">Jakubovic, J. et al. 2023. Technical dimensions
+of programming systems. <em>arXiv preprint arXiv:2302.10003</em>.
+(2023).</div>
+</div>
+<div id="ref-jernigan2015principled" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[41] </div><div
+class="csl-right-inline">Jernigan, W. et al. 2015. A principled
+evaluation for a principled idea garden. <em>2015 IEEE symposium on
+visual languages and human-centric computing (VL/HCC)</em> (2015),
+235–243.</div>
+</div>
+<div id="ref-jiang2023selfevolve" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[42] </div><div
+class="csl-right-inline">Jiang, S. et al. 2023. SelfEvolve: A code
+evolution framework via large language models. <em>arXiv preprint
+arXiv:2306.02907</em>. (2023).</div>
+</div>
+<div id="ref-joharizadeh2020gridlets" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[43] </div><div
+class="csl-right-inline">Joharizadeh, N. et al. 2020. Gridlets: Reusing
+spreadsheet grids. <em>Extended abstracts of the 2020 CHI conference on
+human factors in computing systems</em> (2020), 1–7.</div>
+</div>
+<div id="ref-kang2023explainable" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[44] </div><div
+class="csl-right-inline">Kang, S. et al. 2023. Explainable automated
+debugging via large language model-driven scientific debugging.
+<em>arXiv preprint arXiv:2304.02195</em>. (2023).</div>
+</div>
+<div id="ref-kaplan2020scaling" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[45] </div><div
+class="csl-right-inline">Kaplan, J. et al. 2020. Scaling laws for neural
+language models. <em>arXiv preprint arXiv:2001.08361</em>. (2020).</div>
+</div>
+<div id="ref-katz2023gpt" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[46] </div><div
+class="csl-right-inline">Katz, D.M. et al. 2023. Gpt-4 passes the bar
+exam. <em>Available at SSRN 4389233</em>. (2023).</div>
+</div>
+<div id="ref-kautz2022third" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[47] </div><div
+class="csl-right-inline">Kautz, H. 2022. The third AI summer: AAAI
+robert s. Engelmore memorial lecture. <em>AI Magazine</em>. 43, 1
+(2022), 105–125.</div>
+</div>
+<div id="ref-kery2017exploring" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[48] </div><div
+class="csl-right-inline">Kery, M.B. and Myers, B.A. 2017. Exploring
+exploratory programming. <em>2017 IEEE symposium on visual languages and
+human-centric computing (VL/HCC)</em> (2017), 25–29.</div>
+</div>
+<div id="ref-kesan2006setting" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[49] </div><div
+class="csl-right-inline">Kesan, J.P. and Shah, R.C. 2006. Setting
+software defaults: Perspectives from law, computer science and
+behavioral economics. <em>Notre Dame L. Rev.</em> 82, (2006), 583.</div>
+</div>
+<div id="ref-khatry2023words" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[50] </div><div
+class="csl-right-inline">Khatry, A. et al. 2023. From words to code:
+Harnessing data for program synthesis from natural language. <em>arXiv
+preprint arXiv:2305.01598</em>. (2023).</div>
+</div>
+<div id="ref-klavsnja2011integration" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[51] </div><div
+class="csl-right-inline">Klašnja-Milićević, A. et al. 2011. Integration
+of recommendations and adaptive hypermedia into java tutoring system.
+<em>Computer Science and Information Systems</em>. 8, 1 (2011),
+211–224.</div>
+</div>
+<div id="ref-klokmose2015webstrates" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[52] </div><div
+class="csl-right-inline">Klokmose, C.N. et al. 2015. Webstrates:
+Shareable dynamic media. <em>Proceedings of the 28th annual ACM
+symposium on user interface software &amp; technology</em> (2015),
+280–290.</div>
+</div>
+<div id="ref-ko2004six" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[53] </div><div
+class="csl-right-inline">Ko, A.J. et al. 2004. Six learning barriers in
+end-user programming systems. <em>2004 IEEE symposium on visual
+languages-human centric computing</em> (2004), 199–206.</div>
+</div>
+<div id="ref-ko2011state" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[54] </div><div
+class="csl-right-inline">Ko, A.J. et al. 2011. The state of the art in
+end-user software engineering. <em>ACM Computing Surveys (CSUR)</em>.
+43, 3 (2011), 1–44.</div>
+</div>
+<div id="ref-ko2004designing" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[55] </div><div
+class="csl-right-inline">Ko, A.J. and Myers, B.A. 2004. Designing the
+whyline: A debugging interface for asking questions about program
+behavior. <em>Proceedings of the SIGCHI conference on human factors in
+computing systems</em> (2004), 151–158.</div>
+</div>
+<div id="ref-krizhevsky2017imagenet" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[56] </div><div
+class="csl-right-inline">Krizhevsky, A. et al. 2017. Imagenet
+classification with deep convolutional neural networks.
+<em>Communications of the ACM</em>. 60, 6 (2017), 84–90.</div>
+</div>
+<div id="ref-kulesza2015principles" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[57] </div><div
+class="csl-right-inline">Kulesza, T. et al. 2015. Principles of
+explanatory debugging to personalize interactive machine learning.
+<em>Proceedings of the 20th international conference on intelligent user
+interfaces</em> (2015), 126–137.</div>
+</div>
+<div id="ref-lasserre2006principled" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[58] </div><div
+class="csl-right-inline">Lasserre, J.A. et al. 2006. Principled hybrids
+of generative and discriminative models. <em>2006 IEEE computer society
+conference on computer vision and pattern recognition (CVPR’06)</em>
+(2006), 87–94.</div>
+</div>
+<div id="ref-lau2021tweakit" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[59] </div><div
+class="csl-right-inline">Lau, S. et al. 2021. Tweakit: Supporting
+end-user programmers who transmogrify code. <em>Proceedings of the 2021
+CHI conference on human factors in computing systems</em> (2021),
+1–12.</div>
+</div>
+<div id="ref-lecun2015deep" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[60] </div><div
+class="csl-right-inline">LeCun, Y. et al. 2015. Deep learning.
+<em>nature</em>. 521, 7553 (2015), 436–444.</div>
+</div>
+<div id="ref-liblit2006cognitive" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[61] </div><div
+class="csl-right-inline">Liblit, B. et al. 2006. Cognitive perspectives
+on the role of naming in computer programs. <em>PPIG</em> (2006),
+11.</div>
+</div>
+<div id="ref-lieberman2001your" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[62] </div><div
+class="csl-right-inline">Lieberman, H. 2001. <em>Your wish is my
+command: Programming by example</em>. Morgan Kaufmann.</div>
+</div>
+<div id="ref-limerick2014agency" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[63] </div><div
+class="csl-right-inline">Limerick, H. et al. 2014. The experience of
+agency in human-computer interactions: A review. <em>Frontiers in Human
+Neuroscience</em>. 8, (2014). DOI:https://doi.org/<a
+href="https://doi.org/10.3389/fnhum.2014.00643">10.3389/fnhum.2014.00643</a>.</div>
+</div>
+<div id="ref-liu2023what" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[64] </div><div
+class="csl-right-inline">Liu, M.X. et al. 2023. <a
+href="https://doi.org/10.1145/3544548.3580817"><span>“What it wants me
+to say”</span>: Bridging the abstraction gap between end-user
+programmers and code-generating large language models</a>.
+<em>Proceedings of the 2023 CHI conference on human factors in computing
+systems</em> (New York, NY, USA, 2023).</div>
+</div>
+<div id="ref-liu2022design" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[65] </div><div
+class="csl-right-inline">Liu, V. and Chilton, L.B. 2022. Design
+guidelines for prompt engineering text-to-image generative models.
+<em>Proceedings of the 2022 CHI conference on human factors in computing
+systems</em> (2022), 1–23.</div>
+</div>
+<div id="ref-mackay1991triggers" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[66] </div><div
+class="csl-right-inline">Mackay, W.E. 1991. Triggers and barriers to
+customizing software. <em>Proceedings of the SIGCHI conference on human
+factors in computing systems</em> (1991), 153–160.</div>
+</div>
+<div id="ref-mackenzie2017machine" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[67] </div><div
+class="csl-right-inline">Mackenzie, A. 2017. <em>Machine learners:
+Archaeology of a data practice</em>. MIT Press.</div>
+</div>
+<div id="ref-macneil2022automatically" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">[68] </div><div
+class="csl-right-inline">MacNeil, S. et al. 2022. Automatically
+generating CS learning materials with large language models. <em>arXiv
+preprint arXiv:2212.05113</em>. (2022).</div>
+</div>
+<div id="ref-macneil2023experiences" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[69] </div><div
+class="csl-right-inline">MacNeil, S. et al. 2023. Experiences from using
+code explanations generated by large language models in a web software
+development e-book. <em>Proceedings of the 54th ACM technical symposium
+on computer science education v. 1</em> (2023), 931–937.</div>
+</div>
+<div id="ref-manna1971toward" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[70] </div><div
+class="csl-right-inline">Manna, Z. and Waldinger, R.J. 1971. Toward
+automatic program synthesis. <em>Communications of the ACM</em>. 14, 3
+(1971), 151–165.</div>
+</div>
+<div id="ref-metz2021economic" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[71] </div><div
+class="csl-right-inline">Metz, D. 2021. Economic benefits of road
+widening: Discrepancy between outturn and forecast. <em>Transportation
+research part A: policy and practice</em>. 147, (2021), 312–319.</div>
+</div>
+<div id="ref-middaugh2018delusion" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[72] </div><div
+class="csl-right-inline">Middaugh, D.J. 2018. Delusion of control:
+Pushing buttons. <em>Medsurg Nursing</em>. 27, 6 (2018), 399.</div>
+</div>
+<div id="ref-miller2019explanation" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[73] </div><div
+class="csl-right-inline">Miller, T. 2019. Explanation in artificial
+intelligence: Insights from the social sciences. <em>Artificial
+intelligence</em>. 267, (2019), 1–38.</div>
+</div>
+<div id="ref-mishra2021reframing" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[74] </div><div
+class="csl-right-inline">Mishra, S. et al. 2021. Reframing instructional
+prompts to GPTk’s language. <em>arXiv preprint arXiv:2109.07830</em>.
+(2021).</div>
+</div>
+<div id="ref-morch1997three" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[75] </div><div
+class="csl-right-inline">Mørch, A. 1997. Three levels of end-user
+tailoring: Customization, integration, and extension. <em>Computers and
+design in context</em>. 1997, (1997), 61.</div>
+</div>
+<div id="ref-morgenthaler2009exploratory" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">[76] </div><div
+class="csl-right-inline">Morgenthaler, S. 2009. Exploratory data
+analysis. <em>Wiley Interdisciplinary Reviews: Computational
+Statistics</em>. 1, 1 (2009), 33–44.</div>
+</div>
+<div id="ref-nouwens2018application" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[77] </div><div
+class="csl-right-inline">Nouwens, M. and Klokmose, C.N. 2018. The
+application and its consequences for non-standard knowledge work.
+<em>Proceedings of the 2018 CHI conference on human factors in computing
+systems</em> (2018), 1–12.</div>
+</div>
+<div id="ref-okrent2009land" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[78] </div><div
+class="csl-right-inline">Okrent, A. 2009. <em>In the land of invented
+languages: Esperanto rock stars, klingon poets, loglan lovers, and the
+mad dreamers who tried to build a perfect language</em>. Random
+House.</div>
+</div>
+<div id="ref-openai2023gpt4" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[79] </div><div
+class="csl-right-inline">OpenAI 2023. <a
+href="https://arxiv.org/abs/2303.08774">GPT-4 technical
+report</a>.</div>
+</div>
+<div id="ref-ouyang2022training" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[80] </div><div
+class="csl-right-inline">Ouyang, L. et al. 2022. Training language
+models to follow instructions with human feedback. <em>Advances in
+Neural Information Processing Systems</em>. 35, (2022),
+27730–27744.</div>
+</div>
+<div id="ref-pandita2018no" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[81] </div><div
+class="csl-right-inline">Pandita, R. et al. 2018. No half-measures: A
+study of manual and tool-assisted end-user programming tasks in excel.
+<em>2018 ieee symposium on visual languages and human-centric computing
+(vl/hcc)</em> (2018), 95–103.</div>
+</div>
+<div id="ref-petricek_2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[82] </div><div
+class="csl-right-inline">Petricek, T. 2022. <a
+href="https://tomasp.net/blog/2022/no-code-substrates/">No-code, no
+thought? Substrates for simple programming for all</a>. <em>No-code, no
+thought? Substrates for simple programming for all - Tomas
+Petricek</em>. tomasp.net.</div>
+</div>
+<div id="ref-petricekprogramming" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[83] </div><div
+class="csl-right-inline">Petricek, T. 2016. Programming language theory:
+Thinking the unthinkable (work in progress). <em><span
+class="nocase">Proceedings of the Annual Conference of the Psychology of
+Programming Interest Group (PPIG)</span></em> (2016).</div>
+</div>
+<div id="ref-potthast2021dilemma" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[84] </div><div
+class="csl-right-inline">Potthast, M. et al. 2021. The dilemma of the
+direct answer. <em>Acm sigir forum</em> (2021), 1–12.</div>
+</div>
+<div id="ref-ramesh2021zero" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[85] </div><div
+class="csl-right-inline">Ramesh, A. et al. 2021. Zero-shot text-to-image
+generation. <em>International conference on machine learning</em>
+(2021), 8821–8831.</div>
+</div>
+<div id="ref-resnick2009scratch" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[86] </div><div
+class="csl-right-inline">Resnick, M. et al. 2009. Scratch: Programming
+for all. <em>Communications of the ACM</em>. 52, 11 (2009), 60–67.</div>
+</div>
+<div id="ref-revow1996using" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[87] </div><div
+class="csl-right-inline">Revow, M. et al. 1996. Using generative models
+for handwritten digit recognition. <em>IEEE transactions on pattern
+analysis and machine intelligence</em>. 18, 6 (1996), 592–606.</div>
+</div>
+<div id="ref-rogers2021primer" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[88] </div><div
+class="csl-right-inline">Rogers, A. et al. 2021. A primer in BERTology:
+What we know about how BERT works. <em>Transactions of the Association
+for Computational Linguistics</em>. 8, (2021), 842–866.</div>
+</div>
+<div id="ref-sarkar2022end" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[89] </div><div
+class="csl-right-inline">Sarkar, A. et al. 2022. End-user encounters
+with lambda abstraction in spreadsheets: Apollo’s bow or achilles’ heel?
+<em>2022 IEEE symposium on visual languages and human-centric computing
+(VL/HCC)</em> (2022), 1–11.</div>
+</div>
+<div id="ref-sarkar2023exploring" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[90] </div><div
+class="csl-right-inline">Sarkar, A. 2023. <a
+href="https://doi.org/10.1145/3596671.3597650">Exploring perspectives on
+the impact of artificial intelligence on the creativity of knowledge
+work: Beyond mechanised plagiarism and stochastic parrots</a>.
+<em>Annual symposium on human-computer interaction for work 2023
+(CHIWORK 2023)</em> (Oldenburg, Germany, 2023), 17.</div>
+</div>
+<div id="ref-sarkar2022explainable" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[91] </div><div
+class="csl-right-inline">Sarkar, A. 2022. <a
+href="http://ceur-ws.org/Vol-3124/paper22.pdf"><span class="nocase">Is
+explainable AI a race against model complexity?</span></a> <em><span
+class="nocase">Workshop on Transparency and Explanations in Smart
+Systems (TeXSS), in conjunction with ACM Intelligent User Interfaces
+(IUI 2022)</span></em> (Mar. 2022), 192–199.</div>
+</div>
+<div id="ref-sarkar2023should" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[92] </div><div
+class="csl-right-inline">Sarkar, A. 2023. <a
+href="https://doi.org/10.1145/3544549.3582741">Should computers be easy
+to use? Questioning the doctrine of simplicity in user interface
+design</a>. <em>Extended abstracts of the 2023 CHI conference on human
+factors in computing systems</em> (New York, NY, USA, 2023).</div>
+</div>
+<div id="ref-sarkar2016visual" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[93] </div><div
+class="csl-right-inline">Sarkar, A. et al. 2016. Visual discovery and
+model-driven explanation of time series patterns. <em>2016 IEEE
+symposium on visual languages and human-centric computing (VL/HCC)</em>
+(2016), 78–86.</div>
+</div>
+<div id="ref-sarkar2022programmingai" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[94] </div><div
+class="csl-right-inline">Sarkar, A. et al. 2022. What is it like to
+program with artificial intelligence? <em><span
+class="nocase">Proceedings of the 33rd Annual Conference of the
+Psychology of Programming Interest Group (PPIG 2022)</span></em> (Sep.
+2022).</div>
+</div>
+<div id="ref-sarkar2018spreadsheetlearning" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">[95] </div><div
+class="csl-right-inline">Sarkar, A. and Gordon, A.D. 2018. How do people
+learn to use spreadsheets? (Work in progress). <em><span
+class="nocase">Proceedings of the 29th Annual Conference of the
+Psychology of Programming Interest Group (PPIG 2018)</span></em> (Sep.
+2018), 28–35.</div>
+</div>
+<div id="ref-sarkar2018people" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[96] </div><div
+class="csl-right-inline">Sarkar, A. and Gordon, A.D. 2018. How do people
+learn to use spreadsheets?(work in progress). <em>PPIG</em>
+(2018).</div>
+</div>
+<div id="ref-scaffidi2005estimating" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[97] </div><div
+class="csl-right-inline">Scaffidi, C. et al. 2005. Estimating the
+numbers of end users and end user programmers. <em>2005 IEEE symposium
+on visual languages and human-centric computing (VL/HCC’05)</em> (2005),
+207–214.</div>
+</div>
+<div id="ref-serban2013survey" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[98] </div><div
+class="csl-right-inline">Serban, F. et al. 2013. A survey of intelligent
+assistants for data analysis. <em>ACM Computing Surveys (CSUR)</em>. 45,
+3 (2013), 1–35.</div>
+</div>
+<div id="ref-sevilla2022compute" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[99] </div><div
+class="csl-right-inline">Sevilla, J. et al. 2022. Compute trends across
+three eras of machine learning. <em>2022 international joint conference
+on neural networks (IJCNN)</em> (2022), 1–8.</div>
+</div>
+<div id="ref-silver2016mastering" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[100] </div><div
+class="csl-right-inline">Silver, D. et al. 2016. Mastering the game of
+go with deep neural networks and tree search. <em>nature</em>. 529, 7587
+(2016), 484–489.</div>
+</div>
+<div id="ref-singh2022hide" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[101] </div><div
+class="csl-right-inline">Singh, N. et al. 2022. Where to hide a stolen
+elephant: Leaps in creative writing with multimodal machine
+intelligence. <em>ACM Transactions on Computer-Human Interaction</em>.
+(2022).</div>
+</div>
+<div id="ref-solaiman2019release" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[102] </div><div
+class="csl-right-inline">Solaiman, I. et al. 2019. Release strategies
+and the social impacts of language models. <em>arXiv preprint
+arXiv:1908.09203</em>. (2019).</div>
+</div>
+<div id="ref-srinivasa2016foraging" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[103] </div><div
+class="csl-right-inline">Srinivasa Ragavan, S. et al. 2016. Foraging
+among an overabundance of similar variants. <em>Proceedings of the 2016
+CHI conference on human factors in computing systems</em> (2016),
+3509–3521.</div>
+</div>
+<div id="ref-srinivasa2021spreadsheet" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">[104] </div><div
+class="csl-right-inline">Srinivasa Ragavan, S. et al. 2021. Spreadsheet
+comprehension: Guesswork, giving up and going back to the author.
+<em>Proceedings of the 2021 CHI conference on human factors in computing
+systems</em> (2021), 1–21.</div>
+</div>
+<div id="ref-stead2014learning" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[105] </div><div
+class="csl-right-inline">Stead, A. and Blackwell, A.F. 2014. Learning
+syntax as notational expertise when using drawbridge. <em>Proceedings of
+the psychology of programming interest group annual conference (PPIG
+2014)</em> (2014), 41–52.</div>
+</div>
+<div id="ref-strobelt2022interactive" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[106] </div><div
+class="csl-right-inline">Strobelt, H. et al. 2022. Interactive and
+visual prompt engineering for ad-hoc task adaptation with large language
+models. <em>IEEE transactions on visualization and computer
+graphics</em>. 29, 1 (2022), 1146–1156.</div>
+</div>
+<div id="ref-sumner1997evolution" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[107] </div><div
+class="csl-right-inline">Sumner, T. and Stolze, M. 1997. <em>Evolution,
+not revolution: Participatory design in the toolbelt era</em>. MIT Press
+Cambridge, MA.</div>
+</div>
+<div id="ref-tafur2023user" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[108] </div><div
+class="csl-right-inline">Tafur, B. and Sarkar, A. 2023. <a
+href="https://arxiv.org/abs/2304.07926">User perceptions of automatic
+fake news detection: Can algorithms fight online
+misinformation?</a></div>
+</div>
+<div id="ref-tamkin2021understanding" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[109] </div><div
+class="csl-right-inline">Tamkin, A. et al. 2021. Understanding the
+capabilities, limitations, and societal impact of large language models.
+<em>arXiv preprint arXiv:2102.02503</em>. (2021).</div>
+</div>
+<div id="ref-tanimoto2013perspective" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[110] </div><div
+class="csl-right-inline">Tanimoto, S.L. 2013. A perspective on the
+evolution of live programming. <em>2013 1st international workshop on
+live programming (LIVE)</em> (2013), 31–34.</div>
+</div>
+<div id="ref-tanimoto2020multiagent" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[111] </div><div
+class="csl-right-inline">Tanimoto, S.L. 2020. Multiagent live
+programming systems: Models and prospects for critical applications.
+<em>Companion proceedings of the 4th international conference on art,
+science, and engineering of programming</em> (2020), 90–96.</div>
+</div>
+<div id="ref-touvron2023llama" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[112] </div><div
+class="csl-right-inline">Touvron, H. et al. 2023. Llama: Open and
+efficient foundation language models. <em>arXiv preprint
+arXiv:2302.13971</em>. (2023).</div>
+</div>
+<div id="ref-vaswani2017attention" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[113] </div><div
+class="csl-right-inline">Vaswani, A. et al. 2017. Attention is all you
+need. <em>Advances in neural information processing systems</em>. 30,
+(2017).</div>
+</div>
+<div id="ref-villalobos2022will" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[114] </div><div
+class="csl-right-inline">Villalobos, P. et al. 2022. Will we run out of
+data? An analysis of the limits of scaling datasets in machine learning.
+<em>arXiv preprint arXiv:2211.04325</em>. (2022).</div>
+</div>
+<div id="ref-vos2022towards" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[115] </div><div
+class="csl-right-inline">Vos, D. et al. 2022. Towards
+parameter-efficient automation of data wrangling tasks with
+prefix-tuning. <em>NeurIPS 2022 first table representation workshop</em>
+(2022).</div>
+</div>
+<div id="ref-wang2021codet5" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[116] </div><div
+class="csl-right-inline">Wang, Y. et al. 2021. Codet5: Identifier-aware
+unified pre-trained encoder-decoder models for code understanding and
+generation. <em>arXiv preprint arXiv:2109.00859</em>. (2021).</div>
+</div>
+<div id="ref-weidinger2021ethical" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[117] </div><div
+class="csl-right-inline">Weidinger, L. et al. 2021. Ethical and social
+risks of harm from language models. <em>arXiv preprint
+arXiv:2112.04359</em>. (2021).</div>
+</div>
+<div id="ref-white2023prompt" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[118] </div><div
+class="csl-right-inline">White, J. et al. 2023. A prompt pattern catalog
+to enhance prompt engineering with chatgpt. <em>arXiv preprint
+arXiv:2302.11382</em>. (2023).</div>
+</div>
+<div id="ref-wiedenbeck2004factors" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[119] </div><div
+class="csl-right-inline">Wiedenbeck, S. et al. 2004. Factors affecting
+course outcomes in introductory programming. <em>PPIG</em> (2004),
+11.</div>
+</div>
+<div id="ref-wilson2003harnessing" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[120] </div><div
+class="csl-right-inline">Wilson, A. et al. 2003. Harnessing curiosity to
+increase correctness in end-user programming. <em>Proceedings of the
+SIGCHI conference on human factors in computing systems</em> (2003),
+305–312.</div>
+</div>
+<div id="ref-wing2006computational" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[121] </div><div
+class="csl-right-inline">Wing, J.M. 2006. Computational thinking.
+<em>Communications of the ACM</em>. 49, 3 (2006), 33–35.</div>
+</div>
+<div id="ref-zhang2010towards" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[122] </div><div
+class="csl-right-inline">Zhang, N. et al. 2010. Towards automated
+synthesis of executable eclipse tutorials. <em>SEKE</em> (2010),
+591–598.</div>
+</div>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://openai.com/blog/chatgpt"
+class="uri">https://openai.com/blog/chatgpt</a> (last accessed 23 June
+2023)<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>There are also elements that impact usability but have
+little or no connection with the underlying model, such as the text in
+dialogue boxes and the placement of menu buttons, which are not of
+concern here.<a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>2016 is the year that Deepmind’s AlphaGo program <span
+class="citation" data-cites="silver2016mastering">[100]</span> beat
+grandmaster Lee Sedol, though some scholars point as early as 2012,
+referring to the so-called “ImageNet moment” referring to the solution
+of the ImageNet challenge by deep convolutional networks <span
+class="citation" data-cites="krizhevsky2017imagenet">[56]</span>, while
+others look as recently as 2018, referring to the BERT model which
+similarly swept natural language processing benchmarks and is referred
+to as “NLP’s ImageNet moment” <span class="citation"
+data-cites="devlin2018bert">[25]</span>. A detailed historiography of
+the periodisation of AI research is out of scope.<a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://github.com/features/copilot"
+class="uri">https://github.com/features/copilot</a> (last accessed 25
+April 2023)<a href="#fnref4" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://github.com/features/copilot"
+class="uri">https://github.com/features/copilot</a> (last accessed 25
+April 2023)<a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This trend is almost certainly not going to continue
+indefinitely; we are approaching limits of computation and data
+availability, and others have pointed out various limitations to the
+so-called “scaling hypothesis” <span class="citation"
+data-cites="villalobos2022will sevilla2022compute kaplan2020scaling sarkar2022explainable">[45,
+91, 99, 114]</span>, but a discussion of this is out of scope.<a
+href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</body>
+</html>
