@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="" />
+  <title>Large Language Models Cannot Explain Themselves</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+  <p>This is a version of the following academic paper prepared for the web:</p>
+    <blockquote>Sarkar, Advait. “Large Language Models Cannot Explain Themselves.” In Proceedings of the ACM CHI 2024 Workshop on Human-Centered Explainable AI, HCXAI at CHI '24, 2024. Honolulu, HI, USA. Available online: https://arxiv.org/abs/2405.04382.
+    </blockquote>
+  <p>
+    More details:
+    <a href="/files/sarkar_2024_llms_cannot_explain.pdf">Download PDF</a> &bull;
+		<a href="/files/sarkar_2024_llms_cannot_explain_citation.bib">BibTeX</a> &bull;
+		<a href="https://arxiv.org/abs/2405.04382">arXiv:2405.04382</a><br>
+  </p>
+</div>
+
+<header id="title-block-header">
+<h1 class="title">Large Language Models Cannot Explain Themselves</h1>
+<p class="author">Advait Sarkar<br>
+  Microsoft Research, University of Cambridge, University College London</p>
+</header>
+
+<div class="abstract">
+  <h2>Abstract</h2>
+  <p>Large language models can be prompted to produce text. They can also
+  be prompted to produce “explanations” of their output. But these are not
+  really explanations, because they do not accurately reflect the
+  mechanical process underlying the prediction. The illusion that they
+  reflect the reasoning process can result in significant harms. These
+  “explanations” can be valuable, but for promoting critical thinking
+  rather than for understanding the model. I propose a recontextualisation
+  of these “explanations”, using the term “exoplanations” to draw
+  attention to their exogenous nature. I discuss some implications for
+  design and technology, such as the inclusion of appropriate guardrails
+  and responses when models are prompted to generate explanations.</p>
+</div>
+
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#the-illusion-of-explanation"
+id="toc-the-illusion-of-explanation"><span
+class="toc-section-number">1</span> The illusion of explanation</a></li>
+<li><a href="#societal-harms-of-exoplanations"
+id="toc-societal-harms-of-exoplanations"><span
+class="toc-section-number">2</span> Societal harms of
+exoplanations</a></li>
+<li><a href="#recontextualising-exoplanations"
+id="toc-recontextualising-exoplanations"><span
+class="toc-section-number">3</span> Recontextualising
+ex(o)planations</a></li>
+<li><a href="#acknowledgements" id="toc-acknowledgements"><span
+class="toc-section-number">4</span> Acknowledgements</a></li>
+</ul>
+</nav>
+
+<div class="keywords">
+  <p><b>Keywords</b>: exoplanations; mechanismal explanations; co-audit; AI safety; explainable AI; XAI; critical thinking; Human-centered computing; HCI theory, concepts and methods; Natural language interfaces; Computing methodologies; Natural language processing; Neural networks; Machine learning; Philosophical/theoretical foundations of artificial intelligence</p>
+</div>
+
+<h2 data-number="1" id="the-illusion-of-explanation"><span
+class="header-section-number">1</span> The illusion of explanation</h2>
+<p>In the context of Artificial Intelligence (AI), the term
+“explanation” can encompass many types of information. The most
+well-studied category of explanations is concerned with providing
+descriptions of the structure of a model, its training data, and most
+commonly, elaboration of any given output in terms of the algorithmic
+process followed to produce that output <span class="citation"
+data-cites="sarkar2022explainable">[29]</span>. What these explanations
+have in common is that they aim to faithfully represent some aspect of
+the real underlying algorithmic mechanism of an AI model. Let us
+therefore refer to these as <em>mechanismal explanations</em>.<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
+<p>Classic examples of mechanismal explanations include LIME <span
+class="citation" data-cites="ribeiro2016should">[26]</span>, SHAP <span
+class="citation" data-cites="lundberg2017unified">[21]</span>, saliency
+maps <span class="citation"
+data-cites="zeiler2014visualizing simonyan2013deep">[33,36]</span>, and
+Kulesza et al.’s visualisations of Bayes classifiers <span
+class="citation" data-cites="kulesza2015principles">[15]</span>, and
+Sarkar et al.’s visualisations of k-NN models <span class="citation"
+data-cites="sarkar2015interactive">[31]</span>. Mechanismal explanations
+are not the only kind: researchers in recent years have carefully drawn
+attention to aspects of AI explanation that instead pertain to the
+socio-technical system in which AI is embedded <span class="citation"
+data-cites="ehsan2021explainable ehsan2021expanding ehsan2023charting">[6,7,9]</span>.</p>
+<p>A disconnection is now immediately visible between a classic
+mechanismal explanation, and what is produced when a language model is
+prompted to generate an explanation. The former is truly generated from,
+and has a concrete, grounded relation to, the actual processes and
+behaviour of a model. But a language model “explanation” has no such
+property. This has been previously noted <span class="citation"
+data-cites="bommasani2021opportunities liao2024AI">[1,19]</span>, but
+the reason for the problem is treated as self-evident. I would like to
+expand on these observations, to explain why so-called
+“self-explanations” are considered to be ungrounded.</p>
+<p>Let us examine what is actually happening when a language model has
+produced some output O, and is then prompted to give an explanation E
+for O. The process of generating E is simply another execution of the
+language model. E is a text composed through a sequence of next-token
+predictions, stochastically optimised to satisfy the query. E is not the
+result of an introspective reflection on the algorithmic process that
+was followed to generate O. A true mechanismal explanation would invoke,
+for example, some reference to the actual training data, model
+parameters, or activations, that were involved in the production of O.
+But if this meta-information about the prediction process is not
+accessible to the model to draw upon in generating E, it is
+theoretically impossible that E could reflect it, accurately or
+otherwise.</p>
+<p>The situation is no different if E and O are requested in a single
+prompt, e.g., <em>“What is the capital of France? Explain your
+answer.”</em>, as opposed to two separate prompts or conversational
+turns, the first asking the question and the second asking for the
+explanation. In the single-turn case, and in multi-turn systems where
+previous responses are included in the query context, it is true that
+the generation of O is affected by the presence of an E-request in the
+query context, and vice versa. For example, the language model may well
+produce a more coherent and well-justified output if it can
+simultaneously attend to a fragment of language in which an explanation
+is requested. However, the notional E portion of the response still
+lacks a <em>mechanismal</em> grounding.</p>
+<p>Statements of type E, then, are not explanations, at least not in the
+sense that the word is most commonly used in explainable AI research,
+and, we shall see, not even in the sense that users colloquially expect
+from these systems. They do not hold the epistemically privileged status
+over statements of the type O that they claim or that people expect. In
+fact, they are outputs like any other. E-type statements could be
+described as justifications, or “post-hoc rationalisations” <span
+class="citation" data-cites="rajani2019explain">[25]</span>, but even
+these terms imply a greater degree of reflexivity and introspection than
+is warranted. They are simulacra of justification, or of
+rationalisation; samples from the space of texts with the shape of
+justifications.</p>
+<p>Let us instead call them <em>exoplanations</em>. This term retains
+all the connotations of explanations (they may or may not be correct,
+they carry the appearance of insight, they often appeal to cause, logic,
+or authority), but explicitly captures the fact that they are
+<em>exo</em>genous to, outside of, the output they explain. They inhabit
+the same plane of reasoning as their object; they cannot look any
+further beneath the object than the object itself can.</p>
+
+<table style="width: 100%; border-collapse: collapse; border: 1px solid black;">
+  <tr>
+    <th colspan="2" style="border: none; font-weight: bold;">Key terms</th>
+  </tr>
+  <tr>
+    <td style="border: none;"><b>Mechanismal explanations:</b> explanations of AI model behaviour which represent facts about the underlying mechanisms of prediction, such as the model structure, training data, or model weights. They are generated from introspection of the model, its training data, and its inference process. Examples include LIME and SHAP.</td>
+    <td style="border: none;"><b>Exoplanations:</b> statements which appear to be explanations of AI output, but are not (and cannot be) a grounded reflection of the mechanism that generated that output. This is what language models produce when asked to "explain" themselves.</td>
+  </tr>
+</table>
+
+<p>Despite state-of-the-art performance on reasoning tasks <span
+class="citation"
+data-cites="rajani2019explain wei2022chain zhao2023self">[25,35,38]</span>,
+and one study that reported feature attribution explanations with
+performance comparable to LIME <span class="citation"
+data-cites="huang2023can">[13]</span>, recent work has delivered
+significant evidence that language models consistently fail to
+accurately explain their own output, and can even systematically
+misrepresent the true reason for a model’s prediction <span
+class="citation"
+data-cites="bubeck2023sparks madsen2024selfexplanations sherburn2024language turpin2024language">[4,22,32,34]</span>.
+In other words, at present, when the explanation sought requires
+introspection into the generation process, exoplanations just don’t
+work. Large language models cannot explain themselves.</p>
+<p>This does not mean that exoplanations are not useful; on the
+contrary, when presented appropriately, they can be an important and
+powerful tool in the designer’s toolkit for creating useful and
+trustworthy experiences. Before we discuss those, let us turn our
+attention briefly to why it is important to make the distinction between
+exoplanations and explanations, beyond academic pedantry.</p>
+<h2 data-number="2" id="societal-harms-of-exoplanations"><span
+class="header-section-number">2</span> Societal harms of
+exoplanations</h2>
+<p>The story of the New York lawyers who submitted a legal brief
+including case citations generated by ChatGPT, but which turned out to
+be non-existent, is now well-known <span class="citation"
+data-cites="Merken_2023">[23]</span>.</p>
+<p>A less well-known aspect of this episode is that the infelicitous
+lawyers did attempt to verify that the cases were real... by asking
+ChatGPT, which confidently exoplained that the cases were real:
+<em>“[The lawyer] asked the AI tool whether [a case it generated] is a
+real case. ChatGPT answered that it "is a real case" and "can be found
+on legal research databases such as Westlaw and LexisNexis." When asked
+if the other cases provided by ChatGPT are fake, it answered, "No, the
+other cases I provided are real and can be found in reputable legal
+databases such as LexisNexis and Westlaw."”</em> <span class="citation"
+data-cites="Brodkin_2023">[3]</span></p>
+<p>It has often been noted that language model hallucinations are
+particularly dangerous because of the bold confidence with which the
+model makes its assertions. The same is true of exoplanations. Because
+it is so easy to prompt a language model to produce an exoplanation,
+which is reported with bold confidence, the user can be forgiven for
+thinking that exoplanations are mechanismal explanations, whereas in
+fact they are not. This can lead to the very obvious problems such as
+the example above. As the firm stated in response to the judgment that
+the lawyers had acted in bad faith, <em>“We made a good faith mistake in
+failing to believe that a piece of technology could be making up cases
+out of whole cloth”</em> <span class="citation"
+data-cites="Merken_2023">[23]</span>.</p>
+<p>As designers we must ask ourselves: in whom (or what) was this “good
+faith” placed, and why? If a false statement presented with bold
+confidence is dangerous, a false statement presented and exoplained with
+bold confidence is doubly so. Research in social psychology has shown
+that additional information can increase persuasiveness, even if it is
+irrelevant to the request <span class="citation"
+data-cites="langer1978mindlessness">[17]</span>. Users are easily
+influenced and can place their trust in meaningless explanations <span
+class="citation" data-cites="eiband2019impact">[10]</span>, and can
+over-trust interpretability aids <span class="citation"
+data-cites="kaur2020interpreting">[14]</span>. Allowing a system to
+present exoplanations with the veneer of explanations, in a situation
+where the user expects an explanation, should therefore be considered a
+dark pattern <span class="citation"
+data-cites="brignull-2023">[2]</span>.</p>
+<p>The illusion of explanation perpetuated by exoplanations poses a
+threat to decision-making processes, in everyday knowledge work as well
+as in high-stakes environments such as legal or medical contexts.
+Reliance on exoplanations may diminish users’ critical thinking and
+decision-making abilities.</p>
+<p>Instead of engaging in introspection or evaluating the logic and
+evidence behind the model’s output, users may accept exoplanations at
+face value. And why shouldn’t they? Computers are tools, and tools are
+not viewed as being adversarial to the activity they facilitate. It does
+not seem to be a productive avenue for interaction design to attempt to
+erase the cultural, inertial tendency to trust computers as
+computationally correct machines, even if that tendency is wildly
+misplaced in language models.</p>
+<p>Exoplanations can also impair user trust and confidence in AI systems
+in the long term. As exoplanations are revealed to not, in fact, have
+their putative explanatory power, this can erode trust, and undermine
+any legitimate credibility that AI systems might have.</p>
+
+<table style="width: 100%; border-collapse: collapse; border: 1px solid black;">
+  <tr>
+    <th colspan="3" style="border: none; font-weight: bold;">Harms of exoplanations</th>
+  </tr>
+  <tr>
+    <td style="border: none;"><b>False confidence:</b> bold exoplanations of hallucinated statements can give users false confidence in those statements, with dangerous consequences.</td>
+    <td style="border: none;"><b>Diminished critical thinking:</b> instead of engaging in introspection or evaluating the logic and evidence behind the model's output, users may accept exoplanations at face value.</td>
+    <td style="border: none;"><b>Erosion of trust:</b> when users discover that exoplanations do not accurately explain language model behaviour, this can undermine the credibility of AI systems.</td>
+  </tr>
+</table>
+
+<h2 data-number="3" id="recontextualising-exoplanations"><span
+class="header-section-number">3</span> Recontextualising
+ex(o)planations</h2>
+<p>This is clearly a case that calls for a social construction of
+explainability, which should <em>“start with “who” the relevant
+stakeholders are, their explainability needs, and justify how a
+particular conception of explainability satisfies the shared goals of
+the relevant social group”</em> <span class="citation"
+data-cites="ehsan2022social">[8]</span>.</p>
+<p>It is not that mechanismal explanations for language models are
+lacking. Despite significant challenges <span class="citation"
+data-cites="sarkar2022explainable">[29]</span>, numerous techniques have
+been developed to explain feature attribution, neuron activation, model
+attention, etc. <span class="citation"
+data-cites="zhao2024explainability liao2024AI">[19,37]</span>.</p>
+<p>However, mechanismal explanations are not the aim in and of
+themselves; the important aspect of the user experience that
+explanations need to fulfil is <em>decision support</em> <span
+class="citation"
+data-cites="sarkar2015interactive sarkar2016phd liao2024AI fok2024search">[11,19,28,31]</span>.
+Is the output correct? If it isn’t, what do I need to do to fix it? Can
+I trust this? For example, in an AI system that generates spreadsheet
+formulas from natural language queries, it is by far more important and
+consequential for the user experience to explain the generated
+<em>formula</em>, what it does and how it works, rather than the
+<em>mechanism</em> of the language model that produced it. Mechanismal
+explanations may generate confusion and information overload in such a
+context <span class="citation"
+data-cites="kulesza2013too liao2024AI">[16,19]</span>.</p>
+<p>As Miller <span class="citation"
+data-cites="miller2019explanation">[24]</span> and Sarkar <span
+class="citation" data-cites="sarkar2022explainable">[29]</span> have
+noted, human-human explanations are generally not mechanismal, in the
+sense that human-generated explanations of human behaviour rarely invoke
+low-level psychological or neurological phenomena, yet they are still
+generally successful at fulfilling the needs of everyday communication.
+Effective explanations can be contrastive, counterfactual, and
+justificatory, with respect to some intended state of affairs; these
+have nothing to do with the causal mechanisms underlying behaviour.</p>
+<p>Parts of the decision support problem can be addressed though an
+approach termed “co-audit” <span class="citation"
+data-cites="gordon2023co">[12]</span>: tools to help check AI-generated
+content. An example of this would be the “grounded utterances” generated
+through a separate and deterministic mechanism to explain the model
+output <span class="citation" data-cites="liu2023wants">[20]</span>.
+Another technique, employed by Microsoft Copilot (formerly Bing Chat) is
+to cite references to its Web sources that can be followed and verified.
+These are true explanations: they rely on mechanisms and authorities
+separate from the model itself and with an epistemically privileged view
+over the output generation process.</p>
+<p>But exoplanations themselves can also be useful. Without needing to
+introspect the model, they can generate statements which help the
+<em>user</em> rationalise, justify, and evaluate. They can generate text
+that prompts the <em>user</em> to reflect on the output and their
+intents. Exoplanations can thus promote critical thinking about
+interactions with generative AI <span class="citation"
+data-cites="sarkar2024cacm">[30]</span>.</p>
+<p>I propose a simple design implication that can be applied
+immediately: the introduction of guardrails and interface warnings
+against exoplanations. Commercial systems such as ChatGPT already abound
+with guardrails against content deemed inappropriate by the system
+designers, such as violent or sexual content, and numerous disclaimers
+against hallucinations, to the effect of <em>“AI generated content may
+be incorrect.”</em> To these considerations, I suggest adding guardrails
+against exoplanations masquerading as explanations, and contextualising
+them to allow their true and appropriate utility to shine.</p>
+<p>For example, if the user asks the system to explain its output, it
+could produce a disclaimer of the following type: <em>“You asked for an
+explanation, but as a language model, I am incapable of explaining my
+own behaviour.”</em> It might then follow this with <em>“However, I can
+provide examples of how to justify, rationalise, or evaluate my previous
+response. Here are example arguments for and against it. This is not an
+explanation of my previous response.”</em> Together, such a disclaimer
+followed by an exoplanation could help defuse the worst dangers and
+infuse some critical thought.</p>
+<p>There is reason to believe that such simple interventions can have a
+meaningful effect. The presence of metacognitive guiding questions, such
+as “what do I understand from the text so far?” significantly improves
+reading comprehension <span class="citation"
+data-cites="salomon1988ai">[27]</span>. Framing explanations as
+questions improves human logical discernment <span class="citation"
+data-cites="danry2023don">[5]</span>. When technology sparks conflict in
+discussions, it improves critical thinking <span class="citation"
+data-cites="lee2023fostering">[18]</span>. Users are influenced by the
+language of conversational systems and can change their instructional
+vocabulary and grammar after just a single exposure to system output
+<span class="citation" data-cites="liu2023wants">[20]</span>. The very
+same forces that influence and nudge users into trusting false
+explanations can be marshalled for their benefit instead.</p>
+<p>Going forward, as more <em>true</em> explanation mechanisms are
+developed: co-audit tools, grounded utterances, citations, etc., such
+disclaimers may be replaced with more concrete decision-support
+mechanisms. However, the utility of exoplanations as critical thinking
+support will remain. The key will be in helping the user develop safe
+and effective behaviours and mental models of trust around the different
+sources of evaluation and reflection available.</p>
+<h2 data-number="4" id="acknowledgements"><span
+class="header-section-number">4</span> Acknowledgements</h2>
+<p>Thanks to my reviewers for their time and feedback.</p>
+
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-bommasani2021opportunities" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">1. </div><div
+class="csl-right-inline">Rishi Bommasani, Drew A Hudson, Ehsan Adeli, et
+al. 2021. On the opportunities and risks of foundation models. <em>arXiv
+preprint arXiv:2108.07258</em>.</div>
+</div>
+<div id="ref-brignull-2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">H
+Brignull, M Leiser, C Santos, and K Doshi. 2023. <span
+class="nocase">Deceptive patterns – user interfaces designed to trick
+you</span>. Retrieved from <a
+href="https://www.deceptive.design/">https://www.deceptive.design/</a>.</div>
+</div>
+<div id="ref-Brodkin_2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Jon
+Brodkin. 2023. Lawyer cited 6 fake cases made up by CHATGPT; judge calls
+it <span>“unprecedented.”</span> <em>Ars Technica</em>. Retrieved from
+<a
+href="https://arstechnica.com/tech-policy/2023/05/lawyer-cited-6-fake-cases-made-up-by-chatgpt-judge-calls-it-unprecedented/">https://arstechnica.com/tech-policy/2023/05/lawyer-cited-6-fake-cases-made-up-by-chatgpt-judge-calls-it-unprecedented/</a>.</div>
+</div>
+<div id="ref-bubeck2023sparks" class="csl-entry" role="listitem">
+<div class="csl-left-margin">4. </div><div
+class="csl-right-inline">Sébastien Bubeck, Varun Chandrasekaran, Ronen
+Eldan, et al. 2023. Sparks of artificial general intelligence: Early
+experiments with gpt-4. <em>arXiv preprint arXiv:2303.12712</em>.</div>
+</div>
+<div id="ref-danry2023don" class="csl-entry" role="listitem">
+<div class="csl-left-margin">5. </div><div
+class="csl-right-inline">Valdemar Danry, Pat Pataranutaporn, Yaoli Mao,
+and Pattie Maes. 2023. Don’t just tell me, ask me: Ai systems that
+intelligently frame explanations as questions improve human logical
+discernment accuracy over causal ai explanations. <em>Proceedings of the
+2023 CHI conference on human factors in computing systems</em>,
+1–13.</div>
+</div>
+<div id="ref-ehsan2021expanding" class="csl-entry" role="listitem">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Upol
+Ehsan, Q Vera Liao, Michael Muller, Mark O Riedl, and Justin D Weisz.
+2021. Expanding explainability: Towards social transparency in ai
+systems. <em>Proceedings of the 2021 CHI conference on human factors in
+computing systems</em>, 1–19.</div>
+</div>
+<div id="ref-ehsan2021explainable" class="csl-entry" role="listitem">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Upol
+Ehsan, Samir Passi, Q Vera Liao, et al. 2021. The who in explainable ai:
+How ai background shapes perceptions of ai explanations. <em>arXiv
+preprint arXiv:2107.13509</em>.</div>
+</div>
+<div id="ref-ehsan2022social" class="csl-entry" role="listitem">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Upol
+Ehsan and Mark O. Riedl. 2022. Social construction of XAI: Do we need
+one definition to rule them all? <em>arXiv preprint
+arXiv:2211.06499</em>. Retrieved from <a
+href="https://arxiv.org/abs/2211.06499">https://arxiv.org/abs/2211.06499</a>.</div>
+</div>
+<div id="ref-ehsan2023charting" class="csl-entry" role="listitem">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Upol
+Ehsan, Koustuv Saha, Munmun De Choudhury, and Mark O Riedl. 2023.
+Charting the sociotechnical gap in explainable AI: A framework to
+address the gap in XAI. <em>Proceedings of the ACM on Human-Computer
+Interaction</em> 7, CSCW1: 1–32.</div>
+</div>
+<div id="ref-eiband2019impact" class="csl-entry" role="listitem">
+<div class="csl-left-margin">10. </div><div
+class="csl-right-inline">Malin Eiband, Daniel Buschek, Alexander Kremer,
+and Heinrich Hussmann. 2019. <a
+href="https://doi.org/10.1145/3290607.3312787">The impact of placebic
+explanations on trust in intelligent systems</a>. <em>Extended abstracts
+of the 2019 CHI conference on human factors in computing systems</em>,
+Association for Computing Machinery, 1–6.</div>
+</div>
+<div id="ref-fok2024search" class="csl-entry" role="listitem">
+<div class="csl-left-margin">11. </div><div
+class="csl-right-inline">Raymond Fok and Daniel S. Weld. 2024. In search
+of verifiability: Explanations rarely enable complementary performance
+in AI-advised decision making. Retrieved from <a
+href="https://arxiv.org/abs/2305.07722">https://arxiv.org/abs/2305.07722</a>.</div>
+</div>
+<div id="ref-gordon2023co" class="csl-entry" role="listitem">
+<div class="csl-left-margin">12. </div><div
+class="csl-right-inline">Andrew D Gordon, Carina Negreanu, José
+Cambronero, et al. 2023. Co-audit: Tools to help humans double-check
+AI-generated content. <em>arXiv preprint arXiv:2310.01297</em>.</div>
+</div>
+<div id="ref-huang2023can" class="csl-entry" role="listitem">
+<div class="csl-left-margin">13. </div><div
+class="csl-right-inline">Shiyuan Huang, Siddarth Mamidanna, Shreedhar
+Jangam, Yilun Zhou, and Leilani H Gilpin. 2023. Can large language
+models explain themselves? A study of llm-generated self-explanations.
+<em>arXiv preprint arXiv:2310.11207</em>.</div>
+</div>
+<div id="ref-kaur2020interpreting" class="csl-entry" role="listitem">
+<div class="csl-left-margin">14. </div><div
+class="csl-right-inline">Harmanpreet Kaur, Harsha Nori, Samuel Jenkins,
+Rich Caruana, Hanna Wallach, and Jennifer Wortman Vaughan. 2020. <a
+href="https://doi.org/10.1145/3313831.3376219">Interpreting
+interpretability: Understanding data scientists’ use of interpretability
+tools for machine learning</a>. <em>Proceedings of the 2020 CHI
+conference on human factors in computing systems</em>, Association for
+Computing Machinery, 1–14.</div>
+</div>
+<div id="ref-kulesza2015principles" class="csl-entry" role="listitem">
+<div class="csl-left-margin">15. </div><div
+class="csl-right-inline">Todd Kulesza, Margaret Burnett, Weng-Keen Wong,
+and Simone Stumpf. 2015. Principles of explanatory debugging to
+personalize interactive machine learning. <em>Proceedings of the 20th
+international conference on intelligent user interfaces</em>,
+126–137.</div>
+</div>
+<div id="ref-kulesza2013too" class="csl-entry" role="listitem">
+<div class="csl-left-margin">16. </div><div
+class="csl-right-inline">Todd Kulesza, Simone Stumpf, Margaret Burnett,
+Sherry Yang, Irwin Kwan, and Weng-Keen Wong. 2013. Too much, too little,
+or just right? Ways explanations impact end users’ mental models.
+<em>2013 IEEE symposium on visual languages and human centric
+computing</em>, IEEE, 3–10.</div>
+</div>
+<div id="ref-langer1978mindlessness" class="csl-entry" role="listitem">
+<div class="csl-left-margin">17. </div><div
+class="csl-right-inline">Ellen J Langer, Arthur Blank, and Benzion
+Chanowitz. 1978. The mindlessness of ostensibly thoughtful action: The
+role of" placebic" information in interpersonal interaction. <em>Journal
+of personality and social psychology</em> 36, 6: 635.</div>
+</div>
+<div id="ref-lee2023fostering" class="csl-entry" role="listitem">
+<div class="csl-left-margin">18. </div><div
+class="csl-right-inline">Sunok Lee, Dasom Choi, Minha Lee, Jonghak Choi,
+and Sangsu Lee. 2023. <a
+href="https://doi.org/10.1145/3544548.3581159">Fostering youth’s
+critical thinking competency about AI through exhibition</a>.
+<em>Proceedings of the 2023 CHI conference on human factors in computing
+systems</em>, Association for Computing Machinery.</div>
+</div>
+<div id="ref-liao2024AI" class="csl-entry" role="listitem">
+<div class="csl-left-margin">19. </div><div class="csl-right-inline">Q.
+Vera Liao and Jennifer Wortman Vaughan. 2024. <span>AI</span>
+<span>Transparency</span> in the <span>Age</span> of <span>LLMs</span>:
+A <span>Human</span>-<span>Centered</span> <span>Research</span>
+<span>Roadmap</span>. <em>Harvard Data Science Review</em>.</div>
+</div>
+<div id="ref-liu2023wants" class="csl-entry" role="listitem">
+<div class="csl-left-margin">20. </div><div
+class="csl-right-inline">Michael Xieyang Liu, Advait Sarkar, Carina
+Negreanu, et al. 2023. <span>“What it wants me to say”</span>: Bridging
+the abstraction gap between end-user programmers and code-generating
+large language models. <em>Proceedings of the 2023 CHI conference on
+human factors in computing systems</em>, 1–31.</div>
+</div>
+<div id="ref-lundberg2017unified" class="csl-entry" role="listitem">
+<div class="csl-left-margin">21. </div><div
+class="csl-right-inline">Scott M Lundberg and Su-In Lee. 2017. A unified
+approach to interpreting model predictions. <em>Advances in neural
+information processing systems</em> 30.</div>
+</div>
+<div id="ref-madsen2024selfexplanations" class="csl-entry"
+role="listitem">
+<div class="csl-left-margin">22. </div><div
+class="csl-right-inline">Andreas Madsen, Sarath Chandar, and Siva Reddy.
+2024. Are self-explanations from large language models faithful?
+Retrieved from <a
+href="https://arxiv.org/abs/2401.07927">https://arxiv.org/abs/2401.07927</a>.</div>
+</div>
+<div id="ref-Merken_2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">23. </div><div
+class="csl-right-inline">Sara Merken. 2023. New york lawyers sanctioned
+for using fake ChatGPT cases in legal brief. <em>Reuters</em>. Retrieved
+from <a
+href="https://www.reuters.com/legal/new-york-lawyers-sanctioned-using-fake-chatgpt-cases-legal-brief-2023-06-22/">https://www.reuters.com/legal/new-york-lawyers-sanctioned-using-fake-chatgpt-cases-legal-brief-2023-06-22/</a>.</div>
+</div>
+<div id="ref-miller2019explanation" class="csl-entry" role="listitem">
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">Tim
+Miller. 2019. Explanation in artificial intelligence: Insights from the
+social sciences. <em>Artificial intelligence</em> 267: 1–38.</div>
+</div>
+<div id="ref-rajani2019explain" class="csl-entry" role="listitem">
+<div class="csl-left-margin">25. </div><div
+class="csl-right-inline">Nazneen Fatema Rajani, Bryan McCann, Caiming
+Xiong, and Richard Socher. 2019. Explain yourself! Leveraging language
+models for commonsense reasoning. <em>arXiv preprint
+arXiv:1906.02361</em>.</div>
+</div>
+<div id="ref-ribeiro2016should" class="csl-entry" role="listitem">
+<div class="csl-left-margin">26. </div><div
+class="csl-right-inline">Marco Tulio Ribeiro, Sameer Singh, and Carlos
+Guestrin. 2016. "Why should i trust you?" explaining the predictions of
+any classifier. <em>Proceedings of the 22nd ACM SIGKDD international
+conference on knowledge discovery and data mining</em>, 1135–1144.</div>
+</div>
+<div id="ref-salomon1988ai" class="csl-entry" role="listitem">
+<div class="csl-left-margin">27. </div><div
+class="csl-right-inline">Gavriel Salomon. 1988. AI in reverse: Computer
+tools that turn cognitive. <em>Journal of educational computing
+research</em> 4, 2: 123–139.</div>
+</div>
+<div id="ref-sarkar2016phd" class="csl-entry" role="listitem">
+<div class="csl-left-margin">28. </div><div
+class="csl-right-inline">Advait Sarkar. 2016. <em><a
+href="https://doi.org/10.48456/tr-920"><span class="nocase">Interactive
+analytical modelling</span></a></em>. University of Cambridge, Computer
+Laboratory.</div>
+</div>
+<div id="ref-sarkar2022explainable" class="csl-entry" role="listitem">
+<div class="csl-left-margin">29. </div><div
+class="csl-right-inline">Advait Sarkar. 2022. <a
+href="http://ceur-ws.org/Vol-3124/paper22.pdf"><span class="nocase">Is
+explainable AI a race against model complexity?</span></a> <em><span
+class="nocase">Workshop on Transparency and Explanations in Smart
+Systems (TeXSS), in conjunction with ACM Intelligent User Interfaces
+(IUI 2022)</span></em>, 192–199.</div>
+</div>
+<div id="ref-sarkar2024cacm" class="csl-entry" role="listitem">
+<div class="csl-left-margin">30. </div><div
+class="csl-right-inline">Advait Sarkar. 2024. AI should challenge, not
+obey. <em>Communications of the ACM (in press)</em>.</div>
+</div>
+<div id="ref-sarkar2015interactive" class="csl-entry" role="listitem">
+<div class="csl-left-margin">31. </div><div
+class="csl-right-inline">Advait Sarkar, Mateja Jamnik, Alan F.
+Blackwell, and Martin Spott. 2015. <a
+href="https://doi.org/10.1109/VLHCC.2015.7357211">Interactive visual
+machine learning in spreadsheets</a>. <em>2015 IEEE symposium on visual
+languages and human-centric computing (VL/HCC)</em>, 159–163.</div>
+</div>
+<div id="ref-sherburn2024language" class="csl-entry" role="listitem">
+<div class="csl-left-margin">32. </div><div
+class="csl-right-inline">Dane Sherburn, Bilal Chughtai, and Owain Evans.
+2024. Language models struggle to explain themselves. Retrieved from <a
+href="https://openreview.net/forum?id=o6eUNPBAEc">https://openreview.net/forum?id=o6eUNPBAEc</a>.</div>
+</div>
+<div id="ref-simonyan2013deep" class="csl-entry" role="listitem">
+<div class="csl-left-margin">33. </div><div
+class="csl-right-inline">Karen Simonyan, Andrea Vedaldi, and Andrew
+Zisserman. 2013. Deep inside convolutional networks: Visualising image
+classification models and saliency maps. <em>arXiv preprint
+arXiv:1312.6034</em>.</div>
+</div>
+<div id="ref-turpin2024language" class="csl-entry" role="listitem">
+<div class="csl-left-margin">34. </div><div
+class="csl-right-inline">Miles Turpin, Julian Michael, Ethan Perez, and
+Samuel Bowman. 2024. Language models don’t always say what they think:
+Unfaithful explanations in chain-of-thought prompting. <em>Advances in
+Neural Information Processing Systems</em> 36.</div>
+</div>
+<div id="ref-wei2022chain" class="csl-entry" role="listitem">
+<div class="csl-left-margin">35. </div><div
+class="csl-right-inline">Jason Wei, Xuezhi Wang, Dale Schuurmans, et al.
+2022. Chain-of-thought prompting elicits reasoning in large language
+models. <em>Advances in neural information processing systems</em> 35:
+24824–24837.</div>
+</div>
+<div id="ref-zeiler2014visualizing" class="csl-entry" role="listitem">
+<div class="csl-left-margin">36. </div><div
+class="csl-right-inline">Matthew D Zeiler and Rob Fergus. 2014.
+Visualizing and understanding convolutional networks. <em>Computer
+vision–ECCV 2014: 13th european conference, zurich, switzerland,
+september 6-12, 2014, proceedings, part i 13</em>, Springer,
+818–833.</div>
+</div>
+<div id="ref-zhao2024explainability" class="csl-entry" role="listitem">
+<div class="csl-left-margin">37. </div><div
+class="csl-right-inline">Haiyan Zhao, Hanjie Chen, Fan Yang, et al.
+2024. Explainability for large language models: A survey. <em>ACM
+Transactions on Intelligent Systems and Technology</em> 15, 2:
+1–38.</div>
+</div>
+<div id="ref-zhao2023self" class="csl-entry" role="listitem">
+<div class="csl-left-margin">38. </div><div
+class="csl-right-inline">Jiachen Zhao, Zonghai Yao, Zhichao Yang, and
+Hong Yu. 2023. SELF-EXPLAIN: Teaching large language models to reason
+complex questions by themselves. <em>arXiv preprint
+arXiv:2311.06985</em>.</div>
+</div>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The aim of this awkward construction is to emphasise
+that they are explanations <em>of</em> a mechanism; using the term
+“mechanical” or “mechanistic” might connote that the explanations
+themselves are generated mechanically, which is usually true but not
+relevant.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</body>
+</html>
