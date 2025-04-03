@@ -80,6 +80,10 @@ p {
     margin-top: 0;
 }
 
+p.author {
+    clear: both;
+}
+
 h1 {
     line-height: 1em;
 }

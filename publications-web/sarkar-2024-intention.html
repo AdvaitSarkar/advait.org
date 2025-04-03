@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <title>Intention Is All You Need</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+</head>
+<body>
+
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+<p>This is a version of the following academic paper prepared for the web:</p>
+
+<blockquote>Advait Sarkar. "Intention Is All You Need". In Proceedings of the 35th Annual Conference of the Psychology of Programming Interest Group (PPIG 2024). 2024.</blockquote>
+
+<p>
+More details:
+<a href="/files/sarkar_2024_intention.pdf">Download PDF</a> &bull;
+<a href="/files/sarkar_2024_intention_citation.bib">BibTeX</a> &bull;
+<a href="https://ppig.org/papers/2024-ppig-35th-sarkar/">PPIG Library</a> &bull;
+<a href="https://arxiv.org/abs/2410.18851">arXiv:2410.18851</a>
+</p>
+</div>
+
+
+<header id="title-block-header">
+<h1 class="title">Intention Is All You Need</h1>
+
+<p class="author">Advait Sarkar
+Microsoft Research, University of Cambridge, University College London
+</p>
+</header>
+
+<div class="abstract">
+<h2>Abstract</h2>
+<p>Among the many narratives of the transformative power of Generative
+AI is one that sees in the world a latent nation of programmers who need
+to wield nothing but intentions and natural language to render their
+ideas in software. In this paper, this outlook is problematised in two
+ways. First, it is observed that generative AI is not a neutral vehicle
+of intention. Multiple recent studies paint a picture of the “mechanised
+convergence” phenomenon, namely, that generative AI has a homogenising
+effect on intention. Second, it is observed that the formation of
+intention itself is immensely challenging. Constraints, materiality, and
+resistance can offer paths to design metaphors for intentional tools.
+Finally, existentialist approaches to intention are discussed and
+possible implications for programming are proposed in the form of a
+speculative, illustrative set of intentional programming practices.</p>
+</div>
+
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a
+href="#the-intention-is-all-you-need-picture-of-programming-with-generative-ai"
+id="toc-the-intention-is-all-you-need-picture-of-programming-with-generative-ai"><span
+class="toc-section-number">1</span> The “Intention Is All You Need”
+Picture of Programming with Generative AI</a></li>
+<li><a
+href="#mechanised-convergence-the-homogenising-effect-of-ai-on-intention"
+id="toc-mechanised-convergence-the-homogenising-effect-of-ai-on-intention"><span
+class="toc-section-number">2</span> Mechanised Convergence: The
+Homogenising Effect of AI on Intention</a></li>
+<li><a href="#interlude-babbages-intentional-programmer"
+id="toc-interlude-babbages-intentional-programmer"><span
+class="toc-section-number">3</span> Interlude: Babbage’s Intentional
+Programmer</a></li>
+<li><a
+href="#sources-of-intention-constraints-materiality-and-resistance"
+id="toc-sources-of-intention-constraints-materiality-and-resistance"><span
+class="toc-section-number">4</span> Sources of Intention: Constraints,
+Materiality, and Resistance</a></li>
+<li><a href="#existentialist-approaches-to-intention"
+id="toc-existentialist-approaches-to-intention"><span
+class="toc-section-number">5</span> Existentialist Approaches to
+Intention</a></li>
+<li><a href="#speculative-scenarios-for-intentional-programming"
+id="toc-speculative-scenarios-for-intentional-programming"><span
+class="toc-section-number">6</span> Speculative Scenarios for
+Intentional Programming</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span
+class="toc-section-number">7</span> Conclusion</a></li>
+<li><a href="#acknowledgements" id="toc-acknowledgements"><span
+class="toc-section-number">8</span> Acknowledgements</a></li>
+</ul>
+</nav>
+<h2 data-number="1"
+id="the-intention-is-all-you-need-picture-of-programming-with-generative-ai"><span
+class="header-section-number">1</span> The “Intention Is All You Need”
+Picture of Programming with Generative AI</h2>
+<p>What is programming? Blackwell’s succinct and influential definition
+is that programming is any activity exhibiting the property <em>“that
+the user is not directly manipulating observable things, but specifying
+behaviour to occur at some future time”</em> <span class="citation"
+data-cites="blackwell2002programming">(Blackwell 2002)</span>. Behaviour
+is specified through an interface, commonly a notation, which we call a
+programming language. Therein lies the source and objective of all
+research in the psychology and design of programming: the study of the
+use and improvement of the interfaces, notations, and languages for
+specifying behaviour.</p>
+<p>The value of such study is called into question with the introduction
+of Generative Artificial Intelligence (<strong>GenAI</strong>), which
+can be defined as any <em>“end-user tool [...] whose technical
+implementation includes a generative model based on deep
+learning”</em>.<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> GenAI captures the relationships
+between natural language specifications of behaviour, and the
+translations of that behaviour into programming notation, implicit in
+enormous training datasets. The power of translation thus captured can
+be stochastically replayed on demand <span class="citation"
+data-cites="blackwell2020objective">(Blackwell 2020)</span>. What could
+this mean for research in the user-centred design of programming
+languages? One perspective anticipates nothing less than its
+obsolescence:</p>
+<blockquote>
+<p><em>“The programming barrier [with GenAI] is incredibly low. We have
+closed the digital divide. Everyone is a programmer now - you just have
+to say something to the computer”</em><a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</blockquote>
+<blockquote>
+<p><em>“Up until now, in order to create software, you had to be a
+professional software developer. You had to understand, speak and
+interpret the highly complex, sometimes nonsensical language of a
+machine that we call code. [... But with GenAI] We have struck a new
+fusion between the language of a human and a machine. With Copilot, any
+person can now build software in any human language with a single
+written prompt. [...] going forward, every person, no matter what
+language they speak, will also have the power to speak machine. Any
+human language is now the only skill that you need to start computer
+programming.”</em><a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a></p>
+</blockquote>
+<blockquote>
+<p><em>“Since the launch of GPT-4 in 2023, the generation of whole apps
+from simple natural language requirements has become an active research
+area. [...] Our vision is that by 2030 end users will build and deploy
+whole apps just from natural requirements.”</em><a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+</blockquote>
+<blockquote>
+<p><em>“Programming will be obsolete. [...] the conventional idea of
+‘writing a program’ is headed for extinction [...] all programs in the
+future will ultimately be written by AIs, with humans relegated to, at
+best, a supervisory role. [...] The engineers of the future will, in a
+few keystrokes, fire up an instance of a four-quintillion-parameter
+model that already encodes the full extent of human knowledge (and then
+some), ready to be given any task required of the machine.”</em><a
+href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a></p>
+</blockquote>
+<p>The promise of GenAI for programming, therefore, is to transform
+programming into an activity where expertise in specialised notations
+and languages for specifying behaviour are unnecessary. One merely has
+to say what one wishes the program to do, and GenAI does the rest. The
+interaction design challenges of programming are solved.<a href="#fn6"
+class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>
+Intention is all you need.</p>
+<p>There are many problems with this picture. There are compelling
+reasons for continuing to engage with formal notations, even and perhaps
+especially when GenAI is in play <span class="citation"
+data-cites="sarkar2023eupgenai">(Sarkar 2023d)</span>. Moreover,
+language in general, and the language of prompts used to direct GenAI in
+particular, is most certainly not a flawless, transparent route for the
+expression of intent. Johnny can’t prompt <span class="citation"
+data-cites="zamfirescu-pereira2023johnny">(Zamfirescu-Pereira et al.
+2023)</span>. Johnny can’t figure out what level of abstraction to write
+his prompts in, either <span class="citation"
+data-cites="liu2023gam sarkar2022programmingai">(Liu et al. 2023; Sarkar
+et al. 2022)</span>. Thinking about prompting is hard for Johnny, and
+thinking about thinking about prompting is hard, too <span
+class="citation"
+data-cites="tankelevitch2024metacognitive">(Tankelevitch et al.
+2024)</span>. Prompting “dialects” might evolve in much the same way as
+specialised uses of natural language do in domains such as scientific
+and legal communication, through disciplinary norms and professional
+consensus, and to acquire such language will require users to undergo
+analogous processes of disciplinary and professional acculturation <span
+class="citation" data-cites="sarkar2023eupgenai">(Sarkar 2023d)</span>.
+But these problems are not the primary concern in this paper.</p>
+<p>There is a rather more fundamental pair of problems with the idea
+that intention is all you need (to program with GenAI): it assumes that
+GenAI does not interfere with intention. Moreover, it takes for granted
+that intentions are easy to form. Both premises will be questioned in
+turn.</p>
+<h2 data-number="2"
+id="mechanised-convergence-the-homogenising-effect-of-ai-on-intention"><span
+class="header-section-number">2</span> Mechanised Convergence: The
+Homogenising Effect of AI on Intention</h2>
+<p>Contrary to not interfering with intention, AI supplies intention. It
+does so in a way that can be described as <em>mechanised
+convergence</em> <span class="citation"
+data-cites="sarkar2023creativity">(Sarkar 2023b)</span>, drawing on
+Walter Benjamin’s concept of mechanical reproduction <span
+class="citation" data-cites="benjamin1935work">(W. Benjamin
+1935)</span>. Mechanised convergence describes the idea that the
+automation or mechanisation of work leads to a convergence in the space
+of outputs. Standardisation is necessary for factory logic to function.
+For a machine to be repeatable at speed, its inputs and outputs need to
+be repeatable at speed, too. You can have any colour as long as it’s
+black.</p>
+<p>Here is some of the evidence that GenAI has a mechanised convergence
+effect:</p>
+<ul>
+<li><p>Predictive text encourages predictable writing <span
+class="citation" data-cites="arnold2020predictive">(Arnold, Chauncey,
+and Gajos 2020)</span>. In an image captioning task, when participants
+use predictive text entry systems, captions written with suggestions are
+shorter and use fewer words that the system does not predict. A similar
+effect occurs in identifier names when programmers use a GenAI tool such
+as GitHub Copilot to assist them in writing code <span class="citation"
+data-cites="lee2024predictability">(Lee, Blackwell, and Sarkar
+2024)</span>. This effect occurs even when the suggestions are merely
+visible and not actionable (i.e., cannot be accepted using a keyboard
+shortcut).</p></li>
+<li><p>Similarly, a large study (n=293) of participants writing short
+stories with varying degrees of AI assistance found that exposure to
+GenAI “ideas” leads to a reduced diversity of content <span
+class="citation" data-cites="Doshi2023GenerativeAI">(Doshi and Hauser
+2023)</span>. Participants exposed to even a single GenAI suggestion
+produce stories similar to the average of the other stories in the same
+experimental condition.</p></li>
+<li><p>A large study (n=758) of strategy consultants at BCG examined the
+effects of ChatGPT use on a set of consultancy tasks <span
+class="citation" data-cites="dell2023navigating">(Dell’Acqua et al.
+2023)</span>. The majority of participants with access to ChatGPT retain
+a very high amount of its response – typically around 90% – in their
+submitted work. Participants without access to ChatGPT produce ideas
+with more conceptual variation than those with access, showing that
+usage of ChatGPT reduces the range of ideas generated. The variation
+across responses produced by ChatGPT is smaller than what human
+participants produce on their own.</p></li>
+<li><p>Large language models have a “homogenization effect” on creative
+ideation <span class="citation"
+data-cites="anderson2024homogenization">(Anderson, Shah, and Kreminski
+2024)</span>. In a creative ideation task, participants produce less
+semantically distinct ideas when using ChatGPT. Moreover, participants
+feel less responsible for ideas produced with ChatGPT
+assistance.</p></li>
+<li><p>A large study (n=115) finds that conversational search built on
+GenAI increases selective exposure compared to conventional search <span
+class="citation" data-cites="sharma2024echo">(Sharma, Liao, and Xiao
+2024)</span>. Users engage in more biased information querying with
+conversational search, and the bias is exacerbated when the model is
+itself “opinionated” to reinforce the user’s views. The authors call
+this a “generative echo chamber”.</p></li>
+<li><p>Similarly, a large study (n=1506) of co-writing with GenAI found
+that using an “opinionated” language model affects the opinions
+expressed in participants’ writing and moreover, actually shifts their
+opinions as measured in a subsequent attitude survey <span
+class="citation" data-cites="jakesch2023opinionated">(Jakesch et al.
+2023)</span>. A related effect, termed “drifting”, has been observed in
+novice programmers, where the tendency to accept and adapt code
+generated by the system leads programmers away from a correct solution
+<span class="citation" data-cites="prather2024drifting">(Prather et al.
+2023)</span>.</p></li>
+</ul>
+<p>Mechanised convergence signals an odd reversal (or perhaps
+intensification) of Dennett’s “intentional stance” <span
+class="citation" data-cites="dennett1971intentional">(Dennett
+1971)</span>, wherein we not only ascribe intention to these systems but
+also delegate it, sometimes wilfully, other times unknowingly.</p>
+<p>The intention supplied by GenAI through mechanised convergence has a
+complex source, combining influences of its training data, and the
+biases and heuristics encoded by the system developers. However at its
+core, mechanised convergence is the ultimate outcome of the old
+statistical logics of uncovering underlying natural “laws” <span
+class="citation"
+data-cites="blackwell2020objective sarkar2023humanaicollaboration">(Blackwell
+2020; Sarkar 2023a)</span>. The statistical machine eliminates “noise”
+(diversity) to predict “signal” (uniformity). The statistical machine is
+the triumph of the Enlightenment aesthetic faith in nature’s having an
+underlying elegance or simplicity that is obscured from view by
+imperfect forms. It should come as no surprise that machines that are
+built to search for Platonic ideals reflect back to us a mechanically
+converged picture of the world, making quiddity of haecceity.</p>
+<p>It is important to note that the effect on intent as demonstrated in
+these studies is an <em>aggregate tendency</em> that likely does not
+square with individual phenomenal perceptions of GenAI use. At the
+granularity of individual interactions, the experience of GenAI might
+well be as a passive translator, not active supplier, of intent. The
+nudge towards standardised, centralised, averaged, generic, and
+statistically optimised answers may be barely perceptible. Yet the data
+demonstrates that these nudges in fact have a measurable cumulative
+effect on knowledge work.</p>
+<p>As Winner sets out, artefacts have politics <span class="citation"
+data-cites="winner1980artifacts">(Winner 1980)</span>. The design
+features of a technology enable certain forms of power, and the decision
+to adopt a particular technology requires certain power relations to be
+enacted. Putting it in Winner’s terms, convergence is the politics of
+AI, the artefact.</p>
+<p>As McLuhan sets out, the medium is the message <span class="citation"
+data-cites="mcluhan1964media">(McLuhan 1964)</span>. There is an effect
+of a particular medium, be it typography, radio, or television, on the
+human sensorium that is quite distinct from any particular content being
+conveyed through that medium. The effect of the medium overwhelms the
+content and makes it incidental. Putting it in McLuhan’s terms,
+convergence is the message of AI, the medium.</p>
+<p>McLuhan predicted that electric technology and programmability would
+reverse the convergence tendencies of factory logic. He gives the
+example of a programmable tailpipe machine: <em>“A new automatic machine
+for making automobile tailpipes [...] starting with lengths of ordinary
+pipe, it is possible to make eighty different kinds of tailpipe in
+succession, as rapidly, as easily, and as cheaply as it is to make
+eighty of the same kind. And the characteristic of electric automation
+is all in this direction of return to the general-purpose handicraft
+flexibility that our own hands possess. The programming can now include
+endless changes of program.”</em></p>
+<p>Taken to its logical conclusion, McLuhan makes a claim that is
+strikingly similar to the narrative that intention is all you need:
+<em>“the older mechanistic idea of “jobs,” or fragmented tasks and
+specialist slots for “workers,” becomes meaningless under automation.
+[...] The very toil of man now becomes a kind of enlightenment. As
+unfallen Adam in the Garden of Eden was appointed the task of the
+contemplation and naming of creatures, so with automation. We have now
+only to name and program a process or a product in order for it to be
+accomplished. Is it not rather like the case of Al Capp’s Schmoos? One
+had only to look at a Schmoo and think longingly of pork chops or
+caviar, and the Schmoo ecstatically transformed itself into the object
+of desire. Automation brings us into the world of the Schmoo. The
+custom-built supplants the mass-produced.”</em> As we have seen, the
+vast programmability of GenAI does not necessarily result in a
+<em>“return to [...] general-purpose handicraft flexibility”</em>,
+rather, it has enabled a newer, subtler, and more pervasive form of the
+<em>“fragmentalized and repetitive routines of the mechanical era”</em>.
+Through the mechanised convergence of knowledge work through GenAI, the
+principle of interface design becomes WYGIWYG – What You Get Is What You
+Get.</p>
+<p>Postman, who builds on McLuhan, more accurately reappraised the
+effect of the electric age on intention <span class="citation"
+data-cites="Postman1985-rv">(Postman 1985)</span>. He explains that the
+information age has resulted not in an Orwellian dystopia where
+intentions are surveilled and constrained, but rather a Huxleyan one,
+where intentions are numbed: <em>“What Orwell feared were those who
+would ban books. What Huxley feared was that there would be no reason to
+ban a book, for there would be no one who wanted to read one. Orwell
+feared those who would deprive us of information. Huxley feared those
+who would give us so much that we would be reduced to passivity and
+egoism. Orwell feared that the truth would be concealed from us. Huxley
+feared the truth would be drowned in a sea of irrelevance. Orwell feared
+we would become a captive culture. Huxley feared we would become a
+trivial culture [...]”</em>. We inhabit not Foucault’s society of
+discipline <span class="citation"
+data-cites="Foucault1977-hi o1986disciplinary">(Foucault 1977; O’Neill
+1986)</span>, but Deleuze’s society of control <span class="citation"
+data-cites="deleuze1992control">(Deleuze 1992)</span>.</p>
+<p>This scenario is undesirable, not least because mechanised
+convergence implies a reduction in the rate at which new ideas are
+generated, and an increase in repetition and replay of existing ideas.
+What kind of culture springs from the consumption and emission of an
+increasingly convergent set of increasingly recycled ideas? A
+derivative, “stuck” culture, is the diagnosis of technology critic Paul
+Skallas.<a href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a> Even for GenAI itself, the
+indications are that the roads of autophagy lead to madness; the roads
+of recursion lead to cursed collapse <span class="citation"
+data-cites="alemohammad2023selfconsuming shumailov2024collapse bohacek2023nepotistic gerstgrasser2024recursion">(Alemohammad
+et al. 2023; Shumailov et al. 2024; Bohacek and Farid 2023; Gerstgrasser
+et al. 2024)</span>.</p>
+<p>Mechanised convergence, as a tendency of automation more broadly,
+creates a crisis of intentionality: a culture that has lost the capacity
+to intend, does not realise, and does not care.</p>
+<h2 data-number="3" id="interlude-babbages-intentional-programmer"><span
+class="header-section-number">3</span> Interlude: Babbage’s Intentional
+Programmer</h2>
+<p>Describing what GenAI does to intention as a “crisis” implies that we
+need to do something about it. Indeed, what we need to do about it is to
+promote the active cultivation of the capacity to intend.<a href="#fn8"
+class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p>Since this is PPIG, we can start by considering the intentions of
+programmers. What the tendency for mechanised convergence tells us is
+that, prior to specifying behaviour, programming must be about forming
+an intention for behaviour. A definition of programming that centres
+intention, rather than specification, evokes a rather older philosophy
+of programming that we can draw from the crisis in theology at the time
+of Babbage.</p>
+<p>Science (more precisely, natural philosophy) in post-Enlightenment
+Britain at the time of Babbage was grappling with the apparent
+contradiction of divine miracles – acts of God outside the laws of
+nature created by God – which Hume had famously argued could not be
+rationally supported <span class="citation"
+data-cites="hume1748enquiry">(Hume 1748)</span>. In aiming to discover
+mathematical laws such as those of Newton, which could accurately
+describe and predict nature, natural philosophers operating within the
+frameworks of Deism and Christianity struggled to reconcile their work
+and faith.</p>
+<p>Babbage found in his Difference Engine the possibility for
+reinterpreting miracles as part of the natural divine order. Using a
+“feedback mechanism” that connected two gear wheels, Babbage was able to
+encode programs that, after a certain number of iterations, would change
+their behaviour. For example, he would demonstrate a program that counts
+the integers 1, 2, 3 ... up to 100, at which point the program would
+change and start counting in steps of two: 102, 104, 106 ... etc. In
+demonstration-sermons delivered to rapturous audiences, he used this
+example to explain his theory of God as a <em>divine programmer</em>
+<span class="citation" data-cites="Snyder2012-yt">(Snyder 2012)</span>.
+A miracle was thus explained as a shift in the program. God’s
+intervention to perform apparent miracles was not an aberration against
+universal, constant laws – it was merely the manifestation of a deeper
+and misunderstood universal law, a deeper plan, a deeper intention.</p>
+<p>It is instructive that Babbage’s conception of programming and
+intention centred around shifts, or deviations, from the expected. A
+machine that continues to execute the same predictable behaviour is not
+a program, it is simply a machine. It is in the departure from
+convergent behaviour that evidence of programming emerges as activity
+and divinity. For Babbage, to converge is human, to deviate divine. To
+execute is human, to program divine. To specify is human, to intend
+divine.</p>
+<h2 data-number="4"
+id="sources-of-intention-constraints-materiality-and-resistance"><span
+class="header-section-number">4</span> Sources of Intention:
+Constraints, Materiality, and Resistance</h2>
+<p>Returning to our objective – to promote the active cultivation of the
+capacity to intend – it is worth briefly exploring a few perspectives on
+the sources of intentions.</p>
+<p>Much intention appears to arise as a result of interaction with the
+external world. Practitioners of creative arts and research in
+creativity have long noted the role of constraints in shaping and
+facilitating creativity <span class="citation"
+data-cites="stokes2005creativity May1975-vg">(Stokes 2005; May
+1975)</span>. Materiality and resistance are essential to craftsmanship;
+any material, by virtue of its properties and resistances, participates
+in an ongoing dialogue with the craftsman’s intentions <span
+class="citation" data-cites="basman2016building">(Basman 2016)</span>.
+According to material engagement theory<a href="#fn9"
+class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>
+<span class="citation" data-cites="malafouris2019mind">(Malafouris
+2019)</span>, <em>“Our forms of bodily extension and material engagement
+are not simply external markers of a distinctive human mental
+architecture. Rather, they actively and meaningfully participate in the
+process we call mind”</em>. As such, the role of material as a source of
+intention can be seen as a form of extended cognition, or at the very
+least external cognition <span class="citation"
+data-cites="turner2016distributed">(Turner 2016)</span>, notwithstanding
+challenges to these ideas <span class="citation"
+data-cites="rupert2004challenges">(Rupert 2004)</span>.</p>
+<p>A sculptor must consider how pliable or fragile their material is,
+what tolerances and fine details can be accomplished, how gravity will
+constrain the scale and orientation of their figures. A carpenter must
+consider the grain of their wood, where cuts and incisions can be made.
+A painter using watercolours must consider and exploit the additive
+translucency of that medium, one using oils must consider the opacity of
+theirs. It is telling that the archetypical dimension in the Cognitive
+Dimensions of Notations <span class="citation"
+data-cites="green1989cognitive">(Green 1989)</span> is
+<em>viscosity</em>, a metaphor rooted in materials and resistances,
+aiming to bridge them with the seemingly immaterial and disembodied
+world of notations.</p>
+<p>Some intentions even rejoice in the contradiction of others: for
+example, the objective of subversive gameplay styles is to ignore the
+received goals of the game and invent one’s own <span class="citation"
+data-cites="Flanagan2009-hf">(Flanagan 2009)</span>, it is playing the
+infinite game whose objective is to continue playing, not the finite
+game whose objective is to win <span class="citation"
+data-cites="Carse1986-fs">(Carse 1986)</span>. Solving the continuous
+puzzles posed by these resistances, having a vision pushed, pulled, and
+evolved, is the pleasure and intentionality of craftsmanship. These are
+not destructive resistances that hinder the realisation of an intention;
+they are productive ones that facilitate it.</p>
+<p>Exploratory programming <span class="citation"
+data-cites="kery2017exploring">(Kery and Myers 2017)</span> exemplifies
+how the materialities and resistances of programming are exploited to
+shape intention. In exploratory programming, the programmer’s goal is
+unknown or ill-defined. The objective of the process is to discover or
+create an intention, to formulate a problem. The formulation of a
+problem co-exists with and cannot be separated from its solution <span
+class="citation"
+data-cites="rittel1973dilemmas sarkar2023simplicity">(Rittel and Webber
+1973; Sarkar 2023c)</span>. This is also the case in the end-user
+programming activity of interactive machine learning, or interactive
+analytical modelling <span class="citation"
+data-cites="sarkar2016phd">(Sarkar 2016b)</span>, where the goal is
+ill-defined and the objective is to create one, through a constructivist
+loop of interaction between ideas and experiences <span class="citation"
+data-cites="sarkar2016constructivist">(Sarkar 2016a)</span>.</p>
+<p>There have been proposals to design GenAI systems that introduce
+productive resistances as catalysts for the development of intention.
+Rather than an assistant, AI can act as a critic or provocateur <span
+class="citation"
+data-cites="sarkar2024challenge Sarkar2024eusprig">(Sarkar 2024; Sarkar
+et al. 2024)</span>. AI can be antagonistic <span class="citation"
+data-cites="cai2024antagonistic">(Cai, Arawjo, and Glassman
+2024)</span>. AI can cause cognitive glitches <span class="citation"
+data-cites="hollanek2019non">(Hollanek 2019)</span>. AI can act as
+cognitive forcing functions <span class="citation"
+data-cites="bucinca2021trust">(Buçinca, Malaya, and Gajos 2021)</span>.
+These proposals are counter to traditional narratives of system support,
+system disappearance, and system non-interference. They can be seen as
+successors to previous counternarratives raised by researchers such as
+critiques of the doctrines of simplicity and gradualism <span
+class="citation" data-cites="sarkar2023simplicity">(Sarkar
+2023c)</span>, critiques of seamlessness <span class="citation"
+data-cites="chalmers2003seamful">(Chalmers and MacColl 2003)</span>,
+critiques of reversible interactions <span class="citation"
+data-cites="rossmy2023point">(Rossmy et al. 2023)</span>, the case for
+design frictions and microboundaries <span class="citation"
+data-cites="cox2016design">(Cox et al. 2016)</span>, reframing of
+ambiguity as design resource <span class="citation"
+data-cites="gaver2003ambiguity">(Gaver, Beaver, and Benford
+2003)</span>, and calls for attention checks in AI use <span
+class="citation" data-cites="gould2024chattldr">(Gould, Brumby, and Cox
+2024)</span>.<a href="#fn10" class="footnote-ref" id="fnref10"
+role="doc-noteref"><sup>10</sup></a></p>
+<p>The concept of resistance could be key to framing the design
+objectives for intentional GenAI tools. Our current explorations of
+improving critical thinking with GenAI (e.g., <span class="citation"
+data-cites="Sarkar2024eusprig">Sarkar et al. (2024)</span>) are strictly
+<em>additive</em>: let’s augment AI interaction and output with prompts,
+text, visualisations, etc. that get the user thinking. However, this
+approach increases the cognitive burden by asking users to consume and
+reflect on more information. We know that people don’t always enjoy, or
+want, more information. Particularly when it comes to the user
+interfaces of discretionary software, they usually want less <span
+class="citation"
+data-cites="carroll1987paradox sarkar2023simplicity">(Carroll and Rosson
+1987; Sarkar 2023c)</span>. The additive approach may be starting by
+fighting a losing battle, one in which we try to design the smallest,
+most stimulating, most rewarding “consumable” that creates user
+reflection, without incurring undesirable attentional costs. The idea of
+resistance provides a different starting point. How can we build GenAI
+tools with inherent, productive resistances that are part of working
+with the tool, not an additional thing that users need to “pay”
+attention to? How can the experience of resistances in the interface
+feel more like the pliability of clay, or the translucency of paint?
+This is an open avenue for future work.</p>
+<h2 data-number="5" id="existentialist-approaches-to-intention"><span
+class="header-section-number">5</span> Existentialist Approaches to
+Intention</h2>
+<p>So far we have been considering intention at relatively small scale:
+instances of knowledge work and GenAI use. But intentions, like goals,
+form hierarchies. Intentions are not isolated and independent, they are
+related and convergent. To what do they converge? At this point we shall
+make a somewhat abrupt leap outwards and consider the most expansive
+scope of intention – as enacted over the course of an entire life.</p>
+<p>An evolutionary account might attempt to trace human intentions back
+to fundamental physiological concerns: we form intentions to continue
+survival, to avoid fear, to ensure comfort, to maximise pleasure, to
+minimise pain. These can certainly account for some intentions. The
+concept of intention has much in common with free will – loosely
+defined, one’s capacity to act differently to how one did, in fact, act.
+Free will is not the same as intention, but it can be viewed as a
+precondition for true intention. Neuroscientific work purporting to
+demonstrate (a lack of) free will has been criticised by philosophers
+because (among other objections), we do not have a suitably good picture
+that connects short-term choices dominated by low-level psychological
+phenomena (such as choosing to push the left button or the right button)
+to the complex, long-term, highly planned and goal-oriented intentions
+(such as the intention to commit a crime) that pose the truly
+consequential ethical challenges to free will <span class="citation"
+data-cites="mele2019free">(Mele 2019)</span>. The evolutionary account
+is part of a broader category of <em>teleosemantic</em> theories of
+intention <span class="citation" data-cites="sep-intentionality">(Jacob
+2023)</span> according to which design (evolutionary or artificial)
+supplies a function (<span lang="el">τέλος</span>), which in turn
+supplies intention.</p>
+<p>In considering whether human intention can truly be reduced to
+evolutionary or functional needs, I am drawn to the argument made by
+feminist anthropologist Payal Arora in her closing keynote for the 2022
+CHI conference <span class="citation" data-cites="Arora2022">(Arora
+2022)</span>. She criticizes Maslow’s famous hierarchy of needs that
+places physiological and safety needs at the bottom, rising to esteem
+and self-actualisation at the top. The conventional reading is that
+needs at the bottom of the pyramid need to be satisfied, the foundation
+of the pyramid needs to be built, before one can proceed to the higher
+levels. This is a fairly influential way of thinking and often dictates
+the way in which social aid and rescue efforts are prioritised: focus on
+food, water, and shelter first, and joy, play, growth, education, and
+dignity later. Arora finds that this picture does not correspond with
+her observations in her extensive ethnographic work with precarious,
+oppressed, and underprivileged groups. Instead, she proposes that the
+pyramid is upside down. What she finds is that self-actualisation is
+what people need first, and are willing to sacrifice safety needs to get
+it. People leave secure work when the nature of that work threatens
+their dignity, even if this places them in financial hardship. People
+leave homes where they cannot express their identity, or are not
+accepted for who they are, even if this might leave them without a roof
+over their head. A line from the poet James Oppenheim captures the
+sentiment:</p>
+<blockquote>
+<p><em>“Our days shall not be sweated from birth until life closes
+—<br />
+Hearts starve as well as bodies: Give us Bread, but give us
+Roses.”</em></p>
+</blockquote>
+<p>If not entirely upside down, then at the very least Maslow’s
+hierarchy is not a unidirectional ladder to climb, but a set of
+considerations and influences that are continually negotiated and
+traded-off. Physiology and evolution are part of intention formation,
+but far from the entire picture. Where can we look for a perspective on
+intention that aligns with Arora’s observations? Moreover, is there an
+approach that not only identifies the source of intention, but
+prescribes a method for cultivating it?</p>
+<p>Elaborating the consequences of the idea that the active cultivation
+of intention is <em>the</em> core virtue in an inherently meaningless
+world is precisely the project of existentialist philosophy.</p>
+<p>The absence of any inherent purpose to life is the starting point.
+Per <span class="citation" data-cites="Sartre1956">(Sartre 1943)</span>,
+“existence precedes essence”; individuals first exist without purpose
+and must subsequently forge their essence, or identity, through their
+actions. Angst, or existential anxiety, arises from the realization of
+one’s freedom and the infinite possibilities it entails <span
+class="citation" data-cites="Kierkegaard1844">(Kierkegaard 1844)</span>.
+Existentialists see angst as a motivator rather than an obstacle.</p>
+<p>Authenticity is one expression of existentialist intention. It is the
+pursuit of living in accordance with one’s true self and values, rather
+than conforming to societal norms, and is essential for genuine
+existence <span class="citation"
+data-cites="heidegger1927being">(Heidegger 1927)</span>. Authenticity
+requires a conscious effort to understand and act upon personal
+convictions, even in the face of adversity or societal pressure <span
+class="citation"
+data-cites="kierkegaard1843fear deBeauvoir1948">(Kierkegaard 1843;
+Beauvoir 1948)</span>. Other sources of intentionality, besides
+authenticity, go beyond the individual. Kierkegaard’s <span
+class="citation" data-cites="kierkegaard1849sickness">(Kierkegaard
+1849)</span> “leap of faith” suggests that to escape from existential
+despair requires acknowledging the limits of rational reflection and an
+individual’s relationship with the divine. Moreover, to seek engagement
+with the world is to step beyond oneself, to interact with others, and
+to find and create meaning through these actions <span class="citation"
+data-cites="jaspers1932philosophie">(Jaspers and Saner 1932)</span>.
+Similarly, <span class="citation" data-cites="deBeauvoir1948">Beauvoir
+(1948)</span> points out that our individual subject-like freedom is
+complemented by an object-like unfreedom (“facticity”), deriving an
+ethics of freedom that advocates for actions that respect the freedom of
+others.</p>
+<p><span class="citation" data-cites="Camus1955">Camus (1942)</span>
+counsels individuals to accept “the absurd”: the tension between the
+human search for meaning and a universe that is silent in response, to
+recognize the lack of inherent meaning in the world and to take on the
+task of creating their own purpose. Camus rejects “solutions” to the
+absurd proposed by prior philosophers, such as Kierkegaard, as
+“philosophical suicide”. To Camus, seeking overarching meaning despite
+the absurd is seeking to resolve, minimise, sidestep, or ignore the
+absurd, not acknowledging it.</p>
+<p>Camus rejects a forced imposition of meaning where there is none. A
+leap of faith is a form of escape. Incidentally, a forced imposition of
+meaning is precisely the <em>modus operandi</em> of GenAI: for language
+to be produced by arithmetic means it is necessary to encode language in
+a uniform, rational vector space. Sense and nonsense alike are thus
+enumerated and made commensurable. <em>King<span
+class="math inline">−</span>Man<span
+class="math inline">+</span>Woman<span
+class="math inline">=</span>Queen</em> <span class="citation"
+data-cites="mikolov2013linguistic">(Mikolov, Yih, and Zweig
+2013)</span>. Before carefully designed guardrails (themselves a form of
+escape) made it more difficult to do so, it was easy to elicit answers
+to nonsense questions such as “what colourless green ideas sleep
+furiously?” from language models. Furthermore, GenAI is an essential
+component of an emerging pseudoreligious meta-narrative of escape
+identified by <span class="citation"
+data-cites="gebru2024tescreal">(Gebru and Torres 2024)</span>: <em>“What
+ideologies are driving the race to attempt to build AGI? [...] we trace
+this goal back to the Anglo-American eugenics movement, via
+transhumanism. [...] we delineate a genealogy of interconnected and
+overlapping ideologies that we dub the ‘TESCREAL bundle,’ where the
+acronym ‘TESCREAL’ denotes ‘transhumanism, Extropianism,
+singularitarianism, (modern) cosmism, Rationalism, Effective Altruism,
+and longtermism’”</em>.</p>
+<p>Camus’ existentialist view offers a non-escapist alternative that
+stares meaninglessness in the face and from it derives freedom. This
+freedom is both liberating and burdensome. We are at liberty to choose,
+but are also responsible for bearing the burden of the consequences. The
+lightness of being can thus be unbearable. It is through confronting
+this anxiety that individuals can make deliberate and meaningful
+choices, shaping their intentions, and by extension, their essence.</p>
+<p>GenAI has implications for the intention of professional programmers
+and casual ones alike. The introduction poses the question “what is
+programming?”, and we can now see a second reading of this question
+which asks not for a definition of an activity, but of an aspiration or
+identity. As GenAI solves the problem of control, of specifying
+behaviour, the aspiration shifts to intent. Intent precedes control. To
+be a programmer is therefore not to be one who specifies behaviour, but
+one who forms authentic, meaningful intentions for behaviour.</p>
+<h2 data-number="6"
+id="speculative-scenarios-for-intentional-programming"><span
+class="header-section-number">6</span> Speculative Scenarios for
+Intentional Programming</h2>
+<p>The optimism of the “intention is all you need” narrative does posit
+a legitimate observation concerning the behavioural economics of
+software production. GenAI makes the production of bespoke software
+vastly cheaper. One can view existentialism as a response to the loss of
+the “grand narratives” of modernity. But software has still been
+constrained by the grand narratives of capitalism and utility – until
+now. To write a program required <em>investment</em> of time and
+hard-earned expertise, exerting pressure on programs to be valuable,
+robust, and reusable. Where they did not place an outright barrier, the
+investment costs of programming disincentivised exploration, error, and
+disposal. Within this frame story hitherto sits the universe of
+programmer psychology and behaviours: from authoring code to code
+comprehension, from knowledge sharing and documentation to debugging,
+from learning barriers to attention investment, from API design to
+autocomplete. Almost the entire diversity of experience of programmers,
+professional or casual, that our research community has so carefully
+documented and explained for the last half-century, has dwelt in the
+shadow of the market’s invisible hand.</p>
+<p>As the hand is withdrawn, one might ask how programmers can respond,
+in a microcosm of the existential dilemma, to the liberating yet
+burdensome freedom granted by GenAI. As far as practical advice (i.e.,
+“implications for design[ing your life]”) is concerned, existentialists
+advise embracing one’s freedom to shape life, living authentically,
+accepting the absurd, confronting anxiety, and seeking engagement with
+the world as ways to form meaningful intentions. What this might mean
+for programmers, and interaction with GenAI, can be sketched in a few
+speculative scenarios:</p>
+<ul>
+<li><p>Intentional coding retreats: The programmer steps away from her
+standard way of working to participate in an intentional coding retreat.
+Here, the programmer reconnects with the craft of coding without the
+assistance of AI tools. This allows the programmer to explore and
+reaffirm personal coding styles and problem-solving approaches. For
+example, a programmer accustomed to relying on AI for debugging might
+rediscover the satisfaction of manually untangling complex code, thus
+reaffirming their individual capability and creative freedom.</p></li>
+<li><p>AI as muse: AI suggests an unusual, contradictory, or incorrect
+algorithmic approach, which the programmer then refines and transforms
+with personal insights and expertise. The tool is not a crutch but a
+source of inspiration.</p></li>
+<li><p>Programming with provocations: programming environments include
+prompts or questions to stimulate deeper thinking about the purpose and
+potential impact of the code being written. This can help programmers
+reconnect with their motivations and aspirations.</p></li>
+<li><p>Programming with constraints: intentional constraints are
+introduced to programming projects, much like the practices of
+constrained writing.<a href="#fn11" class="footnote-ref" id="fnref11"
+role="doc-noteref"><sup>11</sup></a> Programmers already practice genres
+of constrained programming for pleasure, such as “code golf” (writing
+the shortest possible program with a certain behaviour) or “quines”
+(inputless programs that produce only their own source code as output).
+By deliberately limiting certain resources or imposing unique
+challenges, programmers can stimulate creativity and craft intentional
+solutions.</p></li>
+<li><p>Deviation practice: in the education of professional programmers,
+exercises are developed that require intentional deviation from
+established patterns. By practising the precise skill of breaking away
+from standard solutions, programmers may more readily acquire the
+conscious muscle and desire for forming unique intentions and exploring
+novel paths.</p></li>
+<li><p>Intentionality metrics: tools display metrics that evaluate the
+degree of human intention in the creative process (noting that these
+metrics are necessarily reductionist proxies and may become subject to
+Goodhart’s/Campbell’s law). For example, a generative design tool might
+analyse the uniqueness of user queries and the divergence of the output
+from standard templates. Visibilising the invisible effects of
+mechanised convergence may encourage users to engage more deeply with
+the work and make conscious, deliberate, individual choices.</p></li>
+<li><p>Participatory AI artefacts: artefacts are intentionally left
+incomplete by AI, requiring human participation<a href="#fn12"
+class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>
+to finalise. For instance, a participatory tool generates the outline of
+a web design but leaves decisions about colour schemes and typography to
+the user. Conversely, a tool refuses to generate an outline, requiring
+the user to form a rough intention independently, before assisting by
+filling in details.</p></li>
+</ul>
+<p>These speculations are not meant to be concrete proposals, but rather
+simply representative ideas of a future where the existentialist values
+of freedom, authenticity, and intentionality are preserved and enhanced
+through GenAI. They are limited in vision, representing only the lines
+of sight from where we stand today, and unable to anticipate the
+adjacent possibles of where we might travel.</p>
+<h2 data-number="7" id="conclusion"><span
+class="header-section-number">7</span> Conclusion</h2>
+<p>Programming is undeniably changing under the influence of GenAI.
+Intention appears to be all one needs to create software. But the notion
+that GenAI offers a neutral, unencumbered path to realising intentions
+is a mirage. Contrary to the assumption that GenAI merely executes human
+intentions, it also shapes them. At the very least, GenAI can induce
+“mechanised convergence”, homogenising creative output, and reducing
+diversity in thought. There is therefore a risk of creating a “stuck”
+culture that recycles an old set of convergent ideas instead of
+fostering a new set of divergent ones.</p>
+<p>In seeking a way through this problem we have encountered a variety
+of sources that we can draw upon to precipitate the active cultivation
+of intention: evolutionary pressures, the need for dignity and
+self-actualisation, constraints, subversion, materiality, and
+resistance. Finally, we discussed how the problem of intention resonates
+with the existentialist pursuits of freedom, identity, and authenticity.
+While this discussion of existentialism is necessarily cursory, limited,
+flawed, and provisional, its aim has been to situate the problems posed
+by GenAI to intentionality in the broadest possible scope.<a
+href="#fn13" class="footnote-ref" id="fnref13"
+role="doc-noteref"><sup>13</sup></a></p>
+<p>Programming must go beyond specification and embody the active
+cultivation of intentions. Existentialist philosophy offers a proactive,
+prescriptive framework for understanding the formation of human
+intentions as a process that ought to be held as deeply personal,
+ethically charged, and fundamentally free. It teaches us that to be
+human is to be involved in a continuous project of becoming. After all –
+one is not born, but rather becomes, a programmer.</p>
+<h2 data-number="8" id="acknowledgements"><span
+class="header-section-number">8</span> Acknowledgements</h2>
+<p>Thanks to Sean Rintel and Lev Tankelevitch for helping review drafts
+of this paper. I am especially grateful to Ava Scott and Richard Banks
+for their generous and helpful reflections.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent"
+data-entry-spacing="0" role="list">
+<h2>References</h2>
+<div id="ref-alemohammad2023selfconsuming" class="csl-entry"
+role="listitem">
+Alemohammad, Sina, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz
+Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard G.
+Baraniuk. 2023. <span>“<span>Self-Consuming Generative Models Go
+MAD</span>.”</span> <a
+href="https://arxiv.org/abs/2307.01850">https://arxiv.org/abs/2307.01850</a>.
+</div>
+<div id="ref-anderson2024homogenization" class="csl-entry"
+role="listitem">
+Anderson, Barrett R, Jash Hemant Shah, and Max Kreminski. 2024.
+<span>“Homogenization Effects of Large Language Models on Human Creative
+Ideation.”</span> <em>arXiv Preprint arXiv:2402.01536</em>.
+</div>
+<div id="ref-arnold2020predictive" class="csl-entry" role="listitem">
+Arnold, Kenneth C., Krysta Chauncey, and Krzysztof Z. Gajos. 2020.
+<span>“Predictive Text Encourages Predictable Writing.”</span> In
+<em><span class="nocase">Proceedings of the 25th International
+Conference on Intelligent User Interfaces</span></em>, 128–38. IUI ’20.
+New York, NY, USA: Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3377325.3377523">https://doi.org/10.1145/3377325.3377523</a>.
+</div>
+<div id="ref-Arora2022" class="csl-entry" role="listitem">
+Arora, Payal. 2022. <span>“<span class="nocase">FemWork: Critical Pivot
+towards Design for Inclusive Labor Futures</span>.”</span> In <em><span
+class="nocase">2022 CHI Conference on Human Factors in Computing Systems
+(Closing Keynote)</span></em>. New Orleans Theater A, B, C, New Orleans,
+LA: Erasmus University Rotterdam; CHI.
+</div>
+<div id="ref-basman2016building" class="csl-entry" role="listitem">
+Basman, Antranig. 2016. <span>“Building Software Is Not a Craft.”</span>
+<em>Proceedings of the Psychology of Programming Interest Group</em>
+142.
+</div>
+<div id="ref-deBeauvoir1948" class="csl-entry" role="listitem">
+Beauvoir, Simone de. 1948. <em>The Ethics of Ambiguity</em>. Translated
+by Bernard Frechtman. Citadel Press Publishing, A Subsidiary of Lyle
+Stuart Inc.
+</div>
+<div id="ref-benjamin2024imagination" class="csl-entry" role="listitem">
+Benjamin, Ruha. 2024. <em>Imagination: A Manifesto (a Norton
+Short)</em>. WW Norton &amp; Company.
+</div>
+<div id="ref-benjamin1935work" class="csl-entry" role="listitem">
+Benjamin, Walter. 1935. <span>“The Work of Art in the Age of Mechanical
+Reproduction, 1936.”</span> <em>New York</em>.
+</div>
+<div id="ref-blackwell2002programming" class="csl-entry"
+role="listitem">
+Blackwell, Alan F. 2002. <span>“What Is Programming?”</span> In
+<em><span>PPIG</span></em>, 14:204–18. Citeseer.
+</div>
+<div id="ref-blackwell2020objective" class="csl-entry" role="listitem">
+———. 2020. <span>“Objective Functions:(in) Humanity and Inequity in
+Artificial Intelligence.”</span> <em>Science in the ForeSt, Science in
+the PaSt</em>, 191.
+</div>
+<div id="ref-bohacek2023nepotistic" class="csl-entry" role="listitem">
+Bohacek, Matyas, and Hany Farid. 2023. <span>“Nepotistically Trained
+Generative-AI Models Collapse.”</span> <a
+href="https://arxiv.org/abs/2311.12202">https://arxiv.org/abs/2311.12202</a>.
+</div>
+<div id="ref-bucinca2021trust" class="csl-entry" role="listitem">
+Buçinca, Zana, Maja Barbara Malaya, and Krzysztof Z. Gajos. 2021.
+<span>“<span class="nocase">To Trust or to Think: Cognitive Forcing
+Functions Can Reduce Overreliance on AI in AI-assisted
+Decision-making</span>.”</span> <em>Proc. ACM Hum.-Comput.
+Interact.</em> 5 (CSCW1). <a
+href="https://doi.org/10.1145/3449287">https://doi.org/10.1145/3449287</a>.
+</div>
+<div id="ref-cai2024antagonistic" class="csl-entry" role="listitem">
+Cai, Alice, Ian Arawjo, and Elena L Glassman. 2024.
+<span>“<span>Antagonistic AI</span>.”</span> <em>arXiv Preprint
+arXiv:2402.07350</em>.
+</div>
+<div id="ref-Camus1955" class="csl-entry" role="listitem">
+Camus, Albert. 1942. <em>The Myth of Sisyphus: Le Mythe de Sisyphe</em>.
+Translated by Justin O’Brien. France: Éditions Gallimard (in French),
+Hamish Hamilton (in English).
+</div>
+<div id="ref-carroll1987paradox" class="csl-entry" role="listitem">
+Carroll, John M, and Mary Beth Rosson. 1987. <span>“Paradox of the
+Active User.”</span> In <em>Interfacing Thought: Cognitive Aspects of
+Human-Computer Interaction</em>, 80–111.
+</div>
+<div id="ref-Carse1986-fs" class="csl-entry" role="listitem">
+Carse, James P. 1986. <em>Finite and Infinite Games</em>. New York, NY:
+Free Press.
+</div>
+<div id="ref-chalmers2003seamful" class="csl-entry" role="listitem">
+Chalmers, Matthew, and Ian MacColl. 2003. <span>“Seamful and Seamless
+Design in Ubiquitous Computing.”</span> In <em><span
+class="nocase">Workshop at the crossroads: The interaction of HCI and
+systems issues in UbiComp</span></em>. Vol. 8.
+</div>
+<div id="ref-cox2016design" class="csl-entry" role="listitem">
+Cox, Anna L, Sandy JJ Gould, Marta E Cecchinato, Ioanna Iacovides, and
+Ian Renfree. 2016. <span>“Design Frictions for Mindful Interactions: The
+Case for Microboundaries.”</span> In <em><span
+class="nocase">Proceedings of the 2016 CHI conference extended abstracts
+on human factors in computing systems</span></em>, 1389–97.
+</div>
+<div id="ref-deleuze1992control" class="csl-entry" role="listitem">
+Deleuze, Gilles. 1992. <span>“Postscript on the Societies of
+Control.”</span> <em>October</em> 59: 3–7. <a
+href="http://www.jstor.org/stable/778828">http://www.jstor.org/stable/778828</a>.
+</div>
+<div id="ref-dell2023navigating" class="csl-entry" role="listitem">
+Dell’Acqua, Fabrizio, Edward McFowland, Ethan R Mollick, Hila
+Lifshitz-Assaf, Katherine Kellogg, Saran Rajendran, Lisa Krayer,
+François Candelon, and Karim R Lakhani. 2023. <span>“Navigating the
+Jagged Technological Frontier: Field Experimental Evidence of the
+Effects of AI on Knowledge Worker Productivity and Quality.”</span>
+<em>Harvard Business School Technology &amp; Operations Mgt. Unit
+Working Paper</em>, no. 24-013.
+</div>
+<div id="ref-dennett1971intentional" class="csl-entry" role="listitem">
+Dennett, Daniel C. 1971. <span>“Intentional Systems.”</span> <em>The
+Journal of Philosophy</em> 68 (4): 87–106.
+</div>
+<div id="ref-Doshi2023GenerativeAI" class="csl-entry" role="listitem">
+Doshi, Anil Rajnikant, and Oliver Hauser. 2023. <span>“Generative
+Artificial Intelligence Enhances Creativity but Reduces the Diversity of
+Novel Content,”</span> August.
+</div>
+<div id="ref-Flanagan2009-hf" class="csl-entry" role="listitem">
+Flanagan, Mary. 2009. <em>Critical Play</em>. The MIT Press. London,
+England: MIT Press.
+</div>
+<div id="ref-Foucault1977-hi" class="csl-entry" role="listitem">
+Foucault, Michel. 1977. <em>Discipline and Punish</em>. New York, NY:
+Pantheon Books.
+</div>
+<div id="ref-gaver2003ambiguity" class="csl-entry" role="listitem">
+Gaver, William W, Jacob Beaver, and Steve Benford. 2003.
+<span>“Ambiguity as a Resource for Design.”</span> In <em><span
+class="nocase">Proceedings of the SIGCHI conference on Human factors in
+computing systems</span></em>, 233–40.
+</div>
+<div id="ref-gebru2024tescreal" class="csl-entry" role="listitem">
+Gebru, Timnit, and Émile P Torres. 2024. <span>“<span class="nocase">The
+TESCREAL bundle: Eugenics and the promise of utopia through artificial
+general intelligence</span>.”</span> <em>First Monday</em>.
+</div>
+<div id="ref-gerstgrasser2024recursion" class="csl-entry"
+role="listitem">
+Gerstgrasser, Matthias, Rylan Schaeffer, Apratim Dey, Rafael Rafailov,
+Henry Sleight, John Hughes, Tomasz Korbak, et al. 2024. <span>“Is Model
+Collapse Inevitable? Breaking the Curse of Recursion by Accumulating
+Real and Synthetic Data.”</span> <a
+href="https://arxiv.org/abs/2404.01413">https://arxiv.org/abs/2404.01413</a>.
+</div>
+<div id="ref-gould2024chattldr" class="csl-entry" role="listitem">
+Gould, Sandy J. J., Duncan P. Brumby, and Anna L. Cox. 2024.
+<span>“ChatTL;DR – You Really Ought to Check What the LLM Said on Your
+Behalf.”</span> In <em>Extended Abstracts of the 2024 CHI Conference on
+Human Factors in Computing Systems</em>. CHI EA ’24. New York, NY, USA:
+Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3613905.3644062">https://doi.org/10.1145/3613905.3644062</a>.
+</div>
+<div id="ref-green1989cognitive" class="csl-entry" role="listitem">
+Green, Thomas RG. 1989. <span>“Cognitive Dimensions of
+Notations.”</span> <em>People and Computers V</em>, 443–60.
+</div>
+<div id="ref-heidegger1927being" class="csl-entry" role="listitem">
+Heidegger, Martin. 1927. <em>Being and Time</em>. Translated by John
+Macquarrie and Edward Robinson. Germany: SCM Press.
+</div>
+<div id="ref-hollanek2019non" class="csl-entry" role="listitem">
+Hollanek, Tomasz. 2019. <span>“Non-User-Friendly: Staging Resistance
+with Interpassive User Experience Design.”</span> <em>A Peer-Reviewed
+Journal About</em> 8 (1): 184–93.
+</div>
+<div id="ref-hume1748enquiry" class="csl-entry" role="listitem">
+Hume, David. 1748. <em>An Enquiry Concerning Human Understanding</em>.
+</div>
+<div id="ref-sep-intentionality" class="csl-entry" role="listitem">
+Jacob, Pierre. 2023. <span>“<span>Intentionality</span>.”</span> In
+<em>The <span>Stanford</span> Encyclopedia of Philosophy</em>, edited by
+Edward N. Zalta and Uri Nodelman, <span>S</span>pring 2023. <a
+href="https://plato.stanford.edu/archives/spr2023/entries/intentionality/"
+class="uri">https://plato.stanford.edu/archives/spr2023/entries/intentionality/</a>;
+Metaphysics Research Lab, Stanford University.
+</div>
+<div id="ref-jakesch2023opinionated" class="csl-entry" role="listitem">
+Jakesch, Maurice, Advait Bhat, Daniel Buschek, Lior Zalmanson, and Mor
+Naaman. 2023. <span>“<span class="nocase">Co-Writing with Opinionated
+Language Models Affects Users’ Views</span>.”</span> In <em><span
+class="nocase">Proceedings of the 2023 CHI Conference on Human Factors
+in Computing Systems</span></em>. CHI ’23. New York, NY, USA:
+Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3544548.3581196">https://doi.org/10.1145/3544548.3581196</a>.
+</div>
+<div id="ref-jaspers1932philosophie" class="csl-entry" role="listitem">
+Jaspers, Karl, and Hans Saner. 1932. <em>Philosophie</em>. Vol. 1. J.
+Springer Berlin.
+</div>
+<div id="ref-kery2017exploring" class="csl-entry" role="listitem">
+Kery, Mary Beth, and Brad A Myers. 2017. <span>“Exploring Exploratory
+Programming.”</span> In <em><span class="nocase">2017 IEEE Symposium on
+Visual Languages and Human-Centric Computing (VL/HCC)</span></em>,
+25–29. IEEE.
+</div>
+<div id="ref-kierkegaard1843fear" class="csl-entry" role="listitem">
+Kierkegaard, Søren. 1843. <em>Fear and Trembling</em>. Denmark: First
+authorship (Pseudonymous).
+</div>
+<div id="ref-Kierkegaard1844" class="csl-entry" role="listitem">
+———. 1844. <em>The Concept of Anxiety</em>. Translated by Reidar Thomte.
+Denmark.
+</div>
+<div id="ref-kierkegaard1849sickness" class="csl-entry" role="listitem">
+———. 1849. <em>The Sickness Unto Death</em>. Second Authorship
+(Pseudonymous).
+</div>
+<div id="ref-lee2024predictability" class="csl-entry" role="listitem">
+Lee, Michael, Alan Blackwell, and Advait Sarkar. 2024. <span>“<span
+class="nocase">Predictability of Identifier Naming with Copilot: A Case
+Study for Mixed-Initiative Programming Tools</span>.”</span>
+<em><span>Proceedings of the 35th Annual Conference of the Psychology of
+Programming Interest Group (PPIG 2024)</span></em>.
+</div>
+<div id="ref-liu2023gam" class="csl-entry" role="listitem">
+Liu, Michael Xieyang, Advait Sarkar, Carina Negreanu, Benjamin Zorn,
+Jack Williams, Neil Toronto, and Andrew D. Gordon. 2023. <span>“<span
+class="nocase"><span>‘What It Wants Me To Say’</span>: Bridging the
+Abstraction Gap Between End-User Programmers and Code-Generating Large
+Language Models</span>.”</span> In <em><span class="nocase">Proceedings
+of the 2023 CHI Conference on Human Factors in Computing
+Systems</span></em>. CHI ’23. New York, NY, USA: Association for
+Computing Machinery. <a
+href="https://doi.org/10.1145/3544548.3580817">https://doi.org/10.1145/3544548.3580817</a>.
+</div>
+<div id="ref-malafouris2019mind" class="csl-entry" role="listitem">
+Malafouris, Lambros. 2019. <span>“Mind and Material Engagement.”</span>
+<em>Phenomenology and the Cognitive Sciences</em> 18 (1): 1–17.
+</div>
+<div id="ref-May1975-vg" class="csl-entry" role="listitem">
+May, Rollo. 1975. <em>The Courage to Create</em>. New York, NY: WW
+Norton.
+</div>
+<div id="ref-mcluhan1964media" class="csl-entry" role="listitem">
+McLuhan, Marshall. 1964. <em>Understanding Media: The Extensions of
+Man</em>. McGraw-Hill.
+</div>
+<div id="ref-mele2019free" class="csl-entry" role="listitem">
+Mele, Alfred. 2019. <span>“Free Will and Neuroscience: Decision Times
+and the Point of No Return.”</span> In <em>Free Will, Causality, and
+Neuroscience</em>, 83–96. Brill.
+</div>
+<div id="ref-mikolov2013linguistic" class="csl-entry" role="listitem">
+Mikolov, Tomáš, Wen-tau Yih, and Geoffrey Zweig. 2013. <span>“Linguistic
+Regularities in Continuous Space Word Representations.”</span> In
+<em>Proceedings of the 2013 Conference of the North American Chapter of
+the Association for Computational Linguistics: Human Language
+Technologies</em>, 746–51.
+</div>
+<div id="ref-o1986disciplinary" class="csl-entry" role="listitem">
+O’Neill, John. 1986. <span>“The Disciplinary Society: From Weber to
+Foucault.”</span> <em>British Journal of Sociology</em>, 42–60.
+</div>
+<div id="ref-pfaller2017interpassivity" class="csl-entry"
+role="listitem">
+Pfaller, Robert. 2017. <em>Interpassivity: The Aesthetics of Delegated
+Enjoyment</em>. Edinburgh University Press.
+</div>
+<div id="ref-Postman1985-rv" class="csl-entry" role="listitem">
+Postman, Neil. 1985. <em>Amusing Ourselves to Death</em>. Viking Books.
+</div>
+<div id="ref-prather2024drifting" class="csl-entry" role="listitem">
+Prather, James, Brent N. Reeves, Paul Denny, Brett A. Becker, Juho
+Leinonen, Andrew Luxton-Reilly, Garrett Powell, James Finnie-Ansley, and
+Eddie Antonio Santos. 2023. <span>“<span>‘It’s Weird That It Knows What
+i Want’</span>: Usability and Interactions with Copilot for Novice
+Programmers.”</span> <em>ACM Trans. Comput.-Hum. Interact.</em> 31 (1).
+<a
+href="https://doi.org/10.1145/3617367">https://doi.org/10.1145/3617367</a>.
+</div>
+<div id="ref-rittel1973dilemmas" class="csl-entry" role="listitem">
+Rittel, Horst WJ, and Melvin M Webber. 1973. <span>“Dilemmas in a
+General Theory of Planning.”</span> <em>Policy Sciences</em> 4 (2):
+155–69.
+</div>
+<div id="ref-robinson2024requirements" class="csl-entry"
+role="listitem">
+Robinson, Diana, Christian Cabrera, Andrew D Gordon, Neil D Lawrence,
+and Lars Mennen. 2024. <span>“Requirements Are All You Need: The Final
+Frontier for End-User Software Engineering.”</span> <em>arXiv Preprint
+arXiv:2405.13708</em>.
+</div>
+<div id="ref-rosen1979visicalc" class="csl-entry" role="listitem">
+Rosen, Benjamin M. 1979. <span>“<span class="nocase">VISICALC: Breaking
+the Personal Computer Bottleneck</span>.”</span> <a
+href="http://bricklin.com/history/rosenletter.htm"
+class="uri">http://bricklin.com/history/rosenletter.htm</a>.
+</div>
+<div id="ref-rossmy2023point" class="csl-entry" role="listitem">
+Rossmy, Beat, Naa Terzimehić, Tanja Döring, Daniel Buschek, and
+Alexander Wiethoff. 2023. <span>“Point of No Undo: Irreversible
+Interactions as a Design Strategy.”</span> In <em>Proceedings of the
+2023 CHI Conference on Human Factors in Computing Systems</em>, 1–18.
+</div>
+<div id="ref-rupert2004challenges" class="csl-entry" role="listitem">
+Rupert, Robert D. 2004. <span>“Challenges to the Hypothesis of Extended
+Cognition.”</span> <em>The Journal of Philosophy</em> 101 (8): 389–428.
+</div>
+<div id="ref-sarkar2016constructivist" class="csl-entry"
+role="listitem">
+Sarkar, Advait. 2016a. <span>“<span class="nocase">Constructivist Design
+for Interactive Machine Learning</span>.”</span> In <em><span
+class="nocase">Proceedings of the 2016 CHI Conference Extended Abstracts
+on Human Factors in Computing Systems</span></em>, 1467–75. CHI EA ’16.
+New York, NY, USA: Association for Computing Machinery. <a
+href="https://doi.org/10.1145/2851581.2892547">https://doi.org/10.1145/2851581.2892547</a>.
+</div>
+<div id="ref-sarkar2016phd" class="csl-entry" role="listitem">
+———. 2016b. <span>“<span class="nocase">Interactive analytical
+modelling</span>.”</span> UCAM-CL-TR-920. University of Cambridge,
+Computer Laboratory. <a
+href="https://doi.org/10.48456/tr-920">https://doi.org/10.48456/tr-920</a>.
+</div>
+<div id="ref-sarkar2023humanaicollaboration" class="csl-entry"
+role="listitem">
+———. 2023a. <span>“<span>Enough With <span>‘Human-AI
+Collaboration’</span></span>.”</span> In <em><span
+class="nocase">Extended Abstracts of the 2023 CHI Conference on Human
+Factors in Computing Systems</span></em>. CHI EA ’23. New York, NY, USA:
+Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3544549.3582735">https://doi.org/10.1145/3544549.3582735</a>.
+</div>
+<div id="ref-sarkar2023creativity" class="csl-entry" role="listitem">
+———. 2023b. <span>“<span class="nocase">Exploring Perspectives on the
+Impact of Artificial Intelligence on the Creativity of Knowledge Work:
+Beyond Mechanised Plagiarism and Stochastic Parrots</span>.”</span> In
+<em><span class="nocase">Proceedings of the 2nd Annual Meeting of the
+Symposium on Human-Computer Interaction for Work</span></em>. CHIWORK
+’23. New York, NY, USA: Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3596671.3597650">https://doi.org/10.1145/3596671.3597650</a>.
+</div>
+<div id="ref-sarkar2023simplicity" class="csl-entry" role="listitem">
+———. 2023c. <span>“<span class="nocase">Should Computers Be Easy To Use?
+Questioning the Doctrine of Simplicity in User Interface
+Design</span>.”</span> In <em><span class="nocase">Extended Abstracts of
+the 2023 CHI Conference on Human Factors in Computing
+Systems</span></em>. CHI EA ’23. New York, NY, USA: Association for
+Computing Machinery. <a
+href="https://doi.org/10.1145/3544549.3582741">https://doi.org/10.1145/3544549.3582741</a>.
+</div>
+<div id="ref-sarkar2023eupgenai" class="csl-entry" role="listitem">
+———. 2023d. <span>“<span class="nocase">Will Code Remain a Relevant User
+Interface for End-User Programming with Generative AI
+Models?</span>”</span> In <em><span class="nocase">Proceedings of the
+2023 ACM SIGPLAN International Symposium on New Ideas, New Paradigms,
+and Reflections on Programming and Software</span></em>, 153–67. Onward!
+2023. New York, NY, USA: Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3622758.3622882">https://doi.org/10.1145/3622758.3622882</a>.
+</div>
+<div id="ref-sarkar2024challenge" class="csl-entry" role="listitem">
+———. 2024. <span>“<span>AI Should Challenge, Not Obey</span>.”</span>
+<em>Communications of the ACM</em>, September. <a
+href="https://doi.org/10.1145/3649404">https://doi.org/10.1145/3649404</a>.
+</div>
+<div id="ref-sarkar2022programmingai" class="csl-entry" role="listitem">
+Sarkar, Advait, Andrew D. Gordon, Carina Negreanu, Christian Poelitz,
+Sruti Srinivasa Ragavan, and Ben Zorn. 2022. <span>“What Is It Like to
+Program with Artificial Intelligence?”</span> In <em><span
+class="nocase">Proceedings of the 33rd Annual Conference of the
+Psychology of Programming Interest Group (PPIG 2022)</span></em>.
+</div>
+<div id="ref-Sarkar2024eusprig" class="csl-entry" role="listitem">
+Sarkar, Advait, Xiaotong (Tone) Xu, Neil Toronto, Ian Drosos, and
+Christian Poelitz. 2024. <span>“<span class="nocase">When Copilot
+Becomes Autopilot: Generative AI’s Critical Risk to Knowledge Work and a
+Critical Solution</span>.”</span> In <em><span>EuSpRIG
+Proceedings</span></em>.
+</div>
+<div id="ref-Sartre1956" class="csl-entry" role="listitem">
+Sartre, Jean-Paul. 1943. <em>Being and Nothingness: L’être Et Le
+Néant</em>. Translated by Hazel E. Barnes (1st English translation) and
+Sarah Richmond (2nd English translation). France: Éditions Gallimard,
+Philosophical Library.
+</div>
+<div id="ref-sharma2024echo" class="csl-entry" role="listitem">
+Sharma, Nikhil, Q. Vera Liao, and Ziang Xiao. 2024. <span>“<span
+class="nocase">Generative Echo Chamber? Effect of LLM-Powered Search
+Systems on Diverse Information Seeking</span>.”</span> In <em><span
+class="nocase">Proceedings of the CHI Conference on Human Factors in
+Computing Systems</span></em>. CHI ’24. New York, NY, USA: Association
+for Computing Machinery. <a
+href="https://doi.org/10.1145/3613904.3642459">https://doi.org/10.1145/3613904.3642459</a>.
+</div>
+<div id="ref-shumailov2024collapse" class="csl-entry" role="listitem">
+Shumailov, Ilia, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross
+Anderson, and Yarin Gal. 2024. <span>“AI Models Collapse When Trained on
+Recursively Generated Data.”</span> <em>Nature</em> 631 (8022): 755–59.
+</div>
+<div id="ref-Snyder2012-yt" class="csl-entry" role="listitem">
+Snyder, Laura. 2012. <em>The Philosophical Breakfast Club</em>. New
+York, NY: Broadway Books.
+</div>
+<div id="ref-stokes2005creativity" class="csl-entry" role="listitem">
+Stokes, Patricia D. 2005. <em>Creativity from Constraints: The
+Psychology of Breakthrough</em>. Springer Publishing Company.
+</div>
+<div id="ref-tankelevitch2024metacognitive" class="csl-entry"
+role="listitem">
+Tankelevitch, Lev, Viktor Kewenig, Auste Simkute, Ava Elizabeth Scott,
+Advait Sarkar, Abigail Sellen, and Sean Rintel. 2024. <span>“<span
+class="nocase">The Metacognitive Demands and Opportunities of Generative
+AI</span>.”</span> In <em><span class="nocase">Proceedings of the CHI
+Conference on Human Factors in Computing Systems</span></em>. CHI ’24.
+New York, NY, USA: Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3613904.3642902">https://doi.org/10.1145/3613904.3642902</a>.
+</div>
+<div id="ref-turner2016distributed" class="csl-entry" role="listitem">
+Turner, Phil. 2016. <span>“Distributed, External and Extended
+Cognition.”</span> <em>HCI Redux: The Promise of Post-Cognitive
+Interaction</em>, 75–98.
+</div>
+<div id="ref-welsh2022endofprogramming" class="csl-entry"
+role="listitem">
+Welsh, Matt. 2022. <span>“The End of Programming.”</span> <em>Commun.
+ACM</em> 66 (1): 34–35. <a
+href="https://doi.org/10.1145/3570220">https://doi.org/10.1145/3570220</a>.
+</div>
+<div id="ref-winner1980artifacts" class="csl-entry" role="listitem">
+Winner, Langdon. 1980. <span>“Do Artifacts Have Politics?”</span>
+<em>Daedalus</em>, 121–36.
+</div>
+<div id="ref-zamfirescu-pereira2023johnny" class="csl-entry"
+role="listitem">
+Zamfirescu-Pereira, J. D., Richmond Y. Wong, Bjoern Hartmann, and Qian
+Yang. 2023. <span>“<span class="nocase">Why Johnny Can’t Prompt: How
+Non-AI Experts Try (and Fail) to Design LLM Prompts</span>.”</span> In
+<em><span class="nocase">Proceedings of the 2023 CHI Conference on Human
+Factors in Computing Systems</span></em>. CHI ’23. New York, NY, USA:
+Association for Computing Machinery. <a
+href="https://doi.org/10.1145/3544548.3581388">https://doi.org/10.1145/3544548.3581388</a>.
+</div>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>There is no definitional consensus on this term. A
+rationale for the definition adopted here is given by <span
+class="citation" data-cites="sarkar2023eupgenai">(Sarkar
+2023d)</span>.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Huang, 2023. (Source: <a
+href="https://www.reuters.com/technology/ai-means-everyone-can-now-be-programmer-nvidia-chief-says-2023-05-29/"
+class="uri">https://www.reuters.com/technology/ai-means-everyone-can-now-be-programmer-nvidia-chief-says-2023-05-29/</a>,
+accessed July 2024.)<a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Dohmke, 2024. (Source: <a
+href="https://www.ted.com/talks/thomas_dohmke_with_ai_anyone_can_be_a_coder_now"
+class="uri">https://www.ted.com/talks/thomas_dohmke_with_ai_anyone_can_be_a_coder_now</a>,
+accessed July 2024.)<a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><span class="citation"
+data-cites="robinson2024requirements">Robinson et al. (2024)</span><a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><span class="citation"
+data-cites="welsh2022endofprogramming">Welsh (2022)</span><a
+href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>One is reminded of similar claims made during the early
+days of spreadsheets or about any number of visual programming
+languages. E.g., Benjamin Rosen, a PC industry analyst for Morgan
+Stanley, later a key funder of Lotus and Compaq, noted in 1979 that
+<em>“In minutes, people who have never used a computer are writing and
+using programs [...] the user need not know <u>anything</u> about
+computers or programming in order to derive Visicalc’s benefits. You
+construct a Visicalc program much as you would define a problem on a
+sheet of paper or a blackboard”</em> <span class="citation"
+data-cites="rosen1979visicalc">(Rosen 1979)</span>.<a href="#fnref6"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a
+href="https://lindynewsletter.beehiiv.com/p/culture-stuck"
+class="uri">https://lindynewsletter.beehiiv.com/p/culture-stuck</a>,
+accessed July 2024. Related is the concept of “refinement culture”;
+<em>“Refinement culture can be summarized as a general streamlining and
+removal of any unique characteristics. Refinement Culture is one
+dimensional and removes variety from the environment. It’s
+optimized.”</em> <a
+href="https://lindynewsletter.beehiiv.com/p/refinement-culture"
+class="uri">https://lindynewsletter.beehiiv.com/p/refinement-culture</a>,
+accessed July 2024, <a
+href="https://medium.com/@lindynewsletter/refinement-culture-51d96726c642"
+class="uri">https://medium.com/@lindynewsletter/refinement-culture-51d96726c642</a>,
+accessed 2024.<a href="#fnref7" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Much as <span class="citation"
+data-cites="benjamin2024imagination">(R. Benjamin 2024)</span> calls for
+us to cultivate the capacity to imagine.<a href="#fnref8"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Thanks to Ava Scott for identifying this connection.<a
+href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>It is worth observing that while such counternarratives
+often involve calls for greater, more critical, and more reflective user
+engagement and participation with technology, it should not be assumed
+that intentionality always entails participation or action. Observation
+itself is not intrinsically passive. This point is well made by <span
+class="citation" data-cites="pfaller2017interpassivity">(Pfaller
+2017)</span>: <em>“Two philosophical premises silently played a decisive
+role in this triumphal march of participation: first, the idea that the
+relation between transmitter and receiver represents a hierarchy and
+that the elimination of this hierarchy therefore has to amount to a
+democratisation; and secondly, the idea that it is more desirable for
+spectators to participate than to spectate [... however,] the relation
+between transmitter and receiver does not always represent a hierarchy.
+And when it does, then it is not always in favour of the transmitter
+[...] This is why it is misleading to believe that activating the
+audience in art is automatically and always tantamount to their
+liberation. Because could not the exact opposite be the case: could the
+enthusiasm for joining in produced by art not deprive people of the
+necessary refractoriness that they would need in political life in order
+not to be immediately enthused by every neoliberal or reactionary or
+even fascist appeal to ‘actively’ join in, and pursue this with a
+feeling of liberation?”</em><a href="#fnref10" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>E.g., see discussion of conceptual writing in <span
+class="citation" data-cites="sarkar2023creativity">(Sarkar
+2023b)</span>.<a href="#fnref11" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>though not “collaboration” <span class="citation"
+data-cites="sarkar2023humanaicollaboration">(Sarkar 2023a)</span><a
+href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p><span class="citation" data-cites="Camus1955">(Camus
+1942)</span> describes existence (suicide) as the only truly serious
+philosophical problem.<a href="#fnref13" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</body>
+</html>
