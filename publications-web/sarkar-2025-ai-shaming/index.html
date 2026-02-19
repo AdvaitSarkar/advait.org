@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Advait Sarkar" />
+  <title>AI Could Have Written This: Birth of a Classist Slur in Knowledge Work</title>
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/publications-web/publications-web.css">
+</head>
+<body>
+
+<h2><a href="/">&larr; advait.org</a></h2>
+
+<div class="publications-web-banner">
+<p>This is a version of the following academic paper prepared for the web:</p>
+
+<blockquote>
+  Advait Sarkar. 2025. AI Could Have Written This: Birth of a Classist Slur in Knowledge Work. In Proceedings of the Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA '25). Association for Computing Machinery, New York, NY, USA, Article 621, 1–12. https://doi.org/10.1145/3706599.3716239
+</blockquote>
+
+<p>
+More details:
+<a href="/files/sarkar_2025_ai_shaming.pdf">Download PDF</a> &bull;
+<a href="/files/sarkar_2025_ai_shaming_citation.bib">BibTeX</a> &bull;
+<a href="https://dl.acm.org/doi/10.1145/3706599.3716239">ACM Digital Library</a> &bull;
+<a href="https://doi.org/10.1145/3706599.3716239">DOI: 10.1145/3706599.3716239</a> &bull;
+<a href="https://www.youtube.com/watch?v=Rir-HoYJNYs">Video (9 min)</a>
+</p>
+</div>
+
+<header id="title-block-header">
+<h1 class="title">AI Could Have Written This:<br />
+Birth of a Classist Slur in Knowledge Work</h1>
+<p class="author">Advait Sarkar</p>
+</header>
+
+<div class="abstract">
+<h2>Abstract</h2>
+<p>AI shaming is a social phenomenon in which negative judgements are
+associated with the use of Artificial Intelligence (AI). This includes
+comparing someone’s work with AI-generated work as a means of
+disparagement, voicing suspicion or alleging that someone has used AI to
+undermine their reputation, or blaming the poor quality of an artefact
+on AI use. Common justifications of AI shaming include recourse to AI’s
+societal harms, its technical limitations, and lack of creativity. I
+argue that, more fundamentally than any of these, AI shaming arises from
+a class anxiety induced in middle class knowledge workers, and is a form
+of boundary work to maintain class solidarity and limit mobility into
+knowledge work. I discuss the role of AI shaming in protecting the
+privileged class of knowledge work and its attendant harms.</p>
+</div>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction" id="toc-introduction"><span
+class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#sec:taxonomy" id="toc-sec:taxonomy"><span
+class="toc-section-number">2</span> A Provisional Taxonomy of AI Shaming
+Phenomena</a></li>
+<li><a href="#sec:red-herrings" id="toc-sec:red-herrings"><span
+class="toc-section-number">3</span> A Provisional Taxonomy of Arguments
+in Support of AI Shaming</a></li>
+<li><a href="#sec:boundary-work" id="toc-sec:boundary-work"><span
+class="toc-section-number">4</span> Demarcating Knowledge Work: AI
+Shaming as Boundary Work</a>
+<ul>
+<li><a href="#sec:class" id="toc-sec:class"><span
+class="toc-section-number">4.1</span> AI Shaming Protects Class
+Boundaries</a></li>
+<li><a href="#sec:guidelines" id="toc-sec:guidelines"><span
+class="toc-section-number">4.2</span> Hard Boundaries on AI Use:
+Institutional Guidelines and Knowledge Materialism</a></li>
+<li><a href="#sec:sumptuary" id="toc-sec:sumptuary"><span
+class="toc-section-number">4.3</span> Sumptuary Laws and Protectionism:
+Alternative Metaphors for The Effects of Generative AI on Class
+Relations</a></li>
+</ul></li>
+<li><a href="#sec:harms" id="toc-sec:harms"><span
+class="toc-section-number">5</span> Societal Harms of AI
+Shaming</a></li>
+<li><a href="#sec:implications" id="toc-sec:implications"><span
+class="toc-section-number">6</span> Implications and
+Non-Implications</a></li>
+<li><a href="#conclusion" id="toc-conclusion"><span
+class="toc-section-number">7</span> Conclusion</a></li>
+</ul>
+</nav>
+<figure id="fig:teaser">
+<img src="shaming-taxonomy-v2.png" alt="A table showing a taxonomy of AI shaming terms. The image is a table that organises judgements based on whether AI use is confirmed, unconfirmed, or absent, and further categorises these judgements by the target of judgement, which can either be a person or an artefact. The table consists of two main columns under the heading 'Target of judgement.' The first column is titled 'Person is judged,' while the second column is titled 'Artefact is judged.' The rows are structured according to the confirmation status of AI use, with three categories: 'AI used,' written in purple; 'AI use unconfirmed,' written in grey; and 'AI not used,' written in orange. In the first row, under 'AI used,' the column for 'Person is judged' states, 'Shaming: person is judged negatively for using AI,' while the column for 'Artefact is judged' states, 'Hard blaming: artefact is judged negatively for using AI.' In the second row, under 'AI use unconfirmed,' the column for 'Person is judged' states, 'Allegation: person is judged negatively for potentially using AI,' and the column for 'Artefact is judged' states, 'Soft blaming: artefact is judged negatively for potentially using AI.' In the third row, under 'AI not used,' the column for 'Person is judged' states, 'Slur: person is judged negatively through comparison to AI,' while the column for 'Artefact is judged' states, 'Disparagement: artefact is judged negatively through comparison to AI.'" />
+<figcaption>Figure 1: An incomplete taxonomy of AI shaming terms. More detailed definitions are given in Section <a href="#sec:taxonomy">2</a>.</figcaption>
+</figure>
+<h2 data-number="1" id="introduction"><span
+class="header-section-number">1</span> Introduction</h2>
+<p>This paper interrogates a bundle of social phenomena that associate
+negative judgements with the use of Artificial Intelligence (hence
+<strong>AI</strong>). This bundle includes comparing someone’s work with
+AI-generated work (regardless of whether it really involved AI) as a
+means of disparagement, voicing a suspicion that someone has used AI as
+a means of undermining their reputation or integrity, blaming the
+apparently poor quality of an artefact on AI use, or simply shaming
+someone for using AI (Section <a href="#sec:taxonomy"
+data-reference-type="ref" data-reference="sec:taxonomy">2</a>).</p>
+<p>Such slurring, disparagement, allegation, blaming, and shaming is
+typically supported by one or more of a set of common arguments: AI
+output is of poor quality, AI cannot be creative, AI causes societal
+harms, and so on (Section <a href="#sec:red-herrings"
+data-reference-type="ref" data-reference="sec:red-herrings">3</a>).</p>
+<p>In this paper, I argue that these phenomena in fact arise from a
+class anxiety induced in knowledge workers, and are a form of boundary
+work performed by knowledge workers to maintain class boundaries and
+limit mobility into knowledge work (Sections <a
+href="#sec:boundary-work" data-reference-type="ref"
+data-reference="sec:boundary-work">4</a> and <a href="#sec:class"
+data-reference-type="ref" data-reference="sec:class">4.1</a>). In this
+reading, the increasingly common refrain “AI could have written this” is
+not so much a pithy taunt, but rather a classist slur, indicative of
+wounded and anxious privilege. Moreover, it is complicit in the
+systematic exclusion of underprivileged groups from entering the class
+of knowledge professionals.</p>
+<p>Not only are boundaries to knowledge work constructed through the
+aforementioned discursive blaming and shaming practices, but they are
+also crystallised in the form of organisational and institutional rules
+and codes of ethics which delineate permitted uses of AI from those
+forbidden (Section <a href="#sec:guidelines" data-reference-type="ref"
+data-reference="sec:guidelines">4.2</a>). Underlying these codes is
+knowledge materialism: a latent notion of ownership over knowledge work,
+which is not confronted directly but instead modulated into a morality
+of knowledge work wherein actions that threaten the material prosperity
+of knowledge workers are deemed immoral.</p>
+<p>Unlike the pressure put on the working classes by industrialisation,
+which found its ultimate salvation in the propositions of Marx,
+Generative AI puts pressure on a privileged class by threatening to
+erase the moat it has so carefully dug between itself and those less
+privileged. Thus, to understand AI shaming as a response to the effects
+of Generative AI on the class identity of knowledge workers, it is less
+instructive to invoke the industrial revolution (though this analogy is
+still useful to understand changes in the nature of production).
+Instead, I briefly suggest alternative historical analogies to AI
+shaming and institutional codes such as sumptuary laws and protectionist
+policies (Section <a href="#sec:sumptuary" data-reference-type="ref"
+data-reference="sec:sumptuary">4.3</a>).</p>
+<p>The proliferation of formal and informal shaming practices induces a
+cavalcade of societal harms, including psychological disorders, racial
+discrimination, and chilling effects (Section <a href="#sec:harms"
+data-reference-type="ref" data-reference="sec:harms">5</a>).</p>
+<p>The implications of AI shaming are complex, raising the questions of
+how it might be resisted, whether it serves useful functions that ought
+to be preserved, and whether the erasure of shaming will aid in
+fulfilling the potential of Generative AI to improve social mobility or
+merely reconfigure class boundaries (Section <a href="#sec:implications"
+data-reference-type="ref" data-reference="sec:implications">6</a>).
+However, one clear implication for our research community – an
+exceedingly privileged class with steep boundaries and deep incentives
+for maintaining them – is to become reflexively conscious of AI shaming,
+to avoid and resist it when possible, and to consider whether our
+discourse and institutional codes are merely accessories to an exclusive
+and inequitable enaction of class solidarity.</p>
+<h2 data-number="2" id="sec:taxonomy"><span
+class="header-section-number">2</span> A Provisional Taxonomy of AI
+Shaming Phenomena</h2>
+<p>Negative associations with AI can manifest in a number of subtly
+distinct and overlapping phenomena. In particular we are interested in
+cases where an individual or group of people are associated with one or
+more artefacts that may or may not have been generated in a workflow
+involving AI. These phenomena vary along the following principal
+dimensions: (1) whether AI is known to have been used, and (2) whether
+the person or the artefact is the target of the negative association. To
+distinguish these different cases, I propose the following provisional
+taxonomy:</p>
+<ol>
+<li><p><strong>Shaming</strong>: drawing attention to someone’s
+confirmed use of AI with a negative moral judgement or reflection on
+that person.</p></li>
+<li><p><strong>Allegation</strong>: raising suspicion of someone’s
+unconfirmed use of AI with a negative moral judgement or reflection on
+that person.</p></li>
+<li><p><strong>Slur</strong>: comparing someone’s work which is
+confirmed <em>not</em> to be using AI with AI-generated work, as a means
+of critique or negative reflection on that person’s abilities.</p></li>
+<li><p><strong>Hard blaming</strong>: critiquing the quality of an
+artefact that involved a confirmed use of AI, attributing its perceived
+low quality directly to the use of AI.</p></li>
+<li><p><strong>Soft blaming</strong>: critiquing the quality of an
+artefact with no confirmation of the use or non-use of AI, hypothesizing
+a link between its perceived low quality and the potential use of
+AI.</p></li>
+<li><p><strong>Disparagement</strong>: comparing the quality of a
+confirmed non-AI artefact with AI-generated artefacts, as a means of
+critique or negative reflection on that artefact.</p></li>
+</ol>
+<p>These definitions are summarised in Figure <a href="#fig:teaser"
+data-reference-type="ref" data-reference="fig:teaser">1</a>.
+For the remainder of this paper, “shaming” will be used as an umbrella
+term that encompasses all these phenomena. As we will see, real-world
+episodes of shaming often involve multiple phenomena. For example, it is
+common for both the person and the artefact to be judged negatively in
+the same discourse, so depending on the status of known AI use, we
+encounter both shaming and hard blaming, or allegation and soft blaming,
+or a slur and disparagement simultaneously.</p>
+<p>This taxonomy is necessarily provisional, incomplete, and simplified
+for the purposes of this paper. It could be further divided and
+extended; for instance it may be useful, where the use of AI is
+unconfirmed, to distinguish between cases where discussants are
+genuinely interested in discovering whether AI use is involved (so that
+the discourse may potentially be “hardened” into hard blaming and
+shaming), and cases where the actual use of AI is not important and the
+underlying intent is to slur or disparage.</p>
+<h2 data-number="3" id="sec:red-herrings"><span
+class="header-section-number">3</span> A Provisional Taxonomy of
+Arguments in Support of AI Shaming</h2>
+<figure id="fig:red-herrings">
+<img src="argument-taxonomy-v3.png" alt="The diagram consists of three main sections at the top, each representing a category of arguments, with conclusions below them that converge to a final judgement at the bottom. On the far left, the box labelled 'Arguments from society and materiality' contains four points: 'AI has a high environmental footprint,' 'AI data practices are unethical,' 'AI causes job loss,' and 'AI degrades work.' In the centre, 'Arguments from technical basis' contains: 'AI only predicts tokens,' 'AI cannot transcend training data,' and 'AI makes errors.' On the far right, 'Arguments from creativity' contains: 'Creativity requires humanity,' 'Creativity requires struggle/labour,' and 'Creativity requires expertise.' Below these are three intermediate conclusions: 'AI harms people,' 'AI output is of poor quality,' and 'AI cannot be creative,' each pointed to by arrows from their respective category. At the bottom, a single box states 'A negative judgement is warranted,' pointed to by arrows from all three intermediate conclusions." />
+<figcaption>Figure 2: An incomplete taxonomy of arguments in support of AI shaming. Arrows may be read as &ldquo;implies&rdquo; relations, e.g., &ldquo;AI degrades work <em>implies</em> AI harms people <em>implies</em> A negative judgement is warranted&rdquo;.</figcaption>
+</figure>
+<p>Behind the complex collection of AI shaming phenomena is an even more
+complex constellation of ideas and arguments that justify a negative
+association with AI. The arguments fall loosely into one of three
+primary categories: arguments from society and materiality, arguments
+from technical basis, and arguments from creativity. These are invoked
+to support secondary categories such as “AI cannot be creative”.</p>
+<p>An incomplete taxonomy of arguments invoked to support AI shaming is
+given in Figure <a href="#fig:red-herrings" data-reference-type="ref"
+data-reference="fig:red-herrings">2</a>. The arrows in
+this figure may be read as “implies” relations. For example, “AI makes
+errors” <strong>implies</strong> “AI output is of poor quality”. In
+common discourse, primary and secondary categories are often intermixed,
+and often a leap is made from a primary category directly to the
+conclusion that a negative judgement is warranted (performing the
+“transitive closure” of the arrows in the diagram; thus arrows could be
+drawn directly between primary arguments and the final judgement).
+Implications are also made beyond those directly represented, e.g., “AI
+cannot transcend training data” <strong>implies</strong> “AI cannot be
+creative”, and “Creativity requires struggle / labour”
+<strong>implies</strong> “AI degrades work”, but arrows for these are
+excluded as are transitive closure relations for clarity of the
+figure.</p>
+<p>As with the taxonomy of AI shaming phenomena, this taxonomy of
+supporting arguments is necessarily provisional and incomplete, serving
+mainly to establish a context for the subsequent discussion in this
+paper, rather than claiming to be definitive. As with the shaming
+taxonomy, a more comprehensive analysis based on a large and replicable
+shaming corpus would make for interesting future work. These categories
+of shaming arguments are now illustrated with examples.</p>
+<h5 id="arguments-from-creativity">Arguments from
+creativity</h5>
+<p>Nowhere is the narrative of loss and deterioration more intense than
+in the application of AI to art. Humanity is posited as an essential
+element of creativity and art: <em>“there is art in anything done by a
+human, and when humans are removed from a task, so is the art”</em>
+<span class="citation" data-cites="lauritzen2024ben">[38]</span>. The
+absence or retreat of human involvement in works of art and literature
+is often cited as <em>ipso facto</em> undesirable, and thus justifies
+shaming. For instance, <em>“[...] the prospect of a machine capable of
+writing a book seems almost unbearably sad. An assault on a profound
+aspect of what it is to be a human being. [...] to believe a machine is
+capable of producing literature is to misunderstand what literature is
+[...] A feeling reconstructed by a machine [...] has no human hand to
+reach out to us [...] even a conscious machine could not really make
+art”</em> <span class="citation"
+data-cites="marriott2024creativity">[44]</span>.</p>
+<p>Some theorise that art is the result of <em>“choices at every
+scale”</em>, and that there is no <em>“opportunity to make a vast number
+of choices using a [e.g.] text-to-image generator”</em>; as a result
+those who think AI generated content is acceptable are tasteless
+novices, uncultivated dilettantes, <em>“people who think they can
+express themselves in a medium without actually working in that
+medium”</em>, complicit in <em>“a fundamentally dehumanizing
+technology”</em> <span class="citation"
+data-cites="chiang2024aiart">[14]</span>. A related and extreme form of
+this argument is that art involves struggle that originates in the
+divine struggle of creation: <em>“The day of rest [in the Book of
+Genesis] is significant because it suggests that the creation required a
+certain amount of effort on God’s part [...] some sort of artistic
+struggle”</em>; and because <em>“ChatGPT rejects any notion of creative
+struggle [...] by mechanising the imagination it renders our
+participation in the Act of Creation as valueless and unnecessary [...]
+that songwriter [...] who is using ChatGPT to write his lyrics [...] is
+participating in the erosion of the world’s soul and the spirit of
+humanity itself and to put it politely should f**king desist if he wants
+to continue calling himself a songwriter”</em> <span class="citation"
+data-cites="cave2023chatgpt">[12]</span>.</p>
+<p>A case where an artist claimed copyright of AI-generated work (Allen
+v. Perlmutter, No. 1:24-cv-2665 (D. Colo. 2024)) <span class="citation"
+data-cites="brittain2024aisues">[9]</span> has been the subject of much
+shaming. One commentator rejects the artist’s characterisation of AI as
+a tool such as a brush or a camera through the
+creativity-requires-struggle/labour argument <span class="citation"
+data-cites="penguinz02024delusionalai">[18]</span>: <em>“a brush or a
+camera does not create anything for you. You, behind the camera and the
+brush, still have to make the art. This [AI] does it for you. [...] You
+still have to be talented in order to use the tools like a brush or
+camera to create art. When it comes to AI, you don’t have to have talent
+at all.”</em> Notably, the appeal to labour extends beyond the labour
+required in the act of creation, to include the labour expended in
+acquiring the skills of artistry: <em>“I am not a talented artist at
+all. I took two years of art courses and only marginally improved. That
+is something you have to work at for years. With AI art, I type in a
+single sentence, and it does it for me.”</em> The shaming continues with
+appeals to work degradation and job loss: <em>“the problem comes when
+you try and copyright it, you try and sell it, or you try and deceive
+people with it, or you try and use AI art tools as a means of pushing
+out real artists.”</em></p>
+<h5 id="arguments-from-society-and-materiality">Arguments from society and
+materiality</h5>
+<p>Other common accessories to AI shaming are the ideas that automation
+leads to job loss, or to the deterioration in the quality of experience
+of a profession. These are, of course, all lay recapitulations of
+Braverman’s work degradation thesis <span class="citation"
+data-cites="braverman1974labor">[8]</span>, in many ways itself a
+reinvention of the Marxian fable for the 20<sup>th</sup> century. For
+instance: <em>“as an AI annotator [...] I was very aware of the irony of
+my situation. Large language models were supposed to automate writers’
+jobs. The better they became through our work, the quicker our careers
+would decline. And so there I was, feeding our very own Moloch.”</em>
+<span class="citation" data-cites="george2024confessions">[23]</span>.
+Commentators recoiled in horror at the suggestion that <em>“your
+grandchildren will be the last generation to read and write”</em> made
+(apparently without irony) by an evangelist of AI-generated videos <span
+class="citation" data-cites="vanorden2024grandchildren">[41]</span>.
+Besides work degradation, arguments from society and materiality also
+invoke the disputed use of copyrighted resources and the attendant
+social impacts, and the environmental footprint of the high material and
+energy costs involved in AI system development and operation.</p>
+<h5 id="arguments-from-technical-basis">Arguments from technical
+basis</h5>
+<p>The technical underpinnings of AI, such as reductionist descriptions
+of its mechanism in terms of next-token prediction, or its alleged
+delimitation by its training data, are often cited as reasons for the
+perceived inferiority of AI-generated content. Corollaries include its
+disembodiment and lack of human-like reasoning and understanding. For
+instance, an article by Bender <span class="citation"
+data-cites="bender2024information">[30]</span> begins by restating that
+<em>“LLMs are nothing more than statistical models [...] set up to
+output plausible-sounding sequences of words</em>, following through by
+shaming users for using a chat interface for information retrieval:
+<em>“The chatbot interface invites you to just sit back and take the
+appealing-looking AI slop as if it were "information". Don’t be that
+guy.”</em></p>
+<h5 id="ai-output-is-of-poor-quality">AI output is of poor
+quality</h5>
+<p>The perceived inferiority of AI-generated content is also mobilised
+directly in support of shaming. For example, consider the derogatory
+epithet <em>“slop: a term of art, akin to spam, for low-rent, scammy
+garbage generated by artificial intelligence”</em>, which threatens to
+<em>“crowd out human creativity and intentionality with weird AI
+crap”</em> <span class="citation"
+data-cites="read2024drowning">[52]</span>. The contemptible
+culprit-winners of the “slop economy”, then, are those who constitute
+<em>“a thriving, global gray-market economy of spammers and
+entrepreneurs, searching out and selling get-rich-quick schemes and
+arbitrage opportunities, supercharged by generative AI”</em> <span
+class="citation" data-cites="read2024drowning">[52]</span>. Not
+surprisingly, as we will revisit, the ire is drawn at entrepreneurs from
+the Global South, whose ungrammatical prompts are often paraded as
+exhibits in slop vilification (e.g., <span class="citation"
+data-cites="read2024drowning">[52]</span>). Commentators complain of a
+“mental slop tax” – the burden of diligence in detecting (and then
+presumably ignoring) AI-generated content: <em>“Those of us who have no
+interest in engaging with slop find ourselves performing a new kind of
+labor every time we go online [...] We look twice to see whether a
+“farmhouse” has architecturally nonsensical windows, or whether an X
+account posts a suspiciously high volume of bot-ishly generic replies,
+or whether a Pinterest board features portraits of people with too many
+fingers.”</em> <span class="citation"
+data-cites="chayka2024optout">[13]</span>. Commentators claim that as a
+result, <em>“the human internet is dying”</em>, using incendiary and
+value-laden metaphors such as <em>“infecting”</em>,
+<em>“polluting”</em>, and <em>“bastions [...] being overrun”</em> to
+describe the introduction of AI-generated content to the internet <span
+class="citation"
+data-cites="lazauskas2024humaninternet">[65]</span>.</p>
+<p>A typical shaming post on social media <span class="citation"
+data-cites="gaskell2024linkedin">[19]</span> combines many of the themes
+discussed so far; an appeal to the limitations of the algorithm:
+<em>“they [AI models] work out what the most likely next word will be.
+That’s it.”</em>, a contrast to humanity: <em>“it’s not a brain, it’s
+not like a human”</em>, appeal to the metaphysical “retrodiction”
+thesis, i.e., the idea that novelty cannot arise from reuse of
+materials:<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> <em>“ it’s not capable of being
+better than the information it’s fed. And what’s it eating? [...]
+AI-generated crap”</em>, its disputed practices regarding intellectual
+property: <em>“it’s also reading my friends’ books, without
+paying”</em>, its financial and environmental footprint: <em>“just one
+iteration of ChatGPT cost $63m AN HOUR for THREE MONTHS to train”</em>,
+raising the spectre of job loss: <em>“Don’t tell me you’ve made a fun
+new tool "for when you don’t have a content designer", because agencies
+will believe you - and they’ll try and cut costs by cutting
+headcount”</em>, ending with light shaming: <em>“nobody is really
+engaging their brains. They’re just accepting these tools at face
+value”</em>.</p>
+<hr />
+<p>It is not the purpose of cataloguing these arguments to refute them
+or deny their validity. They may well be truthful and justified reasons
+for imparting a negative judgement on an artefact or person by
+association with AI. However, I will suggest that while possibly true,
+these arguments cloak a deeper underlying motivation for shaming, of
+which may the shamer may not even be conscious.</p>
+<p>This motivation is that AI is seen as a threat. The particular form
+of threat that AI poses is to an identity possessed by the shamer, that
+they covet, that they value materially and spiritually, and that
+maintains its value through exclusivity. This is the class identity of
+the professional; most commonly that of the knowledge worker. The work
+degradation and job loss arguments come close to revealing this
+motivation, but there is a subtle distinction: those arguments emerge
+primarily from the experience of <em>individuals</em>; from their
+perspective, jobs are lost to bogeymen of automation and corporate
+rapacity, or an anonymous, undifferentiated mass of unskilled
+opportunists. In contrast, the latent motivation for shaming
+precipitated by the threat to identity emerges from processes by which a
+<em>group</em> forms an interior solidarity – a class solidarity – to
+defend itself and consolidate its control over resources from a
+well-defined outgroup. In particular, AI enables an outgroup of
+less-enculturated workers (the shamed), those without access to
+privileged education and professions, albeit those with the affinity for
+technology and a certain entrepreneurial grit, to competently perform
+knowledge work that was heretofore the preserve of a privileged elite
+(the shamers).</p>
+<p>These arguments are always raised by those who can “pass” in society
+without AI assistance, those whose training and enculturation furnishes
+them with access to, and equips them to perform, exclusive and valuable
+knowledge work professions. As those elites with “notational privilege”
+determine the boundaries of creativity in law <span class="citation"
+data-cites="sarkar2023aiknowledgework">[57]</span>, so those with what
+might be called <em>epistocratic privilege</em> delineate the boundaries
+of acceptable AI use in knowledge work.</p>
+<h2 data-number="4" id="sec:boundary-work"><span
+class="header-section-number">4</span> Demarcating Knowledge Work: AI
+Shaming as Boundary Work</h2>
+<p>AI shaming is very clearly a form of boundary work <span
+class="citation" data-cites="gieryn1983boundary">[24]</span>, originally
+defined in the context of professional scientists as <em>“Construction
+of a boundary between science and varieties of non-science”</em>, which
+<em>“is useful for scientists’ pursuit of professional goals:
+acquisition of intellectual authority and career opportunities; denial
+of these resources to "pseudoscientists"; and protection of the autonomy
+of scientific research from political interference.”</em> It operates by
+adopting <em>“an ideological style found in scientists’ attempts to
+create a public image for science by contrasting it favorably to
+non-scientific intellectual or technical activities”</em>. Foucault’s
+theory of disciplinary power <span class="citation"
+data-cites="foucault1977discipline">[21]</span> provides the diffuse
+backdrop against which boundary work becomes worthwhile;
+institutionalised demarcations (of madness from sanity, of criminality
+from innocence, of science from non-science, etc.) depend on the
+coordinated enaction and performance of boundary work which enable
+arrangements of power to be brokered.</p>
+<p>AI shaming demarcates good from bad knowledge work, acceptable from
+unacceptable knowledge work, ethical from unethical knowledge work, etc.
+At its most extreme, AI shaming sets the boundaries of knowledge work
+itself, defining what does or doesn’t count as knowledge work, denying
+the very ontological status as AI-generated artefacts as work (e.g., the
+aforementioned commentary on Allen v. Perlmutter). There are many social
+and material incentives for someone to perform this type of boundary
+work. For instance, it might raise their own self-esteem as a knowledge
+worker with epistocratic privilege; showcase their professional status
+as a knowledge worker with epistocratic privilege; and justify and
+protect their income – under perceived threat from AI – by supporting
+the cultural conditioning of AI as immoral and undesirable.</p>
+<p>The academic library JSTOR has developed <em>“JSTOR Daily Sleuth—a
+game that tests your ability to detect whether the title of an academic
+research paper is authentic or generated by AI”</em>, on the basis that
+<em>“AI-generated research has presented academic libraries with a new
+information literacy agenda”</em> <span class="citation"
+data-cites="warburton2024gamification">[69]</span>. Note the implied
+dichotomy between “authentic” and “generated by AI”. This can be viewed
+as the analgesic response of a powerful yet threatened institution with
+reasons to protect its boundaries as an authoritative vault of
+knowledge. The aim of the game, quite transparently, is to build the
+muscle of boundary work. It is not, for example, a game that trains you
+to detect faulty claims or false information, but merely to detect when
+paper titles appear to be AI-generated. The game’s morally saturated
+title constructs the narrative of a baddie to be “sleuthed” out, a crime
+to be solved. It is telling that, in the article, the game is depicted
+as part of a university installation with the pugilistic provocation:
+<em>“Can You Beat the Bots?”</em></p>
+<p>Boundary work is a war waged primarily by those belligerents who
+“possess” knowledge work against those who they see as unrightful
+claimants. As a multi-million dollar industry, it is a profitable war,
+with companies like GPTZero, Copyleaks, Scribbr, QuillBot, TurnItIn,
+etc. gladly offering their mercenary services. These services are
+tainted by false positives, which result in harmful and disruptive
+consequences for students accused of using AI – <em>“classrooms remain
+plagued by anxiety and paranoia over the possibility of false
+accusations”</em> <span class="citation"
+data-cites="davalos2024ai">[16]</span>. Such products result in
+meaningless squandering of student energy: <em>“[One student] became
+obsessive about avoiding another accusation. She screen-recorded herself
+on her laptop doing writing assignments. She worked in Google Docs to
+track her changes and create a digital paper trail. She even tried to
+tweak her vocabulary and syntax. [... Another student] says the majority
+of the time it takes him to complete an assignment is now spent tweaking
+wordings so he isn’t falsely flagged”</em> <span class="citation"
+data-cites="davalos2024ai">[16]</span>. Students turn against each
+other, passing the work of their peers through AI detection systems in
+acts of self-preservation <span class="citation"
+data-cites="coldwell2024tainted">[15]</span>. So AI detectors position
+themselves as a mere decision support tool for teachers: <em>“nothing is
+100% [...] it should be used to identify trends in students’ work [...]
+kind of like a yellow flag for them to look into and use as an
+opportunity to speak to the students”</em>. Mercenaries are paid
+handsomely for their failures while teachers take the blame.</p>
+<p>Such technical accessories to boundary work are not without
+controversy. At the heart of the controversy is a desire for secrecy,
+born of shame. For instance, OpenAI developed a watermarking tool that
+would enable the precise and accurate detection of ChatGPT-generated
+text, but demurred from releasing it, because despite one 2023 survey
+showing that <em>“people worldwide supported the idea of an AI detection
+tool by a margin of four to one”</em>, another survey of ChatGPT users
+revealed that <em>“69% believe cheating detection technology would lead
+to false accusations of using AI. Nearly 30% said they would use ChatGPT
+less if it deployed watermarks and a rival didn’t”</em> <span
+class="citation" data-cites="seetharaman2024cheating">[60]</span>. Users
+clearly value the ability to use ChatGPT undetected. Without a shaming
+culture, this valorisation could not exist. Moreover, a majority of
+users are already concerned about false accusations of using AI. Without
+a shaming culture, this concern could not exist either.</p>
+<p>These proprietary internal surveys (Seetharaman and Barnum <span class="citation"
+data-cites="seetharaman2024cheating">[60]</span>) showcase an asymmetry
+between when people are surveyed <em>in general</em> versus when people
+are surveyed <em>as users</em> of AI. If these are the same or an
+overlapping population (the details are not available), this asymmetry
+may be evidence of a revealed preference, which will be important to
+investigate in future work. Similarly, studies have found an asymmetric
+attitude to AI in personal communication: people are permissive and
+accepting of their <em>own</em> use of AI to draft outgoing or summarise
+incoming communications, but not of <em>others’</em> AI use.
+Consequently, they support automatic disclosure of others’ AI use to
+themselves, but resist disclosure of their own AI use to others.</p>
+<p>Zhang et al. <span class="citation"
+data-cites="zhang2024secretuselargelanguage">[71]</span> analyse the
+secret use of large language models, distinguishing two types of
+secrecy: passive non-disclosure and active concealment. Their survey
+finds several categories of tasks where participants tend to conceal
+their use of LLMs (e.g., sensitive topics, social communication, work
+tasks, school work, etc.). Importantly, they find that the
+<em>reasons</em> for concealment revolve entirely around the desire to
+avoid negative value judgements associated with the use of AI, both
+internal (e.g., questioning own competence, moral doubts, etc.) and
+external (e.g., fear of capability being critiqued, sincerity concerns
+in personal relationships, etc.). An internalised phobia, a
+self-shaming, is associated with AI use. So the gargoyle Shame squats
+atop the quivering conscience.</p>
+<p>It is worth acknowledging that new media are often subject to shaming
+practices as a form of boundary work. Socrates (as told by Plato) shamed
+writing <span class="citation"
+data-cites="plato1997phaedrus">[49]</span>, Trithemius shamed the
+printed book <span class="citation"
+data-cites="trithemius1494manual">[67]</span>,<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+Postman shamed the television <span class="citation"
+data-cites="postman1985amusing">[51]</span>, Carr shamed the Internet
+<span class="citation" data-cites="carr2010shallows">[11]</span>, all
+arguing – albeit with good reason – that those respective media result
+in the deterioration of mental faculties (a knowledge work degradation
+thesis, if you will). Similarly, arguments from creativity and arguments
+from technical basis have been deployed to question the status of DJing
+as a musical practice <span class="citation"
+data-cites="sarkar2023aiknowledgework">[57]</span>, the legitimacy of
+the camera obscura and camera lucida as tools for painters <span
+class="citation" data-cites="lothy2005hockney">[42]</span>, and the
+status of photography as an art form <span class="citation"
+data-cites="sontag1977photography">[62]</span>.</p>
+<p>Photography is a good model for AI shaming, as it appeared to
+directly antagonise a very specific kind of knowledge work professional:
+the painter. Hertzmann <span class="citation"
+data-cites="hertzmann2018can">[27]</span> provides an insightful
+analysis (which can be complemented by the opinionated but no less
+insightful account by Sontag <span class="citation"
+data-cites="sontag1977photography">[62]</span>) of the antagonism
+between painting and photography. Antagonism was only one of three
+contemporary stances of the painting establishment towards photography
+in its early decades (the others being limited acceptance and full
+embrace), but it is the one that teaches us the most, because from it we
+inherit a wealth of documented shaming practices that show AI shaming to
+be the reincarnation of an ancestral tendency. I will include only this
+delightful snipe from Baudelaire: <em>“If photography is allowed to
+supplement art in some of its functions, it will soon supplant or
+corrupt it altogether, thanks to the stupidity of the multitude which is
+its natural ally.”</em></p>
+<h3 data-number="4.1" id="sec:class"><span
+class="header-section-number">4.1</span> AI Shaming Protects Class
+Boundaries</h3>
+<div class="epigraph">
+<p>All professions are conspiracies against the laity.</p>
+<p>Bernard Shaw, <em>The Doctor’s Dilemma</em> (1906)</p>
+</div>
+<p>We have seen how AI shaming is a kind of boundary work practiced by
+knowledge workers. A key element of knowledge workers is their class
+identity. A brief examination of how AI appears to be affecting the
+class identity of knowledge workers is necessary to reveal the classism
+inherent in AI shaming.</p>
+<p>The notion of “class” is heavily overloaded. Here I am referring to
+class as a socioeconomic identity derived from income, educational
+attainment, and occupation, following Kouaho and Epstein <span class="citation"
+data-cites="kouaho2024socioeconomic">[37]</span>. As a finer granule of
+class I will focus on <em>profession</em> (i.e., occupation), as members
+of a profession are typically (though not always) also homogeneous with
+respect to income and educational attainment.<a href="#fn3"
+class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Boucher et al. <span class="citation" data-cites="boucher2024resistance">[7]</span>
+interview early-career game developers about Generative AI, finding that
+they were <em>“developing a new professional culture both <em>with</em>
+and <em>against</em> generative AI.”</em> While they find that <em>“the
+most strongly expressed resistance to GAI came from artists who had
+ethical concerns about topics such as copyright and art theft”</em>,
+they also note that <em>“The artists in our study, who might have a
+strong sense of the distinctiveness of their artistic taste, tend to
+consider the broader community of artists in the game industry as their
+reference point when they discuss the implications of GAI on their work.
+Unlike the ‘methodological individualism’ of future predictions of
+economic impact, [they] see their future connected to others in the
+industry.”</em> Similarly, Panchanadikar and Freeman <span class="citation"
+data-cites="panchanadikar2024m">[48]</span> find an anxiety around indie
+game developers voiced as compassion for minority subprofessions of the
+industry (artists and voice actors) viewed as culturally valuable to the
+integrity of the profession as a whole.</p>
+<p>As studies such as those by Boucher et al. <span class="citation"
+data-cites="boucher2024resistance">[7]</span> and Panchanadikar and Freeman <span class="citation"
+data-cites="panchanadikar2024m">[48]</span> show, resistance to AI is
+grounded not in an individual, but collective apprehension of loss. The
+value of a profession is protected by the collective cooperation of all
+members in performing boundary work, in staging resistance, in casting
+shame, in maintaining class solidarity.</p>
+<p>The basis for concern is legitimate. Economic analyses of the
+differential impact of AI on various occupations find a threat to
+knowledge work. For instance, Eloundou et al. <span class="citation"
+data-cites="eloundou2024gpts">[20]</span> find that <em>“occupations
+needing "extensive preparation" (e.g., lawyers, pharmacists, database
+administrators) are more exposed than those with lower entry barriers
+(e.g., dishwashers, floor sanders). [...] higher-wage occupations are
+more exposed to LLMs than lower-wage occupations [...] The two job
+groups (clusters) that are most exposed to LLMs are "Scientists and
+Researchers," then "Technologists," such as software engineers and data
+scientists”</em>. We must be careful to note that “exposure” here means
+something closer to “potential surface area for application”, and does
+not entail automation. The implied threat is not necessarily a loss of
+jobs, but rather of a carefully guarded moat (“extensive preparation”,
+etc.) around such jobs.</p>
+<p>Who crosses the moat? MIT economist David Autor is cautiously
+sanguine <span class="citation" data-cites="autor2024ai">[6]</span>,
+claiming that AI <em>“can enable a larger set of workers equipped with
+necessary foundational training to perform higher-stakes decision-making
+tasks currently arrogated to elite experts, such as doctors, lawyers,
+software engineers and college professors [... thus] restoring the
+middle-skill, middle-class heart of the U.S. labor market that has been
+hollowed out by automation and globalization.”</em> Shaming is part of
+the response of the professional (other parts include regulations and
+institutional codes) to extend this arrogation.</p>
+<p>Johnson, in <em>Professions and Power</em> <span class="citation"
+data-cites="johnson1972professions">[32]</span>, finds that power in
+professions is predicated on a separation between producer (or service
+provider) and consumer, which creates a relationship of dependency
+(similar analyses of how occupational specialisation leads to a
+producer-consumer dichotomy and the deterioration of self-sufficiency
+are given by McLuhan <span class="citation"
+data-cites="mcluhan1964understanding">[46]</span> and Illich <span
+class="citation" data-cites="illich1981shadow">[29]</span>). Moreover,
+power is derived from direct access to information processing. AI both
+frustrates the producer/consumer dichotomy and intermediates access to
+information processing, thus reducing professional power. In response,
+through shaming, professionals direct their ire at those they see as
+pretenders. Doctors have always derided home remedies, scientists have
+derided lay theories, sacerdotal colleges have derided folk mythologies
+and cosmogonies as heresy – the ability of individuals to “produce”
+their own healing, their own knowledge, their own salvation. These
+threaten professional power by undermining the relationship of
+dependency.<a href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a></p>
+<h3 data-number="4.2" id="sec:guidelines"><span
+class="header-section-number">4.2</span> Hard Boundaries on AI Use:
+Institutional Guidelines and Knowledge Materialism</h3>
+<p>Shaming as a phenomenon of informal social discourse crystallises
+into, and is in turn supported by, more hardened boundaries. Of
+relevance to our research community are institutional guidelines, rules,
+and codes of ethics around AI use, such as university regulations and
+those of publishers.</p>
+<p>The Joint Council for Qualifications, a British umbrella organisation
+whose members administer among other things the most common high school
+qualifications in the UK, asks teachers to ensure that <em>“the final
+product is in [students’] own words, and isn’t copied or paraphrased
+from another source such as an AI tool, and that the content reflects
+[students’] own independent work”</em> <span class="citation"
+data-cites="jcq2024ai">[3]</span>. But as an example of AI misuse, this
+policy offers <em>“Copying or paraphrasing sections of AI-generated
+content so that the work submitted for assessment is no longer the
+student’s own”</em>. The Marxian/Lockean invocations of “ownership” over
+work are repeated, the definition of AI misuse curiously circular.
+Closer to home, our publisher ACM states that AI use is permitted, as
+long as <em>“the resulting Work in its totality is an accurate
+representation of the authors’ underlying work and novel intellectual
+contributions and is not primarily the result of the tool’s generative
+capabilities”</em> <span class="citation"
+data-cites="acm2024authorship">[1]</span>. One institution I am
+affiliated with states that <em>“A student using any unacknowledged
+content generated by artificial intelligence within a summative
+assessment as though it is their own work constitutes academic
+misconduct [...]”</em> <span class="citation"
+data-cites="cambridge2024plagiarism">[4]</span>. Another states that
+<em>“It is not acceptable to use GenAI tools to write your entire
+assessment and present this as your own work”</em> <span
+class="citation" data-cites="ucl2024generativeai">[2]</span>.</p>
+<p>In the motivation for such guidelines, there is a recurring
+preoccupation with protecting “integrity” (scantily defined) through
+disclosure, monitoring, and oversight – some might say surveillance – of
+AI use <span class="citation"
+data-cites="halvorson2024ai jcq2024ai cambridge2024plagiarism">[3, 4,
+25]</span>. Yet in practical terms, the protection of integrity also
+clearly entails protecting a notion of <em>ownership</em>. In other
+words, the morality of integrity and academic misconduct, its rhetoric
+of “unfair advantage” <span class="citation"
+data-cites="cambridge2024plagiarism ucl2024generativeai">[2, 4]</span>,
+is ultimately derived from a rather <em>material</em> conceptualisation
+of knowledge work.</p>
+<p>This conceptualisation of knowledge work as possessable material,
+with exchange value that one might be unfairly cheated out of, we might
+call <em>knowledge materialism</em>. Knowledge materialism is not newly
+precipitated by Generative AI, merely newly thrown into crisis by it.
+While a detailed discussion of the development of knowledge materialism
+is out of scope, it suffices here to note that education and the academy
+more broadly have long been undergoing a process of commodification and
+transactionalisation, a process that motivates many student and
+scholarly activities categorised as malpractice or cheating (e.g., as
+documented by Miles et al. <span class="citation"
+data-cites="miles2022students">[47]</span>), as education and
+scholarship are pressed into the service of a hypercapitalised knowledge
+economy in which credentials and metrics increasingly translate into
+material prosperity.</p>
+<p>However, to reconcile this materialism with the fundamental
+immateriality, disembodiment, and abstraction of knowledge work (not to
+mention a deeply ancestral scholastic revulsion for association with
+earthy, vulgar material concerns) has required the construction of an
+elaborate morality of knowledge work. Institutional guidelines demarcate
+not merely what is permitted, but also what is <em>virtuous</em>. The
+oblique burden of the academy to arbitrate morality in service of
+consolidating its material interests is quite analogous to the burden of
+the state to arbitrate creativity through intellectual property laws in
+service of maximally extracting value from its knowledge economy <span
+class="citation" data-cites="sarkar2023aiknowledgework">[57]</span>.</p>
+<p>Just as the dual agenda of intellectual property laws in defining
+creativity while optimising innovation results in contradictions <span
+class="citation" data-cites="sarkar2023aiknowledgework">[57]</span>, so
+the dual agenda of institutional guidelines in defining morality while
+optimising commercial value results in contradictions in the internal
+logics for “appropriate” AI use. One guide for AI use in academic
+literature reviews opens with the promise that <em>“instead of
+discussing what Gen.AI can and cannot do, we discuss what we should
+allow Gen.AI to do, irrespective of its capabilities”</em> <span
+class="citation" data-cites="tingelhoff2024guide">[66]</span>. Yet after
+some discussion, it is abandoned: <em>“Do we prioritize the contribution
+of knowledge, irrespective of its source, or do we value maintaining
+control over the process of knowledge generation? These profound
+questions extend beyond the scope and intent of our current
+study.”</em></p>
+<p>The ineluctable contradictions of ideological-material dual agendas
+also explain, in part, the challenge of developing workplace policies on
+Generative AI use. Unlike the academy, non-academic workplaces cannot
+from the concrete basis of knowledge materialism straightforwardly
+derive an abstract framework of morality. After all, the material
+exchange of knowledge work is the transparent motive of the for-profit
+enterprise, not a revolting encumbrance. Guidelines and boundaries on AI
+use mandated in non-academic workplaces are thus largely draped in the
+garb not of morality, but of security concerns. Yet they cannot, until
+the latent materialism that underpins professional power is confronted,
+escape the inevitable layering and projection of morality onto such
+guidelines. Workers feel <em>“embarrassed [...] to admit to using
+shortcuts”</em> even if AI use is not explicitly banned, and employers
+enforcing explicit workplace AI bans insist that they <em>“don’t want
+[employees] to think they’re in trouble”</em>, yet refer to repeated use
+of AI in the morally charged vocabulary of <em>“recidivism”</em> <span
+class="citation" data-cites="stacey2024bosses">[63]</span>.</p>
+<p>Of course, such attitudes may in part be attributed to the
+enculturation of years of training and education during which knowledge
+materialism is explicitly moralised; the academy plays its role in
+fostering a thorough interiorisation of norms around shame and duty
+associated with class and profession that serve to condition individuals
+for participation in a society whose structures of material exchange
+depend on such norms being easy or free to enforce. This merely
+continues ancient strategies of societies of control that begin, not
+after the second world war as Deleuze would have it <span
+class="citation" data-cites="deleuze1992control">[17]</span>, but
+perhaps as far back as ancient Vedic or Confucian societies which
+similarly bound class and profession firmly to morality, duty, honour,
+and shame – or perhaps even further.<a href="#fn5" class="footnote-ref"
+id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<h3 data-number="4.3" id="sec:sumptuary"><span
+class="header-section-number">4.3</span> Sumptuary Laws and
+Protectionism: Alternative Metaphors for The Effects of Generative AI on
+Class Relations</h3>
+<p>The effect of Generative AI on knowledge work is often compared to
+the industrial revolution. The strength of this analogy is that it
+captures how both movements of mechanisation similarly transform the
+relationship between labour, intellect, and material production <span
+class="citation" data-cites="sarkar2023aiknowledgework">[57]</span>.
+However, they have (or are having) rather different effects on class
+relations. The industrial revolution did disenfranchise a similarly
+powerful and moated middle class of skilled craftsmen, but it was not
+without precedent in doing so; the 17<sup>th</sup> century had already
+seen the retreat of the medieval guild in response to the pressures of
+market economics and the invention of modern corporations. Rather, the
+defining characteristic of the industrial revolution’s class relations
+was its introduction of the sclerotic and oppressive
+bourgeoisie-proletariat dyad. In contrast, economic analyses show a
+fundamentally different effect for Generative AI, which is, as has been
+abundantly mentioned, the opening of new routes into the middle class
+<span class="citation" data-cites="eloundou2024gpts autor2024ai">[6,
+20]</span>.</p>
+<p>Thus, the industrial revolution is an attractive but inadequate
+metaphor for Generative AI. Restrictions on AI use in modes that
+preserve existing notions of ownership over knowledge work, and AI
+shaming more broadly, bear more of a resemblance to <em>sumptuary
+laws</em> and <em>protectionist policies</em> of industry and labour.
+These restrictions recur across eras and geographies as formalisations
+of social boundaries threatened by technological innovations and
+economic circumstances. As a selection of examples one might consider:
+ancient Spartan and Roman laws regulating housing, currency, and dress,
+Edward III of England’s attempts to ban merchants and servants from
+eating too much meat and the regulation of the pointiness of shoes by
+rank, the English ordinance of labourers limiting peasant mobility
+following the Black Death, Henry VIII of England’s prohibition on
+crimson and blue velvet to be worn by anyone of lower rank than a
+knight, Louis XIV of France’s Edict of Fontainebleau attempting to limit
+the exodus of skilled Huguenots, various attempts across Europe to
+regulate clothing according to social status between the 14<sup>th</sup>
+and 18<sup>th</sup> centuries <span class="citation"
+data-cites="Riello_Rublack_2019">[53]</span>, British textile laws in
+the 17<sup>th</sup> and 18<sup>th</sup> centuries that protected its
+inferior cotton textiles from the far superior cloth from Bengal, the
+USA’s Chinese exclusion act, and so on.</p>
+<p>One distinction worth making is between the types of regulations
+discussed above and the related notions of fashions and etiquette.
+Privileged classes have always developed norms (of speech, of behaviour,
+of dress, of music, of dance, and so on) to distinguish themselves and
+demonstrate “taste” <span class="citation"
+data-cites="hughes2024cheap">[28]</span>. Often these require great
+investments of time and resources to learn; displaying etiquette is thus
+a way to “conspicuously consume” such resources, the same principle
+underlying luxury goods <span class="citation"
+data-cites="veblen1899theory">[68]</span>. The key difference between
+luxuries and the targets of sumptuary laws is that luxuries attempt to
+heighten and reposition the material barriers to class incursion,
+whereas sumptuary laws attempt merely to enforce them by fiat. Sumptuary
+laws are a recognition that the material barriers no longer exist and
+that the outgroup has access to the same resources; they are a last line
+of control. Yet their <em>prima facie</em> justification, much like AI
+shaming, is always something else: a question of taste, propriety,
+morality, ownership, degradation, and so on.</p>
+<p>Thus, each case where laws are introduced to curtail social mobility
+that is newly enabled through technological innovation offers a
+potential alternative metaphor to the industrial revolution.
+Investigating these cases and the implications of their respective
+metaphors is left as an exercise for future research. It will be
+important to focus on responses to real threats to social boundaries due
+to shifts in the nature of material production and exchange, rather than
+merely perceived threats, or threats conjured for political expediency,
+as is so often the case with protectionism.</p>
+<h2 data-number="5" id="sec:harms"><span
+class="header-section-number">5</span> Societal Harms of AI Shaming</h2>
+<p>Caporusso <span class="citation"
+data-cites="caporusso2023generative">[10]</span> posits that Generative
+AI creates a mental condition described as <em>“creative displacement
+anxiety”</em> (CDA). CDA affects both producers and consumers of AI
+artefacts. Several distinct experiences that could induce CDA are
+described, including those that overlap with arguments in support of AI
+shaming, suggesting that performing this boundary work might be an
+auto-analgesic response to the experience of CDA, while at the same time
+increasing the cultural propensity for individuals to experience CDA by
+amplifying these anxieties across public discourse. At least one
+concrete CDA experience is exacerbated by (if not the product of) the
+culture of AI shaming: <em>“Imposter syndrome: artists using generative
+AI tools might feel they are not genuinely creating, leading to feelings
+of fraudulence”</em>. Kobiella et al. <span class="citation"
+data-cites="kobiella2024if">[36]</span> document a similar phenomenon:
+<em>“[Participants experienced ...] a feeling of inadequacy, where
+participants believed their ideas couldn’t compete with the AI-generated
+content: “If the machine is as good as me, then what use am
+I?””</em></p>
+<p>Kadoma et al. <span class="citation"
+data-cites="kadoma2024generativeaiperceptualharms">[33]</span>
+investigate what they refer to as perceptual harm, defined as <em>“the
+harm caused to users when others perceive or suspect them of using
+AI”</em>. They find that <em>“people associate AI-stylized writing with
+lower quality”</em>, and that <em>“different groups are suspected of AI
+use at varying rates”</em>. Men are more likely to be suspected of AI
+use than women. Profiles <em>“suggestive of East Asian identity”</em>
+are more likely to be suspected of AI use than White Americans. The
+authors argue that suspicion of AI use (corresponding to “allegation” in
+our taxonomy) creates real harm on the basis that participants in their
+experiment were significantly less likely to “hire” freelancers that
+were suspected of AI use.</p>
+<p>AI shaming may thus contribute to the racialisation of AI narratives.
+McInerney’s concept of “Yellow Techno-Peril” illustrates how AI-related
+anxieties are racialised, as US media coverage of the so-called AI arms
+race with China <em>“casts the AI arms race as a civilisational
+conflict”</em> and revives the anti-Asian tropes of techno-Orientalism
+and the Yellow Peril <span class="citation"
+data-cites="mcinerney2024yellow">[45]</span>. In McInerney’s analysis,
+the rhetoric of the AI arms race conflates AI advancement with
+racialised fears of Chinese dominance, reinforcing harmful stereotypes
+that Chinese individuals are untrustworthy and technologically
+threatening. This affects individual careers and reputations, and embeds
+xenophobic sentiment in AI discourse. The role of AI shaming in such
+discourse warrants further investigation.</p>
+<p>It is clear that the unconfirmed suspicion of AI use can serve as an
+extension of (and veneer for) a pre-existing prejudice. Suspicion can
+only be prejudice because, in fact, humans are pretty poor at detecting
+AI-generated content, because we deploy flawed heuristics in attempting
+to do so <span class="citation"
+data-cites="jakesch2023heuristics">[31]</span>, because we may in some
+cases even prefer AI-generated to human-generated content, and because
+we hypocritically reverse our judgement of an ostensibly human-generated
+artefact when we are told it is AI-generated and vice versa <span
+class="citation" data-cites="porter2024ai">[50]</span>. There is some
+evidence that expert AI users may become skilled at detecting
+AI-generated content <span class="citation"
+data-cites="russell2025peoplefrequentlyusechatgpt">[54]</span>, but
+since the scope of AI-generated content is so broad and volatile, and
+human communities so diverse, it seems likely that AI suspicion will
+continue to be dominated by pre-existing biases.</p>
+<p>AI shaming can lead to negative consequences for shamer and shamed
+alike. For instance, a clothing merchandise company alleged that one of
+its contracted artists was using AI <span class="citation"
+data-cites="icedtea2024aiaccusations">[70]</span>, resulting in
+reputational damage to the artist. When the company was in turn accused
+of sponsoring a witch hunt, they conducted an “investigation” in which
+they requested evidence of manual (i.e., not AI-assisted) work. After
+receiving satisfactory evidence (albeit still disputed by some
+commentators), the company issued an apology and compensated the artist.
+Even so, the apology demonstrates a continued value judgement associated
+with mechanical means of artistry, such as tracing, e.g., <em>“Although
+[the artist] admits to tracing some works in the past, we do not think
+that such a minor sin warrants the destruction of his reputation or the
+immense stress that we put him through”</em>, and the insistence that AI
+assistance renders artistic work valueless, e.g., <em>“I am much happier
+having to pay him knowing that he’s legit, rather than not paying him
+knowing that he isn’t.”</em> The characterisation of tracing as “sin”
+recalls historical episodes that similarly vilified the camera lucida
+and photography <span class="citation"
+data-cites="lothy2005hockney sontag1977photography">[42, 62]</span>.</p>
+<p>An analysis of 14 million paper abstracts estimates that
+approximately 10% of abstracts written in the first half of 2024 were
+processed using LLMs, and identifies tell-tale vocabulary whose use has
+soared due to the introduction of LLM writing assistants, presided over
+by the notorious “delve” <span class="citation"
+data-cites="kobak2024delving">[35]</span>. After reading this paper, my
+own attitude to this AI-shibboleth-in-chief has changed substantially.
+Delve has never been a star feature of my idiolect. Even so, I now
+consciously avoid it. If over the course of writing, my subconscious
+offers the ‘D’ word or one of its confederates, I bat it away with
+distaste. I might dive, explore, investigate, probe, examine,
+scrutinise, or interrogate, but never <em>delve</em> – the prospect of
+association with ChatGPT is too mortifying. Moloch has eaten the word
+and robbed its innocence. When I see it in others’ writing, my suspicion
+is raised. Already the culture of shame has exerted a chilling effect on
+this author’s vocabulary.</p>
+<p>Alas, the story continues. Where did ChatGPT acquire its predilection
+for delving? From its data annotators, of course <span class="citation"
+data-cites="hern2024techscape">[26]</span>. It turns out that “delve” is
+a common feature of Nigerian English. Nigerian commenters on Paul
+Graham’s claim that <em>“delve [...] is a sign that the text was written
+by ChatGPT”</em> accused him of being <em>“blinded by the ripple effects
+of years of colonialism”</em>, with one commenter writing: <em>“Imagine
+after being force-fed colonial languages, being forced to speak it
+better than its owners then being told that no one used basic words like
+‘delve’ in real life. Habibi, come to Nigeria”</em> <span
+class="citation" data-cites="vanguard2024nigerians">[5]</span>. To
+escape the mortifying pan of AI shame, we have leapt unwittingly into
+the mortifying fire of racism.</p>
+<p>Already the cracks in the moral ideology of AI shaming, its boundary
+work, and its regulatory apparatuses are beginning to show. Liang et al. <span
+class="citation" data-cites="liang2023gpt">[40]</span> have shown that
+the AI detectors discussed in Section <a href="#sec:boundary-work"
+data-reference-type="ref" data-reference="sec:boundary-work">4</a>
+exhibit a significant bias against non-native English speakers,
+misclassifying over 60% of essays written by non-native English speakers
+versus 5% for native English speakers. Their chilling conclusion is that
+use of AI detectors is <em>“paving the way for undue harassment of
+specific non-native communities [... and can] restrict the visibility of
+non-native communities, potentially silencing diverse perspectives [...]
+penalize researchers from non-English-speaking countries [... and make]
+non-native students bear more risks of false accusations of
+cheating”</em>.</p>
+<p>No less disquieting is a recent study of Black high school students
+documenting how they are disproportionately affected by AI shaming and
+regulations <span class="citation"
+data-cites="tanksley2024changing">[64]</span>. One student relates:
+<em>“It was kind of frowned upon, because it’s used for cheating. So I
+never really used it. And in that way, I kind of frowned upon myself
+[...] as my teachers were telling me ‘oh, it’s a cheating device’, I was
+realizing that it’s also kind of racist.”</em> In another’s experience,
+<em>“Having to navigate racialized expectations for Black girls to do
+“twice the work for half the credit” while simultaneously navigating
+negative stereotypes about their inherent criminality not only made [the
+student] feel unsupported and “disposable,” but it also made her uneasy
+about using AI to support her learning. Even though her AP language
+course encouraged students to use AI to help with second language
+acquisition, [the student] was reluctant to use the feature because of
+fears she would be falsely accused of cheating.”</em></p>
+<p>Existing frameworks of epistemic injustice in Generative AI do
+account for some phenomena adjacent to AI shaming. Kay et al. <span
+class="citation" data-cites="Kay_Kasirzadeh_Mohamed_2024">[34]</span>
+define “manipulative testimonial injustice”, a class of injustices that
+includes <em>“the false accusation of deepfakes. This tactic exploits
+the increasing uncertainty surrounding the authenticity of digital
+media, creating a “liar’s dividend” where even genuine evidence can be
+dismissed as fabricated [...] This weaponization of doubt and
+uncertainty further undermines the ability of marginalized groups to
+have their voices heard and their experiences validated.”</em> However,
+though superficially similar to slur and disparagement, the narrow
+intention of testimony manipulation is to undermine authority, which is
+only one of a number of possible intended outcomes of a slur. The
+broader set of AI shaming phenomena seem therefore to be under-explored
+in such frameworks, and present an opportunity to extend them.</p>
+<h2 data-number="6" id="sec:implications"><span
+class="header-section-number">6</span> Implications and
+Non-Implications</h2>
+<h5 id="resisting-ai-shaming">Resisting AI shaming</h5>
+<p>As may be evident from the foregoing arc of argumentation, this paper
+takes the position that AI shaming is undesirable and harmful. The most
+immediate remedial measures can therefore be taken by our own research
+community, by not participating in AI shaming and by resisting it when
+it arises in our professional and institutional discourse. The limited
+scope of this paper does not permit expansion into strategies for
+policymakers or AI developers, or proposals for educational reforms.
+However, the catalogue of harms in Section <a href="#sec:harms"
+data-reference-type="ref" data-reference="sec:harms">5</a> yields a
+modest starting point; we might consider how each individual harm might
+be tackled. For instance, creative displacement anxiety around art that
+involves AI use might be mitigated by introducing exhibitions, awards,
+and galleries that celebrate the human ingenuity involved in the artful
+use of AI (though the definition of “artful” here might itself enable
+new forms of solidarity and exclusion, cf. the <em>Salon des
+Refusés</em>), or by advocating for degree programs that incorporate
+judicious and principled AI use, to dispel the generalised and vague
+stigma surrounding AI use among staff and students. This is hardly the
+first time such measures have been proposed, but it is perhaps the first
+time they have been proposed specifically as a countervailing manoeuvre
+against AI shaming culture.</p>
+<h5 id="does-ai-erase-or-merely-rearrange-class-boundaries">Does AI erase or merely
+rearrange class boundaries?</h5>
+<p>The evolving nature of AI shaming raises further questions about its
+long-term implications for class structures in knowledge work. The
+erosion of traditional boundaries in knowledge work might shift the
+burden of maintaining professional standards from institutions to
+individuals. If there is no longer a broadly accepted framework for
+evaluating expertise, workers may find themselves responsible for
+continuously justifying and demonstrating their own competence. This
+could privilege those who possess a certain combination of technological
+aptitude and entrepreneurial character (as mentioned in Section <a
+href="#sec:taxonomy" data-reference-type="ref"
+data-reference="sec:taxonomy">2</a>) while disadvantaging others. The
+result may not be the dissolution of hierarchies, but rather their
+reconfiguration into new hierarchies that favour those with the skills,
+disposition, and resources to thrive in what might be called a
+post-epistocratic knowledge work landscape. This raises the broader
+question of whether shame itself may reconfigure along new lines, or
+whether a world without AI shaming is possible. And if the latter is
+possible, whether it would be one without any stratification, or whether
+the mechanisms of exclusion would simply reformulate themselves. A
+critical next step in understanding AI shaming, therefore, is to explore
+how AI-driven changes in knowledge work intersect with broader
+structures of power in labour. These questions – with answers that are
+as volatile as the sociotechnical landscape they query – require
+careful, continuous, and multidisciplinary analysis.</p>
+<h5 id="distinguishing-justified-critique-from-classism">Distinguishing justified
+critique from classism</h5>
+<p>A more vexing challenge is to balance critique of AI shaming with
+legitimate critiques of AI development. As mentioned in Section <a
+href="#sec:red-herrings" data-reference-type="ref"
+data-reference="sec:red-herrings">3</a>, arguments marshalled in support
+of AI shaming are not invalid.<a href="#fn6" class="footnote-ref"
+id="fnref6" role="doc-noteref"><sup>6</sup></a> An accusation of
+classism, such as this paper offers, can easily be weaponised to dismiss
+very real issues such as work degradation and the effects of “slop” on
+the information ecosystem. Critiques of the power dynamics of AI,
+particularly those taking aim at the asymmetry between system developers
+and users, observe that shaming and shaming-adjacent behaviour may be a
+mode of retaliative expression against powerful firms. It may be the
+only such mode available to those whose lives and labour are affected by
+the practices that enable the creation of Generative AI, and the
+consequences that follow its deployment.</p>
+<p>To level the charge of classism against such critiques would be a
+gross misinterpretation of the intent of this paper, which is to
+visibilise and contest AI shaming <em>in its specific capacity as class
+boundary work</em>, not to disqualify real objections to the technology
+and its power dynamics or disenfranchise those for whom AI shaming is
+purely a mode of counterhegemonic resistance.</p>
+<p>The spectrum of possible stances on AI shaming risks devolving into a
+false dichotomy: either AI shaming is permissible because it enables
+legitimate critiques of AI, or it is not permissible because it
+reinforces classist boundary work. For at least two reasons, this
+dichotomy is a false one. First, the classic populist misdirection play
+of the elite is to convince the oppressed classes to channel their pain
+and frustration downwards, into resentment and anger towards those even
+more oppressed by them. Consequently, both of the following can occur
+simultaneously: system developers exercising power over knowledge
+workers, and knowledge workers exercising power over less privileged
+“outsider” classes. Second, this power dynamic is evolving. It is
+reasonable to optimistically characterise Generative AI in particular as
+a technology where users are not as disenfranchised as they are commonly
+assumed to be. The economy of Generative AI is far from a state of
+monopoly or oligopoly. Advances in model training and miniaturisation,
+open datasets and weights, the existence of a vibrant, diverse, and
+competitive market landscape, etc., all indicate that the
+commoditisation of language models <em>per se</em> is well underway.
+Producers have far less power in commoditised markets than do consumers
+and regulators.</p>
+<p>AI shaming conflates boundary work with justifiable objections. What
+stance, then, is appropriate? Can critiques of AI development couched in
+shaming be separated from harmful classism? Developing a principled
+answer to this question is beyond the scope of this paper, however, the
+desired outcome is clearly to ensure that any genuine critiques embedded
+in shaming discourse are directed at the right people, for the right
+reasons, in the right form.</p>
+<h2 data-number="7" id="conclusion"><span
+class="header-section-number">7</span> Conclusion</h2>
+<p>This paper opens a critical discussion of social practices that
+associate negative judgements with the use of AI, under the general term
+“AI shaming”. It has discussed how AI shaming can manifest in many
+forms, depending on whether the use or non-use of AI is definitively
+established, and whether a person (or group of people) or the artefact
+(or set of artefacts) is the target of the negative judgement. It has
+further discussed the common arguments cited to support shaming,
+including that AI harms people, AI cannot be creative, and that AI
+output is qualitatively poor.</p>
+<p>An alternative account of AI shaming is then presented: that AI
+shaming is a form of boundary work that knowledge workers undertake to
+demarcate themselves. In doing so, they protect class boundaries that
+are perceived as being eroded. Beyond shaming, this boundary work is
+also embedded into AI detection tools, institutional regulations, and
+codes of ethics around AI use. It is suggested that rather than the
+industrial revolution, we might look at sumptuary laws and protectionist
+policies as alternative metaphors for the effects of Generative AI on
+society.</p>
+<p>Finally, we see how AI shaming results in systematic harms,
+especially to racial minorities and non-native English speakers by
+amplifying discrimination, but also in society more broadly by exerting
+chilling effects and inducing psychological anxiety. It is therefore
+incumbent on us not to participate in AI shaming, to resist it when we
+observe others doing it, and to re-examine our institutional regulations
+and ensure that we are not merely morality-washing lipstick onto a
+solidarity pig.</p>
+<h2>Acknowledgements</h2>
+<div class="acks">
+<p>Thanks to my reviewers for their thoughtful counterarguments and
+calls for expanded discussion, which form the basis of Section <a
+href="#sec:implications" data-reference-type="ref"
+data-reference="sec:implications">6</a>. Thanks also to Sean Rintel,
+Duncan Brumby, and Nancy Xia for discussions on the topic and their kind
+words of encouragement.</p>
+</div>
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0"
+role="doc-bibliography">
+<div id="ref-acm2024authorship" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div
+class="csl-right-inline">2024. <a
+href="https://www.acm.org/publications/policies/frequently-asked-questions">ACM
+policy on authorship</a>. Association for Computing Machinery.</div>
+</div>
+<div id="ref-ucl2024generativeai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[2] </div><div
+class="csl-right-inline">2024. <a
+href="https://www.ucl.ac.uk/students/exams-and-assessments/assessment-success-guide/engaging-generative-ai-your-education-and-assessment">Engaging
+with generative AI in your education and assessment</a>. University
+College London.</div>
+</div>
+<div id="ref-jcq2024ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[3] </div><div
+class="csl-right-inline">2024. <em><a
+href="https://www.jcq.org.uk/wp-content/uploads/2024/07/AI-Use-in-Assessments_Feb24_v6.pdf">JCQ
+AI use in assessments: Protecting the integrity of qualifications
+guidance</a></em>. Joint Council for Qualifications.</div>
+</div>
+<div id="ref-cambridge2024plagiarism" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[4] </div><div
+class="csl-right-inline">2024. <a
+href="https://www.plagiarism.admin.cam.ac.uk/what-academic-misconduct/artificial-intelligence">Plagiarism
+and academic misconduct: Artificial intelligence</a>. University of
+Cambridge.</div>
+</div>
+<div id="ref-vanguard2024nigerians" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[5] </div><div
+class="csl-right-inline">Anaba, E. ed. 2024. <a
+href="https://www.vanguardngr.com/2024/04/nigerians-tackle-american-author-for-claiming-delve-is-only-used-by-chatgpt/">Nigerians
+tackle american author for claiming <span>“delve”</span> is only used by
+ChatGPT</a>. <em>Vanguard</em>. (2024).</div>
+</div>
+<div id="ref-autor2024ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[6] </div><div
+class="csl-right-inline">Autor, D. 2024. <a
+href="https://www.noemamag.com/how-ai-could-help-rebuild-the-middle-class/">How
+AI could help rebuild the middle class</a>. <em>Noēma Magazine</em>.
+(2024).</div>
+</div>
+<div id="ref-boucher2024resistance" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[7] </div><div
+class="csl-right-inline">Boucher, J.D. et al. 2024. Is resistance
+futile?: Early career game developers, generative AI, and ethical
+skepticism. <em>Proceedings of the CHI conference on human factors in
+computing systems</em> (2024), 1–13.</div>
+</div>
+<div id="ref-braverman1974labor" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[8] </div><div
+class="csl-right-inline">Braverman, H. 1974. <em>Labor and monopoly
+capital: The degradation of work in the twentieth century</em>. Monthly
+Review Press.</div>
+</div>
+<div id="ref-brittain2024aisues" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[9] </div><div
+class="csl-right-inline">Brittain, B. 2024. <a
+href="https://www.reuters.com/legal/litigation/artist-sues-after-us-rejects-copyright-ai-generated-image-2024-09-26/">Artist
+sues after US rejects copyright for AI-generated image</a>.
+<em>Reuters</em>. (2024).</div>
+</div>
+<div id="ref-caporusso2023generative" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[10] </div><div
+class="csl-right-inline">Caporusso, N. 2023. Generative artificial
+intelligence and the emergence of creative displacement anxiety.
+<em>Research Directs in Psychology and Behavior</em>. 3, 1 (2023).</div>
+</div>
+<div id="ref-carr2010shallows" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[11] </div><div
+class="csl-right-inline">Carr, N.G. 2010. <em>The shallows: What the
+internet is doing to our brains</em>. W. W. Norton &amp; Company.</div>
+</div>
+<div id="ref-cave2023chatgpt" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[12] </div><div
+class="csl-right-inline">ChatGPT: The soul eater: 2023. <a
+href="https://www.theredhandfiles.com/chatgpt-making-things-faster-and-easier/"><em>https://www.theredhandfiles.com/chatgpt-making-things-faster-and-easier/</em></a>.</div>
+</div>
+<div id="ref-chayka2024optout" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[13] </div><div
+class="csl-right-inline">Chayka, K. 2024. <a
+href="https://www.newyorker.com/culture/infinite-scroll/how-to-opt-out-of-ai-online">How
+to opt out of a.i. online</a>. <em>The New Yorker</em>. (2024).</div>
+</div>
+<div id="ref-chiang2024aiart" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[14] </div><div
+class="csl-right-inline">Chiang, T. 2024. <a
+href="https://www.newyorker.com/culture/the-weekend-essay/why-ai-isnt-going-to-make-art">Why
+a.i. Isn’t going to make art</a>. <em>The New Yorker</em>. (2024).</div>
+</div>
+<div id="ref-coldwell2024tainted" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[15] </div><div
+class="csl-right-inline">Coldwell, W. 2024. <a
+href="https://amp.theguardian.com/technology/2024/dec/15/i-received-a-first-but-it-felt-tainted-and-undeserved-inside-the-university-ai-cheating-crisis"><span>“I
+received a first but it felt tainted and undeserved”</span>: Inside the
+university AI cheating crisis</a>. <em>The Guardian</em>. (Dec.
+2024).</div>
+</div>
+<div id="ref-davalos2024ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[16] </div><div
+class="csl-right-inline">Davalos, J. and Yin, L. 2024. <a
+href="https://www.bloomberg.com/news/features/2024-10-18/do-ai-detectors-work-students-face-false-cheating-accusations">AI
+detectors falsely accuse students of cheating—with big consequences</a>.
+<em>Bloomberg Businessweek</em>. (2024).</div>
+</div>
+<div id="ref-deleuze1992control" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[17] </div><div
+class="csl-right-inline">Deleuze, G. 1992. <a
+href="http://www.jstor.org/stable/778828">Postscript on the societies of
+control</a>. <em>October</em>. 59, (1992), 3–7.</div>
+</div>
+<div id="ref-penguinz02024delusionalai" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[18] </div><div
+class="csl-right-inline">Delusional AI "artist": 2024. <a
+href="https://www.youtube.com/watch?v=e3XRb-5qaQk"><em>https://www.youtube.com/watch?v=e3XRb-5qaQk</em></a>.</div>
+</div>
+<div id="ref-gaskell2024linkedin" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">Do
+you know how LLMs work? 2024. <a
+href="https://www.linkedin.com/feed/update/urn:li:activity:7252381573616926720/"><em>https://www.linkedin.com/feed/update/urn:li:activity:7252381573616926720/</em></a>.</div>
+</div>
+<div id="ref-eloundou2024gpts" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[20] </div><div
+class="csl-right-inline">Eloundou, T. et al. 2024. GPTs are GPTs: Labor
+market impact potential of LLMs. <em>Science</em>. 384, 6702 (2024),
+1306–1308.</div>
+</div>
+<div id="ref-foucault1977discipline" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[21] </div><div
+class="csl-right-inline">Foucault, M. 1977. <em>Discipline and
+punish</em>. Pantheon Books.</div>
+</div>
+<div id="ref-freire1968pedagogy" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[22] </div><div
+class="csl-right-inline">Freire, P. 1968. <em>Pedagogy of the
+oppressed</em>.</div>
+</div>
+<div id="ref-george2024confessions" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[23] </div><div
+class="csl-right-inline">George, J.A. 2024. <a
+href="https://www.theguardian.com/technology/article/2024/sep/07/if-journalism-is-going-up-in-smoke-i-might-as-well-get-high-off-the-fumes-confessions-of-a-chatbot-helper"><span>“If
+journalism is going up in smoke, i might as well get high off the
+fumes”</span>: Confessions of a chatbot helper</a>. <em>The
+Guardian</em>. (2024).</div>
+</div>
+<div id="ref-gieryn1983boundary" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[24] </div><div
+class="csl-right-inline">Gieryn, T.F. 1983. Boundary-work and the
+demarcation of science from non-science: Strains and interests in
+professional ideologies of scientists. <em>American sociological
+review</em>. (1983), 781–795.</div>
+</div>
+<div id="ref-halvorson2024ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[25] </div><div
+class="csl-right-inline">Halvorson, O.H. 2024. <a
+href="https://scholarworks.sjsu.edu/ischoolsrj/vol14/iss1/1">AI in
+academia: Policy development, ethics, and curriculum design</a>.
+<em>School of Information Student Research Journal</em>. 14, 1
+(2024).</div>
+</div>
+<div id="ref-hern2024techscape" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[26] </div><div
+class="csl-right-inline">Hern, A. 2024. <a
+href="https://www.theguardian.com/technology/2024/apr/16/techscape-how-cheap-outsourced-labour-in-africa-is-shaping-ai-english">TechScape:
+How cheap, outsourced labour in africa is shaping AI english</a>.
+<em>The Guardian: TechScape Newsletter</em>. (2024).</div>
+</div>
+<div id="ref-hertzmann2018can" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[27] </div><div
+class="csl-right-inline">Hertzmann, A. 2018. Can computers create art?
+<em>Arts</em> (2018), 18.</div>
+</div>
+<div id="ref-hughes2024cheap" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[28] </div><div
+class="csl-right-inline">Hughes, S. 2024. <a
+href="https://www.worksinprogress.news/p/cheap-ornament-and-status-games">Cheap
+ornament and status games: Was modernism originally a way to signal
+taste instead of wealth?</a> <em>Works in Progress Newsletter</em>.
+(2024).</div>
+</div>
+<div id="ref-illich1981shadow" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[29] </div><div
+class="csl-right-inline">Illich, I. 1981. <em>Shadow work</em>. Marion
+Boyars.</div>
+</div>
+<div id="ref-bender2024information" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[30] </div><div
+class="csl-right-inline">Information literacy and chatbots as search:
+2024. <a
+href="https://buttondown.com/maiht3k/archive/information-literacy-and-chatbots-as-search/"><em>https://buttondown.com/maiht3k/archive/information-literacy-and-chatbots-as-search/</em></a>.</div>
+</div>
+<div id="ref-jakesch2023heuristics" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[31] </div><div
+class="csl-right-inline">Jakesch, M. et al. 2023. Human heuristics for
+AI-generated language are flawed. <em>Proceedings of the National
+Academy of Sciences</em>. 120, 11 (2023), e2208839120.
+https://doi.org/<a
+href="https://doi.org/10.1073/pnas.2208839120">10.1073/pnas.2208839120</a>.</div>
+</div>
+<div id="ref-johnson1972professions" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[32] </div><div
+class="csl-right-inline">Johnson, T.J. 1972. <em>Professions and
+power</em>. Studies in Sociology.</div>
+</div>
+<div id="ref-kadoma2024generativeaiperceptualharms" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[33] </div><div
+class="csl-right-inline">Kadoma, K. et al. 2024. <a
+href="https://arxiv.org/abs/2410.00906">Generative AI and perceptual
+harms: Who’s suspected of using LLMs?</a></div>
+</div>
+<div id="ref-Kay_Kasirzadeh_Mohamed_2024" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[34] </div><div
+class="csl-right-inline">Kay, J. et al. 2024. Epistemic injustice in
+generative AI. <em>Proceedings of the AAAI/ACM Conference on AI, Ethics,
+and Society</em>. 7, 1 (2024), 684–697. https://doi.org/<a
+href="https://doi.org/10.1609/aies.v7i1.31671">10.1609/aies.v7i1.31671</a>.</div>
+</div>
+<div id="ref-kobak2024delving" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[35] </div><div
+class="csl-right-inline">Kobak, D. et al. 2024. Delving into ChatGPT
+usage in academic writing through excess vocabulary. <em>arXiv preprint
+arXiv:2406.07016</em>. (2024).</div>
+</div>
+<div id="ref-kobiella2024if" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[36] </div><div
+class="csl-right-inline">Kobiella, C. et al. 2024. "If the machine is as
+good as me, then what use am i?"–how the use of ChatGPT changes young
+professionals’ perception of productivity and accomplishment.
+<em>Proceedings of the CHI conference on human factors in computing
+systems</em> (2024), 1–16.</div>
+</div>
+<div id="ref-kouaho2024socioeconomic" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[37] </div><div
+class="csl-right-inline">Kouaho, W.-J. and Epstein, D.A. 2024.
+Socioeconomic class in physical activity wearables research and design.
+<em>Proceedings of the CHI conference on human factors in computing
+systems</em> (2024), 1–15.</div>
+</div>
+<div id="ref-lauritzen2024ben" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[38] </div><div
+class="csl-right-inline">Lauritzen, P. 2024. <a
+href="https://www.forbes.com/sites/pialauritzen/2024/11/20/why-ben-afflecks-take-on-ai-is-only-half-the-truth/">Why
+ben affleck’s take on AI is only half the truth</a>. <em>Forbes</em>.
+(Nov. 2024).</div>
+</div>
+<div id="ref-lee2025ct-survey" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[39] </div><div
+class="csl-right-inline">Lee, H.-P. (Hank) et al. 2025. <a
+href="https://doi.org/10.1145/3706598.3713778"><span class="nocase">The
+Impact of Generative AI on Critical Thinking: Self-Reported Reductions
+in Cognitive Effort and Confidence Effects From a Survey of Knowledge
+Workers</span></a>. <em>Proceedings of the CHI conference on human
+factors in computing systems</em> (Yokohama, Japan, Apr. 2025),
+23.</div>
+</div>
+<div id="ref-liang2023gpt" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[40] </div><div
+class="csl-right-inline">Liang, W. et al. 2023. GPT detectors are biased
+against non-native english writers. <em>Patterns</em>. 4, 7
+(2023).</div>
+</div>
+<div id="ref-vanorden2024grandchildren" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[41] </div><div
+class="csl-right-inline">LinkedIn post: 2024. <a
+href="https://www.linkedin.com/posts/evelyn-van-orden-41644153_your-grandchildren-will-be-the-last-generation-activity-7257297931345539073-kk_P/"><em>https://www.linkedin.com/posts/evelyn-van-orden-41644153_your-grandchildren-will-be-the-last-generation-activity-7257297931345539073-kk_P/</em></a>.</div>
+</div>
+<div id="ref-lothy2005hockney" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[42] </div><div
+class="csl-right-inline">Löthy, C. 2005. <a
+href="http://www.jstor.org/stable/4130315">Hockney’s secret knowledge,
+vanvitelli’s camera obscura</a>. <em>Early Science and Medicine</em>.
+10, 2 (2005), 315–339.</div>
+</div>
+<div id="ref-marks2009stuck" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[43] </div><div
+class="csl-right-inline">Marks, A. and Baldry, C. 2009. Stuck in the
+middle with who? The class identity of knowledge workers. <em>Work,
+Employment and Society</em>. 23, 1 (2009), 49–65.</div>
+</div>
+<div id="ref-marriott2024creativity" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[44] </div><div
+class="csl-right-inline">Marriott, J. 2024. <a
+href="https://engelsbergideas.com/essays/why-human-creativity-matters-in-the-age-of-ai/">Why
+human creativity matters in the age of AI</a>. <em>Engelsberg
+Ideas</em>. (2024).</div>
+</div>
+<div id="ref-mcinerney2024yellow" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[45] </div><div
+class="csl-right-inline">McInerney, K. 2024. Yellow techno-peril: The
+<span>“clash of civilizations”</span> and anti-chinese racial rhetoric
+in the US–china AI arms race. <em>Big Data &amp; Society</em>. 11, 2
+(2024), 20539517241227873. https://doi.org/<a
+href="https://doi.org/10.1177/20539517241227873">10.1177/20539517241227873</a>.</div>
+</div>
+<div id="ref-mcluhan1964understanding" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[46] </div><div
+class="csl-right-inline">McLuhan, M. 1964. <em>Understanding media: The
+extensions of man</em>. McGraw-Hill.</div>
+</div>
+<div id="ref-miles2022students" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[47] </div><div
+class="csl-right-inline">Miles, P.J. et al. 2022. Why students cheat and
+how understanding this can help reduce the frequency of academic
+misconduct in higher education: A literature review. <em>Journal of
+Undergraduate Neuroscience Education</em>. 20, 2 (2022), A150.</div>
+</div>
+<div id="ref-panchanadikar2024m" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[48] </div><div
+class="csl-right-inline">Panchanadikar, R. and Freeman, G. 2024. "I’m a
+solo developer but AI is my new ill-informed co-worker": Envisioning and
+designing generative AI to support indie game development.
+<em>Proceedings of the ACM on Human-Computer Interaction</em>. 8, CHI
+PLAY (2024), 1–26.</div>
+</div>
+<div id="ref-plato1997phaedrus" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[49] </div><div
+class="csl-right-inline">Plato 1997. Phaedrus. <em>Complete works</em>.
+J.M. Cooper, ed. Hackett. 551–552.</div>
+</div>
+<div id="ref-porter2024ai" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[50] </div><div
+class="csl-right-inline">Porter, B. and Machery, E. 2024. AI-generated
+poetry is indistinguishable from human-written poetry and is rated more
+favorably. <em>Scientific Reports</em>. 14, 1 (2024), 26133.</div>
+</div>
+<div id="ref-postman1985amusing" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[51] </div><div
+class="csl-right-inline">Postman, N. 1985. <em>Amusing ourselves to
+death: Public discourse in the age of show business</em>. Viking
+Penguin.</div>
+</div>
+<div id="ref-read2024drowning" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[52] </div><div
+class="csl-right-inline">Read, M. 2024. <a
+href="https://nymag.com/intelligencer/article/ai-generated-content-internet-online-slop-spam.html">Drowning
+in slop</a>. <em>New York Magazine</em>. (2024).</div>
+</div>
+<div id="ref-Riello_Rublack_2019" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[53] </div><div
+class="csl-right-inline">Riello, G. and Rublack, U. eds. 2019. <em>The
+right to dress: Sumptuary laws in a global perspective,
+c.1200–1800</em>. Cambridge University Press.</div>
+</div>
+<div id="ref-russell2025peoplefrequentlyusechatgpt" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[54] </div><div
+class="csl-right-inline">Russell, J. et al. 2025. <a
+href="https://arxiv.org/abs/2501.15654">People who frequently use
+ChatGPT for writing tasks are accurate and robust detectors of
+AI-generated text</a>.</div>
+</div>
+<div id="ref-sarkar2024aiprovocateur" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[55] </div><div
+class="csl-right-inline">Sarkar, A. 2024. <span>AI Should Challenge, Not
+Obey</span>. <em>Communications of the ACM</em>. (Sep. 2024).
+https://doi.org/<a
+href="https://doi.org/10.1145/3649404">10.1145/3649404</a>.</div>
+</div>
+<div id="ref-sarkar2023humanaicollaboration" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[56] </div><div
+class="csl-right-inline">Sarkar, A. 2023. <a
+href="https://doi.org/10.1145/3544549.3582735">Enough with
+<span>“human-AI collaboration”</span></a>. <em>Extended abstracts of the
+2023 CHI conference on human factors in computing systems</em> (New
+York, NY, USA, 2023).</div>
+</div>
+<div id="ref-sarkar2023aiknowledgework" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[57] </div><div
+class="csl-right-inline">Sarkar, A. 2023. <a
+href="https://doi.org/10.1145/3596671.3597650">Exploring perspectives on
+the impact of artificial intelligence on the creativity of knowledge
+work: Beyond mechanised plagiarism and stochastic parrots</a>.
+<em>Proceedings of the 2nd annual meeting of the symposium on
+human-computer interaction for work</em> (New York, NY, USA,
+2023).</div>
+</div>
+<div id="ref-sarkar2024intention" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[58] </div><div
+class="csl-right-inline">Sarkar, A. 2024. <span>Intention Is All You
+Need</span>. <em><span class="nocase">Proceedings of the 35th Annual
+Conference of the Psychology of Programming Interest Group (PPIG
+2024)</span></em> (Sep. 2024).</div>
+</div>
+<div id="ref-sarkar2024genAIcritical" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[59] </div><div
+class="csl-right-inline">Sarkar, A. et al. 2024. <span
+class="nocase">When Copilot Becomes Autopilot: Generative AI’s Critical
+Risk to Knowledge Work and a Critical Solution</span>. <em><span
+class="nocase">Proceedings of the Annual Conference of the European
+Spreadsheet Risks Interest Group (EuSpRIG 2024)</span></em>
+(2024).</div>
+</div>
+<div id="ref-seetharaman2024cheating" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[60] </div><div
+class="csl-right-inline">Seetharaman, D. and Barnum, M. 2024. <a
+href="https://www.wsj.com/tech/ai/openai-tool-chatgpt-cheating-writing-135b755a">There’s
+a tool to catch students cheating with ChatGPT. OpenAI hasn’t released
+it.</a> <em>The Wall Street Journal</em>. (2024).</div>
+</div>
+<div id="ref-smith1999decolonizing" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[61] </div><div
+class="csl-right-inline">Smith, L.T. 1999. <em>Decolonizing
+methodologies: Research and indigenous peoples</em>. Zed Books.</div>
+</div>
+<div id="ref-sontag1977photography" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[62] </div><div
+class="csl-right-inline">Sontag, S. 1977. <em>On photography</em>.
+Farrar, Straus; Giroux.</div>
+</div>
+<div id="ref-stacey2024bosses" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[63] </div><div
+class="csl-right-inline">Stacey, S. 2024. <a
+href="https://www.ft.com/content/cd08b45d-12dc-447e-bd59-1c366a7e6396">Bosses
+struggle to police workers’ use of AI</a>. <em>Financial Times</em>.
+(Dec. 2024).</div>
+</div>
+<div id="ref-tanksley2024changing" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[64] </div><div
+class="csl-right-inline">Tanksley, T.C. 2024. <span>“We’re changing the
+system with this one”</span>: Black students using critical race
+algorithmic literacies to subvert and survive AI-mediated racism in
+school. <em>English Teaching: Practice &amp; Critique</em>. 23, 1
+(2024), 36–56. https://doi.org/<a
+href="https://doi.org/10.1108/ETPC-08-2023-0102">10.1108/ETPC-08-2023-0102</a>.</div>
+</div>
+<div id="ref-lazauskas2024humaninternet" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[65] </div><div
+class="csl-right-inline">The human internet is dying.: 2024. <a
+href="https://www.linkedin.com/posts/joe-lazer-lazauskas-8b442026_the-human-internet-is-dying-someone-just-activity-7252108012759195648-EkBs/"><em>https://www.linkedin.com/posts/joe-lazer-lazauskas-8b442026_the-human-internet-is-dying-someone-just-activity-7252108012759195648-EkBs/</em></a>.</div>
+</div>
+<div id="ref-tingelhoff2024guide" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[66] </div><div
+class="csl-right-inline">Tingelhoff, F. et al. 2024. A guide for
+structured literature reviews in business research: The state-of-the-art
+and how to integrate generative artificial intelligence. <em>Journal of
+Information Technology</em>. (2024), 02683962241304105.
+https://doi.org/<a
+href="https://doi.org/10.1177/02683962241304105">10.1177/02683962241304105</a>.</div>
+</div>
+<div id="ref-trithemius1494manual" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[67] </div><div
+class="csl-right-inline">Trithemius, J. 1494. <em>De laude scriptorum
+manualium</em>.</div>
+</div>
+<div id="ref-veblen1899theory" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[68] </div><div
+class="csl-right-inline">Veblen, T. 1899. <em>The theory of the leisure
+class: An economic study in the evolution of institutions</em>.
+Macmillan.</div>
+</div>
+<div id="ref-warburton2024gamification" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[69] </div><div
+class="csl-right-inline">Warburton, F. 2024. <a
+href="https://daily.jstor.org/from-gamification-to-game-based-learning/">From
+gamification to game-based learning</a>. <em>JSTOR Daily</em>.
+(2024).</div>
+</div>
+<div id="ref-icedtea2024aiaccusations" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[70] </div><div class="csl-right-inline">We
+accused an artist of selling us traced AI. Accusations, apology
+compensation &amp; fundraiser.: 2024. <a
+href="https://x.com/IcedTeaClothing/status/1834677501148512763"><em>https://x.com/IcedTeaClothing/status/1834677501148512763</em></a>.</div>
+</div>
+<div id="ref-zhang2024secretuselargelanguage" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[71] </div><div
+class="csl-right-inline">Zhang, Z. et al. 2024. <a
+href="https://arxiv.org/abs/2409.19450">Secret use of large language
+model (LLM)</a>.</div>
+</div>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The idea that reuse precludes novelty is not consistent
+with the way many artistic domains conceive of reuse <span
+class="citation" data-cites="sarkar2023aiknowledgework">[57]</span>.<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>From informal sources, I gather that the Neo-Confucian
+scholar and pedagogue Zhu Xi had raised similar objections to printed
+books some centuries earlier, but regrettably have been unable to trace
+an authoritative source to support this claim.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>There are cultural variations and nuances that this
+ignores; for instance in England, class identity is strongly hereditary
+– wealthy white collar workers may retain a “working class” identity if
+they were raised by working class parents <span class="citation"
+data-cites="marks2009stuck">[43]</span>, and there is no route by merit
+into the aristocracy, only by blood and marriage.<a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>More could be said about how this process is an
+accomplice to colonialism (e.g., see Freire <span class="citation"
+data-cites="freire1968pedagogy">[22]</span> or Smith <span class="citation"
+data-cites="smith1999decolonizing">[61]</span>) but is out of scope.<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>There are clear distinctions between these societies and
+our latter-day societies of control as characterised by Deleuze – they
+are inhabited by whole individuals as opposed to atomised “dividuals”,
+computational and numeric machineries of control where present are
+incomparable to those of present-day scale – but they share the
+essential characteristic that the tightly boundaried and
+institutionalised forms of control in Foucault’s disciplinary societies
+are rendered unnecessary by forms of control that are continuous and
+deeply interiorised to the point of being unconscious. Above all, they
+do not stage the clear oppression/freedom binary as do disciplinary
+societies.<a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Indeed, some of my own work explores an aspect of work
+degradation, namely, the deterioration in critical thinking that may
+ensue from the unreflective application of Generative AI in knowledge
+work <span class="citation"
+data-cites="sarkar2024aiprovocateur sarkar2024intention sarkar2024genAIcritical lee2025ct-survey">[39,
+55, 58, 59]</span>. I have also aimed to draw attention to the socially
+problematic nature of the “human-AI collaboration” metaphor <span
+class="citation"
+data-cites="sarkar2023humanaicollaboration">[56]</span>.<a
+href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
